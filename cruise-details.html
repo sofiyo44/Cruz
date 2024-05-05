@@ -359,115 +359,77 @@
 <!-- ================================
     START CRUISE DETAIL AREA
 ================================= -->
-<section class="cruise-detail-area padding-bottom-90px">
-    <div class="single-content-navbar-wrap menu section-bg" id="single-content-navbar">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="single-content-nav" id="single-content-nav">
-                        <ul>
-                            <li><a data-scroll="description" href="#description" class="scroll-link active">About This ship</a></li>
-                            <li><a data-scroll="itinerary" href="#itinerary" class="scroll-link">Itinerary</a></li>
-                            <li><a data-scroll="staterooms" href="#staterooms" class="scroll-link">Staterooms</a></li>
-                            <li><a data-scroll="faq" href="#faq" class="scroll-link">FAQ</a></li>
-                            <li><a data-scroll="reviews" href="#reviews" class="scroll-link">Reviews</a></li>
-                        </ul>
+ <section class="cruise-detail-area padding-bottom-90px">
+        <div class="single-content-navbar-wrap menu section-bg" id="single-content-navbar">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="single-content-nav" id="single-content-nav">
+                            <ul>
+                                <li><a data-scroll="description" href="#description" class="scroll-link active">About This ship</a></li>
+                                <li><a data-scroll="itinerary" href="#itinerary" class="scroll-link">Itinerary</a></li>
+                                <li><a data-scroll="staterooms" href="#staterooms" class="scroll-link">Staterooms</a></li>
+                                <li><a data-scroll="faq" href="#faq" class="scroll-link">FAQ</a></li>
+                                <li><a data-scroll="reviews" href="#reviews" class="scroll-link">Reviews</a></li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div><!-- end single-content-navbar-wrap -->
-    <div class="single-content-box">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-8">
-                    <div class="single-content-wrap padding-top-60px">
-                        <div id="description" class="page-scroll">
+        <div class="single-content-box">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8">
+                        <div class="single-content-wrap padding-top-60px" id="description">
                             <div class="single-content-item pb-4">
                                 <h3 class="title font-size-26">7 Nights Caribbean Southern Cruise</h3>
-                                <div class="d-flex flex-wrap align-items-center pt-2">
-                                    <p class="mr-2">Galveston, Texas</p>
-                                    <p>
-                                        <span class="badge badge-warning text-white font-size-16">4.6</span>
-                                        <span>(4,209 Reviews)</span>
-                                    </p>
-                                </div>
-                            </div><!-- end single-content-item -->
+                                <div id="cruise-description"></div> <!-- Dynamically filled -->
+                            </div>
                             <div class="section-block"></div>
                             <div class="single-content-item padding-top-40px padding-bottom-40px">
-                                <h3 class="title font-size-20">Description</h3>
-                                <p class="pt-3">Per consequat adolescens ex, cu nibh commune temporibus vim, ad sumo viris eloquentiam sed. Mea appareat omittantur eloquentiam ad, nam ei quas oportere democritum. Prima causae admodum id est, ei timeam inimicus sed. Sit an meis aliquam, cetero inermis vel ut. An sit illum euismod facilisis, tamquam vulputate pertinacia eum at.</p>
-                            </div><!-- end single-content-item -->
-                            <div class="single-content-item padding-bottom-30px">
                                 <h3 class="title font-size-20">Ship Statistics</h3>
-                                <div class="row pt-4">
-                                    <div class="col-lg-6 responsive-column">
-                                        <ul class="list-items list-items-2">
-                                            <li><span>Date Launched:</span>1989</li>
-                                            <li><span>Age of Ship:</span>29 years</li>
-                                            <li><span>Refurbished Date:</span>01/01/2017</li>
-                                            <li><span>Tonnage:</span>93,558 grt</li>
-                                            <li><span>Length:</span>965 ft</li>
-                                            <li><span>Beam:</span>105 ft</li>
-                                            <li><span>Draft:</span>28 ft</li>
-                                            <li><span>Speed:</span>22.5 knots</li>
-                                        </ul><!-- end list-items -->
-                                    </div><!-- end col-lg-6 -->
-                                   <div class="col-lg-6 responsive-column">
-                                        <ul class="list-items list-items-2">
-                                            <li><span>Guest Capacity:</span>23,400</li>
-                                            <li><span>Total Staff:</span>9,078 crew</li>
-                                            <li><span>Officers:</span>Italian</li>
-                                            <li><span>Dining Crew:</span>International</li>
-                                            <li><span>Other Crew:</span>International</li>
-                                            <li><span>Registry:</span>Panama</li>
-                                            <li><span>Ship Type:</span>Luxury Cruise</li>
-                                        </ul><!-- end list-items -->
-                                    </div><!-- end col-lg-6 -->
-                                </div><!-- end row -->
-                            </div><!-- end single-content-item -->
+                                <div id="ship-statistics"></div> <!-- Dynamically filled -->
+                            </div>
                             <div class="single-content-item padding-bottom-40px">
-                                <h3 class="title font-size-20 d-flex align-items-center justify-content-between">
-                                    What's Included
-                                    <a class="btn collapse-btn theme-btn-hover-gray font-size-15" data-toggle="collapse" href="#viewIncludedExample" role="button" aria-expanded="false" aria-controls="viewIncludedExample">
-                                        View<i class="la la-angle-down ml-1"></i>
-                                    </a>
-                                </h3>
-                                <div class="collapse" id="viewIncludedExample">
-                                    <div class="cruise-included-feature-wrap">
-                                        <div class="cruise-include-feature pt-3">
-                                            <h3 class="title font-size-15 font-weight-medium pb-2">Included</h3>
-                                            <p class="pb-3 font-size-15">Unless otherwise indicated on your itinerary, a Holland America Line includes the following on final confirmation. Taxes and fees are typically not included in the advertised price, but included in your final booking prices.</p>
-                                            <ul class="list-items">
-                                                <li><i class="la la-check text-success mr-2"></i>Your choice of inside, oceanview, balcony or suite accommodations</li>
-                                                <li><i class="la la-check text-success mr-2"></i>All meals onboard including 24 hour room service</li>
-                                                <li><i class="la la-check text-success mr-2"></i>Coffee, tea, milk, juice and non-bottled water</li>
-                                                <li><i class="la la-check text-success mr-2"></i>Onboard entertainment including shows, discos, comedy clubs, bars, lounges, etc.</li>
-                                                <li><i class="la la-check text-success mr-2"></i>Age appropriate kids programming for toddlers, kids, and teens.</li>
-                                                <li><i class="la la-check text-success mr-2"></i>Use of all fitness facilities, pools, hot tubs, sports courts, etc.</li>
-                                                <li><i class="la la-check text-success mr-2"></i>Taxes and Fees (included in the final price but typically not advertised price)</li>
-                                            </ul>
-                                        </div>
-                                        <div class="cruise-include-feature pt-3">
-                                            <h3 class="title font-size-15 font-weight-medium pb-2">Not Included</h3>
-                                            <p class="pb-3 font-size-15">Unless otherwise indicated above or on your final confirmation, your cruise price does not include:</p>
-                                            <ul class="list-items">
-                                                <li><i class="la la-times text-danger mr-2"></i>Airfare and transfers to the ship</li>
-                                                <li><i class="la la-times text-danger mr-2"></i>Gratuities</li>
-                                                <li><i class="la la-times text-danger mr-2"></i>Casino gambling or Bingo</li>
-                                                <li><i class="la la-times text-danger mr-2"></i>Meals in any alternative or special dining restaurants or venues</li>
-                                                <li><i class="la la-times text-danger mr-2"></i>Soft drinks, bottled water, specialty coffees, or alcoholic beverages including beer, wine, spirits.</li>
-                                                <li><i class="la la-times text-danger mr-2"></i>Shore Excursions and sightseeing tours</li>
-                                                <li><i class="la la-times text-danger mr-2"></i>Spa or Salon Services</li>
-                                                <li><i class="la la-times text-danger mr-2"></i>Items of a personal nature like souvenirs, photos</li>
-                                                <li><i class="la la-times text-danger mr-2"></i>Internet access</li>
-                                                <li><i class="la la-times text-danger mr-2"></i>Travel Insurance (recommended)</li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div><!-- end single-content-item -->
+      <h3 class="title font-size-20 d-flex align-items-center justify-content-between">
+        What's Included
+        <a class="btn collapse-btn theme-btn-hover-gray font-size-15" data-toggle="collapse" href="#viewIncludedExample" role="button" aria-expanded="false" aria-controls="viewIncludedExample">
+            View<i class="la la-angle-down ml-1"></i>
+        </a>
+    </h3>
+    <div class="collapse" id="viewIncludedExample">
+        <div class="cruise-included-feature-wrap">
+            <div class="cruise-include-feature pt-3">
+                <h3 class="title font-size-15 font-weight-medium pb-2">Included</h3>
+                <p class="pb-3 font-size-15">Unless otherwise indicated on your itinerary, a Holland America Line includes the following on final confirmation. Taxes and fees are typically not included in the advertised price, but included in your final booking prices.</p>
+                <ul class="list-items">
+                    <li><i class="la la-check text-success mr-2"></i>Your choice of inside, oceanview, balcony or suite accommodations</li>
+                    <li><i class="la la-check text-success mr-2"></i>All meals onboard including 24 hour room service</li>
+                    <li><i class="la la-check text-success mr-2"></i>Coffee, tea, milk, juice and non-bottled water</li>
+                    <li><i class="la la-check text-success mr-2"></i>Onboard entertainment including shows, discos, comedy clubs, bars, lounges, etc.</li>
+                    <li><i class="la la-check text-success mr-2"></i>Age appropriate kids programming for toddlers, kids, and teens.</li>
+                    <li><i class="la la-check text-success mr-2"></i>Use of all fitness facilities, pools, hot tubs, sports courts, etc.</li>
+                    <li><i class="la la-check text-success mr-2"></i>Taxes and Fees (included in the final price but typically not advertised price)</li>
+                </ul>
+            </div>
+            <div class="cruise-include-feature pt-3">
+                <h3 class="title font-size-15 font-weight-medium pb-2">Not Included</h3>
+                <p class="pb-3 font-size-15">Unless otherwise indicated above or on your final confirmation, your cruise price does not include:</p>
+                <ul class="list-items">
+                    <li><i class="la la-times text-danger mr-2"></i>Airfare and transfers to the ship</li>
+                    <li><i class="la la-times text-danger mr-2"></i>Gratuities</li>
+                    <li><i class="la la-times text-danger mr-2"></i>Casino gambling or Bingo</li>
+                    <li><i class="la la-times text-danger mr-2"></i>Meals in any alternative or special dining restaurants or venues</li>
+                    <li><i class="la la-times text-danger mr-2"></i>Soft drinks, bottled water, specialty coffees, or alcoholic beverages including beer, wine, spirits.</li>
+                    <li><i class="la la-times text-danger mr-2"></i>Shore Excursions and sightseeing tours</li>
+                    <li><i class="la la-times text-danger mr-2"></i>Spa or Salon Services</li>
+                    <li><i class="la la-times text-danger mr-2"></i>Items of a personal nature like souvenirs, photos</li>
+                    <li><i class="la la-times text-danger mr-2"></i>Internet access</li>
+                    <li><i class="la la-times text-danger mr-2"></i>Travel Insurance (recommended)</li>
+                            </div>
                             <div class="single-content-item">
+                                 <div class="single-content-item">
                                 <h3 class="title font-size-20 d-flex align-items-center justify-content-between">
                                     Ship Amenities
                                     <a class="btn collapse-btn theme-btn-hover-gray font-size-15" data-toggle="collapse" href="#viewAmenitiesExample" role="button" aria-expanded="false" aria-controls="viewAmenitiesExample">
@@ -735,454 +697,33 @@
                                         </div><!-- end col-lg-6 -->
                                     </div><!-- end row -->
                                 </div>
-                            </div><!-- end single-content-item -->
-                        </div><!-- end description -->
+                        </div>
                         <div id="itinerary" class="page-scroll">
                             <div class="section-block margin-top-40px"></div>
                             <div class="single-content-item padding-top-40px padding-bottom-40px">
                                 <h3 class="title font-size-20">Cruise itinerary</h3>
-                               <div class="table-form table-responsive padding-top-30px">
-                                   <table class="table">
-                                       <thead>
-                                           <tr>
-                                               <th scope="col">Days</th>
-                                               <th scope="col">Ports of Call</th>
-                                               <th scope="col">Arrival</th>
-                                               <th scope="col">Departure</th>
-                                           </tr>
-                                       </thead>
-                                       <tbody>
-                                           <tr>
-                                               <th scope="row">Day 1</th>
-                                               <td>
-                                                   <div class="table-content d-flex align-items-center">
-                                                       <img src="images/small-img4.jpg" alt="" class="flex-shrink-0">
-                                                       <h3 class="title">Miami, Florida</h3>
-                                                   </div>
-                                               </td>
-                                               <td>4:00 AM</td>
-                                               <td>8:00 PM</td>
-                                           </tr>
-                                           <tr>
-                                               <th scope="row">Day 2</th>
-                                               <td>
-                                                   <div class="table-content d-flex align-items-center">
-                                                       <img src="images/small-img5.jpg" alt="" class="flex-shrink-0">
-                                                       <h3 class="title">At Sea</h3>
-                                                   </div>
-                                               </td>
-                                               <td>4:00 AM</td>
-                                               <td>8:00 PM</td>
-                                           </tr>
-                                           <tr>
-                                               <th scope="row">Day 3</th>
-                                               <td>
-                                                   <div class="table-content d-flex align-items-center">
-                                                       <img src="images/small-img5.jpg" alt="" class="flex-shrink-0">
-                                                       <h3 class="title">At Sea</h3>
-                                                   </div>
-                                               </td>
-                                               <td>4:00 AM</td>
-                                               <td>8:00 PM</td>
-                                           </tr>
-                                           <tr>
-                                               <th scope="row">Day 4</th>
-                                               <td>
-                                                   <div class="table-content d-flex align-items-center">
-                                                       <img src="images/small-img6.jpg" alt="" class="flex-shrink-0">
-                                                       <h3 class="title">Philipsburg, Sint Maarten, Netherlands Antilles</h3>
-                                                   </div>
-                                               </td>
-                                               <td>4:00 AM</td>
-                                               <td>8:00 PM</td>
-                                           </tr>
-                                           <tr>
-                                               <th scope="row">Day 5</th>
-                                               <td>
-                                                   <div class="table-content d-flex align-items-center">
-                                                       <img src="images/small-img7.jpg" alt="" class="flex-shrink-0">
-                                                       <h3 class="title">St. Thomas, USVI</h3>
-                                                   </div>
-                                               </td>
-                                               <td>4:00 AM</td>
-                                               <td>8:00 PM</td>
-                                           </tr>
-                                           <tr>
-                                               <th scope="row">Day 6</th>
-                                               <td>
-                                                   <div class="table-content d-flex align-items-center">
-                                                       <img src="images/small-img5.jpg" alt="" class="flex-shrink-0">
-                                                       <h3 class="title">At Sea</h3>
-                                                   </div>
-                                               </td>
-                                               <td>4:00 AM</td>
-                                               <td>8:00 PM</td>
-                                           </tr>
-                                           <tr>
-                                               <th scope="row">Day 7</th>
-                                               <td>
-                                                   <div class="table-content d-flex align-items-center">
-                                                       <img src="images/small-img8.jpg" alt="" class="flex-shrink-0">
-                                                       <h3 class="title">Miami, Florida</h3>
-                                                   </div>
-                                               </td>
-                                               <td>4:00 AM</td>
-                                               <td>8:00 PM</td>
-                                           </tr>
-                                       </tbody>
-                                   </table>
-                                   <p class="font-size-14 line-height-26"><strong class="text-black">Please note:</strong> While we do our best to adhere to our published itineraries, they may be changed at the discretion of the captain due to weather advisories, port traffic, and any other unforeseeable circumstances.</p>
-                               </div>
-                            </div><!-- end single-content-item -->
+                                <div id="cruise-itinerary"></div> <!-- Dynamically filled -->
+                            </div>
                             <div class="section-block"></div>
-                        </div><!-- end itinerary -->
+                        </div>
                         <div id="staterooms" class="page-scroll">
                             <div class="single-content-item padding-top-40px padding-bottom-30px">
                                 <h3 class="title font-size-20">Date Availability</h3>
-                                <div class="table-form table-layout-2 table-responsive padding-top-30px">
-                                    <table class="table">
-                                        <thead>
-                                        <tr>
-                                            <th scope="col">Date</th>
-                                            <th scope="col">Inside</th>
-                                            <th scope="col">Oceanview</th>
-                                            <th scope="col">Balcony</th>
-                                            <th scope="col">Suite</th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                        <tr>
-                                            <th scope="row">
-                                                <label for="radio-1" class="radio-trigger mb-0 font-size-15">
-                                                    <input type="radio" id="radio-1" name="radio">
-                                                    <span class="checkmark"></span>
-                                                    <span>April 4 - 11, 2020</span>
-                                                </label>
-                                            </th>
-                                            <td>
-                                                <div class="table-content d-flex">
-                                                    <span class="mr-1">from</span>
-                                                    <h3 class="title table-price">$217</h3>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div class="table-content d-flex">
-                                                    <span class="mr-1">from</span>
-                                                    <h3 class="title table-price">$317</h3>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div class="table-content d-flex">
-                                                    <span class="mr-1">from</span>
-                                                    <h3 class="title table-price">$417</h3>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div class="table-content d-flex">
-                                                    <span class="mr-1">from</span>
-                                                    <h3 class="title table-price">$517</h3>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">
-                                                <label for="radio-2" class="radio-trigger mb-0 font-size-15">
-                                                    <input type="radio" id="radio-2" name="radio">
-                                                    <span class="checkmark"></span>
-                                                    <span>April 4 - 11, 2020</span>
-                                                </label>
-                                            </th>
-                                            <td>
-                                                <div class="table-content d-flex">
-                                                    <span class="mr-1">from</span>
-                                                    <h3 class="title table-price">$299</h3>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div class="table-content d-flex">
-                                                    <span class="mr-1">from</span>
-                                                    <h3 class="title table-price">$399</h3>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div class="table-content d-flex">
-                                                    <span class="mr-1">from</span>
-                                                    <h3 class="title table-price">$499</h3>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div class="table-content d-flex">
-                                                    <span class="mr-1">from</span>
-                                                    <h3 class="title table-price">$599</h3>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">
-                                                <label for="radio-3" class="radio-trigger mb-0 font-size-15">
-                                                    <input type="radio" id="radio-3" name="radio">
-                                                    <span class="checkmark"></span>
-                                                    <span>April 4 - 11, 2020</span>
-                                                </label>
-                                            </th>
-                                            <td>
-                                                <div class="table-content d-flex">
-                                                    <span class="mr-1">from</span>
-                                                    <h3 class="title table-price">$220</h3>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div class="table-content d-flex">
-                                                    <span class="mr-1">from</span>
-                                                    <h3 class="title table-price">$320</h3>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div class="table-content d-flex">
-                                                    <span class="mr-1">from</span>
-                                                    <h3 class="title table-price">$420</h3>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div class="table-content d-flex">
-                                                    <span class="mr-1">from</span>
-                                                    <h3 class="title table-price">$520</h3>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">
-                                                <label for="radio-4" class="radio-trigger mb-0 font-size-15">
-                                                    <input type="radio" id="radio-4" name="radio">
-                                                    <span class="checkmark"></span>
-                                                    <span>April 4 - 11, 2020</span>
-                                                </label>
-                                            </th>
-                                            <td>
-                                                <div class="table-content d-flex">
-                                                    <span class="mr-1">from</span>
-                                                    <h3 class="title table-price">$238</h3>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div class="table-content d-flex">
-                                                    <span class="mr-1">from</span>
-                                                    <h3 class="title table-price">$338</h3>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div class="table-content d-flex">
-                                                    <span class="mr-1">from</span>
-                                                    <h3 class="title table-price">$438</h3>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div class="table-content d-flex">
-                                                    <span class="mr-1">from</span>
-                                                    <h3 class="title table-price">$538</h3>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">
-                                                <label for="radio-5" class="radio-trigger mb-0 font-size-15">
-                                                    <input type="radio" id="radio-5" name="radio">
-                                                    <span class="checkmark"></span>
-                                                    <span>April 4 - 11, 2020</span>
-                                                </label>
-                                            </th>
-                                            <td>
-                                                <div class="table-content d-flex">
-                                                    <span class="mr-1">from</span>
-                                                    <h3 class="title table-price">$238</h3>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div class="table-content d-flex">
-                                                    <span class="mr-1">from</span>
-                                                    <h3 class="title table-price">$338</h3>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div class="table-content d-flex">
-                                                    <span class="mr-1">from</span>
-                                                    <h3 class="title table-price">$438</h3>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div class="table-content d-flex">
-                                                    <span class="mr-1">from</span>
-                                                    <h3 class="title table-price">$538</h3>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div><!-- end single-content-item -->
-                            <div class="section-block"></div>
+                                <div id="cruise-date-availability"></div> <!-- Dynamically filled -->
+                            </div>
                             <div class="single-content-item padding-top-40px padding-bottom-40px">
                                 <h3 class="title font-size-20">Select a Cabin Type</h3>
-                                <div class="cabin-type padding-top-30px">
-                                    <h3 class="title font-size-16">Inside Cabins</h3>
-                                    <div class="cabin-type-item d-flex pt-4">
-                                        <div class="cabin-type-img flex-shrink-0">
-                                            <img src="images/inside-cabin.jpg" alt="">
-                                        </div>
-                                       <div class="cabin-type-detail">
-                                            <h3 class="title">Guarantee - Interior Stateroom</h3>
-                                           <ul class="list-items pt-2 pb-2">
-                                               <li><span>Square footage:</span>139-226 sq ft</li>
-                                               <li><span>Occupancy:</span>Up to 2 guests (some sleep up to 4)</li>
-                                               <li><span>Amenities:</span>Double bed that can be converted to two single beds on request, bathrobes, spacious closet, bathroom with shower, interactive TV, mini bar, safe, and telephone.</li>
-                                           </ul>
-                                       </div>
-                                       <div class="cabin-price">
-                                           <ul>
-                                               <li><span class="badge badge-warning text-white">Up to 40% off</span></li>
-                                               <li>from<strong class="ml-1 text-black">$217</strong><span class="before-price ml-1">$299</span></li>
-                                               <li class="font-size-13 mt-n2">per person*</li>
-                                           </ul>
-                                           <div class="custom-checkbox mb-0">
-                                               <input type="checkbox" id="chb2">
-                                               <label for="chb2" class="theme-btn theme-btn-small">Select</label>
-                                           </div>
-                                       </div>
-                                    </div><!-- end cabin-type-item -->
-                                </div><!-- end cabin-type -->
-                                <div class="cabin-type padding-top-30px">
-                                    <h3 class="title font-size-16">Oceanview Cabins</h3>
-                                    <div class="cabin-type-item d-flex pt-4">
-                                        <div class="cabin-type-img flex-shrink-0">
-                                            <img src="images/oceanview-cabin.jpg" alt="">
-                                        </div>
-                                        <div class="cabin-type-detail">
-                                            <h3 class="title">Guarantee - Oceanview Stateroom</h3>
-                                            <ul class="list-items pt-2 pb-2">
-                                                <li><span>Square footage:</span>139-226 sq ft</li>
-                                                <li><span>Occupancy:</span>Up to 2 guests (some sleep up to 4)</li>
-                                                <li><span>Amenities:</span>Double bed that can be converted to two single beds on request, bathrobes, spacious closet, bathroom with shower, interactive TV, mini bar, safe, and telephone.</li>
-                                            </ul>
-                                        </div>
-                                        <div class="cabin-price">
-                                            <ul>
-                                                <li><span class="badge badge-warning text-white">Up to 40% off</span></li>
-                                                <li>from<strong class="ml-1 text-black">$317</strong><span class="before-price ml-1">$399</span></li>
-                                                <li class="font-size-13 mt-n2">per person*</li>
-                                            </ul>
-                                            <div class="custom-checkbox mb-0">
-                                                <input type="checkbox" id="chb4">
-                                                <label for="chb4" class="theme-btn theme-btn-small">Select</label>
-                                            </div>
-                                        </div>
-                                    </div><!-- end cabin-type-item -->
-                                </div><!-- end cabin-type -->
-                                <div class="cabin-type padding-top-30px">
-                                    <h3 class="title font-size-16">Balcony Cabins</h3>
-                                    <div class="cabin-type-item d-flex pt-4">
-                                        <div class="cabin-type-img flex-shrink-0">
-                                            <img src="images/balcony-cabin.jpg" alt="">
-                                        </div>
-                                        <div class="cabin-type-detail">
-                                            <h3 class="title">Guarantee - Balcony Stateroom</h3>
-                                            <ul class="list-items pt-2 pb-2">
-                                                <li><span>Square footage:</span>139-226 sq ft</li>
-                                                <li><span>Occupancy:</span>Up to 2 guests (some sleep up to 4)</li>
-                                                <li><span>Amenities:</span>Double bed that can be converted to two single beds on request, bathrobes, spacious closet, bathroom with shower, interactive TV, mini bar, safe, and telephone.</li>
-                                            </ul>
-                                        </div>
-                                        <div class="cabin-price">
-                                            <ul>
-                                                <li><span class="badge badge-warning text-white">Up to 40% off</span></li>
-                                                <li>from<strong class="ml-1 text-black">$417</strong><span class="before-price ml-1">$499</span></li>
-                                                <li class="font-size-13 mt-n2">per person*</li>
-                                            </ul>
-                                            <div class="custom-checkbox mb-0">
-                                                <input type="checkbox" id="chb5">
-                                                <label for="chb5" class="theme-btn theme-btn-small">Select</label>
-                                            </div>
-                                        </div>
-                                    </div><!-- end cabin-type-item -->
-                                </div><!-- end cabin-type -->
-                                <div class="cabin-type padding-top-30px">
-                                    <h3 class="title font-size-16">Suite Cabins</h3>
-                                    <div class="cabin-type-item d-flex pt-4">
-                                        <div class="cabin-type-img flex-shrink-0">
-                                            <img src="images/suite-cabin.jpg" alt="">
-                                        </div>
-                                        <div class="cabin-type-detail">
-                                            <h3 class="title">Suite – Aurea</h3>
-                                            <ul class="list-items pt-2 pb-2">
-                                                <li><span>Square footage:</span>139-226 sq ft</li>
-                                                <li><span>Occupancy:</span>Up to 2 guests (some sleep up to 4)</li>
-                                                <li><span>Amenities:</span>Double bed that can be converted to two single beds on request, bathrobes, spacious closet, bathroom with shower, interactive TV, mini bar, safe, and telephone.</li>
-                                            </ul>
-                                        </div>
-                                        <div class="cabin-price">
-                                            <ul>
-                                                <li><span class="badge badge-warning text-white">Up to 40% off</span></li>
-                                                <li>from<strong class="ml-1 text-black">$517</strong><span class="before-price ml-1">$599</span></li>
-                                                <li class="font-size-13 mt-n2">per person*</li>
-                                            </ul>
-                                            <div class="custom-checkbox mb-0">
-                                                <input type="checkbox" id="chb6">
-                                                <label for="chb6" class="theme-btn theme-btn-small">Select</label>
-                                            </div>
-                                        </div>
-                                    </div><!-- end cabin-type-item -->
-                                </div><!-- end cabin-type -->
-                            </div><!-- end single-content-item -->
-                            <p class="font-size-14 line-height-26 padding-bottom-40px"><strong class="text-black">Please note:</strong> Cabin photos shown are samples only. Actual cabin details may vary.</p>
+                                <div id="cabin-types"></div> <!-- Dynamically filled -->
+                            </div>
                             <div class="section-block"></div>
-                        </div><!-- end staterooms -->
+                        </div>
                         <div id="faq" class="page-scroll">
                             <div class="single-content-item padding-top-40px padding-bottom-40px">
                                 <h3 class="title font-size-20">Policies</h3>
-                                <div class="accordion accordion-item padding-top-30px" id="accordionExample2">
-                                    <div class="card">
-                                        <div class="card-header" id="faqHeadingOne">
-                                            <h2 class="mb-0">
-                                                <button class="btn btn-link d-flex align-items-center justify-content-end flex-row-reverse font-size-16" type="button" data-toggle="collapse" data-target="#faqCollapseOne" aria-expanded="true" aria-controls="faqCollapseOne">
-                                                    <span class="ml-3">Cancellation Policy</span>
-                                                    <i class="la la-minus"></i>
-                                                    <i class="la la-plus"></i>
-                                                </button>
-                                            </h2>
-                                        </div>
-                                        <div id="faqCollapseOne" class="collapse show" aria-labelledby="faqHeadingOne" data-parent="#accordionExample2">
-                                            <div class="card-body">
-                                                <p class="pb-2">*In instances where the deposit amount paid is higher than the 25/50/75% of cruise fare cancellation charge, then the highest of the two amounts is payable as the cancellation charge, i.e. the full deposit amount is retained.</p>
-                                                <p><strong class="text-black mr-1">Note:</strong>Cancellation Policies are subject to change at any time by the cruise line without prior notice.</p>
-                                            </div>
-                                        </div>
-                                    </div><!-- end card -->
-                                    <div class="card">
-                                        <div class="card-header" id="faqHeadingTwo">
-                                            <h2 class="mb-0">
-                                                <button class="btn btn-link d-flex align-items-center justify-content-end flex-row-reverse font-size-16" type="button" data-toggle="collapse" data-target="#faqCollapseTwo" aria-expanded="false" aria-controls="faqCollapseTwo">
-                                                    <span class="ml-3">Gratuities Information</span>
-                                                    <i class="la la-minus"></i>
-                                                    <i class="la la-plus"></i>
-                                                </button>
-                                            </h2>
-                                        </div>
-                                        <div id="faqCollapseTwo" class="collapse" aria-labelledby="faqHeadingTwo" data-parent="#accordionExample2">
-                                            <div class="card-body">
-                                                <p class="pb-2">MSC will automatically add a $14.50 USD gratuity for standard staterooms, $17.50 USD for Suite guests, to each guest's SeaPass® account on a daily basis. Gratuities apply to all guests of all ages.</p>
-                                                <p><strong class="text-black mr-1">Note:</strong> Details, ship facts, policies, images and descriptions are gathered for information only and subject to change without notice. Images and descriptions displayed are subject to change at any time without notice. Actual details, design and configuration may vary.</p>
-                                            </div>
-                                        </div>
-                                    </div><!-- end card -->
-                                    <div class="card">
-                                        <div class="card-header" id="faqHeadingThree">
-                                            <h2 class="mb-0">
-                                                <button class="btn btn-link d-flex align-items-center justify-content-end flex-row-reverse font-size-16" type="button" data-toggle="collapse" data-target="#faqCollapseThree" aria-expanded="false" aria-controls="faqCollapseThree">
-                                                    <span class="ml-3">Pregnancy Policy</span>
-                                                    <i class="la la-minus"></i>
-                                                    <i class="la la-plus"></i>
-                                                </button>
-                                            </h2>
-                                        </div>
+                                <div id="cruise-policy-details"></div> <!-- Dynamically filled -->
+                            </div>
+                            <div class="section-block"></div>
+          
                                         <div id="faqCollapseThree" class="collapse" aria-labelledby="faqHeadingThree" data-parent="#accordionExample2">
                                             <div class="card-body">
                                                 <p class="pb-2">MSC cannot accept guests who will have entered their 24th week of pregnancy by the beginning of, or at any time during the cruise or cruisetour. A physician's "Fit to Travel" note is required prior to sailing, stating how far along (in weeks) your pregnancy will be at the beginning of the cruise and confirming that you are in good health and not experiencing a high-risk pregnancy.</p>
