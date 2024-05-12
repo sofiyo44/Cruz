@@ -1,55 +1,43 @@
-document.addEventListener('DOMContentLoaded', function() {
-    // Function to fetch cruise details
-    function fetchCruiseDetails() {
-        fetch('http://rest.api.cruisehost.net', {
-            method: 'GET',
+$(document).ready(function() {
+    // Base URL and endpoint for API requests
+    const baseUrl = 'http://rest.api.cruisehost.net';
+    const apiToken = '100|rpwdRN5Ay3zjLuwmlLO8TjTSUuYfpmlzxsD8r97y'; // Token used here for example purposes
+
+    // Fetching cruise data
+    function fetchCruiseData() {
+        $.ajax({
+            url: baseUrl + '/cruises', // Adjust if the specific endpoint for cruises is different
+            type: 'GET',
             headers: {
-                'Authorization': 'Bearer 100|rpwdRN5Ay3zjLuwmlLO8TjTSUuYfpmlzxsD8r97y',
+                'Authorization': 'Bearer ' + apiToken,
                 'Content-Type': 'application/json'
+            },
+            success: function(data) {
+                updateCruiseDetails(data);
+            },
+            error: function(error) {
+                console.log('Error fetching cruise data:', error);
             }
-        })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-            return response.json();
-        })
-        .then(data => {
-            updatePageContent(data);
-        })
-        .catch(error => {
-            console.error('There was a problem with the fetch operation:', error);
         });
     }
 
-    // Function to update page content with fetched data
-    function updatePageContent(data) {
-        const contentArea = document.getElementById('dynamic-cruise-content');
-        if (!contentArea) return;
+    // Function to update the cruise details on the page
+    function updateCruiseDetails(data) {
+        if (!data || !data.cruises) {
+            console.log('No cruise data available');
+            return;
+        }
 
-        // Example of how you might construct HTML with your data
-        const descriptionHtml = `
-            <div id="description" class="page-scroll">
-                <div class="single-content-item pb-4">
-                    <h3 class="title font-size-26">${data.name}</h3>
-                    <div class="d-flex flex-wrap align-items-center pt-2">
-                        <p class="mr-2">${data.location}</p>
-                        <p>
-                            <span class="badge badge-warning text-white font-size-16">${data.rating}</span>
-                            <span>(${data.reviews} Reviews)</span>
-                        </p>
-                    </div>
-                    <p>${data.description}</p>
-                </div>
-            </div>
-        `;
+        // Example: Update cruise list dynamically
+        var cruiseListHtml = '';
+        data.cruises.forEach(function(cruise) {
+            cruiseListHtml += '<li>' + cruise.name + ' - ' + cruise.description + '</li>';
+        });
 
-        // Append the new HTML into the content area
-        contentArea.innerHTML = descriptionHtml;
-
-        // You can add more sections as needed based on your data structure
+        // Assume there's an element with ID 'cruise-list' where we want to display the cruises
+        $('#cruise-list').html(cruiseListHtml);
     }
 
-    // Call the function to fetch cruise details
-    fetchCruiseDetails();
+    // Call the function to fetch cruise details when ready
+    fetchCruiseData();
 });
