@@ -2,7 +2,7 @@ $(document).ready(function() {
     const baseUrl = 'http://rest.api.cruisehost.net';
     const apiToken = '100|rpwdRN5Ay3zjLuwmlLO8TjTSUuYfpmlzxsD8r97y';
 
-    // Fetching cruise data
+    // Function to fetch cruise data from the API
     function fetchCruiseData() {
         $.ajax({
             url: baseUrl + '/cruises',
@@ -12,6 +12,7 @@ $(document).ready(function() {
                 'Content-Type': 'application/json'
             },
             success: function(data) {
+                // Call to update the page with new cruise data
                 updateCruiseDetails(data);
             },
             error: function(error) {
@@ -22,20 +23,23 @@ $(document).ready(function() {
 
     // Function to update the cruise details on the page
     function updateCruiseDetails(data) {
+        // Check if data is valid and has cruises
         if (!data || !data.cruises) {
             console.log('No cruise data available');
             return;
         }
 
+        // Generate HTML for each cruise
         var cruiseListHtml = '';
         data.cruises.forEach(function(cruise) {
             cruiseListHtml += createCruiseCard(cruise);
         });
 
-        // Assume there's an element with ID 'cruise-list' where we want to display the cruises
+        // Update the HTML of the cruise-list element
         $('#cruise-list').html(cruiseListHtml);
     }
 
+    // Function to create HTML card for a single cruise
     function createCruiseCard(cruise) {
         return `
             <div class="col-lg-6 responsive-column">
@@ -68,5 +72,6 @@ $(document).ready(function() {
         `;
     }
 
+    // Initial call to fetch cruise data when the document is ready
     fetchCruiseData();
 });
