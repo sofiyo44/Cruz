@@ -321,9 +321,34 @@
 <!-- ================================
     END BREADCRUMB AREA
 ================================= -->
-fetch('http://rest.api.cruisehost.net')
-    .then(res => res.json())
-    .then(data => console.log(data))
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fetch Data Example</title>
+</head>
+<body>
+    <h1>Data Fetch Example</h1>
+    <button id="fetchButton">Fetch Data</button>
+    <script>
+        document.getElementById('fetchButton').addEventListener('click', function() {
+            fetch('http://rest.api.cruisehost.net')
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    console.log(data);
+                    // You can also manipulate the DOM here to display fetched data
+                })
+                .catch(error => console.error('There was a problem with the fetch operation:', error));
+        });
+    </script>
+</body>
+</html>
 <!-- ================================
     START CARD AREA
 ================================= -->
