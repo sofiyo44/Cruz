@@ -321,42 +321,28 @@
 <!-- ================================
     END BREADCRUMB AREA
 ================================= -->
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fetch Data Example</title>
-</head>
-<body>
-    <h1>Data Fetch Example</h1>
-    <button id="fetchButton">Fetch Data</button>
-    <div id="dataDisplay"></div>
-    <script>
-        document.getElementById('fetchButton').addEventListener('click', function() {
-            fetch('http://rest.api.cruisehost.net', {
-                headers: {
-                    'Authorization': 'Bearer 100|rpwdRN5Ay3zjLuwmlLO8TjTSUuYfpmlzxsD8r97y'
-                }
-            })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
-                return response.json();
-            })
-            .then(data => {
-                console.log(data);
-                document.getElementById('dataDisplay').innerText = JSON.stringify(data, null, 2);
-            })
-            .catch(error => {
-                console.error('There was a problem with the fetch operation:', error);
-                document.getElementById('dataDisplay').innerText = 'Failed to fetch data: ' + error.message;
-            });
-        });
-    </script>
-</body>
-</html>
+document.getElementById('fetchButton').addEventListener('click', function() {
+    fetch('http://rest.api.cruisehost.net', {
+        method: 'GET', // or 'POST', depending on the requirement
+        headers: {
+            'Authorization': 'Bearer 100|rpwdRN5Ay3zjLuwmlLO8TjTSUuYfpmlzxsD8r97y',
+            'Content-Type': 'application/json' // if needed
+        }
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('HTTP status ' + response.status);
+        }
+        return response.json();
+    })
+    .then(data => {
+        document.getElementById('dataDisplay').innerText = JSON.stringify(data, null, 2);
+    })
+    .catch(error => {
+        console.error('There was a problem with the fetch operation: ', error);
+        document.getElementById('dataDisplay').innerText = 'Fetch operation failed: ' + error.message;
+    });
+});
 <!-- ================================
     START CARD AREA
 ================================= -->
