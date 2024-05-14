@@ -321,48 +321,390 @@
 <!-- ================================
     END BREADCRUMB AREA
 ================================= -->
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fetch Data Example</title>
-</head>
-<body>
-    <h1>Data Fetch Example</h1>
-    <button id="fetchButton">Fetch Data</button>
-    <div id="dataDisplay"></div>
-    <script>
-        document.getElementById('fetchButton').addEventListener('click', function() {
-            fetch('http://rest.api.cruisehost.net', {
-                headers: {
-                    'Authorization': 'Bearer 100|rpwdRN5Ay3zjLuwmlLO8TjTSUuYfpmlzxsD8r97y'
-                }
-            })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
-                return response.json();
-            })
-            .then(data => {
-                console.log(data);
-                document.getElementById('dataDisplay').innerText = JSON.stringify(data, null, 2);
+<!DOCTYPE html> <html class="notranslate" translate="no"> <head> <meta charset="UTF-8"/> <title>CRUISEA - Agent Booking Solution - CRUISEHOST -</title> <meta name="description" content="CRUISEA, B2B CRUISE BOOKING, CRUISE BOOKING SYSTEM, INTERNET BOOKING ENGINE, CRUISEHOST"/> <meta name="keywords" content="CRUISEA, B2B CRUISE BOOKING, CRUISE BOOKING SYSTEM, INTERNET BOOKING ENGINE, CRUISEHOST"/> <meta name="MSSmartTagsPreventParsing" content="TRUE"/> <meta name="Distribution" content="Global"/> <meta name="Rating" content="General"> <meta name="Owner" content="CRUISEHOST Solutions UG"/> <meta name="Author" content="CRUISEHOST Solutions UG"/> <meta name="Copyright" content="CRUISEHOST Solutions UG"/> <meta name="google" content="notranslate"/> <meta name="ROBOTS" content="INDEX,FOLLOW"> <script type="text/javascript" src="/js/jquery-1.7.2.min.js"></script> <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/> <link href="/customer/210005/css/phone-8c59fd6fbe0e9793ec2b27971221cace.css" rel="stylesheet" type="text/css" media="only screen and (max-width:480px)"/> <link href="/customer/210005/css/tablet-8c59fd6fbe0e9793ec2b27971221cace.css" rel="stylesheet" type="text/css" media="only screen and (min-width:481px) and (max-width:768px)"/> <link href="/customer/210005/css/screen-8c59fd6fbe0e9793ec2b27971221cace.css" rel="stylesheet" type="text/css" media="only screen and (min-width:769px)"/> <link href="/customer/210005/css/phone_edit_meridian-3507acf3107b5f11ab01c3ebf0ce778b.css" rel="stylesheet" type="text/css" media="only screen and (max-width:480px)"/> <link href="/customer/210005/css/tablet_edit_meridian-3507acf3107b5f11ab01c3ebf0ce778b.css" rel="stylesheet" type="text/css" media="only screen and (min-width:481px) and (max-width:768px)"/> <link href="/customer/210005/css/screen_edit_meridian-3507acf3107b5f11ab01c3ebf0ce778b.css" rel="stylesheet" type="text/css" media="only screen and (min-width:769px)"/> <link href="/customer/210005/css/cruisec-8c59fd6fbe0e9793ec2b27971221cace.css" rel="stylesheet" type="text/css"/> <link href="/customer/210005/css/cphone-e335a60022219659132420ecb76ee4fa.css" rel="stylesheet" type="text/css" media="only screen and (max-width:480px)"> <link href="/customer/210005/css/ctablet-e335a60022219659132420ecb76ee4fa.css" rel="stylesheet" type="text/css" media="only screen and (min-width:481px) and (max-width:768px)"> <link href="/customer/210005/css/cscreen-e335a60022219659132420ecb76ee4fa.css" rel="stylesheet" type="text/css" media="only screen and (min-width:769px)"> <script type="text/javascript">
+		var device = '';
+		globalJSON = "{\r\n\t\"scrollconfig\": {\r\n\t\t\"cruisec\": {\r\n\t\t\t\"desktop\": {\r\n\r\n\t\t\t},\r\n\t\t\t\"tablet\": {\r\n\r\n\t\t\t},\r\n\t\t\t\"mobile\": {\r\n\r\n\t\t\t}\r\n\t\t},\r\n\t\t\"cruises\": {\r\n\t\t\t\"desktop\": {\r\n\r\n\t\t\t},\r\n\t\t\t\"tablet\": {\r\n\t\t\t\t\"headerBar\": {\r\n\t\t\t\t\t\"destination_id\": \"npm\",\r\n\t\t\t\t\t\"description\": \"Onload Scroll auf Headerbar\"\r\n\t\t\t\t}\r\n\t\t\t},\r\n\t\t\t\"mobile\": {\r\n\t\t\t\t\"headerBar\": {\r\n\t\t\t\t\t\"destination_id\": \"npm\",\r\n\t\t\t\t\t\"description\": \"Onload Scroll auf Headerbar\"\r\n\t\t\t\t}\r\n\t\t\t}\r\n\t\t},\r\n\t\t\"cruise\": {\r\n\t\t\t\"desktop\": {\r\n\t\t\t\t\"headerbar\": {\r\n\t\t\t\t\t\"destination_id\": \"tpm\",\r\n\t\t\t\t\t\"description\": \"Headerbar (zurueck, watchlist)\"\r\n\t\t\t\t},\r\n\t\t\t\t\"navToTop\": {\r\n\t\t\t\t\t\"destination_id\": \"tpm\",\r\n\t\t\t\t\t\"description\": \"Oben Button springt zu topbar\"\r\n\t\t\t\t},\r\n\t\t\t\t\"cruiseAnchor\": {\r\n\t\t\t\t\t\"destination_id\": \"allCruises\",\r\n\t\t\t\t\t\"description\": \"Alle Angebote Div\"\r\n\t\t\t\t},\r\n\t\t\t\t\"shipAnchor\": {\r\n\t\t\t\t\t\"destination_id\": \"ship\",\r\n\t\t\t\t\t\"description\": \"Schiffsinformationen\"\r\n\t\t\t\t},\r\n\t\t\t\t\"deckAnchor\": {\r\n\t\t\t\t\t\"destination_id\": \"deck\",\r\n\t\t\t\t\t\"description\": \"Decksplan\"\r\n\t\t\t\t},\r\n\t\t\t\t\"catAnchor\": {\r\n\t\t\t\t\t\"destination_id\": \"cabine\",\r\n\t\t\t\t\t\"description\": \"Kabinenvorschau\"\r\n\t\t\t\t},\r\n\t\t\t\t\"shipCatImg\": {\r\n\t\t\t\t\t\"destination_id\": \"cabine\",\r\n\t\t\t\t\t\"description\": \"Kabinenvorschau IMG Click\"\r\n\t\t\t\t}\r\n\t\t\t},\r\n\t\t\t\"tablet\": {\r\n\t\t\t\t\"headerbar\": {\r\n\t\t\t\t\t\"destination_id\": \"tpm\",\r\n\t\t\t\t\t\"description\": \"Onload auf Headerbar Scrollen\"\r\n\t\t\t\t},\r\n\t\t\t\t\"navToTop\": {\r\n\t\t\t\t\t\"destination_id\": \"tpm\",\r\n\t\t\t\t\t\"description\": \"Oben Button springt zu topbar\"\r\n\t\t\t\t},\r\n\t\t\t\t\"shipCatImg\": {\r\n\t\t\t\t\t\"destination_id\": \"cabine\",\r\n\t\t\t\t\t\"description\": \"Kabinenvorschau IMG Click\"\r\n\t\t\t\t}\r\n\t\t\t},\r\n\t\t\t\"mobile\": {\r\n\t\t\t\t\"headerbar\": {\r\n\t\t\t\t\t\"destination_id\": \"tpm\",\r\n\t\t\t\t\t\"description\": \"Onload auf Headerbar Scrollen\"\r\n\t\t\t\t},\r\n\t\t\t\t\"navToTop\": {\r\n\t\t\t\t\t\"destination_id\": \"tpm\",\r\n\t\t\t\t\t\"description\": \"Oben Button springt zu topbar\"\r\n\t\t\t\t},\r\n\t\t\t\t\"shipCatImg\": {\r\n\t\t\t\t\t\"destination_id\": \"cabine\",\r\n\t\t\t\t\t\"description\": \"Kabinenvorschau IMG Click\"\r\n\t\t\t\t}\r\n\t\t\t}\r\n\t\t},\r\n\t\t\"offer\": {\r\n\t\t\t\"desktop\": {\r\n\t\t\t\t\"headerbar\": {\r\n\t\t\t\t\t\"destination_id\": \"tpm\",\r\n\t\t\t\t\t\"description\": \"Headerbar (zurueck, watchlist)\"\r\n\t\t\t\t},\r\n\t\t\t\t\"cruiseAnchor\": {\r\n\t\t\t\t\t\"destination_id\": \"cruise\",\r\n\t\t\t\t\t\"description\": \"Alle Angebote Div\"\r\n\t\t\t\t},\r\n\t\t\t\t\"serviceAnchor\": {\r\n\t\t\t\t\t\"destination_id\": \"service\",\r\n\t\t\t\t\t\"description\": \"Leistung\"\r\n\t\t\t\t},\r\n\t\t\t\t\"shipAnchor\": {\r\n\t\t\t\t\t\"destination_id\": \"ship\",\r\n\t\t\t\t\t\"description\": \"Schiffsinformationen\"\r\n\t\t\t\t},\r\n\t\t\t\t\"deckAnchor\": {\r\n\t\t\t\t\t\"destination_id\": \"deck\",\r\n\t\t\t\t\t\"description\": \"Decksplan\"\r\n\t\t\t\t},\r\n\t\t\t\t\"catAnchor\": {\r\n\t\t\t\t\t\"destination_id\": \"cabine\",\r\n\t\t\t\t\t\"description\": \"Kabinenvorschau\"\r\n\t\t\t\t},\r\n\t\t\t\t\"navToTop\": {\r\n\t\t\t\t\t\"destination_id\": \"tpm\",\r\n\t\t\t\t\t\"description\": \"Oben Button springt zu topbar\"\r\n\t\t\t\t},\r\n\t\t\t\t\"shipCatImg\": {\r\n\t\t\t\t\t\"destination_id\": \"cabine\",\r\n\t\t\t\t\t\"description\": \"Kabinenvorschau IMG Click\"\r\n\t\t\t\t}\r\n\t\t\t},\r\n\t\t\t\"tablet\": {\r\n\t\t\t\t\"headerbar\": {\r\n\t\t\t\t\t\"destination_id\": \"tpm\",\r\n\t\t\t\t\t\"description\": \"Onload auf Headerbar Scrollen\"\r\n\t\t\t\t},\r\n\t\t\t\t\"navToTop\": {\r\n\t\t\t\t\t\"destination_id\": \"tpm\",\r\n\t\t\t\t\t\"description\": \"Oben Button springt zu topbar\"\r\n\t\t\t\t},\r\n\t\t\t\t\"shipCatImg\": {\r\n\t\t\t\t\t\"destination_id\": \"cabine\",\r\n\t\t\t\t\t\"description\": \"Kabinenvorschau IMG Click\"\r\n\t\t\t\t}\r\n\t\t\t},\r\n\t\t\t\"mobile\": {\r\n\t\t\t\t\"headerbar\": {\r\n\t\t\t\t\t\"destination_id\": \"tpm\",\r\n\t\t\t\t\t\"description\": \"Onload auf Headerbar Scrollen\"\r\n\t\t\t\t},\r\n\t\t\t\t\"navToTop\": {\r\n\t\t\t\t\t\"destination_id\": \"tpm\",\r\n\t\t\t\t\t\"description\": \"Oben Button springt zu topbar\"\r\n\t\t\t\t},\r\n\t\t\t\t\"shipCatImg\": {\r\n\t\t\t\t\t\"destination_id\": \"cabine\",\r\n\t\t\t\t\t\"description\": \"Kabinenvorschau IMG Click\"\r\n\t\t\t\t}\r\n\t\t\t}\r\n\t\t},\r\n\t\t\"request\": {\r\n\t\t\t\"desktop\": {\r\n\t\t\t\t\"headerbar\": {\r\n\t\t\t\t\t\"destination_id\": \"tpm\",\r\n\t\t\t\t\t\"description\": \"Headerbar (zurueck, watchlist)\"\r\n\t\t\t\t},\r\n\t\t\t\t\"navToTop\": {\r\n\t\t\t\t\t\"destination_id\": \"tpm\",\r\n\t\t\t\t\t\"description\": \"Oben Button springt zu topbar\"\r\n\t\t\t\t},\r\n\t\t\t\t\"shipCatImg\": {\r\n\t\t\t\t\t\"destination_id\": \"cabin\",\r\n\t\t\t\t\t\"description\": \"Kabinenauswahl IMG Click\"\r\n\t\t\t\t},\r\n\t\t\t\t\"catConfirm\": {\r\n\t\t\t\t\t\"destination_id\": \"cabin\",\r\n\t\t\t\t\t\"description\": \"Cat Confirm - springt auf cabine\"\r\n\t\t\t\t}\r\n\t\t\t},\r\n\t\t\t\"tablet\": {\r\n\t\t\t\t\"headerbar\": {\r\n\t\t\t\t\t\"destination_id\": \"cabin\",\r\n\t\t\t\t\t\"description\": \"Cabin Div onload\"\r\n\t\t\t\t},\r\n\t\t\t\t\"navToTop\": {\r\n\t\t\t\t\t\"destination_id\": \"cabin\",\r\n\t\t\t\t\t\"description\": \"Oben Button springt zu topbar\"\r\n\t\t\t\t},\r\n\t\t\t\t\"shipCatImg\": {\r\n\t\t\t\t\t\"destination_id\": \"cabin\",\r\n\t\t\t\t\t\"description\": \"Kabinenauswahl IMG Click\"\r\n\t\t\t\t},\r\n\t\t\t\t\"catConfirm\": {\r\n\t\t\t\t\t\"destination_id\": \"cabin\",\r\n\t\t\t\t\t\"description\": \"Cat Confirm - springt auf cabine\"\r\n\t\t\t\t},\r\n\t\t\t\t\"lastCab\": {\r\n\t\t\t\t\t\"destination_id\": \"headerBox\",\r\n\t\t\t\t\t\"description\": \"Letze Kabine springt auf HeaderBox\"\r\n\t\t\t\t}\r\n\t\t\t},\r\n\t\t\t\"mobile\": {\r\n\t\t\t\t\"headerbar\": {\r\n\t\t\t\t\t\"destination_id\": \"cabin\",\r\n\t\t\t\t\t\"description\": \"Cabin Div onload\"\r\n\t\t\t\t},\r\n\t\t\t\t\"navToTop\": {\r\n\t\t\t\t\t\"destination_id\": \"cabin\",\r\n\t\t\t\t\t\"description\": \"Oben Button springt zu topbar\"\r\n\t\t\t\t},\r\n\t\t\t\t\"shipCatImg\": {\r\n\t\t\t\t\t\"destination_id\": \"cabin\",\r\n\t\t\t\t\t\"description\": \"Kabinenauswahl IMG Click\"\r\n\t\t\t\t},\r\n\t\t\t\t\"catConfirm\": {\r\n\t\t\t\t\t\"destination_id\": \"cabin\",\r\n\t\t\t\t\t\"description\": \"Cat Confirm - springt auf cabine\"\r\n\t\t\t\t},\r\n\t\t\t\t\"lastCab\": {\r\n\t\t\t\t\t\"destination_id\": \"headerBox\",\r\n\t\t\t\t\t\"description\": \"Letze Kabine springt auf HeaderBox\"\r\n\t\t\t\t}\r\n\t\t\t}\r\n\t\t},\r\n\t\t\"passenger\": {\r\n\t\t\t\"desktop\": {\r\n\t\t\t\t\"headerbar\": {\r\n\t\t\t\t\t\"destination_id\": \"tpm\",\r\n\t\t\t\t\t\"description\": \"Headerbar (zurueck, watchlist)\"\r\n\t\t\t\t},\r\n\t\t\t\t\"navToTop\": {\r\n\t\t\t\t\t\"destination_id\": \"toTpm\",\r\n\t\t\t\t\t\"description\": \"Springt auf Headerbar _oben btn_\"\r\n\t\t\t\t}\r\n\t\t\t},\r\n\t\t\t\"tablet\": {\r\n\t\t\t\t\"navToTop\": {\r\n\t\t\t\t\t\"destination_id\": \"tpm\",\r\n\t\t\t\t\t\"description\": \"Springt auf Headerbar _oben btn_\"\r\n\t\t\t\t}\r\n\t\t\t},\r\n\t\t\t\"mobile\": {\r\n\t\t\t\t\"navToTop\": {\r\n\t\t\t\t\t\"destination_id\": \"tpm\",\r\n\t\t\t\t\t\"description\": \"Springt auf Headerbar _oben btn_\"\r\n\t\t\t\t}\r\n\t\t\t}\r\n\t\t},\r\n\t\t\"confirm\": {\r\n\t\t\t\"desktop\": {\r\n\t\t\t\t\"navToTop\": {\r\n\t\t\t\t\t\"destination_id\": \"tpm\",\r\n\t\t\t\t\t\"description\": \"oben btn nach oben scrollen zur headbar\"\r\n\t\t\t\t}\r\n\t\t\t},\r\n\t\t\t\"tablet\": {\r\n\t\t\t\t\"navToTop\": {\r\n\t\t\t\t\t\"destination_id\": \"tpm\",\r\n\t\t\t\t\t\"description\": \"oben btn nach oben scrollen zur headbar\"\r\n\t\t\t\t}\r\n\t\t\t},\r\n\t\t\t\"mobile\": {\r\n\t\t\t\t\"navToTop\": {\r\n\t\t\t\t\t\"destination_id\": \"tpm\",\r\n\t\t\t\t\t\"description\": \"oben btn nach oben scrollen zur headbar\"\r\n\t\t\t\t}\r\n\t\t\t}\r\n\t\t},\r\n\t\t\"booked\": {\r\n\t\t\t\"desktop\": {\r\n\r\n\t\t\t},\r\n\t\t\t\"tablet\": {\r\n\r\n\t\t\t},\r\n\t\t\t\"mobile\": {\r\n\r\n\t\t\t}\r\n\t\t},\r\n\t\t\"watchlist\": {\r\n\t\t\t\"desktop\": {\r\n\r\n\t\t\t},\r\n\t\t\t\"tablet\": {\r\n\r\n\t\t\t},\r\n\t\t\t\"mobile\": {\r\n\r\n\t\t\t}\r\n\t\t}\r\n\t}\r\n}";
 
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('HTTP status ' + response.status);
-                }
-                return response.json();
-            })
-            .then(data => {
-                document.getElementById('dataDisplay').innerText = JSON.stringify(data, null, 2);
-            })
-            .catch(error => {
-                console.error('There was a problem with the fetch operation: ', error);
-                document.getElementById('dataDisplay').innerText = 'Fetch operation failed: ' + error.message;
-            });
-        });
+
+		var adminChecker = false;
+
+		var $lang = {"select":{"all":"Alle","none":"keine","close":"OK","calendar":"Kalender\/Monate"},"currency":"\u20ac"};
+		var aid = 210005;
+		var iframe = '';
+		var ibe = 'start';
+		var alias = false;
+				var custom_search = '';
+		var package = '';
+
+	</script> <base href="/"/> </head> <body id="booking" onresize="SetCPIFrameParantResize()" > <div id="frame"> <script>
+
+	const hnav_sticky_scroll = {
+		nav: null,
+		origY: null,
+		sticky: false
+	}
+
+	setTimeout(() => {
+		hnav_sticky_scroll.nav = document.querySelector('#header_nav');
+		hnav_sticky_scroll.origY = hnav_sticky_scroll.nav.offsetTop;
+
+		window.addEventListener('scroll', hnav_on_scroll);
+	}, 0)
+
+	function hnav_on_scroll(e) {
+		if (!hnav_sticky_scroll.nav || isNaN(parseInt(hnav_sticky_scroll.origY))) return;
+
+		let { nav, origY, sticky } = hnav_sticky_scroll;
+		if (scrollY > origY && !sticky) {
+			hnav_set_sticky(true);
+		}
+		else if (scrollY <= origY && sticky) {
+			hnav_set_sticky(false);
+		}
+	}
+
+	function hnav_set_sticky(sticky) {
+		hnav_sticky_scroll.sticky = sticky;
+
+		let { nav } = hnav_sticky_scroll;
+
+		if (sticky) {
+			nav.classList.add('cc-headernav-sticky');
+		}
+		else {
+			nav.classList.remove('cc-headernav-sticky');
+		}
+	}
+
+
+	console.log('template id ', '4')
+</script> <style>
+	@media only screen and (min-width: 768px) {
+
+		#header_nav.cc-headernav-sticky {
+			position: fixed;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 29px;
+
+			z-index: 1002;
+			background-color: #F19213;
+			box-shadow: 0 0 10px #555;
+
+					}
+
+		#header_nav.cc-headernav-sticky #menu {
+			position: initial;
+			
+		}
+
+		#menu li {
+			float: initial;
+		}
+	}
+</style> <div id="mainpage"> <div id="header" > <div class="cc_limit_width"> <div id="header_nav"> <label for="show-menu" class="show-menu">&nbsp;</label> <input type="checkbox" id="show-menu" role="button"> <ul id="menu"> <li name="M1"> <a href="javascript:void(0);">English</a> <ul class="hidden"> <li name="M6"><a href="/start">CRUISEA login</a></li> <li name="M5"><a href="/EN-CRUISEAfree-create_account">CRUISEAfree register</a></li> <li name="M3"><a href="/EN-CRUISEA-create_account">CRUISEA</a></li> <li name="M4"><a href="/EN-CRUISEA-plans">CRUISEA plans</a></li> </ul> </li> <li name="M2"> <a href="javascript:void(0);">Deutsch</a> <ul class="hidden"> <li name="M7"><a href="/start_de">CRUISEA login</a></li> <li name="M10"><a href="/DE-CRUISEAfree-registrieren">CRUISEAfree registrieren</a></li> <li name="M8"><a href="/DE-CRUISEA-registrieren">CRUISEA</a></li> <li name="M9"><a href="/DE-CRUISEA-vergleich">CRUISEA Vergleich</a></li> </ul> </li> </ul> </div> <div id="header_logo"> <a href="https://cruisea.net"><img src="https://images.cruisec.net/images/imgdb/210005/d0ad291f6799ceaae4815675224120d4.png" alt="" width="100px;"></a> </div> <div id="header_img"> <a href="" ><img src="" alt="" width="100px;"></a> </div> <div id="header_openinghours"> <span><span>powered by<br>CRUISEHOST Solutions</span><br> <span>support@cruisehost.net</span></span><br> <span></span><br> <span></span><br> </div> </div> </div> <script type="text/javascript">
+			$("li[name='M6']").addClass("menu_active");
+		</script> <div id="layout"> <script>
+		function initSlideshow(selector) {
+			const slideshow = $(selector);
+			const images = $('.page_gallery_thumb a', slideshow);
+			const img = $('.slide-image', slideshow)[0];
+			const prev = $('.slide_prev', slideshow);
+			const next = $('.slide_next', slideshow);
+			const min = images.first().data('slideIndex');
+			const max = images.last().data('slideIndex');
+			
+			img.src = images[0].dataset.slideUrl;
+			img.alt = images[0].dataset.slideName;
+			img.dataset.slideIndex = 0;
+
+			images.on('click', (ev) => {
+				let trg = $(ev.target).closest('a')[0];
+				setSlide(trg.dataset.slideIndex);
+			})
+
+			prev.on('click', () => {
+				let i = parseInt(img.dataset.slideIndex) - 1;
+				i = i >= 0 ? i : max;
+				setSlide(i);
+			})
+
+			next.on('click', () => {
+				let i = parseInt(img.dataset.slideIndex) + 1;
+				i = i <= max ? i : 0;
+				setSlide(i);
+			})
+
+			function setSlide(i) {
+				let trg = images[i];
+				img.src = trg.dataset.slideUrl;
+				img.alt = trg.dataset.slideName;
+				img.dataset.slideIndex = trg.dataset.slideIndex;
+			}
+		}
+	</script> <div id="cc" class="cc_width_exc"> <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" /> <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script> <div class="cc_limit_width pagemaker-widget cc-widget--content" style="padding-top: 5px; background-color: #fff;"> <div style="text-align:left; " class="textbox"> <table align="center" border="0" cellpadding="1" cellspacing="1" style="width:95%;"> <tbody> <tr> <td> <p style="text-align: right;"><span style="font-size:26px;"><span style="font-family:Arial,Helvetica,sans-serif;"><span style="color:#7f8c8d;"><strong>CRUISE</strong></span><span style="color:#2980b9;"><strong>A</strong></span></span></span><br /> <span style="color:#7f8c8d;"><span style="font-size:20px;"><span style="font-family:Arial,Helvetica,sans-serif;">.<em>..simply more</em></span></span></span></p> </td> </tr> </tbody> </table> <table align="center" border="0" cellpadding="1" cellspacing="1" style="width:100%;"> <tbody> <tr> <td style="background-color: rgb(255, 153, 0);"> <p style="text-align: center;"><strong><span style="font-size:18px;"><span style="color:#ffffff;"><span style="font-family:Arial,Helvetica,sans-serif;"><em>now also available in USD in english for USA / International and in EUR for spanish ...</em></span></span></span></strong></p> </td> </tr> </tbody> </table> </div> </div> <div class="cc_limit_width pagemaker-widget cc-widget--content" style="padding-top: 0px; background-color: #fff;"> <div style="text-align:left; " class="textbox"> <div id="ca-login-res"> <div class="l-container"> <div class="text"> <h2><span style="color:#000000;">WELCOME TO </span><span style="color:#7f8c8d;">CRUISE</span><span style="color:#2980b9;">A</span></h2> <p class="bold"><span style="font-size:24px;"><span style="color:#f39c12;">Jumpstart your Cruise Sales today !</span></span></p> </div> <div class="loginform"> <form action="https://cpa.cruisea.net/login" method="POST"> <h2>SIGN IN</h2> <div><label for="ca-username">Username:</label> <input id="ca-username" name="username" type="text" /></div> <div><label for="ca-password">Password:</label> <input id="ca-password" name="password" type="password" /></div> <input type="submit" value="Log In" /> <div class="forgot"><a href="https://cruisea.net/reset-password"><span style="font-size:12px;">Reset Password</span></a></div> <h2>Need an Account?</h2> <button data-url="https://cruisea.net/EN-CRUISEAfree-create_account" onclick="location.href = this.dataset.url" type="button">Create free Account</button></form> </div> </div> </div> <style type="text/css">#ca-login-res {
+	background-image: url("https://images.cruisec.net/images/imgdb/200999/2cf8592a14be24441a45a7a093cb2dfa.jpg"); / ##BACKGROUND URL## /
+	background-position: center;
+	background-size: cover;
+	background-repeat: no-repeat;
+	font: 100% Helvetica, sans-serif;
+  }
+  #ca-login-res .l-container {
+	max-width: 1140px;
+	min-height: 400px;
+	margin: 0 auto;
+	box-sizing: border-box;
+	display: flex;
+  }
+  @media screen and (max-width: 769px) {
+	#ca-login-res .l-container {
+	  display: block;
+	  padding: 4px;
+	}
+  }
+  @media screen and (max-width: 500px) {
+	#ca-login-res .l-container {
+	  padding: 0;
+	}
+  }
+  #ca-login-res div {
+	padding: 16px 20px;
+	margin: 20px;
+  }
+  #ca-login-res .text {
+	font-size: 1.5em;
+	color: white;
+	flex: 1;
+	border-radius: 10px;
+  }
+  #ca-login-res .text h2 {
+	  font-size: 1.8em;
+  }
+  #ca-login-res .loginform {
+	background: white;
+	min-height: 410px;
+	width: 330px;
+	box-sizing: border-box;
+	border-radius: 4px;
+  }
+  @media screen and (max-width: 768px) {
+	#ca-login-res .loginform {
+	  width: 95%;
+	  margin: 20px auto;
+	}
+  }
+  @media screen and (max-width: 500px) {
+	#ca-login-res .loginform {
+	  width: 100%;
+	  margin: 0px;
+	  border-radius: 8px 8px 0 0;
+	}
+  }
+  #ca-login-res .loginform h2 {
+	margin: 20px 0px 10px;
+	font-weight: normal;
+  }
+  #ca-login-res .loginform h2:first-child {
+	margin-top: 6px;
+  }
+  #ca-login-res .loginform div {
+	padding: 0;
+	margin: 0;
+  }
+  #ca-login-res .loginform div + div {
+	margin-top: 16px;
+  }
+  #ca-login-res .loginform label {
+	color: #069;
+	font-size: 0.75em;
+	font-weight: bold;
+	display: block;
+  }
+  #ca-login-res .loginform .forgot a {
+	font-size: 0.7em;
+	color: #069;
+	font-weight: bold;
+  }
+  #ca-login-res .loginform input, #ca-login-res .loginform button {
+	box-sizing: border-box;
+	width: 100%;
+	font-size: 18px;
+	border-radius: 4px;
+	border: 1px solid gray;
+	padding: 10px 8px;
+	margin-top: 4px;
+  }
+  #ca-login-res .loginform input[type=text], #ca-login-res .loginform input[type=password] {
+	color: #069;
+	background-color: white;
+  }
+  #ca-login-res .loginform input[type=submit], #ca-login-res .loginform button[type=submit] {
+	color: white;
+	background: #069;
+	border: none;
+	cursor: pointer;
+  }
+  #ca-login-res .loginform input[type=button], #ca-login-res .loginform button[type=button] {
+	color: #069;
+	border: 2px solid #069;
+	cursor: pointer;
+  }
+  #ca-login-res .loginform input[type=button]:hover, #ca-login-res .loginform button[type=button]:hover {
+	background-color: #0692;
+  }
+  
+  .bold {
+	font-weight: bold;
+  }
+</style> </div> </div> <div class="cc_limit_width pagemaker-widget cc-widget--carousel" style="padding-top: 5px; background-color: #fff;"> <div class="swiper cc-swiper2"> <div class="swiper-wrapper"> <div class="swiper-slide"> <div class="lp_slider_box cc-cl-logo-75" style=" background-image: url('https://images.cruisec.net/images/ships/logos/AID.png')"> </div> </div> <div class="swiper-slide"> <div class="lp_slider_box cc-cl-logo-75" style=" background-image: url('https://images.cruisec.net/images/ships/logos/LFT.png')"> </div> </div> <div class="swiper-slide"> <div class="lp_slider_box cc-cl-logo-75" style=" background-image: url('https://images.cruisec.net/images/ships/logos/ARO.png')"> </div> </div> <div class="swiper-slide"> <div class="lp_slider_box cc-cl-logo-75" style=" background-image: url('https://images.cruisec.net/images/ships/logos/AZA.png')"> </div> </div> <div class="swiper-slide"> <div class="lp_slider_box cc-cl-logo-75" style=" background-image: url('https://images.cruisec.net/images/ships/logos/CCL.png')"> </div> </div> <div class="swiper-slide"> <div class="lp_slider_box cc-cl-logo-75" style=" background-image: url('https://images.cruisec.net/images/ships/logos/CEL.png')"> </div> </div> <div class="swiper-slide"> <div class="lp_slider_box cc-cl-logo-75" style=" background-image: url('https://images.cruisec.net/images/ships/logos/CST.png')"> </div> </div> <div class="swiper-slide"> <div class="lp_slider_box cc-cl-logo-75" style=" background-image: url('https://images.cruisec.net/images/ships/logos/CUN.png')"> </div> </div> <div class="swiper-slide"> <div class="lp_slider_box cc-cl-logo-75" style=" background-image: url('https://images.cruisec.net/images/ships/logos/CYL.png')"> </div> </div> <div class="swiper-slide"> <div class="lp_slider_box cc-cl-logo-75" style=" background-image: url('https://images.cruisec.net/images/ships/logos/DCS.png')"> </div> </div> <div class="swiper-slide"> <div class="lp_slider_box cc-cl-logo-75" style=" background-image: url('https://images.cruisec.net/images/ships/logos/EXP.png')"> </div> </div> <div class="swiper-slide"> <div class="lp_slider_box cc-cl-logo-75" style=" background-image: url('https://images.cruisec.net/images/ships/logos/HAL.png')"> </div> </div> <div class="swiper-slide"> <div class="lp_slider_box cc-cl-logo-75" style=" background-image: url('https://images.cruisec.net/images/ships/logos/LFC.png')"> </div> </div> <div class="swiper-slide"> <div class="lp_slider_box cc-cl-logo-75" style=" background-image: url('https://images.cruisec.net/images/ships/logos/MSC.png')"> </div> </div> <div class="swiper-slide"> <div class="lp_slider_box cc-cl-logo-75" style=" background-image: url('https://images.cruisec.net/images/ships/logos/NCL.png')"> </div> </div> <div class="swiper-slide"> <div class="lp_slider_box cc-cl-logo-75" style=" background-image: url('https://images.cruisec.net/images/ships/logos/NIC.png')"> </div> </div> <div class="swiper-slide"> <div class="lp_slider_box cc-cl-logo-75" style=" background-image: url('https://images.cruisec.net/images/ships/logos/OCA.png')"> </div> </div> <div class="swiper-slide"> <div class="lp_slider_box cc-cl-logo-75" style=" background-image: url('https://images.cruisec.net/images/ships/logos/PAO.png')"> </div> </div> <div class="swiper-slide"> <div class="lp_slider_box cc-cl-logo-75" style=" background-image: url('https://images.cruisec.net/images/ships/logos/PCL.png')"> </div> </div> <div class="swiper-slide"> <div class="lp_slider_box cc-cl-logo-75" style=" background-image: url('https://images.cruisec.net/images/ships/logos/PHX.png')"> </div> </div> <div class="swiper-slide"> <div class="lp_slider_box cc-cl-logo-75" style=" background-image: url('https://images.cruisec.net/images/ships/logos/PLN.png')"> </div> </div> <div class="swiper-slide"> <div class="lp_slider_box cc-cl-logo-75" style=" background-image: url('https://images.cruisec.net/images/ships/logos/RCI.png')"> </div> </div> <div class="swiper-slide"> <div class="lp_slider_box cc-cl-logo-75" style=" background-image: url('https://images.cruisec.net/images/ships/logos/RIV.png')"> </div> </div> <div class="swiper-slide"> <div class="lp_slider_box cc-cl-logo-75" style=" background-image: url('https://images.cruisec.net/images/ships/logos/RLC.png')"> </div> </div> <div class="swiper-slide"> <div class="lp_slider_box cc-cl-logo-75" style=" background-image: url('https://images.cruisec.net/images/ships/logos/SBN.png')"> </div> </div> <div class="swiper-slide"> <div class="lp_slider_box cc-cl-logo-75" style=" background-image: url('https://images.cruisec.net/images/ships/logos/SSE.png')"> </div> </div> <div class="swiper-slide"> <div class="lp_slider_box cc-cl-logo-75" style=" background-image: url('https://images.cruisec.net/images/ships/logos/TUI.png')"> </div> </div> </div> <div class="swiper-pagination"></div> <div class="swiper-button-next"></div> <div class="swiper-button-prev"></div> </div> <script>
+	$(() => {
+		var desktopMode = window.innerWidth > 800;
+		var swiper2 = null;
+		
+		let initSwiper = function() {
+			let loop = true && 10 * 2 <= 27;
+			let doubled = false;
+			let options = {
+				slidesPerView: desktopMode ? 10 : 1,
+				spaceBetween: 20,
+				loop: loop,
+				initialSlide: (!desktopMode || loop) ? 0 : Math.round(10/2),
+				autoplay: true ? {
+					disableOnInteraction: false,
+					pauseOnMouseEnter: true
+				} : false,
+				centeredSlides: true,
+				navigation: desktopMode ? {
+					nextEl: ".swiper-button-next",
+					prevEl: ".swiper-button-prev",
+				} : false,
+				pagination: {
+					el: ".swiper-pagination",
+					clickable: true,
+					renderBullet: function (index, className) {
+						if (doubled && index >= 27 / 2) return '';
+						return '<span class="' + className + '"></span>';
+					},
+				},
+				on: {
+					slideChange: (e) => {
+						if (!doubled || !swiper2) return;
+						let index = e.realIndex % (27 / 2);
+
+						swiper2.pagination.bullets[index].classList.add("swiper-pagination-bullet-active");
+					}
+				}
+			};
+			swiper2 = new Swiper(".cc-swiper2", options);
+
+			$('.swiper div[class^="swiper-button-"]').toggle(desktopMode)
+		}
+
+		$(window).on("resize", function (e) {
+			var old = desktopMode;
+			desktopMode = window.innerWidth > 800;
+
+			if (old == desktopMode) return;
+			if (swiper2) swiper2.destroy();
+			
+			initSwiper();
+		});
+		initSwiper();
+	})
+	
+</script> <style>
+	.swiper-slide {
+		min-height: 50px;
+	}
+	#cc {
+		--swiper-pagination-bottom: 0px;
+	}
+
+		#cc .cc-swiper2 .lp_slider_box {
+		height: 80px;
+	}
+		@media only screen and (max-width: 800px) {
+		.swiper-pagination {
+			background-color: var(--swiper-pagination-bg-color, #fffa);
+		}
+	}
+</style> </div> <div class="cc_limit_width pagemaker-widget cc-widget--content" style="padding-top: 0px; background-color: #fff;"> <div style="text-align:left; " class="textbox"> <p style="margin-left: 20px;"><br /> <span style="font-size:14px;"><span style="color:#4e5f70;"><span style="font-family:Arial,Helvetica,sans-serif;"><strong>NEWS:</strong></span></span></span><br /> <span style="font-family:Arial,Helvetica,sans-serif;"><span style="font-size:14px;"><span style="color:#4e5f70;">04.2024 - New DCS Touristik <em>O</em></span><em>nlineBooking</em></span></span><br /> <span style="font-family:Arial,Helvetica,sans-serif;"><span style="font-size:14px;"><span style="color:#4e5f70;">04.2024 - New Plantours <em>O</em></span><em>nlineBooking</em></span></span><br /> <span style="font-family:Arial,Helvetica,sans-serif;"><span style="font-size:14px;"><span style="color:#4e5f70;">04.2024 - New CarnivalCruises US/UK <em>O</em></span><em>nlineBooking</em></span></span><br /> <span style="font-family:Arial,Helvetica,sans-serif;"><span style="font-size:14px;"><span style="color:#4e5f70;">04.2024 - New VivaCruises <em>O</em></span><em>nlineBooking</em></span></span><br /> <span style="font-size:14px;"><span style="font-family:Arial,Helvetica,sans-serif;"><span style="color:#4e5f70;">02.2024 - New Phoenix Reisen <em>Soft</em></span></span></span><span style="font-family:Arial,Helvetica,sans-serif;"><span style="font-size:14px;"><em>Booking</em></span></span><br /> <span style="font-size:14px;"><span style="font-family:Arial,Helvetica,sans-serif;"><span style="color:#4e5f70;">02.2024 - New Disney Cruises </span></span><span style="font-family:Arial,Helvetica,sans-serif;"><span style="color:#4e5f70;"><em>Soft</em></span></span></span><span style="font-family:Arial,Helvetica,sans-serif;"><span style="font-size:14px;"><em>Booking</em></span></span><br /> <span style="font-size:14px;"><span style="font-family:Arial,Helvetica,sans-serif;"><span style="color:#4e5f70;">02.2024 - New Virgin Voyages </span></span><span style="font-family:Arial,Helvetica,sans-serif;"><span style="color:#4e5f70;"><em>Soft</em></span></span></span><span style="font-family:Arial,Helvetica,sans-serif;"><span style="font-size:14px;"><em>Booking</em></span></span><br /> <span style="font-size:14px;"><span style="font-family:Arial,Helvetica,sans-serif;"><span style="color:#4e5f70;">01.2024 - Princess Packages via ICM </span></span></span><span style="font-family:Arial,Helvetica,sans-serif;"><span style="font-size:14px;"><span style="color:#4e5f70;"><em>O</em></span><em>nlineBooking</em></span></span><br /> <span style="font-size:14px;"><span style="font-family:Arial,Helvetica,sans-serif;"><span style="color:#4e5f70;">01.2024 - New API Seadream </span></span><em><span style="color:#4e5f70;"><span style="font-family:Arial,Helvetica,sans-serif;">Softbooking</span></span></em><br /> <span style="font-family:Arial,Helvetica,sans-serif;"><span style="color:#4e5f70;">10.2023 - RCI &amp; CEL all promos available<br />
+10.2023 - Oceania all promos available<br />
+10.2023 - Silversea all promos available<br />
+10.2023 - Holland America all promos available<br />
+10.2023 - NCL all promos available<br />
+10.2023 - Explora all promos available<br />
+10.2023 - Seabourn all promos available<br />
+10.2023 - Riverside all promos available</span></span></span></p> <p style="margin-left: 40px;"><span style="color:#4e5f70;"><span style="font-size:14px;"><span style="font-family:Arial,Helvetica,sans-serif;">Follow us !</span></span></span></p> <p style="margin-left: 40px;"><span style="font-size:14px;"><a href="https://www.instagram.com/cruisehost.solutions/"><img alt="Bildergebnis für insta icon" data-atf="1" data-frt="0" height="71" id="dimg_5" src="data:image/jpeg;base64,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" width="71" /></a></span></p> <p>&nbsp;</p> </div> </div> </div> <script>
+		$(() => {
+			const flexslider_settings = {
+				animation: "fade",
+				controlsContainer: ".flex-container",
+				slideDirection: "horizontal",
+				slideshow: true,
+				slideshowSpeed: 4000,
+				animationDuration: 1000,
+				directionNav: false,
+				controlNav: true,
+				keyboardNav: true,
+				mousewheel: false,
+				prevText: "",
+				nextText: "",
+				pausePlay: false,
+				pauseText: "Pause",
+				playText: "Play",
+				randomize: false,
+				slideToStart: 0,
+				animationLoop: true,
+				pauseOnAction: true,
+				pauseOnHover: true,
+				manualControls: "",
+				start: function() {},
+				before: function() {},
+				after: function() {},
+				end: function() {}
+			};
+					});
+	</script> </div> <div style=" bottom:0; float:right;font-size: 12px; ">&copy; CRUISEHOST Solutions <img src="/images/cp_logo.gif" alt="" width="71" height="13" border="0"> <small>V4.1378</small> </div> <a href="http://www.cruisehost.net"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkqAcAAIUAgUW0RjgAAAAASUVORK5CYII="></a> <div id="footer" class=" injected-content"> <p style="text-align: center;"><a href="https://www.cruisehost.net/about/"><span style="color:#999999;"><strong><span style="font-size:14px;"><span style="font-family:Arial,Helvetica,sans-serif;"><span style="background-color:#ffffff;">Impressum</span></span></span></strong></span></a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="https://www.cruisehost.net/datenschutz/"><span style="color:#999999;"><strong><span style="font-size:14px;"><span style="font-family:Arial,Helvetica,sans-serif;"><span style="background-color:#ffffff;">Datenschutz</span></span></span></strong></span></a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="https://www.cruisehost.net/agb/"><span style="color:#999999;"><strong><span style="font-size:14px;"><span style="font-family:Arial,Helvetica,sans-serif;">AGB</span></span></strong></span></a></p> </div> </div> </div> <script>
+	document.querySelector('#header_logo img').onload = function() {
+		ratio = this.naturalWidth / this.naturalHeight;
+		tmp = 1 - ratio;
+		if (Math.abs(tmp) < 0.2) { // square or close to square 
+			// make phone / tablet menu taller by applying double class
+			document.querySelector('#header_nav').classList.add('double');
+		} else {
+			// remove double class
+			document.querySelector('#header_nav').classList.remove('double');
+		}
+	}
+</script> <script type="text/javascript" src="/js/angular/i18n/angular_de-de.js"></script> <script type="text/javascript" src="/js/angular/angular-sanitize.min.js"></script> <script type="text/javascript" src="/js/angular/isteven-multi-select.js"></script> <script type="text/javascript" src="/js/angular/angular-simple-slideshow.js"></script> <script type="text/javascript" src="/js/angular/angular-loading-bar.js"></script> <script type="text/javascript" src="/js/angular/angular-rzslider.js"></script> <script type="text/javascript" src="/customer/210005/js/angular-app-8c59fd6fbe0e9793ec2b27971221cace.js"></script> <script type="text/javascript" src="/js/jquery-1.7.2.min.js"></script> <script type="text/javascript" src="/js/flexslider/jquery.flexslider-min.js"></script> <script type="text/javascript" src="/js/flexslider/iq_einstellung.js"></script> <script type="text/javascript" src="/js/iframe/jquery.ba-postmessage.min.js"></script> <script type="text/javascript" src="/js/iframe/IFrameResize_cruisec.js"></script> <script type="text/javascript" src="/js/cc-default.js"></script> <script type="text/javascript">
+	$(function () {
+
+		
+		if (iframe) {
+		SetCPIFrameParantResize();
+		setTimeout("SetCPIFrameParantResize()", 1000);		//1 sec auf Bilder warten
+
+		$('#booking').click(function () {
+			setTimeout("SetCPIFrameParantResize()", 1000);
+		});
+		window.onload = function () {
+			setTimeout("SetCPIFrameParantResize()", 1000);
+		};
+		}
+
+		// TODO fix in header creator. This is a quick fix so not every header needs to be recompiled
+		$('#menu_lang_switch li a').attr('href', 'javascript:void(0);')
+
+	});
+</script> <script type="text/javascript">
+		var base = 'start/cruises/'
+	</script> <script type="text/javascript" src="/customer/210005/js/search-8c59fd6fbe0e9793ec2b27971221cace.js"></script> <script type="text/javascript">
+		$(".search").change(function () {
+			count(this.name);
+		});
+	</script> </body> </html>
 <!-- ================================
     START CARD AREA
 ================================= -->
