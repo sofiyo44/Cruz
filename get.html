@@ -1,0 +1,24 @@
+const express = require('express');
+const cors = require('cors');
+const fetch = require('node-fetch');
+const app = express();
+
+app.use(cors()); // This will enable CORS for all routes
+
+app.get('/api/data', async (req, res) => {
+    try {
+        const apiResponse = await fetch('http://rest.api.cruisehost.net/ENDPOINT', {
+            headers: {
+                'Authorization': 'Bearer YOUR_API_TOKEN',
+                'Accept': 'application/json'
+            }
+        });
+        const data = await apiResponse.json();
+        res.json(data);
+    } catch (error) {
+        res.status(500).json({ error: 'Internal server error' });
+    }
+});
+
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
