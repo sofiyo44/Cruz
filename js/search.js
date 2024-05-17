@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
-  const form = document.querySelector('form');
+  const form = document.getElementById('searchForm');
   form.addEventListener('submit', function(event) {
     event.preventDefault();
     const formData = new FormData(form);
@@ -23,10 +23,15 @@ document.addEventListener('DOMContentLoaded', function() {
     .then(data => {
       // Store the results in localStorage
       localStorage.setItem('cruiseSearchResults', JSON.stringify(data));
-
-      // Redirect to the results page
-      window.location.href = 'cruises-list.html';
     })
-    .catch(error => console.error('Error:', error));
+    .catch(error => {
+      console.error('Error:', error);
+      // Optionally store the error or a flag indicating the error in localStorage
+      localStorage.setItem('cruiseSearchError', 'true');
+    })
+    .finally(() => {
+      // Redirect to the results page regardless of the API call outcome
+      window.location.href = 'cruises-list.html';
+    });
   });
 });
