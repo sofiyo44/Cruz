@@ -405,22 +405,16 @@
           <!-- end row -->
           <div class="row">
             <div class="col-lg-12">
-              <div
-                class="search-fields-container search-fields-container-shape"
-              >
+              <div class="search-fields-container search-fields-container-shape">
                 <div class="search-fields-container-inner">
                   <div class="contact-form-action">
                     <form action="#" class="row">
                       <div class="col-lg-3 col-sm-6 pr-0">
                         <div class="input-box">
-                          <label class="label-text"
-                            >Where would like to go?</label
-                          >
+                          <label class="label-text">Where would like to go?</label>
                           <div class="form-group">
-                            <div
-                              class="select-contain select-contain-shadow w-auto"
-                            >
-                              <select class="select-contain-select">
+                            <div class="select-contain select-contain-shadow w-auto">
+                              <select class="select-contain-select" name="area">
                                 <option value="">Select destination</option>
                                 <optgroup label="Most Popular">
                                   <option value="caribbean">Caribbean</option>
@@ -440,13 +434,9 @@
                                   <option value="arctic-antarctic">
                                     Arctic / Antarctic
                                   </option>
-                                  <option value="middle-east">
-                                    Middle East
-                                  </option>
+                                  <option value="middle-east">Middle East</option>
                                   <option value="africa">Africa</option>
-                                  <option value="panama-canal">
-                                    Panama Canal
-                                  </option>
+                                  <option value="panama-canal">Panama Canal</option>
                                   <option value="asia">Asia</option>
                                   <option value="pacific-coastal">
                                     Pacific Coastal
@@ -458,22 +448,12 @@
                                     Central America
                                   </option>
                                   <option value="galapagos">Galapagos</option>
-                                  <option value="getaway-at-sea">
-                                    Getaway at Sea
-                                  </option>
-                                  <option value="transatlantic">
-                                    Transatlantic
-                                  </option>
+                                  <option value="getaway-at-sea">Getaway at Sea</option>
+                                  <option value="transatlantic">Transatlantic</option>
                                   <option value="world-cruise">World</option>
-                                  <option value="south-america">
-                                    South America
-                                  </option>
-                                  <option value="south-pacific">
-                                    South Pacific
-                                  </option>
-                                  <option value="transpacific">
-                                    Transpacific
-                                  </option>
+                                  <option value="south-america">South America</option>
+                                  <option value="south-pacific">South Pacific</option>
+                                  <option value="transpacific">Transpacific</option>
                                 </optgroup>
                               </select>
                             </div>
@@ -489,7 +469,8 @@
                             <input
                               class="date-range form-control"
                               type="text"
-                              name="daterange-single"
+                              name="departure"
+                              placeholder="YYYY-MM-DD"
                             />
                           </div>
                         </div>
@@ -503,7 +484,8 @@
                             <input
                               class="date-range form-control"
                               type="text"
-                              name="daterange-single"
+                              name="arrival"
+                              placeholder="YYYY-MM-DD"
                             />
                           </div>
                         </div>
@@ -511,13 +493,9 @@
                       <!-- end col-lg-3 -->
                       <div class="col-lg-3 col-sm-6">
                         <div class="input-box">
-                          <label class="label-text"
-                            >Travelers in the cabin</label
-                          >
+                          <label class="label-text">Travelers in the cabin</label>
                           <div class="form-group">
-                            <div
-                              class="dropdown dropdown-contain gty-container"
-                            >
+                            <div class="dropdown dropdown-contain gty-container">
                               <a
                                 class="dropdown-toggle dropdown-btn"
                                 href="#"
@@ -552,9 +530,7 @@
                                     class="qty-box d-flex align-items-center justify-content-between"
                                   >
                                     <label>Adults</label>
-                                    <div
-                                      class="qtyBtn d-flex align-items-center"
-                                    >
+                                    <div class="qtyBtn d-flex align-items-center">
                                       <div class="qtyDec">
                                         <i class="la la-minus"></i>
                                       </div>
@@ -574,9 +550,7 @@
                                     class="qty-box d-flex align-items-center justify-content-between"
                                   >
                                     <label>Children</label>
-                                    <div
-                                      class="qtyBtn d-flex align-items-center"
-                                    >
+                                    <div class="qtyBtn d-flex align-items-center">
                                       <div class="qtyDec">
                                         <i class="la la-minus"></i>
                                       </div>
@@ -596,9 +570,7 @@
                                     class="qty-box d-flex align-items-center justify-content-between"
                                   >
                                     <label>Senior</label>
-                                    <div
-                                      class="qtyBtn d-flex align-items-center"
-                                    >
+                                    <div class="qtyBtn d-flex align-items-center">
                                       <div class="qtyDec">
                                         <i class="la la-minus"></i>
                                       </div>
@@ -621,12 +593,74 @@
                         </div>
                       </div>
                       <!-- end col-lg-3 -->
+    
+                      <div class="col-lg-3 col-sm-6 pr-0">
+                        <div class="input-box">
+                          <label class="label-text">Cruise Type</label>
+                          <div class="form-group">
+                            <div class="select-contain select-contain-shadow w-auto">
+                              <select class="select-contain-select" name="sea">
+                                <option value="">Select cruise type</option>
+                                <option value="0">River Cruise</option>
+                                <option value="1">Sea Cruise</option>
+                              </select>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <!-- end col-lg-3 -->
+                      <div class="col-lg-3 col-sm-6 pr-0">
+                        <div class="input-box">
+                          <label class="label-text">Cruise Line</label>
+                          <div class="form-group">
+                            <div class="select-contain select-contain-shadow w-auto">
+                              <select class="select-contain-select" name="cruiseline">
+                                <option value="">Select cruise line</option>
+                                <option value="AZA">Azamara</option>
+                                <option value="CCL">Carnival Cruise Line</option>
+                                <option value="CEL">Celebrity Cruises</option>
+                                <!-- Add more options as needed -->
+                              </select>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <!-- end col-lg-3 -->
+                      <div class="col-lg-3 col-sm-6 pr-0">
+                        <div class="input-box">
+                          <label class="label-text">Ship</label>
+                          <div class="form-group">
+                            <div class="select-contain select-contain-shadow w-auto">
+                              <select class="select-contain-select" name="ship">
+                                <option value="">Select ship</option>
+                                <option value="EDGE">Celebrity Edge</option>
+                                <option value="FLA">Carnival Flamboyant</option>
+                                <!-- Add more options as needed -->
+                              </select>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <!-- end col-lg-3 -->
+                      <div class="col-lg-3 col-sm-6 pr-0">
+                        <div class="input-box">
+                          <label class="label-text">Duration (days)</label>
+                          <div class="form-group">
+                            <input
+                              class="form-control"
+                              type="number"
+                              name="duration"
+                              min="1"
+                              placeholder="Duration"
+                            />
+                          </div>
+                        </div>
+                      </div>
+                      <!-- end col-lg-3 -->
                     </form>
                   </div>
                   <div class="btn-box pt-2">
-                    <a href="cruises-list.html" class="theme-btn"
-                      >Search Now</a
-                    >
+                    <a href="cruises-list.html" class="theme-btn">Search Now</a>
                   </div>
                 </div>
               </div>
@@ -647,6 +681,7 @@
       </div>
     </section>
     <!-- end hero-wrapper -->
+
     <!-- ================================
     END HERO-WRAPPER AREA
 ================================= -->
