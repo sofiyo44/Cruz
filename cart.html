@@ -369,10 +369,10 @@
                                     <td>$110.00</td>
                                     <td>
                                         <div class="product-info">
-                                            <input type="text" class="form-control" value="1">
+                                            <input type="text" class="form-control" value="1" onchange="updateSubtotal(this)">
                                         </div>
                                     </td>
-                                    <td>$110.00</td>
+                                    <td class="subtotal">$110.00</td>
                                     <td>
                                         <div class="remove-wrap">
                                             <a href="javascript:void(0)" class="btn font-size-18"><i class="la la-times"></i></a>
@@ -380,8 +380,8 @@
                                     </td>
                                 </tr>
                             </tbody>
-                        </table>
-                    </div>
+                            </table>
+                            </div>
                     <div class="section-block"></div>
                     <div class="cart-actions d-flex justify-content-between align-items-center pt-4 pb-5">
                         <div class="contact-form-action">
@@ -786,6 +786,29 @@
 <script src="js/jquery.ripples-min.js"></script>
 <script src="js/quantity-input.js"></script>
 <script src="js/main.js"></script>
+<script>
+    function updateSubtotal(element) {
+        var price = 110.00; // Price of the room
+        var quantity = parseInt(element.value); // Get the quantity value
+        var subtotal = price * quantity; // Calculate the subtotal
+        element.closest('tr').querySelector('.subtotal').innerText = '$' + subtotal.toFixed(2); // Update the subtotal text
+
+        updateTotal(); // Update the total
+    }
+
+    function updateTotal() {
+        var subtotals = document.querySelectorAll('.subtotal');
+        var total = 0;
+        subtotals.forEach(function(subtotal) {
+            total += parseFloat(subtotal.innerText.replace('$', ''));
+        });
+
+        // Reference name for total
+        var totalReference = total.toFixed(2);
+        // You can use totalReference wherever you need
+        console.log("Total: $" + totalReference);
+    }
+</script>
 <script>
     // This is your test publishable API key.
     const stripe = Stripe("pk_test_51PHWHV09WcoQiYp2LY3F4iWLOiYKIpSNMNK0QPt58EIhgKcPC6xQucuZT7Dkeii1VTo0I0V9YKkoJUJHVah1MGG200JwErUvLp");
