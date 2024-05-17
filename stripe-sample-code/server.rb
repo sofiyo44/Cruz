@@ -13,9 +13,9 @@ YOUR_DOMAIN = 'http://localhost:4242'
 post '/create-checkout-session' do
   content_type 'application/json'
 
-  # Parse the request body to get the totalReference
+  # Parse the request body to get the total amount
   data = JSON.parse(request.body.read)
-  total_reference = data['totalReference']
+  total_amount = data['totalAmount']
 
   session = Stripe::Checkout::Session.create({
     payment_method_types: ['card'],
@@ -25,13 +25,13 @@ post '/create-checkout-session' do
         product_data: {
           name: 'Total Amount',
         },
-        unit_amount: total_reference, # Use the total amount from the request
+        unit_amount: total_amount.to_i, # Use the total amount from the request (convert to integer for cents)
       },
       quantity: 1,
     }],
     mode: 'payment',
-    success_url: YOUR_DOMAIN + '/success.html',
-    cancel_url: YOUR_DOMAIN + '/cancel.html',
+    success_url: "#{YOUR_DOMAIN}/success.html",
+    cancel_url: "#{YOUR_DOMAIN}/cancel.html",
   })
 
   {clientSecret: session.client_secret}.to_json
