@@ -321,7 +321,7 @@
 <!-- ================================
     END BREADCRUMB AREA
 ================================= -->
- <section class="card-area section--padding">
+<section class="card-area section--padding">
     <div class="container">
       <div class="row">
         <div class="col-lg-12">
@@ -331,6 +331,14 @@
           </div><!-- end filter-wrap -->
         </div><!-- end col-lg-12 -->
       </div><!-- end row -->
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="btn-box mt-3 text-center">
+            <button type="button" class="theme-btn"><i class="la la-refresh mr-1"></i>Load More</button>
+            <p class="font-size-13 pt-2" id="cruise-count">Showing 1 - 1 of 100 Cruises</p>
+          </div>
+        </div>
+      </div>
     </div><!-- end container -->
   </section><!-- end card-area -->
 <!-- ================================
@@ -1262,26 +1270,43 @@
 <script src="js/animated-headline.js"></script>
 <script src="js/jquery.ripples-min.js"></script>
 <script src="js/main.js"></script>
-  <script>
+ <script>
     document.addEventListener('DOMContentLoaded', function() {
       const resultsContainer = document.getElementById('results');
-      const results = JSON.parse(localStorage.getItem('cruiseSearchResults'));
+      const cruiseCountElement = document.getElementById('cruise-count');
+      const cruiseData = JSON.parse(localStorage.getItem('cruiseSearchResults'));
 
-      if (results && results.length > 0) {
-        results.forEach(result => {
-          const resultDiv = document.createElement('div');
-          resultDiv.classList.add('result-item');
-          resultDiv.innerHTML = `
-            <h2>${result.cruiseName}</h2>
-            <p>Duration: ${result.duration} days</p>
-            <p>Departure: ${result.departureDate}</p>
-            <p>Arrival: ${result.arrivalDate}</p>
-            <p>Price: ${result.price}</p>
-          `;
-          resultsContainer.appendChild(resultDiv);
-        });
+      if (cruiseData && cruiseData.cruises) {
+        const cruises = Array.isArray(cruiseData.cruises) ? cruiseData.cruises : [cruiseData.cruises];
+
+        resultsContainer.innerHTML = cruises.map(cruise => `
+          <div class="col-lg-8">
+            <div class="card-item cruise--card card-item-list">
+              <div class="card-img">
+                <a href="cruise-details.html?cruiseID=${cruise.mastercruiseID}" class="d-block">
+                  <img src="${cruise.shipImage}" alt="cruise-img">
+                  ${cruise.highlight ? `<span class="badge">${cruise.highlightColor}</span>` : ''}
+                </a>
+              </div>
+              <div class="card-body">
+                <img src="${cruise.cruiseLineLogo}" alt="" class="cruise-logo">
+                <h3 class="card-title"><a href="cruise-details.html?cruiseID=${cruise.mastercruiseID}">${cruise.title}</a></h3>
+                <p class="card-meta">Departing ${cruise.route.split(' - ')[0]}</p>
+                <div class="card-price d-flex align-items-center justify-content-between">
+                  <p>
+                    <span class="price__from">From</span>
+                    <span class="price__num">${cruise.price}</span>
+                  </p>
+                  <a href="cruise-details.html?cruiseID=${cruise.mastercruiseID}" class="btn-text">Read details<i class="la la-angle-right"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+        `).join('');
+
+        cruiseCountElement.textContent = `Showing 1 - ${cruises.length} of ${cruiseData.count.entries} Cruises`;
       } else {
-        resultsContainer.innerHTML = '<p>No results found</p>';
+        resultsContainer.innerHTML = '<p>No cruise data available.</p>';
       }
     });
   </script>
