@@ -33,11 +33,11 @@
             overflow: hidden;
             display: flex;
             flex-direction: row;
-            max-width: 100%;
+            max-width: 130%;
         }
 
         .card-img {
-            flex: 1 2 50%;
+            flex: 1 1 80%;
             overflow: hidden;
         }
 
@@ -797,7 +797,7 @@
                     </div><!-- end sidebar-widget -->
                 </div><!-- end sidebar -->
             </div><!-- end col-lg-4 -->
-            <div class="col-lg-12">
+            <div class="col-lg-8">
                 <div class="row" id="results"></div>
                 <div class="btn-box mt-3 text-center">
                     <button type="button" class="theme-btn" id="load-more-btn"><i class="la la-refresh mr-1"></i>Load More</button>
@@ -1161,7 +1161,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         function createCruiseCard(cruise) {
             return `
-                <div class="col-lg-12">
+                <div class="col-lg-8">
                     <div class="card-item cruise--card card-item-list">
                         <div class="card-img">
                             <a href="cruise-details.html" class="d-block">
