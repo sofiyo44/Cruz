@@ -1110,7 +1110,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         function createCruiseCard(cruise) {
             return `
-                <div class="col-lg-12">
+                <div class="col-lg-8">
                     <div class="card-item cruise--card card-item-list">
                         <div class="card-img">
                             <a href="cruise-details.html" class="d-block">
@@ -1119,7 +1119,7 @@ document.addEventListener('DOMContentLoaded', function() {
                             </a>
                         </div>
                         <div class="card-body">
-                            <img src="${cruise.cruiseLineLogo}" alt="${cruise.cruiseLine}" class="cruise-logo">
+                            <img src="${cruise.shipImage}" alt="${cruise.cruiseLineLogo}" class="cruise-logo">
                             <h3 class="card-title"><a href="cruise-details.html">${cruise.title}</a></h3>
                             <p class="card-meta">Departing ${cruise.departure}</p>
                             <div class="card-rating">
