@@ -27,37 +27,36 @@
     <link rel="stylesheet" href="css/style.css">
     <style>
         .card-item {
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            margin-bottom: 20px;
-            overflow: hidden;
+    width: 100%; /* Adjust this percentage as needed */
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 20px; /* Adjust the spacing between cards if needed */
+        .card-item {
+            width: 90%; /* Adjust this percentage as needed */
             display: flex;
             flex-direction: row;
+            margin-bottom: 20px; /* Adjust the spacing between cards if needed */
         }
-    
         .card-img {
-            flex: 1 1 40%;
-            overflow: hidden;
-        }
-    
+            flex: 0 0 40%; /* Adjust this percentage to control the width of the image section */
+            max-width: 40%; /* Ensures the image section doesn't exceed the allocated space */
+        }        
         .card-img img {
             width: 100%;
             height: auto;
-            display: block;
-            object-fit: cover;
+            object-fit: cover; /* Ensures the image covers the area while maintaining aspect ratio */
         }
-    
-        .card-body {
-            flex: 1 1 60%;
-            padding: 15px;
-        }
-    
+                .card-body {
+            flex: 1;
+            padding: 20px; /* Adjust padding as needed */
+            display: flex;
+            flex-direction: column;
+            justify-content: center; /* Vertically center the content */
+        }        
         .cruise-logo {
-            max-width: 100px;
-            height: auto;
+            width: 100px; /* Adjust as needed */
             margin-bottom: 10px;
-        }
-    
+        }    
         .badge {
             background-color: #f00;
             color: #fff;
@@ -67,8 +66,7 @@
             left: 10px;
             font-size: 12px;
             border-radius: 3px;
-        }
-    
+        }    
         .btn-text {
             color: #007bff;
             text-decoration: none;
