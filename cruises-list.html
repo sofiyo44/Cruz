@@ -769,8 +769,8 @@
             <div class="col-lg-8">
                 <div class="row" id="results"></div>
                 <div class="btn-box mt-3 text-center">
-                    <button type="button" class="theme-btn" id="load-more-btn"><i class="la la-refresh mr-1"></i>Load More</button>
-                    <p class="font-size-13 pt-2" id="cruise-count">Showing 1 - 10 of 100 Cruises</p>
+                    <button type="button" class="theme-btn"><i class="la la-refresh mr-1"></i>Load More</button>
+                    <p class="font-size-13 pt-2" id="cruise-count">Showing 1 - 1 of 100 Cruises</p>
                 </div>
             </div><!-- end col-lg-8 -->
         </div><!-- end row -->
@@ -1139,7 +1139,7 @@ document.addEventListener('DOMContentLoaded', function() {
                             </a>
                         </div>
                         <div class="card-body">
-                            <img src="${cruise.cruiseLineLogo}" alt="${cruise.cruiseLine}" class="cruise-logo">
+                            <img src="${cruise.shipImage}" alt="${cruise.cruiseLineLogo}" class="cruise-logo">
                             <h3 class="card-title"><a href="cruise-details.html">${cruise.title}</a></h3>
                             <p class="card-meta">Departing ${cruise.departure}</p>
                             <div class="card-rating">
