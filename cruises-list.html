@@ -26,53 +26,56 @@
     <link rel="stylesheet" href="css/flag-icon.min.css">
     <link rel="stylesheet" href="css/style.css">
     <style>
-        .card-item {
-    width: 100%; /* Adjust this percentage as needed */
-    display: flex;
-    flex-direction: row;
-    margin-bottom: 20px; /* Adjust the spacing between cards if needed */
-        .card-item {
-            width: 90%; /* Adjust this percentage as needed */
-            display: flex;
-            flex-direction: row;
-            margin-bottom: 20px; /* Adjust the spacing between cards if needed */
-        }
-        .card-img {
-            flex: 0 0 40%; /* Adjust this percentage to control the width of the image section */
-            max-width: 40%; /* Ensures the image section doesn't exceed the allocated space */
-        }        
-        .card-img img {
-            width: 100%;
-            height: auto;
-            object-fit: cover; /* Ensures the image covers the area while maintaining aspect ratio */
-        }
-                .card-body {
-            flex: 1;
-            padding: 20px; /* Adjust padding as needed */
-            display: flex;
-            flex-direction: column;
-            justify-content: center; /* Vertically center the content */
-        }        
-        .cruise-logo {
-            width: 100px; /* Adjust as needed */
-            margin-bottom: 10px;
-        }    
-        .badge {
-            background-color: #f00;
-            color: #fff;
-            padding: 5px 10px;
-            position: absolute;
-            top: 10px;
-            left: 10px;
-            font-size: 12px;
-            border-radius: 3px;
-        }    
-        .btn-text {
-            color: #007bff;
-            text-decoration: none;
-            font-weight: bold;
-        }
- </style>
+    .card-item {
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        margin-bottom: 20px;
+        overflow: hidden;
+        display: flex;
+        flex-direction: row;
+        width: 120%;
+    }
+
+    .card-img {
+        flex: 1 1 40%;
+        overflow: hidden;
+    }
+
+    .card-img img {
+        width: 100%;
+        height: auto;
+        display: block;
+        object-fit: cover;
+    }
+
+    .card-body {
+        flex: 1 1 60%;
+        padding: 15px;
+    }
+
+    .cruise-logo {
+        max-width: 100px;
+        height: auto;
+        margin-bottom: 10px;
+    }
+
+    .badge {
+        background-color: #f00;
+        color: #fff;
+        padding: 5px 10px;
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        font-size: 12px;
+        border-radius: 3px;
+    }
+
+    .btn-text {
+        color: #007bff;
+        text-decoration: none;
+        font-weight: bold;
+    }
+</style>
 </head>
 <body>
 <!-- start cssload-loader -->
