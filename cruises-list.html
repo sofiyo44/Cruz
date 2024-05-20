@@ -1270,45 +1270,653 @@
 <script src="js/animated-headline.js"></script>
 <script src="js/jquery.ripples-min.js"></script>
 <script src="js/main.js"></script>
- <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      const resultsContainer = document.getElementById('results');
-      const cruiseCountElement = document.getElementById('cruise-count');
-      const cruiseData = JSON.parse(localStorage.getItem('cruiseSearchResults'));
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const cruiseListData = JSON.parse(localStorage.getItem('cruiseListData'));
 
-      if (cruiseData && cruiseData.cruises) {
-        const cruises = Array.isArray(cruiseData.cruises) ? cruiseData.cruises : [cruiseData.cruises];
+    if (cruiseListData) {
+        const resultsContainer = document.getElementById('results');
+        const cruiseCount = document.getElementById('cruise-count');
+        let displayedCruises = 10;
 
-        resultsContainer.innerHTML = cruises.map(cruise => `
-          <div class="col-lg-8">
-            <div class="card-item cruise--card card-item-list">
-              <div class="card-img">
-                <a href="cruise-details.html?cruiseID=${cruise.mastercruiseID}" class="d-block">
-                  <img src="${cruise.shipImage}" alt="cruise-img">
-                  ${cruise.highlight ? `<span class="badge">${cruise.highlightColor}</span>` : ''}
-                </a>
-              </div>
-              <div class="card-body">
-                <img src="${cruise.cruiseLineLogo}" alt="" class="cruise-logo">
-                <h3 class="card-title"><a href="cruise-details.html?cruiseID=${cruise.mastercruiseID}">${cruise.title}</a></h3>
-                <p class="card-meta">Departing ${cruise.route.split(' - ')[0]}</p>
-                <div class="card-price d-flex align-items-center justify-content-between">
-                  <p>
-                    <span class="price__from">From</span>
-                    <span class="price__num">${cruise.price}</span>
-                  </p>
-                  <a href="cruise-details.html?cruiseID=${cruise.mastercruiseID}" class="btn-text">Read details<i class="la la-angle-right"></i></a>
+        function createCruiseCard(cruise) {
+            return `
+                <div class="cruise-card">
+                    <img src="${cruise.shipImage}" alt="${cruise.ship}">
+                    <h2>${cruise.title}</h2>
+                    <p>Ship: ${cruise.ship}</p>
+                    <p>Cruise Line: <img src="${cruise.cruiseLineLogo}" alt="${cruise.cruiseLine}"></p>
+                    <p>Duration: ${cruise.duration} days</p>
+                    <p>Departure: ${cruise.departure}</p>
+                    <p>Arrival: ${cruise.arrival}</p>
+                    <p>Route: ${cruise.route}</p>
+                    <p>Price: ${cruise.price}</p>
                 </div>
-              </div>
-            </div>
-          </div>
-        `).join('');
+            `;
+        }
 
-        cruiseCountElement.textContent = `Showing 1 - ${cruises.length} of ${cruiseData.count.entries} Cruises`;
-      } else {
-        resultsContainer.innerHTML = '<p>No cruise data available.</p>';
-      }
-    });
-  </script>
+        function displayCruises(limit) {
+            resultsContainer.innerHTML = '';
+            const cruisesToShow = cruiseListData.cruises.slice(0, limit);
+            cruisesToShow.forEach(cruise => {
+                resultsContainer.innerHTML += createCruiseCard(cruise);
+            });
+            cruiseCount.textContent = `Showing 1 - ${limit} of ${cruiseListData.count.entries} Cruises`;
+        }
+
+        displayCruises(displayedCruises);
+
+        document.getElementById('load-more-btn').addEventListener('click', function() {
+            displayedCruises += 10;
+            if (displayedCruises > cruiseListData.cruises.length) {
+                displayedCruises = cruiseListData.cruises.length;
+                this.disabled = true;
+                this.textContent = 'No More Cruises';
+            }
+            displayCruises(displayedCruises);
+        });
+    } else {
+        document.getElementById('results').innerHTML = '<p>No cruise data available. Please set the localStorage first.</p>';
+    }
+});
+</script>
+<script>
+const cruiseListData = {
+  "count": {
+    "entries": 100,
+    "allentries": 106,
+    "page": 1,
+    "pages": 2
+  },
+  "cruises": [
+    {
+      "count": "1",
+      "masterCruiseID": "I7259565240929",
+      "productID": "I7PTHPTH259565",
+      "masterCruiseID_org": "I7259565240929",
+      "title": "Atlantic Ocean Europe 7 days from/to Portsmouth",
+      "ship": "Resilient Lady",
+      "shipID": "I7",
+      "shipImage": "//images.cruisec.net/images/ships/ships/I7.jpg",
+      "cruiseLine": "Virgin Voyages",
+      "cruiseLineID": "VIR",
+      "cruiseLineLogo": "//images.cruisec.net/images/ships/logos/VIR.png",
+      "duration": "6",
+      "departure": "9/23/24",
+      "departure_top": "23.",
+      "departure_bottom": "9/24",
+      "departure_raw": "2024-09-23",
+      "arrival": "9/29/24",
+      "departure_cruise": "9/23/24",
+      "arrival_cruise": "9/29/24",
+      "arrival_raw": "2024-09-29",
+      "airports": [],
+      "route": "Portsmouth - Cruising Day - La Coruna - Bilbao - Le Verdon-sur-Mer - Cruising Day - Portsmouth",
+      "depPortID": "",
+      "arrPortID": "",
+      "cruiseArea": "Atlantic Ocean Europe",
+      "cruiseAreaID": "45",
+      "filter": [],
+      "currency": "USD",
+      "currency_symbol": "$",
+      "price_strike": "",
+      "pricecat": [],
+      "masterCruiseIDs": [
+        "I7259565240929"
+      ],
+      "highlight": false,
+      "highlightColor": "",
+      "highlightColorHover": "",
+      "icon_url": "",
+      "priceUnformatted": "743",
+      "isDisabled": "",
+      "isUniqueContent": false,
+      "transferType": "none",
+      "price": "$743"
+    },
+    {
+      "count": "1",
+      "masterCruiseID": "I7259560240914",
+      "productID": "I7PTHPTH259560",
+      "masterCruiseID_org": "I7259560240914",
+      "title": "Atlantic Ocean Europe 7 days from/to Portsmouth",
+      "ship": "Resilient Lady",
+      "shipID": "I7",
+      "shipImage": "//images.cruisec.net/images/ships/ships/I7.jpg",
+      "cruiseLine": "Virgin Voyages",
+      "cruiseLineID": "VIR",
+      "cruiseLineLogo": "//images.cruisec.net/images/ships/logos/VIR.png",
+      "duration": "6",
+      "departure": "9/8/24",
+      "departure_top": "8.",
+      "departure_bottom": "9/24",
+      "departure_raw": "2024-09-08",
+      "arrival": "9/14/24",
+      "departure_cruise": "9/8/24",
+      "arrival_cruise": "9/14/24",
+      "arrival_raw": "2024-09-14",
+      "airports": [],
+      "route": "Portsmouth - Cruising Day - La Coruna - Bilbao - Le Verdon-sur-Mer - Cruising Day - Portsmouth",
+      "depPortID": "",
+      "arrPortID": "",
+      "cruiseArea": "Atlantic Ocean Europe",
+      "cruiseAreaID": "45",
+      "filter": [],
+      "currency": "USD",
+      "currency_symbol": "$",
+      "price_strike": "",
+      "pricecat": [],
+      "masterCruiseIDs": [
+        "I7259560240914"
+      ],
+      "highlight": false,
+      "highlightColor": "",
+      "highlightColorHover": "",
+      "icon_url": "",
+      "priceUnformatted": "783",
+      "isDisabled": "",
+      "isUniqueContent": false,
+      "transferType": "none",
+      "price": "$783"
+    },
+    {
+      "count": "1",
+      "masterCruiseID": "I7265195241206",
+      "productID": "I7MIASIG265195",
+      "masterCruiseID_org": "I7265195241206",
+      "title": "Eastern Caribbean 7 days from Miami to San Juan",
+      "ship": "Resilient Lady",
+      "shipID": "I7",
+      "shipImage": "//images.cruisec.net/images/ships/ships/I7.jpg",
+      "cruiseLine": "Virgin Voyages",
+      "cruiseLineID": "VIR",
+      "cruiseLineLogo": "//images.cruisec.net/images/ships/logos/VIR.png",
+      "duration": "6",
+      "departure": "11/30/24",
+      "departure_top": "30.",
+      "departure_bottom": "11/24",
+      "departure_raw": "2024-11-30",
+      "arrival": "12/6/24",
+      "departure_cruise": "11/30/24",
+      "arrival_cruise": "12/6/24",
+      "arrival_raw": "2024-12-06",
+      "airports": [],
+      "route": "Miami - Cruising Day - Grand Turk - Puerto Plata - Cruising Day - Basseterre - San Juan",
+      "depPortID": "",
+      "arrPortID": "",
+      "cruiseArea": "Caribbean (eastern)",
+      "cruiseAreaID": "40",
+      "filter": [],
+      "currency": "USD",
+      "currency_symbol": "$",
+      "price_strike": "",
+      "pricecat": [],
+      "masterCruiseIDs": [
+        "I7265195241206"
+      ],
+      "highlight": false,
+      "highlightColor": "",
+      "highlightColorHover": "",
+      "icon_url": "",
+      "priceUnformatted": "910",
+      "isDisabled": "",
+      "isUniqueContent": false,
+      "transferType": "none",
+      "price": "$910"
+    },
+    {
+      "count": "1",
+      "masterCruiseID": "I5259550240804",
+      "productID": "I5BCNBCN259550",
+      "masterCruiseID_org": "I5259550240804",
+      "title": "Mediterranean, western 8 days from/to Barcelona",
+      "ship": "Scarlet Lady",
+      "shipID": "I5",
+      "shipImage": "//images.cruisec.net/images/ships/ships/I5.jpg",
+      "cruiseLine": "Virgin Voyages",
+      "cruiseLineID": "VIR",
+      "cruiseLineLogo": "//images.cruisec.net/images/ships/logos/VIR.png",
+      "duration": "7",
+      "departure": "7/28/24",
+      "departure_top": "28.",
+      "departure_bottom": "7/24",
+      "departure_raw": "2024-07-28",
+      "arrival": "8/4/24",
+      "departure_cruise": "7/28/24",
+      "arrival_cruise": "8/4/24",
+      "arrival_raw": "2024-08-04",
+      "airports": [],
+      "route": "Barcelona - Toulon - Marina di Carrara - Cruising Day - Ajaccio, Corsica - Ibiza, Balearic Islands - Ibiza, Balearic Islands - Barcelona",
+      "depPortID": "",
+      "arrPortID": "",
+      "cruiseArea": "Mediterranean, western",
+      "cruiseAreaID": "1",
+      "filter": [],
+      "currency": "USD",
+      "currency_symbol": "$",
+      "price_strike": "",
+      "pricecat": [],
+      "masterCruiseIDs": [
+        "I5259550240804"
+      ],
+      "highlight": false,
+      "highlightColor": "",
+      "highlightColorHover": "",
+      "icon_url": "",
+      "priceUnformatted": "930",
+      "isDisabled": "",
+      "isUniqueContent": false,
+      "transferType": "none",
+      "price": "$930"
+    },
+    {
+      "count": "1",
+      "masterCruiseID": "I5259545240707",
+      "productID": "I5BCNBCN259545",
+      "masterCruiseID_org": "I5259545240707",
+      "title": "Mediterranean, western 8 days from/to Barcelona",
+      "ship": "Scarlet Lady",
+      "shipID": "I5",
+      "shipImage": "//images.cruisec.net/images/ships/ships/I5.jpg",
+      "cruiseLine": "Virgin Voyages",
+      "cruiseLineID": "VIR",
+      "cruiseLineLogo": "//images.cruisec.net/images/ships/logos/VIR.png",
+      "duration": "7",
+      "departure": "6/30/24",
+      "departure_top": "30.",
+      "departure_bottom": "6/24",
+      "departure_raw": "2024-06-30",
+      "arrival": "7/7/24",
+      "departure_cruise": "6/30/24",
+      "arrival_cruise": "7/7/24",
+      "arrival_raw": "2024-07-07",
+      "airports": [],
+      "route": "Barcelona - Toulon - Marina di Carrara - Ajaccio, Corsica - Cruising Day - Ibiza, Balearic Islands - Ibiza, Balearic Islands - Barcelona",
+      "depPortID": "",
+      "arrPortID": "",
+      "cruiseArea": "Mediterranean, western",
+      "cruiseAreaID": "1",
+      "filter": [],
+      "currency": "USD",
+      "currency_symbol": "$",
+      "price_strike": "",
+      "pricecat": [],
+      "masterCruiseIDs": [
+        "I5259545240707"
+      ],
+      "highlight": false,
+      "highlightColor": "",
+      "highlightColorHover": "",
+      "icon_url": "",
+      "priceUnformatted": "936",
+      "isDisabled": "",
+      "isUniqueContent": false,
+      "transferType": "none",
+      "price": "$936"
+    },
+    {
+      "count": "1",
+      "masterCruiseID": "I5259533240609",
+      "productID": "I5BCNBCN259533",
+      "masterCruiseID_org": "I5259533240609",
+      "title": "Mediterranean, western 8 days from/to Barcelona",
+      "ship": "Scarlet Lady",
+      "shipID": "I5",
+      "shipImage": "//images.cruisec.net/images/ships/ships/I5.jpg",
+      "cruiseLine": "Virgin Voyages",
+      "cruiseLineID": "VIR",
+      "cruiseLineLogo": "//images.cruisec.net/images/ships/logos/VIR.png",
+      "duration": "7",
+      "departure": "6/2/24",
+      "departure_top": "2.",
+      "departure_bottom": "6/24",
+      "departure_raw": "2024-06-02",
+      "arrival": "6/9/24",
+      "departure_cruise": "6/2/24",
+      "arrival_cruise": "6/9/24",
+      "arrival_raw": "2024-06-09",
+      "airports": [],
+      "route": "Barcelona - Toulon - Marina di Carrara - Cruising Day - Ajaccio, Corsica - Ibiza, Balearic Islands - Ibiza, Balearic Islands - Barcelona",
+      "depPortID": "",
+      "arrPortID": "",
+      "cruiseArea": "Mediterranean, western",
+      "cruiseAreaID": "1",
+      "filter": [],
+      "currency": "USD",
+      "currency_symbol": "$",
+      "price_strike": "",
+      "pricecat": [],
+      "masterCruiseIDs": [
+        "I5259533240609"
+      ],
+      "highlight": false,
+      "highlightColor": "",
+      "highlightColorHover": "",
+      "icon_url": "",
+      "priceUnformatted": "945",
+      "isDisabled": "",
+      "isUniqueContent": false,
+      "transferType": "none",
+      "price": "$945"
+    },
+    {
+      "count": "1",
+      "masterCruiseID": "I5268548240728",
+      "productID": "I5BCNBCN268548",
+      "masterCruiseID_org": "I5268548240728",
+      "title": "Mediterranean, western 8 days from/to Barcelona",
+      "ship": "Scarlet Lady",
+      "shipID": "I5",
+      "shipImage": "//images.cruisec.net/images/ships/ships/I5.jpg",
+      "cruiseLine": "Virgin Voyages",
+      "cruiseLineID": "VIR",
+      "cruiseLineLogo": "//images.cruisec.net/images/ships/logos/VIR.png",
+      "duration": "7",
+      "departure": "7/21/24",
+      "departure_top": "21.",
+      "departure_bottom": "7/24",
+      "departure_raw": "2024-07-21",
+      "arrival": "7/28/24",
+      "departure_cruise": "7/21/24",
+      "arrival_cruise": "7/28/24",
+      "arrival_raw": "2024-07-28",
+      "airports": [],
+      "route": "Barcelona - Marseille - Cannes - Cruising Day - Palma de Mallorca, Balearic Islands - Ibiza, Balearic Islands - Ibiza, Balearic Islands - Barcelona",
+      "depPortID": "",
+      "arrPortID": "",
+      "cruiseArea": "Mediterranean, western",
+      "cruiseAreaID": "1",
+      "filter": [],
+      "currency": "USD",
+      "currency_symbol": "$",
+      "price_strike": "",
+      "pricecat": [],
+      "masterCruiseIDs": [
+        "I5268548240728"
+      ],
+      "highlight": false,
+      "highlightColor": "",
+      "highlightColorHover": "",
+      "icon_url": "",
+      "priceUnformatted": "953",
+      "isDisabled": "",
+      "isUniqueContent": false,
+      "transferType": "none",
+      "price": "$953"
+    },
+    {
+      "count": "1",
+      "masterCruiseID": "I5259530240602",
+      "productID": "I5BCNBCN259530",
+      "masterCruiseID_org": "I5259530240602",
+      "title": "Mediterranean, western 8 days from/to Barcelona",
+      "ship": "Scarlet Lady",
+      "shipID": "I5",
+      "shipImage": "//images.cruisec.net/images/ships/ships/I5.jpg",
+      "cruiseLine": "Virgin Voyages",
+      "cruiseLineID": "VIR",
+      "cruiseLineLogo": "//images.cruisec.net/images/ships/logos/VIR.png",
+      "duration": "7",
+      "departure": "5/26/24",
+      "departure_top": "26.",
+      "departure_bottom": "5/24",
+      "departure_raw": "2024-05-26",
+      "arrival": "6/2/24",
+      "departure_cruise": "5/26/24",
+      "arrival_cruise": "6/2/24",
+      "arrival_raw": "2024-06-02",
+      "airports": [],
+      "route": "Barcelona - Marseille - Cannes - Cruising Day - Palma de Mallorca, Balearic Islands - Ibiza, Balearic Islands - Ibiza, Balearic Islands - Barcelona",
+      "depPortID": "",
+      "arrPortID": "",
+      "cruiseArea": "Mediterranean, western",
+      "cruiseAreaID": "1",
+      "filter": [],
+      "currency": "USD",
+      "currency_symbol": "$",
+      "price_strike": "",
+      "pricecat": [],
+      "masterCruiseIDs": [
+        "I5259530240602"
+      ],
+      "highlight": false,
+      "highlightColor": "",
+      "highlightColorHover": "",
+      "icon_url": "",
+      "priceUnformatted": "955",
+      "isDisabled": "",
+      "isUniqueContent": false,
+      "transferType": "none",
+      "price": "$955"
+    },
+    {
+      "count": "1",
+      "masterCruiseID": "I5259543240630",
+      "productID": "I5BCNBCN259543",
+      "masterCruiseID_org": "I5259543240630",
+      "title": "Mediterranean, western 8 days from/to Barcelona",
+      "ship": "Scarlet Lady",
+      "shipID": "I5",
+      "shipImage": "//images.cruisec.net/images/ships/ships/I5.jpg",
+      "cruiseLine": "Virgin Voyages",
+      "cruiseLineID": "VIR",
+      "cruiseLineLogo": "//images.cruisec.net/images/ships/logos/VIR.png",
+      "duration": "7",
+      "departure": "6/23/24",
+      "departure_top": "23.",
+      "departure_bottom": "6/24",
+      "departure_raw": "2024-06-23",
+      "arrival": "6/30/24",
+      "departure_cruise": "6/23/24",
+      "arrival_cruise": "6/30/24",
+      "arrival_raw": "2024-06-30",
+      "airports": [],
+      "route": "Barcelona - Marseille - Cannes - Cruising Day - Palma de Mallorca, Balearic Islands - Ibiza, Balearic Islands - Ibiza, Balearic Islands - Barcelona",
+      "depPortID": "",
+      "arrPortID": "",
+      "cruiseArea": "Mediterranean, western",
+      "cruiseAreaID": "1",
+      "filter": [],
+      "currency": "USD",
+      "currency_symbol": "$",
+      "price_strike": "",
+      "pricecat": [],
+      "masterCruiseIDs": [
+        "I5259543240630"
+      ],
+      "highlight": false,
+      "highlightColor": "",
+      "highlightColorHover": "",
+      "icon_url": "",
+      "priceUnformatted": "956",
+      "isDisabled": "",
+      "isUniqueContent": false,
+      "transferType": "none",
+      "price": "$956"
+    },
+    {
+      "count": "1",
+      "masterCruiseID": "I5259540240623",
+      "productID": "I5BCNBCN259540",
+      "masterCruiseID_org": "I5259540240623",
+      "title": "Mediterranean, western 8 days from/to Barcelona",
+      "ship": "Scarlet Lady",
+      "shipID": "I5",
+      "shipImage": "//images.cruisec.net/images/ships/ships/I5.jpg",
+      "cruiseLine": "Virgin Voyages",
+      "cruiseLineID": "VIR",
+      "cruiseLineLogo": "//images.cruisec.net/images/ships/logos/VIR.png",
+      "duration": "7",
+      "departure": "6/16/24",
+      "departure_top": "16.",
+      "departure_bottom": "6/24",
+      "departure_raw": "2024-06-16",
+      "arrival": "6/23/24",
+      "departure_cruise": "6/16/24",
+      "arrival_cruise": "6/23/24",
+      "arrival_raw": "2024-06-23",
+      "airports": [],
+      "route": "Barcelona - Toulon - Marina di Carrara - Civitavecchia, Rome - Cruising Day - Ibiza, Balearic Islands - Ibiza, Balearic Islands - Barcelona",
+      "depPortID": "",
+      "arrPortID": "",
+      "cruiseArea": "Mediterranean, western",
+      "cruiseAreaID": "1",
+      "filter": [],
+      "currency": "USD",
+      "currency_symbol": "$",
+      "price_strike": "",
+      "pricecat": [],
+      "masterCruiseIDs": [
+        "I5259540240623"
+      ],
+      "highlight": false,
+      "highlightColor": "",
+      "highlightColorHover": "",
+      "icon_url": "",
+      "priceUnformatted": "963",
+      "isDisabled": "",
+      "isUniqueContent": false,
+      "transferType": "none",
+      "price": "$963"
+    },
+    {
+      "count": "1",
+      "masterCruiseID": "I5268555240825",
+      "productID": "I5BCNBCN268555",
+      "masterCruiseID_org": "I5268555240825",
+      "title": "Mediterranean, western 8 days from/to Barcelona",
+      "ship": "Scarlet Lady",
+      "shipID": "I5",
+      "shipImage": "//images.cruisec.net/images/ships/ships/I5.jpg",
+      "cruiseLine": "Virgin Voyages",
+      "cruiseLineID": "VIR",
+      "cruiseLineLogo": "//images.cruisec.net/images/ships/logos/VIR.png",
+      "duration": "7",
+      "departure": "8/18/24",
+      "departure_top": "18.",
+      "departure_bottom": "8/24",
+      "departure_raw": "2024-08-18",
+      "arrival": "8/25/24",
+      "departure_cruise": "8/18/24",
+      "arrival_cruise": "8/25/24",
+      "arrival_raw": "2024-08-25",
+      "airports": [],
+      "route": "Barcelona - Marseille - Cannes - Cruising Day - Palma de Mallorca, Balearic Islands - Ibiza, Balearic Islands - Ibiza, Balearic Islands - Barcelona",
+      "depPortID": "",
+      "arrPortID": "",
+      "cruiseArea": "Mediterranean, western",
+      "cruiseAreaID": "1",
+      "filter": [],
+      "currency": "USD",
+      "currency_symbol": "$",
+      "price_strike": "",
+      "pricecat": [],
+      "masterCruiseIDs": [
+        "I5268555240825"
+      ],
+      "highlight": false,
+      "highlightColor": "",
+      "highlightColorHover": "",
+      "icon_url": "",
+      "priceUnformatted": "977",
+      "isDisabled": "",
+      "isUniqueContent": false,
+      "transferType": "none",
+      "price": "$977"
+    },
+    {
+      "count": "1",
+      "masterCruiseID": "I5259548240721",
+      "productID": "I5BCNBCN259548",
+      "masterCruiseID_org": "I5259548240721",
+      "title": "Mediterranean, western 8 days from/to Barcelona",
+      "ship": "Scarlet Lady",
+      "shipID": "I5",
+      "shipImage": "//images.cruisec.net/images/ships/ships/I5.jpg",
+      "cruiseLine": "Virgin Voyages",
+      "cruiseLineID": "VIR",
+      "cruiseLineLogo": "//images.cruisec.net/images/ships/logos/VIR.png",
+      "duration": "7",
+      "departure": "7/14/24",
+      "departure_top": "14.",
+      "departure_bottom": "7/24",
+      "departure_raw": "2024-07-14",
+      "arrival": "7/21/24",
+      "departure_cruise": "7/14/24",
+      "arrival_cruise": "7/21/24",
+      "arrival_raw": "2024-07-21",
+      "airports": [],
+      "route": "Barcelona - Toulon - Marina di Carrara - Civitavecchia, Rome - Cruising Day - Ibiza, Balearic Islands - Ibiza, Balearic Islands - Barcelona",
+      "depPortID": "",
+      "arrPortID": "",
+      "cruiseArea": "Mediterranean, western",
+      "cruiseAreaID": "1",
+      "filter": [],
+      "currency": "USD",
+      "currency_symbol": "$",
+      "price_strike": "",
+      "pricecat": [],
+      "masterCruiseIDs": [
+        "I5259548240721"
+      ],
+      "highlight": false,
+      "highlightColor": "",
+      "highlightColorHover": "",
+      "icon_url": "",
+      "priceUnformatted": "980",
+      "isDisabled": "",
+      "isUniqueContent": false,
+      "transferType": "none",
+      "price": "$980"
+    },
+    {
+      "count": "1",
+      "masterCruiseID": "I5259553240818",
+      "productID": "I5BCNBCN259553",
+      "masterCruiseID_org": "I5259553240818",
+      "title": "Mediterranean, western 8 days from/to Barcelona",
+      "ship": "Scarlet Lady",
+      "shipID": "I5",
+      "shipImage": "//images.cruisec.net/images/ships/ships/I5.jpg",
+      "cruiseLine": "Virgin Voyages",
+      "cruiseLineID": "VIR",
+      "cruiseLineLogo": "//images.cruisec.net/images/ships/logos/VIR.png",
+      "duration": "7",
+      "departure": "8/11/24",
+      "departure_top": "11.",
+      "departure_bottom": "8/24",
+      "departure_raw": "2024-08-11",
+      "arrival": "8/18/24",
+      "departure_cruise": "8/11/24",
+      "arrival_cruise": "8/18/24",
+      "arrival_raw": "2024-08-18",
+      "airports": [],
+      "route": "Barcelona - Toulon - Marina di Carrara - Civitavecchia, Rome - Cruising Day - Ibiza, Balearic Islands - Ibiza, Balearic Islands - Barcelona",
+      "depPortID": "",
+      "arrPortID": "",
+      "cruiseArea": "Mediterranean, western",
+      "cruiseAreaID": "1",
+      "filter": [],
+      "currency": "USD",
+      "currency_symbol": "$",
+      "price_strike": "",
+      "pricecat": [],
+      "masterCruiseIDs": [
+        "I5259553240818"
+      ],
+      "highlight": false,
+      "highlightColor": "",
+      "highlightColorHover": "",
+      "icon_url": "",
+      "priceUnformatted": "987",
+      "isDisabled": "",
+      "isUniqueContent": false,
+      "transferType": "none",
+      "price": "$987"
+    }
+    ]
+};
+localStorage.setItem('cruiseListData', JSON.stringify(cruiseListData))
+</script>    
 </body>
 </html>
