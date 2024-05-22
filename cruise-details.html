@@ -1113,83 +1113,82 @@
             <li>Visa, if necessary (extra charges possible).</li>
         `;
 
-            // Populate itinerary table
-            document.getElementById('itinerary-table').innerHTML = `
-                <tr>
-                    <td>1</td>
-                    <td>Portsmouth, United Kingdom</td>
-                    <td></td>
-                    <td>18:00</td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>Cruising Day</td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td>La Coruna, Spain</td>
-                    <td>08:00</td>
-                    <td>17:00</td>
-                </tr>
-                <tr>
-                    <td>4</td>
-                    <td>Bilbao, Spain</td>
-                    <td>10:00</td>
-                    <td>18:00</td>
-                </tr>
-                <tr>
-                    <td>5</td>
-                    <td>Le Verdon-sur-Mer, France</td>
-                    <td>08:00</td>
-                    <td>20:00</td>
-                </tr>
-                <tr>
-                    <td>6</td>
-                    <td>Cruising Day</td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>7</td>
-                    <td>Portsmouth, United Kingdom</td>
-                    <td>06:00</td>
-                    <td></td>
-                </tr>
-            `;
+        // Populate itinerary table
+        document.getElementById('itinerary-table').innerHTML = `
+            <tr>
+                <td>1</td>
+                <td>Portsmouth, United Kingdom</td>
+                <td></td>
+                <td>18:00</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>Cruising Day</td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>La Coruna, Spain</td>
+                <td>08:00</td>
+                <td>17:00</td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td>Bilbao, Spain</td>
+                <td>10:00</td>
+                <td>18:00</td>
+            </tr>
+            <tr>
+                <td>5</td>
+                <td>Le Verdon-sur-Mer, France</td>
+                <td>08:00</td>
+                <td>20:00</td>
+            </tr>
+            <tr>
+                <td>6</td>
+                <td>Cruising Day</td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>7</td>
+                <td>Portsmouth, United Kingdom</td>
+                <td>06:00</td>
+                <td></td>
+            </tr>
+        `;
 
-            // Initialize the map
-            var map = L.map('map').setView([50.811386, -1.096752], 5);
+        // Initialize the map
+        var map = L.map('map').setView([50.811386, -1.096752], 5);
 
-            // Add a tile layer to the map
-            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-            }).addTo(map);
+        // Add a tile layer to the map
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
 
-            // Define the cruise route points
-            var points = [
-                {lat: 50.811386, long: -1.096752, text: "Portsmouth"},
-                {lat: 43.369004, long: -8.396652, text: "La Coruna"},
-                {lat: 43.33061, long: -3.016176, text: "Bilbao"},
-                {lat: 45.556982, long: -1.062591, text: "Le Verdon-sur-Mer"},
-                {lat: 50.811386, long: -1.096752, text: "Portsmouth"}
-            ];
+        // Define the cruise route points
+        var points = [
+            {lat: 50.811386, long: -1.096752, text: "Portsmouth"},
+            {lat: 43.369004, long: -8.396652, text: "La Coruna"},
+            {lat: 43.33061, long: -3.016176, text: "Bilbao"},
+            {lat: 45.556982, long: -1.062591, text: "Le Verdon-sur-Mer"},
+            {lat: 50.811386, long: -1.096752, text: "Portsmouth"}
+        ];
 
-            // Add the route points to the map
-            points.forEach(point => {
-                L.marker([point.lat, point.long]).addTo(map)
-                    .bindPopup(point.text)
-                    .openPopup();
-            });
-
-            // Draw the route line on the map
-            var latlngs = points.map(point => [point.lat, point.long]);
-            var polyline = L.polyline(latlngs, {color: 'blue'}).addTo(map);
-
-            // Zoom the map to the polyline
-            map.fitBounds(polyline.getBounds());
+        // Add the route points to the map
+        points.forEach(point => {
+            L.marker([point.lat, point.long]).addTo(map)
+                .bindPopup(point.text)
+                .openPopup();
         });
+
+        // Draw the route line on the map
+        var latlngs = points.map(point => [point.lat, point.long]);
+        var polyline = L.polyline(latlngs, {color: 'blue'}).addTo(map);
+
+        // Zoom the map to the polyline
+        map.fitBounds(polyline.getBounds());
 
         // Photo gallery
         document.getElementById('carousel-images').innerHTML = `
