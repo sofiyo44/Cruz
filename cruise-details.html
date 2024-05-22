@@ -358,9 +358,6 @@
     END BREADCRUMB AREA
 ================================= -->
 
-<!-- ================================
-    START CRUISE DETAIL AREA
-================================= -->
 <section class="cruise-detail-area padding-bottom-90px">
     <div class="single-content-navbar-wrap menu section-bg" id="single-content-navbar">
         <div class="container">
@@ -667,7 +664,7 @@
                                     <li><i class="la la-dollar icon-element mr-2"></i>No-hassle best price guarantee</li>
                                     <li><i class="la la-microphone icon-element mr-2"></i>Customer care available 24/7</li>
                                     <li><i class="la la-thumbs-up icon-element mr-2"></i>Hand-picked Tours & Activities</li>
-                                    <li><i class="la la-file-text icon-element mr-2"></i>Free Travel Insureance</li>
+                                    <li><i class="la la-file-text icon-element mr-2"></i>Free Travel Insurance</li>
                                 </ul>
                             </div><!-- end sidebar-list -->
                         </div><!-- end sidebar-widget -->
@@ -1078,7 +1075,7 @@
         document.getElementById('cruise-title').innerText = "Atlantic Ocean Europe 7 days from/to Portsmouth";
         document.getElementById('cruise-route').innerText = "Ports of Call: Portsmouth, Cruising Day, La Coruna, Bilbao, Le Verdon-sur-Mer, Portsmouth";
         document.getElementById('ship-description').innerHTML = "From decadent dinners to boozy after-parties, gather with your partner, your best friends and yourself to celebrate life's best moments aboard one of the 100% adults-only voyages.";
-
+    
         // Ship statistics
         document.getElementById('ship-statistics-left').innerHTML = `
             <li>Year Built: 2023</li>
@@ -1090,7 +1087,7 @@
             <li>Weight: 110,000</li>
             <li>Length: 278m</li>
         `;
-
+    
         // Included and Not Included
         document.getElementById('included-list').innerHTML = `
             <li>Cruise in the cabin category booked.</li>
@@ -1111,7 +1108,7 @@
             <li>Recommended gratuities</li>
             <li>Visa, if necessary (extra charges possible).</li>
         `;
-
+    
         // Populate itinerary table
         document.getElementById('itinerary-table').innerHTML = `
             <tr>
@@ -1157,15 +1154,15 @@
                 <td></td>
             </tr>
         `;
-
+    
         // Initialize the map
         var map = L.map('map').setView([50.811386, -1.096752], 5);
-
+    
         // Add a tile layer to the map
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         }).addTo(map);
-
+    
         // Define the cruise route coordinates
         var cruiseRoute = [
             [50.811386, -1.096752], // Portsmouth, United Kingdom
@@ -1174,12 +1171,12 @@
             [45.1128, -0.745], // Le Verdon-sur-Mer, France
             [50.811386, -1.096752] // Portsmouth, United Kingdom
         ];
-
+    
         // Create a polyline for the cruise route
         var cruisePolyline = L.polyline(cruiseRoute, {
             color: 'blue'
         }).addTo(map);
-
+    
         // Add markers for each port of call
         var ports = [
             { coords: [50.811386, -1.096752], name: "Portsmouth, United Kingdom" },
@@ -1187,14 +1184,14 @@
             { coords: [43.263012, -2.935112], name: "Bilbao, Spain" },
             { coords: [45.1128, -0.745], name: "Le Verdon-sur-Mer, France" }
         ];
-
+    
         ports.forEach(port => {
             L.marker(port.coords).addTo(map).bindPopup(port.name);
         });
-
+    
         // Adjust the map view to fit the cruise route
         map.fitBounds(cruisePolyline.getBounds());
-
+    
         // Photo gallery
         document.getElementById('carousel-images').innerHTML = `
             <div class="carousel-item active">
@@ -1219,17 +1216,17 @@
                 <img src="//images.cruisec.net/images/ships/gallery/I7_05_VIR_BBQ.jpg" class="d-block w-100" alt="...">
             </div>
         `;
-
+    
         // Sidebar price and cabin selection logic
         document.querySelectorAll('.select-cabin-btn').forEach(button => {
             button.addEventListener('click', function () {
                 const cabinId = this.getAttribute('data-cabin-id');
                 const cabinText = this.getAttribute('data-cabin-text');
                 const cabinPrice = parseFloat(this.getAttribute('data-cabin-price').replace(/[^0-9.-]+/g,""));
-
+    
                 const selectedCabinList = document.getElementById('selected-cabin-list');
                 const existingCabin = selectedCabinList.querySelector(`li[data-cabin-id="${cabinId}"]`);
-
+    
                 if (existingCabin) {
                     const qtyInput = existingCabin.querySelector('.qtyInput');
                     qtyInput.value = parseInt(qtyInput.value) + 1;
@@ -1248,7 +1245,7 @@
                         </div>
                     `;
                     selectedCabinList.appendChild(listItem);
-
+    
                     listItem.querySelector('.qtyDec').addEventListener('click', function () {
                         const input = this.nextElementSibling;
                         if (parseInt(input.value) > 1) {
@@ -1259,21 +1256,21 @@
                             updateTotalPrice();
                         }
                     });
-
+    
                     listItem.querySelector('.qtyInc').addEventListener('click', function () {
                         const input = this.previousElementSibling;
                         input.value = parseInt(input.value) + 1;
                         updateTotalPrice();
                     });
                 }
-
+    
                 this.innerText = 'Selected';
                 this.disabled = true;
-
+    
                 updateTotalPrice();
             });
         });
-
+    
         function updateTotalPrice() {
             let total = 0;
             document.querySelectorAll('#selected-cabin-list li').forEach(item => {
@@ -1283,16 +1280,16 @@
             });
             document.getElementById('total-price').innerText = `Total Price: $${total.toFixed(2)}`;
         }
-
+    
         const cruiseData = {
             "title": "Atlantic Ocean Europe 7 days from/to Portsmouth",
             "departure_cruise": "9/23/24",
             "arrival_cruise": "9/29/24"
         }
-
+    
         document.getElementById('cruise-title').innerText = cruiseData.title;
         document.getElementById('cruise-dates').innerText = `${cruiseData.departure_cruise} - ${cruiseData.arrival_cruise}`;
-
+    
         // Populate amenities list
         const amenities = [
             {
@@ -1357,7 +1354,7 @@
                 ]
             }
         ];
-
+    
         let amenitiesHTML = '';
         amenities.forEach(category => {
             amenitiesHTML += `
