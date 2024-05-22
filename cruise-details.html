@@ -1293,6 +1293,84 @@
 
         document.getElementById('cruise-title').innerText = cruiseData.title;
         document.getElementById('cruise-dates').innerText = `${cruiseData.departure_cruise} - ${cruiseData.arrival_cruise}`;
+        });
+        // Populate amenities list
+        const amenities = [
+            {
+                "id": "240",
+                "text": "Bars and Cafes",
+                "children": [
+                    {"id": "96", "text": "Coffeebar"},
+                    {"id": "157", "text": "Champagne/caviar bar"},
+                    {"id": "302", "text": "Club lounge"},
+                    {"id": "95", "text": "Cocktailbar"},
+                    {"id": "98", "text": "Pool bar"},
+                    {"id": "156", "text": "Winecellar/vinothek"}
+                ]
+            },
+            {
+                "id": "128",
+                "text": "Onboard language",
+                "children": [
+                    {"id": "217", "text": "English"}
+                ]
+            },
+            {
+                "id": "236",
+                "text": "Travel documents",
+                "children": [
+                    {"id": "218", "text": "Passport required"}
+                ]
+            },
+            {
+                "id": "44",
+                "text": "Restaurants",
+                "children": [
+                    {"id": "25", "text": "Italian Restaurant"},
+                    {"id": "26", "text": "French Restaurant"},
+                    {"id": "27", "text": "Steakhouse"},
+                    {"id": "28", "text": "Sushi Bar"},
+                    {"id": "29", "text": "Seafood Restaurant"},
+                    {"id": "30", "text": "Buffet"}
+                ]
+            },
+            {
+                "id": "45",
+                "text": "Activities",
+                "children": [
+                    {"id": "31", "text": "Swimming Pool"},
+                    {"id": "32", "text": "Fitness Center"},
+                    {"id": "33", "text": "Spa"},
+                    {"id": "34", "text": "Theater"},
+                    {"id": "35", "text": "Casino"},
+                    {"id": "36", "text": "Mini Golf"}
+                ]
+            },
+            {
+                "id": "46",
+                "text": "Services",
+                "children": [
+                    {"id": "37", "text": "Room Service"},
+                    {"id": "38", "text": "Laundry Service"},
+                    {"id": "39", "text": "Concierge"},
+                    {"id": "40", "text": "Medical Center"},
+                    {"id": "41", "text": "Wi-Fi"}
+                ]
+            }
+        ];
+    
+        let amenitiesHTML = '';
+        amenities.forEach(category => {
+            amenitiesHTML += `
+                <div class="col-lg-4">
+                    <h4>${category.text}</h4>
+                    <ul class="list-items">
+                        ${category.children.map(item => `<li>${item.text}</li>`).join('')}
+                    </ul>
+                </div>
+            `;
+        });
+        document.getElementById('amenities-list').innerHTML = amenitiesHTML;
     });
 </script>
 </body>
