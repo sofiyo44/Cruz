@@ -473,7 +473,7 @@
                                         <div style="flex-grow: 1;">
                                             <h5 class="card-title">Inside cabin</h5>
                                             <p class="card-text">$743</p>
-                                            <ul class="list-items">
+                                            <ul class="list-items small-font">
                                                 <li>Approx. 10 - 16 m&sup2;</li>
                                                 <li>Seabed (queen size bed, converts to sofa during the day)</li>
                                                 <li>Bathroom with rain shower and toilet</li>
@@ -490,7 +490,7 @@
                                         <div style="flex-grow: 1;">
                                             <h5 class="card-title">Outside cabin</h5>
                                             <p class="card-text">$764</p>
-                                            <ul class="list-items">
+                                            <ul class="list-items small-font">
                                                 <li>Approx. 12 - 18 m&sup2;</li>
                                                 <li>Large window or large porthole with window seating</li>
                                                 <li>Seabed (queen size bed, converts to sofa during the day)</li>
@@ -508,7 +508,7 @@
                                         <div style="flex-grow: 1;">
                                             <h5 class="card-title">Balcony cabin</h5>
                                             <p class="card-text">$759</p>
-                                            <ul class="list-items">
+                                            <ul class="list-items small-font">
                                                 <li>Approx. 17 - 21 m&sup2;</li>
                                                 <li>Balcony with table, chairs and hammock</li>
                                                 <li>Seabed (queen size bed, converts to sofa during the day)</li>
@@ -526,7 +526,7 @@
                                         <div style="flex-grow: 1;">
                                             <h5 class="card-title">Suite</h5>
                                             <p class="card-text">$3,000</p>
-                                            <ul class="list-items">
+                                            <ul class="list-items small-font">
                                                 <li>Approx. 32.5 - 80 m&sup2;</li>
                                                 <li>Terrace with furniture, sun loungers and hammock</li>
                                                 <li>King-size bed</li>
@@ -559,6 +559,7 @@
                                     </a>
                                 </div>
                             </div>
+                        </div>
                             <div class="section-block"></div>
                         </div>
                     </div>
@@ -1196,7 +1197,7 @@
         map.fitBounds(cruisePolyline.getBounds());
     
         // Photo gallery
-        document.getElementById('carousel-images').innerHTML = `
+        const carouselImages = `
             <div class="carousel-item active">
                 <img src="//images.cruisec.net/images/ships/gallery/I7_0_VIR_Restaurant_2.jpg" class="d-block w-100" alt="...">
             </div>
@@ -1220,6 +1221,12 @@
             </div>
         `;
     
+        document.getElementById('carousel-images').innerHTML = carouselImages;
+    
+        // Ensure the Bootstrap carousel is initialized
+        $('#photo-carousel').carousel();
+    });
+
         // Sidebar price and cabin selection logic
         document.querySelectorAll('.select-cabin-btn').forEach(button => {
             button.addEventListener('click', function () {
