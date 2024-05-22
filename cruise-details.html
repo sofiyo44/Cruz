@@ -463,7 +463,6 @@
                                 </div>
                             </div>
                         </div>
-                        <div id="map" style="height: 500px;"></div>
                         <div class="section-block"></div>
                         <div id="staterooms" class="page-scroll">
                             <div class="single-content-item padding-top-40px padding-bottom-30px">
@@ -511,6 +510,7 @@
                                             <p class="card-text">$759</p>
                                             <ul class="list-items">
                                                 <li>Approx. 17 - 21 m&sup2;</li>
+                                                <li>Balcony with table, chairs and hammock</li>
                                                 <li>Seabed (queen size bed, converts to sofa during the day)</li>
                                                 <li>Bathroom with rain shower and toilet</li>
                                                 <li>Hairdryer</li>
@@ -522,157 +522,152 @@
                                         <button class="btn btn-primary select-cabin-btn" data-cabin-id="BK" data-cabin-text="Balcony cabin" data-cabin-price="$759" style="margin-left: 20px;">Select Cabin</button>
                                     </div>
                                     <div class="cabin-card" style="display: flex; align-items: center; margin-bottom: 20px;">
-                                        <img src="//images.cruisec.net/images/ships/cabins/I7_ST.jpg" style="width: 150px; height: auto; margin-right: 20px;" alt="Suite">
+                                        <img src="//images.cruisec.net/images/ships/cabins/I7_SU.jpg" style="width: 150px; height: auto; margin-right: 20px;" alt="Suite">
                                         <div style="flex-grow: 1;">
                                             <h5 class="card-title">Suite</h5>
-                                            <p class="card-text">$1638</p>
+                                            <p class="card-text">$3,000</p>
                                             <ul class="list-items">
-                                                <li>Approx. 34 - 52 m&sup2;</li>
-                                                <li>Large window or large porthole with window seating</li>
-                                                <li>Seabed (queen size bed, converts to sofa during the day)</li>
-                                                <li>Bathroom with rain shower and toilet</li>
+                                                <li>Approx. 32.5 - 80 m&sup2;</li>
+                                                <li>Terrace with furniture, sun loungers and hammock</li>
+                                                <li>King-size bed</li>
+                                                <li>Large marble bathroom with rain shower and toilet</li>
                                                 <li>Hairdryer</li>
                                                 <li>Wardrobe - Flat screen TV</li>
-                                                <li>Mini bar</li>
+                                                <li>Individually stocked bar</li>
                                                 <li>Adjustable air conditioning</li>
                                             </ul>
                                         </div>
-                                        <button class="btn btn-primary select-cabin-btn" data-cabin-id="ST" data-cabin-text="Suite" data-cabin-price="$1638" style="margin-left: 20px;">Select Cabin</button>
+                                        <button class="btn btn-primary select-cabin-btn" data-cabin-id="SU" data-cabin-text="Suite" data-cabin-price="$3,000" style="margin-left: 20px;">Select Cabin</button>
                                     </div>
                                 </div>
                             </div>
+                            <p class="font-size-14 line-height-26 padding-bottom-40px"><strong class="text-black">Please note:</strong> Cabin photos shown are samples only. Actual cabin details may vary.</p>
+                            <div class="section-block"></div>
                         </div>
-                        <div id="selected-cabin-list"></div>
-                        <p id="total-price"></p>
                         <div id="photos" class="page-scroll">
-                            <div class="section-block margin-top-40px"></div>
                             <div class="single-content-item padding-top-40px padding-bottom-40px">
-                                <h3 class="title font-size-20">Photos</h3>
-                                <div class="gallery-carousel margin-top-30px">
-                                    <div class="card-item">
-                                        <div class="card-img">
-                                            <a href="images/destination-img5.jpg" class="d-block">
-                                                <img src="images/destination-img5.jpg" alt="destination-img">
-                                                <span class="badge">25 Photos</span>
-                                            </a>
-                                        </div>
-                                    </div><!-- end card-item -->
-                                    <div class="card-item">
-                                        <div class="card-img">
-                                            <a href="images/destination-img5.jpg" class="d-block">
-                                                <img src="images/destination-img5.jpg" alt="destination-img">
-                                                <span class="badge">25 Photos</span>
-                                            </a>
-                                        </div>
-                                    </div><!-- end card-item -->
-                                    <div class="card-item">
-                                        <div class="card-img">
-                                            <a href="images/destination-img5.jpg" class="d-block">
-                                                <img src="images/destination-img5.jpg" alt="destination-img">
-                                                <span class="badge">25 Photos</span>
-                                            </a>
-                                        </div>
-                                    </div><!-- end card-item -->
-                                    <div class="card-item">
-                                        <div class="card-img">
-                                            <a href="images/destination-img5.jpg" class="d-block">
-                                                <img src="images/destination-img5.jpg" alt="destination-img">
-                                                <span class="badge">25 Photos</span>
-                                            </a>
-                                        </div>
-                                    </div><!-- end card-item -->
+                                <h3 class="title font-size-20">Photo Gallery</h3>
+                                <div id="photo-carousel" class="carousel slide" data-ride="carousel">
+                                    <div class="carousel-inner" id="carousel-images"></div>
+                                    <a class="carousel-control-prev" href="#photo-carousel" role="button" data-slide="prev">
+                                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                        <span class="sr-only">Previous</span>
+                                    </a>
+                                    <a class="carousel-control-next" href="#photo-carousel" role="button" data-slide="next">
+                                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                        <span class="sr-only">Next</span>
+                                    </a>
                                 </div>
                             </div>
+                            <div class="section-block"></div>
                         </div>
-                        <div id="reviews" class="page-scroll">
-                            <div class="section-block margin-top-40px"></div>
-                            <div class="single-content-item padding-top-40px">
-                                <h3 class="title font-size-20">Reviews</h3>
-                                <div class="review-container padding-top-30px">
-                                    <div class="comment-forum padding-bottom-40px">
-                                        <div class="comment-header d-flex align-items-center justify-content-between">
-                                            <div class="review-title d-flex align-items-center flex-grow-1">
-                                                <img src="images/small-img.jpg" alt="small-img">
-                                                <div class="comment-meta">
-                                                    <h3 class="comment__author">Ali Tufan</h3>
-                                                    <p class="comment__date">15 April, 2021</p>
-                                                </div>
-                                            </div>
-                                            <div class="star-rating-wrap text-center">
-                                                <div class="star-rating text-color-5 font-size-16">
-                                                    <span><i class="la la-star"></i></span>
-                                                    <span><i class="la la-star"></i></span>
-                                                    <span><i class="la la-star"></i></span>
-                                                    <span><i class="la la-star"></i></span>
-                                                    <span><i class="la la-star"></i></span>
-                                                </div>
-                                                <p class="font-size-13 font-weight-medium">Exceptional</p>
-                                            </div>
-                                        </div>
-                                        <p class="comment__desc padding-top-10px">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.</p>
-                                    </div><!-- end comment-forum -->
-                                    <div class="comment-forum padding-bottom-40px">
-                                        <div class="comment-header d-flex align-items-center justify-content-between">
-                                            <div class="review-title d-flex align-items-center flex-grow-1">
-                                                <img src="images/small-img.jpg" alt="small-img">
-                                                <div class="comment-meta">
-                                                    <h3 class="comment__author">Ali Tufan</h3>
-                                                    <p class="comment__date">15 April, 2021</p>
-                                                </div>
-                                            </div>
-                                            <div class="star-rating-wrap text-center">
-                                                <div class="star-rating text-color-5 font-size-16">
-                                                    <span><i class="la la-star"></i></span>
-                                                    <span><i class="la la-star"></i></span>
-                                                    <span><i class="la la-star"></i></span>
-                                                    <span><i class="la la-star"></i></span>
-                                                    <span><i class="la la-star"></i></span>
-                                                </div>
-                                                <p class="font-size-13 font-weight-medium">Exceptional</p>
-                                            </div>
-                                        </div>
-                                        <p class="comment__desc padding-top-10px">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.</p>
-                                    </div><!-- end comment-forum -->
-                                    <div class="comment-forum padding-bottom-40px">
-                                        <div class="comment-header d-flex align-items-center justify-content-between">
-                                            <div class="review-title d-flex align-items-center flex-grow-1">
-                                                <img src="images/small-img.jpg" alt="small-img">
-                                                <div class="comment-meta">
-                                                    <h3 class="comment__author">Ali Tufan</h3>
-                                                    <p class="comment__date">15 April, 2021</p>
-                                                </div>
-                                            </div>
-                                            <div class="star-rating-wrap text-center">
-                                                <div class="star-rating text-color-5 font-size-16">
-                                                    <span><i class="la la-star"></i></span>
-                                                    <span><i class="la la-star"></i></span>
-                                                    <span><i class="la la-star"></i></span>
-                                                    <span><i class="la la-star"></i></span>
-                                                    <span><i class="la la-star"></i></span>
-                                                </div>
-                                                <p class="font-size-13 font-weight-medium">Exceptional</p>
-                                            </div>
-                                        </div>
-                                        <p class="comment__desc padding-top-10px">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.</p>
-                                    </div><!-- end comment-forum -->
-                                    <div class="btn-box load-more text-center">
-                                        <button type="button" class="theme-btn theme-btn-light"><i class="la la-refresh mr-1"></i> Load More Review</button>
-                                    </div>
-                                </div><!-- end review-container -->
-                            </div>
-                        </div><!-- end reviews -->
-                    </div><!-- end single-content-wrap -->
-                </div><!-- end col-lg-8 -->
+                    </div>
+                </div>
                 <div class="col-lg-4">
+                    <!-- Sidebar content -->
                     <div class="sidebar single-content-sidebar mb-0">
-                        <div class="sidebar-widget">
+                        <div class="sidebar-widget single-content-widget">
+                            <div class="sidebar-widget-item">
+                                <div class="sidebar-book-title-wrap mb-3">
+                                    <h3>popular</h3>
+                                    <p><span class="text-form">From</span><span class="text-value ml-2 mr-1" id="cruise-price">$743</span></p>
+                                </div>
+                            </div><!-- end sidebar-widget-item -->
+                            <div class="sidebar-widget-item">
+                                <ul id="selected-cabin-list" class="list-unstyled"></ul>
+                                <div id="total-price" class="font-size-20 font-weight-bold"></div>
+                            </div>
+                            <div class="sidebar-widget-item">
+                                <div class="contact-form-action">
+                                    <form action="#">
+                                        <div class="input-box">
+                                            <label class="label-text">Cruise Title</label>
+                                            <div class="form-group">
+                                                <div id="cruise-title-sidebar" class="title font-size-18"></div>
+                                            </div>
+                                        </div>
+                                        <div class="input-box">
+                                            <label class="label-text">Cruise Dates</label>
+                                            <div class="form-group">
+                                                <div id="cruise-dates" class="title font-size-18"></div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="btn-box pt-2">
+                                <!-- Button to navigate to cruise booking page -->
+                                <a href="cruise-booking.html" class="theme-btn text-center w-100 mb-2">
+                                    <i class="la la-shopping-cart mr-2 font-size-18"></i>Book Now
+                                </a>
+                                <!-- Button to add cruise to wishlist -->
+                                <a href="#" class="theme-btn text-center w-100 theme-btn-transparent">
+                                    <i class="la la-heart-o mr-2"></i>Add to Wishlist
+                                </a>
+                                <div class="d-flex align-items-center justify-content-between pt-2">
+                                    <!-- Button to share cruise details, triggers a modal popup -->
+                                    <a href="#" class="btn theme-btn-hover-gray font-size-15" data-toggle="modal" data-target="#sharePopupForm">
+                                        <i class="la la-share mr-1"></i>Share
+                                    </a>
+                                    <!-- Displays the number of views -->
+                                    <p><i class="la la-eye mr-1 font-size-15 color-text-2"></i>3456</p>
+                                </div>
+                            </div>
+                        </div><!-- end sidebar-widget -->
+                        <div class="sidebar-widget single-content-widget">
+                            <h3 class="title stroke-shape">Enquiry Form</h3>
+                            <div class="enquiry-forum">
+                                <div class="form-box">
+                                    <div class="form-content">
+                                        <div class="contact-form-action">
+                                            <form method="post">
+                                                <div class="input-box">
+                                                    <label class="label-text">Your Name</label>
+                                                    <div class="form-group">
+                                                        <span class="la la-user form-icon"></span>
+                                                        <input class="form-control" type="text" name="text" placeholder="Your name">
+                                                    </div>
+                                                </div>
+                                                <div class="input-box">
+                                                    <label class="label-text">Your Email</label>
+                                                    <div class="form-group">
+                                                        <span class="la la-envelope-o form-icon"></span>
+                                                        <input class="form-control" type="email" name="email" placeholder="Email address">
+                                                    </div>
+                                                </div>
+                                                <div class="input-box">
+                                                    <label class="label-text">Message</label>
+                                                    <div class="form-group">
+                                                        <span class="la la-pencil form-icon"></span>
+                                                        <textarea class="message-control form-control" name="message" placeholder="Write message"></textarea>
+                                                    </div>
+                                                </div>
+                                                <div class="input-box">
+                                                    <div class="form-group">
+                                                        <div class="custom-checkbox mb-0">
+                                                            <input type="checkbox" id="agreeChb">
+                                                            <label for="agreeChb">I agree with <a href="#">Terms of Service</a> and
+                                                                <a href="#">Privacy Statement</a></label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="btn-box">
+                                                    <button type="button" class="theme-btn">Submit Enquiry</button>
+                                                </div>
+                                            </form>
+                                        </div><!-- end contact-form-action -->
+                                    </div><!-- end form-content -->
+                                </div><!-- end form-box -->
+                            </div><!-- end enquiry-forum -->
+                        </div><!-- end sidebar-widget -->
+                        <div class="sidebar-widget single-content-widget">
                             <h3 class="title stroke-shape">Why Book With Us?</h3>
                             <div class="sidebar-list">
                                 <ul class="list-items">
-                                    <li><i class="la la-dollar"></i>No Booking Fees</li>
-                                    <li><i class="la la-file-text"></i>Book Now, Pay Later</li>
-                                    <li><i class="la la-thumbs-up"></i>Best Price Guarantee</li>
-                                    <li><i class="la la-star"></i>Excellent Support</li>
+                                    <li><i class="la la-dollar icon-element mr-2"></i>No-hassle best price guarantee</li>
+                                    <li><i class="la la-microphone icon-element mr-2"></i>Customer care available 24/7</li>
+                                    <li><i class="la la-thumbs-up icon-element mr-2"></i>Hand-picked Tours & Activities</li>
+                                    <li><i class="la la-file-text icon-element mr-2"></i>Free Travel Insureance</li>
                                 </ul>
                             </div><!-- end sidebar-list -->
                         </div><!-- end sidebar-widget -->
