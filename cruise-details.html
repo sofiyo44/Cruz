@@ -1182,85 +1182,69 @@
         `;
 
        // Sidebar price and cabin selection logic
-        const cruisePriceElement = document.getElementById('cruise-price');
-        const totalPriceElement = document.getElementById('total-price');
-        const selectedCabinsContainer = document.getElementById('selected-cabins');
-        let totalPrice = parseFloat(jsonData.price_min);
-    
-        const updateTotalPrice = () => {
+        document.querySelectorAll('.select-cabin-btn').forEach(button => {
+            button.addEventListener('click', function () {
+                const cabinId = this.getAttribute('data-cabin-id');
+                const cabinText = this.getAttribute('data-cabin-text');
+                const cabinPrice = parseFloat(this.getAttribute('data-cabin-price').replace(/[^0-9.-]+/g,""));
+        
+                const selectedCabinList = document.getElementById('selected-cabin-list');
+                const existingCabin = selectedCabinList.querySelector(`li[data-cabin-id="${cabinId}"]`);
+        
+                if (existingCabin) {
+                    const qtyInput = existingCabin.querySelector('.qtyInput');
+                    qtyInput.value = parseInt(qtyInput.value) + 1;
+                } else {
+                    const listItem = document.createElement('li');
+                    listItem.setAttribute('data-cabin-id', cabinId);
+                    listItem.innerHTML = `
+                        <div class="d-flex align-items-center justify-content-between">
+                            <span>${cabinText}</span>
+                            <span class="cabin-price">${cabinPrice.toFixed(2)}</span>
+                            <div class="qtyBtn d-flex align-items-center">
+                                <div class="qtyDec"><i class="la la-minus"></i></div>
+                                <input type="text" class="qtyInput" value="1" readonly>
+                                <div class="qtyInc"><i class="la la-plus"></i></div>
+                            </div>
+                        </div>
+                    `;
+                    selectedCabinList.appendChild(listItem);
+        
+                    listItem.querySelector('.qtyDec').addEventListener('click', function () {
+                        const input = this.nextElementSibling;
+                        if (parseInt(input.value) > 1) {
+                            input.value = parseInt(input.value) - 1;
+                            updateTotalPrice();
+                        } else {
+                            listItem.remove();
+                            updateTotalPrice();
+                        }
+                    });
+        
+                    listItem.querySelector('.qtyInc').addEventListener('click', function () {
+                        const input = this.previousElementSibling;
+                        input.value = parseInt(input.value) + 1;
+                        updateTotalPrice();
+                    });
+                }
+        
+                this.innerText = 'Selected';
+                this.disabled = true;
+        
+                updateTotalPrice();
+            });
+        });
+        
+        function updateTotalPrice() {
             let total = 0;
             document.querySelectorAll('#selected-cabin-list li').forEach(item => {
                 const price = parseFloat(item.querySelector('.cabin-price').innerText.replace(/[^0-9.-]+/g,""));
                 const quantity = parseInt(item.querySelector('.qtyInput').value);
                 total += price * quantity;
             });
-            totalPriceElement.innerText = `Total Price: $${total.toFixed(2)}`;
-            cruisePriceElement.innerText = `$${total.toFixed(2)}`;
+            document.getElementById('total-price').innerText = `Total Price: $${total.toFixed(2)}`;
         };
-    
-        document.querySelectorAll('.select-cabin-btn').forEach(button => {
-            button.addEventListener('click', () => {
-                const cabinId = button.getAttribute('data-cabin-id');
-                const cabinPrice = parseFloat(button.getAttribute('data-cabin-price').replace('$', ''));
-                const cabinText = button.getAttribute('data-cabin-text');
-                const quantity = 1;
-    
-                // Check if cabin already selected
-                if (button.textContent === 'Selected') return;
-    
-                button.textContent = 'Selected';
-                totalPrice += cabinPrice;
-    
-                const selectedCabinRow = document.createElement('div');
-                selectedCabinRow.classList.add('selected-cabin-row', 'd-flex', 'align-items-center', 'justify-content-between');
-                selectedCabinRow.setAttribute('data-cabin-id', cabinId);
-                selectedCabinRow.innerHTML = `
-                    <span>${cabinText}</span>
-                    <div class="d-flex align-items-center">
-                        <span class="cabin-price" data-cabin-price="${cabinPrice}">$${cabinPrice.toFixed(2)}</span>
-                        <div class="qtyBtn d-flex align-items-center ml-2">
-                            <div class="qtyDec"><i class="la la-minus"></i></div>
-                            <input type="text" name="qtyInput" value="${quantity}" data-cabin-id="${cabinId}" readonly>
-                            <div class="qtyInc"><i class="la la-plus"></i></div>
-                        </div>
-                    </div>
-                `;
-    
-                selectedCabinsContainer.appendChild(selectedCabinRow);
-                updateTotalPrice();
-    
-                selectedCabinRow.querySelector('.qtyDec').addEventListener('click', () => {
-                    const qtyInput = selectedCabinRow.querySelector('input[name="qtyInput"]');
-                    let qty = parseInt(qtyInput.value);
-                    if (qty > 1) {
-                        qty--;
-                        qtyInput.value = qty;
-                        totalPrice -= cabinPrice;
-                        updateTotalPrice();
-                    } else {
-                        // Remove cabin if quantity goes to 0
-                        selectedCabinsContainer.removeChild(selectedCabinRow);
-                        button.textContent = 'Select Cabin';
-                        totalPrice -= cabinPrice;
-                        updateTotalPrice();
-                    }
-                });
-    
-                selectedCabinRow.querySelector('.qtyInc').addEventListener('click', () => {
-                    const qtyInput = selectedCabinRow.querySelector('input[name="qtyInput"]');
-                    let qty = parseInt(qtyInput.value);
-                    qty++;
-                    qtyInput.value = qty;
-                    totalPrice += cabinPrice;
-                    updateTotalPrice();
-                });
-            });
-        });
-    
-                // Set initial minimum price
-                cruisePriceElement.textContent = `$${totalPrice.toFixed(2)}`;
-                totalPriceElement.textContent = `$${totalPrice.toFixed(2)}`;
-                });
+            
             document.addEventListener('DOMContentLoaded', function() {
             const cruiseData = {
                 "title": "Atlantic Ocean Europe 7 days from/to Portsmouth",
