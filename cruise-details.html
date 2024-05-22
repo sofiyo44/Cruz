@@ -1181,16 +1181,16 @@
             </div>
         `;
 
-       // Sidebar price and cabin selection logic
+        // Sidebar price and cabin selection logic
         document.querySelectorAll('.select-cabin-btn').forEach(button => {
             button.addEventListener('click', function () {
                 const cabinId = this.getAttribute('data-cabin-id');
                 const cabinText = this.getAttribute('data-cabin-text');
                 const cabinPrice = parseFloat(this.getAttribute('data-cabin-price').replace(/[^0-9.-]+/g,""));
-        
+
                 const selectedCabinList = document.getElementById('selected-cabin-list');
                 const existingCabin = selectedCabinList.querySelector(`li[data-cabin-id="${cabinId}"]`);
-        
+
                 if (existingCabin) {
                     const qtyInput = existingCabin.querySelector('.qtyInput');
                     qtyInput.value = parseInt(qtyInput.value) + 1;
@@ -1209,7 +1209,7 @@
                         </div>
                     `;
                     selectedCabinList.appendChild(listItem);
-        
+
                     listItem.querySelector('.qtyDec').addEventListener('click', function () {
                         const input = this.nextElementSibling;
                         if (parseInt(input.value) > 1) {
@@ -1220,21 +1220,21 @@
                             updateTotalPrice();
                         }
                     });
-        
+
                     listItem.querySelector('.qtyInc').addEventListener('click', function () {
                         const input = this.previousElementSibling;
                         input.value = parseInt(input.value) + 1;
                         updateTotalPrice();
                     });
                 }
-        
+
                 this.innerText = 'Selected';
                 this.disabled = true;
-        
+
                 updateTotalPrice();
             });
         });
-        
+
         function updateTotalPrice() {
             let total = 0;
             document.querySelectorAll('#selected-cabin-list li').forEach(item => {
@@ -1243,19 +1243,17 @@
                 total += price * quantity;
             });
             document.getElementById('total-price').innerText = `Total Price: $${total.toFixed(2)}`;
-        };
-            
-            document.addEventListener('DOMContentLoaded', function() {
-            const cruiseData = {
-                "title": "Atlantic Ocean Europe 7 days from/to Portsmouth",
-                "departure_cruise": "9/23/24",
-                "arrival_cruise": "9/29/24"
-            }
-        
-            document.getElementById('cruise-title').innerText = cruiseData.title;
-            document.getElementById('cruise-dates').innerText = `${cruiseData.departure_cruise} - ${cruiseData.arrival_cruise}`;
-        });
+        }
 
+        const cruiseData = {
+            "title": "Atlantic Ocean Europe 7 days from/to Portsmouth",
+            "departure_cruise": "9/23/24",
+            "arrival_cruise": "9/29/24"
+        }
+
+        document.getElementById('cruise-title').innerText = cruiseData.title;
+        document.getElementById('cruise-dates').innerText = `${cruiseData.departure_cruise} - ${cruiseData.arrival_cruise}`;
+    });
 </script>
 </body>
 </html>
