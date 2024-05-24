@@ -1074,11 +1074,18 @@
 <script src="cruise-detail-temp.js"></script>
 <script>
     document.addEventListener('DOMContentLoaded', function () {
+        const cruiseData = {
+            title: "Atlantic Ocean Europe 7 days from/to Portsmouth",
+            departure_cruise: "9/23/24",
+            arrival_cruise: "9/29/24"
+        };
+
         // Populate cruise details
-        document.getElementById('cruise-title').innerText = "Atlantic Ocean Europe 7 days from/to Portsmouth";
+        document.getElementById('cruise-title').innerText = cruiseData.title;
+        document.getElementById('cruise-dates').innerText = `${cruiseData.departure_cruise} - ${cruiseData.arrival_cruise}`;
         document.getElementById('cruise-route').innerText = "Ports of Call: Portsmouth, Cruising Day, La Coruna, Bilbao, Le Verdon-sur-Mer, Portsmouth";
         document.getElementById('ship-description').innerHTML = "From decadent dinners to boozy after-parties, gather with your partner, your best friends and yourself to celebrate life's best moments aboard one of the 100% adults-only voyages.";
-    
+
         // Ship statistics
         document.getElementById('ship-statistics-left').innerHTML = `
             <li>Year Built: 2023</li>
@@ -1090,7 +1097,7 @@
             <li>Weight: 110,000</li>
             <li>Length: 278m</li>
         `;
-    
+
         // Included and Not Included
         document.getElementById('included-list').innerHTML = `
             <li>Cruise in the cabin category booked.</li>
@@ -1102,16 +1109,16 @@
         `;
         document.getElementById('excluded-list').innerHTML = `
             <li>Arrival and departure.</li>
-            <li>Beverages, unless specified</li>
+            <li>Beverages, unless specified.</li>
             <li>Meals and drinks in the specialty restaurants.</li>
             <li>Personal expenses aboard.</li>
             <li>Shore excursions.</li>
             <li>Medical service.</li>
             <li>Travel insurances.</li>
-            <li>Recommended gratuities</li>
+            <li>Recommended gratuities.</li>
             <li>Visa, if necessary (extra charges possible).</li>
         `;
-    
+
         // Populate itinerary table
         document.getElementById('itinerary-table').innerHTML = `
             <tr>
@@ -1157,44 +1164,44 @@
                 <td></td>
             </tr>
         `;
-    
+
         // Initialize the map
-        var map = L.map('map').setView([50.811386, -1.096752], 5);
-    
+        const map = L.map('map').setView([50.811386, -1.096752], 5);
+
         // Add a tile layer to the map
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         }).addTo(map);
-    
+
         // Define the cruise route coordinates
-        var cruiseRoute = [
+        const cruiseRoute = [
             [50.811386, -1.096752], // Portsmouth, United Kingdom
             [43.3686, -8.396], // La Coruna, Spain
             [43.263012, -2.935112], // Bilbao, Spain
             [45.1128, -0.745], // Le Verdon-sur-Mer, France
             [50.811386, -1.096752] // Portsmouth, United Kingdom
         ];
-    
+
         // Create a polyline for the cruise route
-        var cruisePolyline = L.polyline(cruiseRoute, {
+        const cruisePolyline = L.polyline(cruiseRoute, {
             color: 'blue'
         }).addTo(map);
-    
+
         // Add markers for each port of call
-        var ports = [
+        const ports = [
             { coords: [50.811386, -1.096752], name: "Portsmouth, United Kingdom" },
             { coords: [43.3686, -8.396], name: "La Coruna, Spain" },
             { coords: [43.263012, -2.935112], name: "Bilbao, Spain" },
             { coords: [45.1128, -0.745], name: "Le Verdon-sur-Mer, France" }
         ];
-    
+
         ports.forEach(port => {
             L.marker(port.coords).addTo(map).bindPopup(port.name);
         });
-    
+
         // Adjust the map view to fit the cruise route
         map.fitBounds(cruisePolyline.getBounds());
-    
+
         // Photo gallery
         document.getElementById('carousel-images').innerHTML = `
             <div class="carousel-item active">
@@ -1219,24 +1226,24 @@
                 <img src="//images.cruisec.net/images/ships/gallery/I7_05_VIR_BBQ.jpg" class="d-block w-100" alt="...">
             </div>
         `;
-    
+
         // Sidebar price and cabin selection logic
         document.querySelectorAll('.select-cabin-btn').forEach(button => {
             button.addEventListener('click', function () {
                 const cabinId = this.getAttribute('data-cabin-id');
                 const cabinText = this.getAttribute('data-cabin-text');
                 const cabinPrice = parseFloat(this.getAttribute('data-cabin-price').replace(/[^0-9.-]+/g,""));
-    
+
                 const selectedCabinList = document.getElementById('selected-cabin-list');
-                const existingCabin = selectedCabinList.querySelector(`li[data-cabin-id="${cabinId}"]`);
-    
+                let existingCabin = selectedCabinList.querySelector(`li[data-cabin-id="${cabinId}"]`);
+
                 if (existingCabin) {
                     const qtyInput = existingCabin.querySelector('.qtyInput');
                     qtyInput.value = parseInt(qtyInput.value) + 1;
                 } else {
-                    const listItem = document.createElement('li');
-                    listItem.setAttribute('data-cabin-id', cabinId);
-                    listItem.innerHTML = `
+                    existingCabin = document.createElement('li');
+                    existingCabin.setAttribute('data-cabin-id', cabinId);
+                    existingCabin.innerHTML = `
                         <div class="d-flex align-items-center justify-content-between">
                             <span>${cabinText}</span>
                             <span class="cabin-price">${cabinPrice.toFixed(2)}</span>
@@ -1247,128 +1254,115 @@
                             </div>
                         </div>
                     `;
-                    selectedCabinList.appendChild(listItem);
-    
-                    listItem.querySelector('.qtyDec').addEventListener('click', function () {
+                    selectedCabinList.appendChild(existingCabin);
+
+                    existingCabin.querySelector('.qtyDec').addEventListener('click', function () {
                         const input = this.nextElementSibling;
                         if (parseInt(input.value) > 1) {
                             input.value = parseInt(input.value) - 1;
-                            updateTotalPrice();
                         } else {
-                            listItem.remove();
-                            updateTotalPrice();
+                            existingCabin.remove();
                         }
+                        updateTotalPrice();
                     });
-    
-                    listItem.querySelector('.qtyInc').addEventListener('click', function () {
+
+                    existingCabin.querySelector('.qtyInc').addEventListener('click', function () {
                         const input = this.previousElementSibling;
                         input.value = parseInt(input.value) + 1;
                         updateTotalPrice();
                     });
                 }
-    
+
                 this.innerText = 'Selected';
                 this.disabled = true;
-    
+
                 updateTotalPrice();
             });
         });
-    
+
         function updateTotalPrice() {
-            let total = 0;
-            document.querySelectorAll('#selected-cabin-list li').forEach(item => {
+            let total = Array.from(document.querySelectorAll('#selected-cabin-list li')).reduce((acc, item) => {
                 const price = parseFloat(item.querySelector('.cabin-price').innerText.replace(/[^0-9.-]+/g,""));
                 const quantity = parseInt(item.querySelector('.qtyInput').value);
-                total += price * quantity;
-            });
+                return acc + (price * quantity);
+            }, 0);
             document.getElementById('total-price').innerText = `Total Price: $${total.toFixed(2)}`;
         }
-    
-        const cruiseData = {
-            "title": "Atlantic Ocean Europe 7 days from/to Portsmouth",
-            "departure_cruise": "9/23/24",
-            "arrival_cruise": "9/29/24"
-        }
-    
-        document.getElementById('cruise-title').innerText = cruiseData.title;
-        document.getElementById('cruise-dates').innerText = `${cruiseData.departure_cruise} - ${cruiseData.arrival_cruise}`;
-    
+
         // Populate amenities list
         const amenities = [
             {
-                "id": "240",
-                "text": "Bars and Cafes",
-                "children": [
-                    {"id": "96", "text": "Coffeebar"},
-                    {"id": "157", "text": "Champagne/caviar bar"},
-                    {"id": "302", "text": "Club lounge"},
-                    {"id": "95", "text": "Cocktailbar"},
-                    {"id": "98", "text": "Pool bar"},
-                    {"id": "156", "text": "Winecellar/vinothek"}
+                id: "240",
+                text: "Bars and Cafes",
+                children: [
+                    { id: "96", text: "Coffeebar" },
+                    { id: "157", text: "Champagne/caviar bar" },
+                    { id: "302", text: "Club lounge" },
+                    { id: "95", text: "Cocktailbar" },
+                    { id: "98", text: "Pool bar" },
+                    { id: "156", text: "Winecellar/vinothek" }
                 ]
             },
             {
-                "id": "128",
-                "text": "Onboard language",
-                "children": [
-                    {"id": "217", "text": "English"}
+                id: "128",
+                text: "Onboard language",
+                children: [
+                    { id: "217", text: "English" }
                 ]
             },
             {
-                "id": "236",
-                "text": "Travel documents",
-                "children": [
-                    {"id": "218", "text": "Passport required"}
+                id: "236",
+                text: "Travel documents",
+                children: [
+                    { id: "218", text: "Passport required" }
                 ]
             },
             {
-                "id": "44",
-                "text": "Restaurants",
-                "children": [
-                    {"id": "25", "text": "Italian Restaurant"},
-                    {"id": "26", "text": "French Restaurant"},
-                    {"id": "27", "text": "Steakhouse"},
-                    {"id": "28", "text": "Sushi Bar"},
-                    {"id": "29", "text": "Seafood Restaurant"},
-                    {"id": "30", "text": "Buffet"}
+                id: "44",
+                text: "Restaurants",
+                children: [
+                    { id: "25", text: "Italian Restaurant" },
+                    { id: "26", text: "French Restaurant" },
+                    { id: "27", text: "Steakhouse" },
+                    { id: "28", text: "Sushi Bar" },
+                    { id: "29", text: "Seafood Restaurant" },
+                    { id: "30", text: "Buffet" }
                 ]
             },
             {
-                "id": "45",
-                "text": "Activities",
-                "children": [
-                    {"id": "31", "text": "Swimming Pool"},
-                    {"id": "32", "text": "Fitness Center"},
-                    {"id": "33", "text": "Spa"},
-                    {"id": "34", "text": "Theater"},
-                    {"id": "35", "text": "Casino"},
-                    {"id": "36", "text": "Mini Golf"}
+                id: "45",
+                text: "Activities",
+                children: [
+                    { id: "31", text: "Swimming Pool" },
+                    { id: "32", text: "Fitness Center" },
+                    { id: "33", text: "Spa" },
+                    { id: "34", text: "Theater" },
+                    { id: "35", text: "Casino" },
+                    { id: "36", text: "Mini Golf" }
                 ]
             },
             {
-                "id": "46",
-                "text": "Services",
-                "children": [
-                    {"id": "37", "text": "Room Service"},
-                    {"id": "38", "text": "Laundry Service"},
-                    {"id": "39", "text": "Concierge"},
-                    {"id": "40", "text": "Medical Center"},
-                    {"id": "41", "text": "Wi-Fi"}
+                id: "46",
+                text: "Services",
+                children: [
+                    { id: "37", text: "Room Service" },
+                    { id: "38", text: "Laundry Service" },
+                    { id: "39", text: "Concierge" },
+                    { id: "40", text: "Medical Center" },
+                    { id: "41", text: "Wi-Fi" }
                 ]
             }
         ];
-    
-        let amenitiesHTML = '';
-        amenities.forEach(category => {
-            amenitiesHTML += `
-                <div class="col-lg-4">
-                    <h4>${category.text}</h4>
-                    <ul class="list-items">
-                        ${category.children.map(item => `<li>${item.text}</li>`).join('')}
-                    </ul>
-                </div>
-            `;
-        });
+
+        const amenitiesHTML = amenities.map(category => `
+            <div class="col-lg-4">
+                <h4>${category.text}</h4>
+                <ul class="list-items">
+                    ${category.children.map(item => `<li>${item.text}</li>`).join('')}
+                </ul>
+            </div>
+        `).join('');
+        
         document.getElementById('amenities-list').innerHTML = amenitiesHTML;
     });
 </script>
