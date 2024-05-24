@@ -1165,43 +1165,6 @@
             </tr>
         `;
 
-        // Initialize the map
-        const map = L.map('map').setView([50.811386, -1.096752], 5);
-
-        // Add a tile layer to the map
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-        }).addTo(map);
-
-        // Define the cruise route coordinates
-        const cruiseRoute = [
-            [50.811386, -1.096752], // Portsmouth, United Kingdom
-            [43.3686, -8.396], // La Coruna, Spain
-            [43.263012, -2.935112], // Bilbao, Spain
-            [45.1128, -0.745], // Le Verdon-sur-Mer, France
-            [50.811386, -1.096752] // Portsmouth, United Kingdom
-        ];
-
-        // Create a polyline for the cruise route
-        const cruisePolyline = L.polyline(cruiseRoute, {
-            color: 'blue'
-        }).addTo(map);
-
-        // Add markers for each port of call
-        const ports = [
-            { coords: [50.811386, -1.096752], name: "Portsmouth, United Kingdom" },
-            { coords: [43.3686, -8.396], name: "La Coruna, Spain" },
-            { coords: [43.263012, -2.935112], name: "Bilbao, Spain" },
-            { coords: [45.1128, -0.745], name: "Le Verdon-sur-Mer, France" }
-        ];
-
-        ports.forEach(port => {
-            L.marker(port.coords).addTo(map).bindPopup(port.name);
-        });
-
-        // Adjust the map view to fit the cruise route
-        map.fitBounds(cruisePolyline.getBounds());
-
         // Photo gallery
         document.getElementById('carousel-images').innerHTML = `
             <div class="carousel-item active">
