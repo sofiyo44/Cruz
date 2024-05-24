@@ -1203,7 +1203,7 @@
         map.fitBounds(cruisePolyline.getBounds());
 
         // Photo gallery
-        document.getElementById('photo-carousel').innerHTML = `
+        document.getElementById('carousel-images').innerHTML = `
             <div class="carousel-item active">
                 <img src="//images.cruisec.net/images/ships/gallery/I7_0_VIR_Restaurant_2.jpg" class="d-block w-100" alt="...">
             </div>
@@ -1226,6 +1226,7 @@
                 <img src="//images.cruisec.net/images/ships/gallery/I7_05_VIR_BBQ.jpg" class="d-block w-100" alt="...">
             </div>
         `;
+
 
         // Sidebar price and cabin selection logic
         document.querySelectorAll('.select-cabin-btn').forEach(button => {
