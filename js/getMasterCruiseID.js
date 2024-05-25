@@ -1,3 +1,87 @@
+const express = require('express');
+const app = express();
+const PORT = process.env.PORT || 3000;
+
+// Middleware to parse JSON bodies
+app.use(express.json());
+
+let cruises = [
+    { id: 1, destination: 'Caribbean', departure: '2024-06-01', arrival: '2024-06-08', duration: 7, type: 'Sea', cruiseline: 'CCL', ship: 'Breeze', adult_number: 2, child_number: 0, senior_number: 0, package: 'yes' },
+    { id: 2, destination: 'Mediterranean', departure: '2024-07-15', arrival: '2024-07-25', duration: 10, type: 'River', cruiseline: 'CEL', ship: 'Apex', adult_number: 2, child_number: 2, senior_number: 0, package: 'no' },
+    // Add more cruise data as needed
+];
+
+app.get('/search', (req, res) => {
+    const { area, departure, arrival, adult_number, child_number, senior_number, sea, cruiseline, ship, duration, package } = req.query;
+    let results = cruises;
+
+    if (area) {
+        results = results.filter(cruise => cruise.destination.toLowerCase() === area.toLowerCase());
+    }
+
+    if (departure) {
+        results = results.filter(cruise => new Date(cruise.departure) >= new Date(departure));
+    }
+
+    if (arrival) {
+        results = results.filter(cruise => new Date(cruise.arrival) <= new Date(arrival));
+    }
+
+    if (adult_number) {
+        results = results.filter(cruise => cruise.adult_number >= parseInt(adult_number, 10));
+    }
+
+    if (child_number) {
+        results = results.filter(cruise => cruise.child_number >= parseInt(child_number, 10));
+    }
+
+    if (senior_number) {
+        results = results.filter(cruise => cruise.senior_number >= parseInt(senior_number, 10));
+    }
+
+    if (sea) {
+        results = results.filter(cruise => cruise.type.toLowerCase() === (sea === '1' ? 'sea' : 'river'));
+    }
+
+    if (cruiseline) {
+        results = results.filter(cruise => cruise.cruiseline.toLowerCase() === cruiseline.toLowerCase());
+    }
+
+    if (ship) {
+        results = results.filter(cruise => cruise.ship.toLowerCase() === ship.toLowerCase());
+    }
+
+    if (duration) {
+        let durationRange = duration.split('-');
+        let minDuration = parseInt(durationRange[0], 10);
+        let maxDuration = durationRange[1] ? parseInt(durationRange[1], 10) : Number.MAX_VALUE;
+        results = results.filter(cruise => cruise.duration >= minDuration && cruise.duration <= maxDuration);
+    }
+
+    if (package) {
+        if (package === 'yes') {
+            results = results.filter(cruise => cruise.package === 'yes');
+        }
+    }
+
+    res.json(results);
+});
+
+app.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}`);
+});
+
+
+
+
+
+
+
+
+
+
+
+
 // scripts/cruise-details.js
 document.addEventListener('DOMContentLoaded', function () {
     const urlParams = new URLSearchParams(window.location.search);
