@@ -86,15 +86,16 @@ app.listen(PORT, () => {
 // scripts/cruise-details.js
 document.addEventListener('DOMContentLoaded', function () {
     const urlParams = new URLSearchParams(window.location.search);
-    const mastercruiseID = urlParams.get('mastercruiseID');
+    const mastercruiseid = urlParams.get('mastercruiseid');
 
-    if (mastercruiseID) {
-        fetch(`https://api.example.com/cruises/${mastercruiseID}`)
+    if (mastercruiseid) {
+        fetch(`/cruises/${mastercruiseid}`)
             .then(response => response.json())
             .then(cruise => {
                 // Populate cruise details
                 document.getElementById('cruise-title').innerText = cruise.title;
-                document.getElementById('cruise-route').innerText = `Ports of Call: ${cruise.route.days.map(day => day.port).join(', ')}`;
+                document.getElementById('cruise-dates').innerText = `${new Date(cruise.departure).toLocaleDateString()} - ${new Date(cruise.arrival).toLocaleDateString()}`;
+                document.getElementById('cruise-route').innerText = `Ports of Call: ${cruise.route.map(day => day.port).join(', ')}`;
                 document.getElementById('ship-description').innerHTML = cruise.ship.description;
 
                 // Ship statistics
@@ -110,11 +111,11 @@ document.addEventListener('DOMContentLoaded', function () {
                 `;
 
                 // Included and Not Included
-                document.getElementById('included-list').innerHTML = cruise.included;
-                document.getElementById('excluded-list').innerHTML = cruise.excluded;
+                document.getElementById('included-list').innerHTML = cruise.included.map(item => `<li>${item}</li>`).join('');
+                document.getElementById('excluded-list').innerHTML = cruise.excluded.map(item => `<li>${item}</li>`).join('');
 
                 // Populate itinerary table
-                document.getElementById('itinerary-table').innerHTML = cruise.route.days.map(day => `
+                document.getElementById('itinerary-table').innerHTML = cruise.route.map(day => `
                     <tr>
                         <td>${day.number}</td>
                         <td>${day.port}, ${day.country}</td>
@@ -124,13 +125,13 @@ document.addEventListener('DOMContentLoaded', function () {
                 `).join('');
 
                 // Initialize the map
-                var map = L.map('map').setView([cruise.route.points[0].lat, cruise.route.points[0].long], 5);
+                var map = L.map('map').setView([cruise.route[0].lat, cruise.route[0].long], 5);
                 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
                     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                 }).addTo(map);
 
                 // Define the cruise route coordinates
-                var cruiseRoute = cruise.route.points.map(point => [point.lat, point.long]);
+                var cruiseRoute = cruise.route.map(point => [point.lat, point.long]);
 
                 // Create a polyline for the cruise route
                 var cruisePolyline = L.polyline(cruiseRoute, {
@@ -138,7 +139,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 }).addTo(map);
 
                 // Add markers for each port of call
-                cruise.route.points.forEach(point => {
+                cruise.route.forEach(point => {
                     L.marker([point.lat, point.long]).addTo(map).bindPopup(point.text);
                 });
 
