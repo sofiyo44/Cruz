@@ -555,165 +555,160 @@ function consolidateCruises(cruises) {
 
 
 
+
+
+
+
+
+
+
 // scripts/cruise-details.js
+<script>
 document.addEventListener('DOMContentLoaded', function () {
     const urlParams = new URLSearchParams(window.location.search);
-    const mastercruiseid = urlParams.get('mastercruiseid');
+    const masterCruiseID = urlParams.get('cruiseID');
 
-    if (mastercruiseid) {
-        fetch(`/cruises/${mastercruiseid}`)
+    if (masterCruiseID) {
+        fetch(`http://rest.api.cruisehost.net/cruises/${masterCruiseID}`)
             .then(response => response.json())
-            .then(cruise => {
-                // Populate cruise details
-                document.getElementById('cruise-title').innerText = cruise.title;
-                document.getElementById('cruise-dates').innerText = `${new Date(cruise.departure).toLocaleDateString()} - ${new Date(cruise.arrival).toLocaleDateString()}`;
-                document.getElementById('cruise-route').innerText = `Ports of Call: ${cruise.route.map(day => day.port).join(', ')}`;
-                document.getElementById('ship-description').innerHTML = cruise.ship.description;
-
-                // Ship statistics
-                document.getElementById('ship-statistics-left').innerHTML = `
-                    <li>Year Built: ${cruise.ship.details.year}</li>
-                    <li>Speed: ${cruise.ship.details.speed}</li>
-                    <li>Cabins: ${cruise.ship.details.cabins}</li>
-                `;
-                document.getElementById('ship-statistics-right').innerHTML = `
-                    <li>Passengers: ${cruise.ship.details.passengers}</li>
-                    <li>Weight: ${cruise.ship.details.weight}</li>
-                    <li>Length: ${cruise.ship.details.length}m</li>
-                `;
-
-                // Included and Not Included
-                document.getElementById('included-list').innerHTML = cruise.included.map(item => `<li>${item}</li>`).join('');
-                document.getElementById('excluded-list').innerHTML = cruise.excluded.map(item => `<li>${item}</li>`).join('');
-
-                // Populate itinerary table
-                document.getElementById('itinerary-table').innerHTML = cruise.route.map(day => `
-                    <tr>
-                        <td>${day.number}</td>
-                        <td>${day.port}, ${day.country}</td>
-                        <td>${day.arrival}</td>
-                        <td>${day.departure}</td>
-                    </tr>
-                `).join('');
-
-                // Initialize the map
-                var map = L.map('map').setView([cruise.route[0].lat, cruise.route[0].long], 5);
-                L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-                }).addTo(map);
-
-                // Define the cruise route coordinates
-                var cruiseRoute = cruise.route.map(point => [point.lat, point.long]);
-
-                // Create a polyline for the cruise route
-                var cruisePolyline = L.polyline(cruiseRoute, {
-                    color: 'blue'
-                }).addTo(map);
-
-                // Add markers for each port of call
-                cruise.route.forEach(point => {
-                    L.marker([point.lat, point.long]).addTo(map).bindPopup(point.text);
-                });
-
-                // Adjust the map view to fit the cruise route
-                map.fitBounds(cruisePolyline.getBounds());
-
-                // Photo gallery
-                document.getElementById('carousel-images').innerHTML = cruise.ship.images.gallery.map((image, index) => `
-                    <div class="carousel-item ${index === 0 ? 'active' : ''}">
-                        <img src="${image.url}" class="d-block w-100" alt="${image.name}">
-                    </div>
-                `).join('');
-
-                // Sidebar price and cabin selection logic
-                const cabinTypes = cruise.pricecat.map(cabin => `
-                    <div class="cabin-card" style="display: flex; align-items: center; margin-bottom: 20px;">
-                        <img src="${cruise.ship.images.cabin.find(img => img.name === cabin.id).url}" style="width: 150px; height: auto; margin-right: 20px;" alt="${cabin.text}">
-                        <div style="flex-grow: 1;">
-                            <h5 class="card-title">${cabin.text}</h5>
-                            <p class="card-text">${cabin.price}</p>
-                        </div>
-                        <button class="btn btn-primary select-cabin-btn" data-cabin-id="${cabin.id}" data-cabin-text="${cabin.text}" data-cabin-price="${cabin.price}" style="margin-left: 20px;">Select Cabin</button>
-                    </div>
-                `).join('');
-                document.getElementById('cabin-types').innerHTML = cabinTypes;
-
-                document.querySelectorAll('.select-cabin-btn').forEach(button => {
-                    button.addEventListener('click', function () {
-                        const cabinId = this.getAttribute('data-cabin-id');
-                        const cabinText = this.getAttribute('data-cabin-text');
-                        const cabinPrice = parseFloat(this.getAttribute('data-cabin-price').replace(/[^0-9.-]+/g, ""));
-
-                        const selectedCabinList = document.getElementById('selected-cabin-list');
-                        const existingCabin = selectedCabinList.querySelector(`li[data-cabin-id="${cabinId}"]`);
-
-                        if (existingCabin) {
-                            const qtyInput = existingCabin.querySelector('.qtyInput');
-                            qtyInput.value = parseInt(qtyInput.value) + 1;
-                        } else {
-                            const listItem = document.createElement('li');
-                            listItem.setAttribute('data-cabin-id', cabinId);
-                            listItem.innerHTML = `
-                                <div class="d-flex align-items-center justify-content-between">
-                                    <span>${cabinText}</span>
-                                    <span class="cabin-price">${cabinPrice.toFixed(2)}</span>
-                                    <div class="qtyBtn d-flex align-items-center">
-                                        <div class="qtyDec"><i class="la la-minus"></i></div>
-                                        <input type="text" class="qtyInput" value="1" readonly>
-                                        <div class="qtyInc"><i class="la la-plus"></i></div>
-                                    </div>
-                                </div>
-                            `;
-                            selectedCabinList.appendChild(listItem);
-
-                            listItem.querySelector('.qtyDec').addEventListener('click', function () {
-                                const input = this.nextElementSibling;
-                                if (parseInt(input.value) > 1) {
-                                    input.value = parseInt(input.value) - 1;
-                                    updateTotalPrice();
-                                } else {
-                                    listItem.remove();
-                                    updateTotalPrice();
-                                }
-                            });
-
-                            listItem.querySelector('.qtyInc').addEventListener('click', function () {
-                                const input = this.previousElementSibling;
-                                input.value = parseInt(input.value) + 1;
-                                updateTotalPrice();
-                            });
-                        }
-
-                        this.innerText = 'Selected';
-                        this.disabled = true;
-
-                        updateTotalPrice();
-                    });
-                });
-
-                function updateTotalPrice() {
-                    let total = 0;
-                    document.querySelectorAll('#selected-cabin-list li').forEach(item => {
-                        const price = parseFloat(item.querySelector('.cabin-price').innerText.replace(/[^0-9.-]+/g, ""));
-                        const quantity = parseInt(item.querySelector('.qtyInput').value);
-                        total += price * quantity;
-                    });
-                    document.getElementById('total-price').innerText = `Total Price: $${total.toFixed(2)}`;
-                }
-
-                // Populate amenities list
-                const amenitiesHTML = cruise.ship.features.map(category => `
-                    <div class="col-lg-4">
-                        <h4>${category.text}</h4>
-                        <ul class="list-items">
-                            ${category.children.map(item => `<li>${item.text}</li>`).join('')}
-                        </ul>
-                    </div>
-                `).join('');
-                document.getElementById('amenities-list').innerHTML = amenitiesHTML;
+            .then(data => {
+                populateCruiseDetails(data);
             })
             .catch(error => console.error('Error fetching cruise details:', error));
-    } else {
-        document.getElementById('cruise-details').innerText = 'No cruise ID provided.';
+    }
+
+    function populateCruiseDetails(data) {
+        // Populate cruise details
+        document.getElementById('cruise-title').innerText = data.title;
+        document.getElementById('cruise-title-sidebar').innerText = data.title;
+        document.getElementById('cruise-dates').innerText = `${data.departure_cruise} - ${data.arrival_cruise}`;
+        document.getElementById('cruise-route').innerText = "Ports of Call: " + data.route.days.map(day => day.port).join(', ');
+        document.getElementById('ship-description').innerHTML = data.ship.description;
+
+        // Ship statistics
+        document.getElementById('ship-statistics-left').innerHTML = `
+            <li>Year Built: ${data.ship.details.year}</li>
+            <li>Speed: ${data.ship.details.speed} knots</li>
+            <li>Cabins: ${data.ship.details.cabins}</li>
+        `;
+        document.getElementById('ship-statistics-right').innerHTML = `
+            <li>Passengers: ${data.ship.details.passengers}</li>
+            <li>Weight: ${data.ship.details.weight} tons</li>
+            <li>Length: ${data.ship.details.length} meters</li>
+        `;
+
+        // Included and Not Included
+        document.getElementById('included-list').innerHTML = data.included;
+        document.getElementById('excluded-list').innerHTML = data.excluded;
+
+        // Populate itinerary table
+        document.getElementById('itinerary-table').innerHTML = data.route.days.map(day => `
+            <tr>
+                <td>${day.number}</td>
+                <td>${day.port}, ${day.country}</td>
+                <td>${day.arrival}</td>
+                <td>${day.departure}</td>
+            </tr>
+        `).join('');
+
+        // Populate cabins
+        document.getElementById('cabin-types').innerHTML = data.pricecat.map(cabin => `
+            <div class="cabin-card" style="display: flex; align-items: center; margin-bottom: 20px;">
+                <img src="${data.ship.images.cabin.find(img => img.name === cabin.id)?.url || '//images.cruisec.net/images/ships/cabins/no_image.jpg'}" style="width: 300px; height: auto; margin-right: 20px;" alt="${cabin.text}">
+                <div style="flex-grow: 1;">
+                    <h5 class="card-title">${cabin.text}</h5>
+                    <p class="card-text">${cabin.price}</p>
+                    <ul class="list-items" style="font-size: 10px; list-style-type: disc; padding-left: 20px;">
+                        ${cabin.description ? cabin.description.map(desc => `<li style="margin-bottom: 2px;">${desc}</li>`).join('') : ''}
+                    </ul>
+                </div>
+                <button class="btn btn-primary select-cabin-btn" data-cabin-id="${cabin.id}" data-cabin-text="${cabin.text}" data-cabin-price="${cabin.price}" style="margin-left: 20px;">Select Cabin</button>
+            </div>
+        `).join('');
+
+        // Populate photo gallery
+        document.getElementById('carousel-images').innerHTML = data.ship.images.gallery.map((image, index) => `
+            <div class="carousel-item ${index === 0 ? 'active' : ''}">
+                <img src="${image.url}" class="d-block w-100" alt="${image.name}">
+            </div>
+        `).join('');
+
+        // Sidebar price
+        document.getElementById('cruise-price').innerText = data.price;
+
+        // Sidebar cabin selection logic
+        document.querySelectorAll('.select-cabin-btn').forEach(button => {
+            button.addEventListener('click', function () {
+                const cabinId = this.getAttribute('data-cabin-id');
+                const cabinText = this.getAttribute('data-cabin-text');
+                const cabinPrice = parseFloat(this.getAttribute('data-cabin-price').replace(/[^0-9.-]+/g,""));
+
+                const selectedCabinList = document.getElementById('selected-cabin-list');
+                let existingCabin = selectedCabinList.querySelector(`li[data-cabin-id="${cabinId}"]`);
+
+                if (existingCabin) {
+                    const qtyInput = existingCabin.querySelector('.qtyInput');
+                    qtyInput.value = parseInt(qtyInput.value) + 1;
+                } else {
+                    existingCabin = document.createElement('li');
+                    existingCabin.setAttribute('data-cabin-id', cabinId);
+                    existingCabin.innerHTML = `
+                        <div class="d-flex align-items-center justify-content-between">
+                            <span>${cabinText}</span>
+                            <span class="cabin-price">${cabinPrice.toFixed(2)}</span>
+                            <div class="qtyBtn d-flex align-items-center">
+                                <div class="qtyDec"><i class="la la-minus"></i></div>
+                                <input type="text" class="qtyInput" value="1" readonly>
+                                <div class="qtyInc"><i class="la la-plus"></i></div>
+                            </div>
+                        </div>
+                    `;
+                    selectedCabinList.appendChild(existingCabin);
+
+                    existingCabin.querySelector('.qtyDec').addEventListener('click', function () {
+                        const input = this.nextElementSibling;
+                        if (parseInt(input.value) > 1) {
+                            input.value = parseInt(input.value) - 1;
+                        } else {
+                            existingCabin.remove();
+                        }
+                        updateTotalPrice();
+                    });
+
+                    existingCabin.querySelector('.qtyInc').addEventListener('click', function () {
+                        const input = this.previousElementSibling;
+                        input.value = parseInt(input.value) + 1;
+                        updateTotalPrice();
+                    });
+                }
+
+                this.innerText = 'Selected';
+                this.disabled = true;
+
+                updateTotalPrice();
+            });
+        });
+
+        function updateTotalPrice() {
+            let total = Array.from(document.querySelectorAll('#selected-cabin-list li')).reduce((acc, item) => {
+                const price = parseFloat(item.querySelector('.cabin-price').innerText.replace(/[^0-9.-]+/g,""));
+                const quantity = parseInt(item.querySelector('.qtyInput').value);
+                return acc + (price * quantity);
+            }, 0);
+            document.getElementById('total-price').innerText = `Total Price: $${total.toFixed(2)}`;
+        }
+
+        // Populate amenities list
+        const amenitiesHTML = data.ship.features.map(category => `
+            <div class="col-lg-4">
+                <h4>${category.text}</h4>
+                <ul class="list-items">
+                    ${category.children.map(item => `<li>${item.text}</li>`).join('')}
+                </ul>
+            </div>
+        `).join('');
+
+        document.getElementById('amenities-list').innerHTML = amenitiesHTML;
     }
 });
+</script>
