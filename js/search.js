@@ -1,37 +1,36 @@
-document.addEventListener('DOMContentLoaded', function() {
-  const form = document.getElementById('searchForm');
-  form.addEventListener('submit', function(event) {
-    event.preventDefault();
-    const formData = new FormData(form);
-    const searchParams = new URLSearchParams();
+document.addEventListener('DOMContentLoaded', function () {
+    document.querySelector('.theme-btn').addEventListener('click', function (e) {
+        e.preventDefault();
 
-    for (const [key, value] of formData.entries()) {
-      if (value) searchParams.append(key, value);
-    }
+        // Capture form values
+        const destination = document.querySelector('select[name="destination"]').value;
+        const departure = document.querySelector('input[name="departure-start"]').value;
+        const arrival = document.querySelector('input[name="departure-end"]').value;
+        const adult_number = document.querySelector('input[name="adult-number"]').value;
+        const child_number = document.querySelector('input[name="child-number"]').value;
+        const senior_number = document.querySelector('input[name="senior-number"]').value;
+        const sea = document.querySelector('select[name="cruise-type"]').value;
+        const cruiseline = document.querySelector('select[name="cruise-line"]').value;
+        const ship = document.querySelector('select[name="ship"]').value;
+        const duration = document.querySelector('select[name="duration"]').value;
+        const package = document.querySelector('select[name="package"]').value;
 
-    // Define the API endpoint and token
-    const endpoint = 'http://rest.api.cruisehost.net';
-    const token = '100|rpwdRN5Ay3zjLuwmlLO8TjTSUuYfpmlzxsD8r97y';
+        // Build query string
+        const query = new URLSearchParams({
+            area: destination,
+            departure,
+            arrival,
+            adult_number,
+            child_number,
+            senior_number,
+            sea,
+            cruiseline,
+            ship,
+            duration,
+            package
+        }).toString();
 
-    // Call the API
-    fetch(`${endpoint}/search?${searchParams.toString()}`, {
-      headers: {
-        'Authorization': `Bearer ${token}`
-      }
-    })
-    .then(response => response.json())
-    .then(data => {
-      // Store the results in localStorage
-      localStorage.setItem('cruiseSearchResults', JSON.stringify(data));
-    })
-    .catch(error => {
-      console.error('Error:', error);
-      // Optionally store the error or a flag indicating the error in localStorage
-      localStorage.setItem('cruiseSearchError', 'true');
-    })
-    .finally(() => {
-      // Redirect to the results page regardless of the API call outcome
-      window.location.href = 'cruises-list.html';
+        // Redirect to cruise-list.html with query parameters
+        window.location.href = `cruise-list.html?${query}`;
     });
-  });
 });
