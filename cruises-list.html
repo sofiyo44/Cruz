@@ -372,6 +372,34 @@
 <!-- ================================
     END BREADCRUMB AREA
 ================================= -->
+    <section class="card-area section--padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="filter-wrap margin-bottom-30px">
+                        <div class="filter-top d-flex align-items-center justify-content-between pb-4">
+                            <div>
+                                <h3 class="title font-size-24" id="cruise-count">Cruises found</h3>
+                                <p class="font-size-14 line-height-20 pt-1">Book with confidence: No cruise booking fees</p>
+                            </div>
+                            <div class="layout-view d-flex align-items-center">
+                                <a href="cruises.html" data-toggle="tooltip" data-placement="top" title="Grid View"><i class="la la-th-large"></i></a>
+                                <a href="cruises-list.html" data-toggle="tooltip" data-placement="top" title="List View" class="active"><i class="la la-th-list"></i></a>
+                            </div>
+                        </div><!-- end filter-top -->
+                        <div class="filter-bar d-flex align-items-center justify-content-between">
+                            <!-- Add your filter options here -->
+                        </div><!-- end filter-bar -->
+                    </div><!-- end filter-wrap -->
+                </div><!-- end col-lg-12 -->
+            </div><!-- end row -->
+            <div class="row" id="results"></div>
+            <div class="btn-box mt-3 text-center">
+                <button type="button" class="theme-btn" id="load-more-btn"><i class="la la-refresh mr-1"></i>Load More</button>
+            </div>
+        </div><!-- end container -->
+    </section><!-- end card-area -->
+    <!-- END CARD AREA -->
 <!-- ================================
     START CARD AREA
 ================================= -->
@@ -1809,6 +1837,145 @@ const cruiseListData = {
     ]
 };
 localStorage.setItem('cruiseListData', JSON.stringify(cruiseListData))
-</script>    
+</script> 
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    fetchCruises();
+});
+
+async function fetchCruises() {
+    try {
+        const response = await fetch('/cruises');
+        const cruises = await response.json();
+        displayCruises(cruises);
+    } catch (error) {
+        console.error('Error fetching cruises:', error);
+    }
+}
+
+function displayCruises(cruises) {
+    const resultsDiv = document.getElementById('results');
+    resultsDiv.innerHTML = ''; // Clear previous results
+
+    cruises.forEach(cruise => {
+        const cruiseItem = document.createElement('div');
+        cruiseItem.className = 'col-lg-12';
+        cruiseItem.innerHTML = `
+            <div class="card-item">
+                <div class="card-body">
+                    <div class="col-lg-3 overview-right">
+                        <div class="logo">
+                            <div class="field field--name-field-cruiseline-logo field--type-entity-reference field--label-hidden field__item">
+                                <article class="media media--type-image media--view-mode-logo">
+                                    <div class="field field--name-field-media-image field--type-image field--label-hidden field__item">
+                                        <picture>
+                                            <source srcset="${cruise.cruiselineLogoWebp}" type="image/webp" width="200" height="60"/>
+                                            <source srcset="${cruise.cruiselineLogoPng}" type="image/png" width="200" height="60"/>
+                                            <img loading="lazy" src="${cruise.cruiselineLogoPng}" width="200" height="60" alt="${cruise.cruiseline}" class="img-fluid" />
+                                        </picture>
+                                    </div>
+                                </article>
+                            </div>
+                        </div>
+                        <div class="price">
+                            <div class="field field--name-field-minimum-price field--type-decimal field--label-above">
+                                <div class="field__label">From</div>
+                                <div class="field__item">$${cruise.minimumPrice}</div>
+                            </div>
+                            <div class="field field--name-field-per-day-price field--type-decimal field--label-above">
+                                <div class="field__label">as little as</div>
+                                <div class="field__item">$${cruise.perDayPrice}/night</div>
+                            </div>
+                        </div>
+                        <div class="included">
+                            <a href="/sailing/${cruise.sailingId}/inclusions" class="use-ajax" data-dialog-type="modal" rel="nofollow" data-dialog-options="{&quot;width&quot;:&quot;700&quot;,&quot;height&quot;:&quot;80%&quot;,&quot;title&quot;:&quot;What&#039;s included in my Cruise?&quot;}">What's Included?</a>
+                        </div>
+                        <div class="paragraph paragraph--type--voyager-club-cta paragraph--view-mode--full cta-box">
+                            <div class="title">
+                                <div class="field field--name-field-heading field--type-string field--label-hidden field__item">Sail Safe</div>
+                            </div>
+                            <div class="clearfix text-formatted field field--name-field-description field--type-text-long field--label-hidden field__item">
+                                <p>${cruise.healthSafetyProtocols}</p>
+                            </div>
+                            <a href="/voyager-club/${cruise.voyagerClubId}" class="use-ajax voyager-club-info-link button" data-dialog-type="modal" rel="nofollow" data-dialog-options="{&quot;width&quot;:&quot;700&quot;,&quot;height&quot;:&quot;80%&quot;,&quot;title&quot;:&quot;Sail Safe&quot;}">Learn more</a>
+                        </div>
+                    </div>
+                    <div class="prices-section">
+                        <div class="views-element-container">
+                            <div class="view-content">
+                                <table class="table-bordered table table-striped views-table views-view-table cols-7">
+                                    <thead>
+                                        <tr>
+                                            <th class="views-align-center views-field views-field-field-sailing-departure-date views-align-center" scope="col">Departure Date</th>
+                                            <th class="views-align-center views-field views-field-field-applicable-rules views-align-center" scope="col">Bonus</th>
+                                            <th class="views-align-center views-field views-field-field-inside-price views-align-center" scope="col">Interior</th>
+                                            <th class="views-align-center views-field views-field-field-outside-price views-align-center" scope="col">Oceanview</th>
+                                            <th class="views-align-center views-field views-field-field-balcony-price views-align-center" scope="col">Balcony</th>
+                                            <th class="views-align-center views-field views-field-field-suite-price views-align-center" scope="col">Suite</th>
+                                            <th class="views-field views-field-field-sailing-package-id" scope="col"></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        ${cruise.sailings.map(sailing => `
+                                            <tr>
+                                                <td class="views-field views-field-field-sailing-departure-date views-align-center">
+                                                    <time title="Save to Favorite" class="datetime toggle-favourite" data-sailing-id="${sailing.sailingId}" data-sailing-package-id="${sailing.packageId}">
+                                                        ${new Date(sailing.departureDate).toLocaleDateString()}
+                                                    </time>
+                                                </td>
+                                                <td class="views-field views-field-field-applicable-rules views-align-center">
+                                                    ${sailing.bonuses.map(bonus => `
+                                                        <a href="/sailing/${bonus.bonusId}/bonus" class="use-ajax" data-dialog-type="modal" rel="nofollow" data-dialog-options="{&quot;width&quot;:&quot;700&quot;,&quot;height&quot;:&quot;80%&quot;}">
+                                                            <img class="promo-icon img-fluid" src="${bonus.icon}" width="24" height="24" alt="${bonus.title}" loading="lazy" />
+                                                        </a>
+                                                    `).join(' ')}
+                                                </td>
+                                                <td class="views-field views-field-field-inside-price views-align-center">
+                                                    <div class="price">
+                                                        <span class="number">$${sailing.insidePrice}</span>
+                                                        <span class="currency">USD</span>
+                                                    </div>
+                                                </td>
+                                                <td class="views-field views-field-field-outside-price views-align-center">
+                                                    <div class="price">
+                                                        <span class="number">$${sailing.outsidePrice}</span>
+                                                        <span class="currency">USD</span>
+                                                    </div>
+                                                </td>
+                                                <td class="views-field views-field-field-balcony-price views-align-center">
+                                                    <div class="price">
+                                                        <span class="number">$${sailing.balconyPrice}</span>
+                                                        <span class="currency">USD</span>
+                                                    </div>
+                                                </td>
+                                                <td class="views-field views-field-field-suite-price views-align-center">
+                                                    <div class="price">
+                                                        <span class="number">$${sailing.suitePrice}</span>
+                                                        <span class="currency">USD</span>
+                                                    </div>
+                                                </td>
+                                                <td class="views-field views-field-field-sailing-package-id">
+                                                    <a class="btn btn-primary" href="https://book.cruisedirect.com/swift/cruise/package/${sailing.packageId}?siid=${sailing.siid}" rel="noreferrer" target="_blank">Select</a>
+                                                </td>
+                                            </tr>
+                                        `).join('')}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `;
+        resultsDiv.appendChild(cruiseItem);
+    });
+
+    document.getElementById('cruise-count').innerText = `${cruises.length} Cruises found`;
+}
+
+document.getElementById('load-more-btn').addEventListener('click', function () {
+    // Add logic to load more cruises if pagination is implemented
+});
+</script>
 </body>
 </html>
