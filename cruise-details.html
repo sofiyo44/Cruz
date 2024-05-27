@@ -553,46 +553,89 @@
                                 </div>
                             </div><!-- end sidebar-widget-item -->
                             <div class="sidebar-widget-item">
-                                <ul id="selected-cabin-list" class="list-unstyled"></ul>
-                                <div id="total-price" class="font-size-20 font-weight-bold"></div>
-                            </div>
-                            <div class="sidebar-widget-item">
                                 <div class="contact-form-action">
                                     <form action="#">
                                         <div class="input-box">
-                                            <label class="label-text">Cruise Title</label>
+                                            <label class="label-text">Number of Guests</label>
                                             <div class="form-group">
-                                                <div id="cruise-title-sidebar" class="title font-size-18"></div>
+                                                <select class="form-control" id="number-of-guests">
+                                                    <option value="1">1</option>
+                                                    <option value="2">2</option>
+                                                    <option value="3">3</option>
+                                                    <option value="4">4</option>
+                                                </select>
                                             </div>
                                         </div>
                                         <div class="input-box">
-                                            <label class="label-text">Cruise Dates</label>
+                                            <label class="label-text">Age of Guest</label>
                                             <div class="form-group">
-                                                <div id="cruise-dates" class="title font-size-18"></div>
+                                                <input type="text" class="form-control" id="age-guest-1" placeholder="Age of Guest 1">
+                                                <input type="text" class="form-control" id="age-guest-2" placeholder="Age of Guest 2">
+                                                <input type="text" class="form-control" id="age-guest-3" placeholder="Age of Guest 3">
+                                                <input type="text" class="form-control" id="age-guest-4" placeholder="Age of Guest 4">
+                                            </div>
+                                        </div>
+                                        <div class="input-box">
+                                            <label class="label-text">Guest Residency</label>
+                                            <div class="form-group">
+                                                <select class="form-control" id="guest-residency">
+                                                    <option value="US">US - United States</option>
+                                                    <!-- Add more options as needed -->
+                                                </select>
+                                                <select class="form-control" id="guest-state">
+                                                    <option value="">Select State</option>
+                                                    <!-- Add more options as needed -->
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="input-box">
+                                            <label class="label-text">Email</label>
+                                            <div class="form-group">
+                                                <input type="email" class="form-control" id="guest-email" placeholder="Email">
                                             </div>
                                         </div>
                                     </form>
                                 </div>
                             </div>
+                            <div class="sidebar-widget-item">
+                                <div class="table-form table-responsive">
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">Interior</th>
+                                                <th scope="col">Outside</th>
+                                                <th scope="col">Balcony</th>
+                                                <th scope="col">Suite</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td id="interior-cabin" style="cursor: pointer;">$959 USD</td>
+                                                <td id="outside-cabin" style="cursor: pointer;">$1,063 USD</td>
+                                                <td id="balcony-cabin" style="cursor: pointer;">$1,139 USD</td>
+                                                <td id="suite-cabin" style="cursor: pointer;">$3,824 USD</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="sidebar-widget-item">
+                                <a href="#special-rates" class="theme-btn text-center w-100 mb-2">
+                                    Check for Special Rates
+                                </a>
+                                <div id="special-rates" class="collapse">
+                                    <!-- Special rates content -->
+                                </div>
+                            </div>
                             <div class="btn-box pt-2">
                                 <!-- Button to navigate to cruise booking page -->
                                 <a href="cruise-booking.html" class="theme-btn text-center w-100 mb-2">
-                                    <i class="la la-shopping-cart mr-2 font-size-18"></i>Book Now
+                                    <i class="la la-shopping-cart mr-2 font-size-18"></i>Select My Room Type
                                 </a>
-                                <!-- Button to add cruise to wishlist -->
-                                <a href="#" class="theme-btn text-center w-100 theme-btn-transparent">
-                                    <i class="la la-heart-o mr-2"></i>Add to Wishlist
-                                </a>
-                                <div class="d-flex align-items-center justify-content-between pt-2">
-                                    <!-- Button to share cruise details, triggers a modal popup -->
-                                    <a href="#" class="btn theme-btn-hover-gray font-size-15" data-toggle="modal" data-target="#sharePopupForm">
-                                        <i class="la la-share mr-1"></i>Share
-                                    </a>
-                                    <!-- Displays the number of views -->
-                                    <p><i class="la la-eye mr-1 font-size-15 color-text-2"></i>3456</p>
-                                </div>
                             </div>
                         </div><!-- end sidebar-widget -->
+                    </div><!-- end sidebar -->
+                </div><!-- end col-lg-4 -->
                         <div class="sidebar-widget single-content-widget">
                             <h3 class="title stroke-shape">Cruise Itinerary</h3>
                             <div class="single-content-item" style="padding-top: 10px; padding-bottom: 10px;">
