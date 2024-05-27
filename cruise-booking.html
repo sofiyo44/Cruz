@@ -9,18 +9,20 @@
             height: 100%;
             margin: 0;
             font-family: Arial, sans-serif;
-            background: rgba(0, 0, 0, 0.7);
+            background: url('cruise-detail.html') no-repeat center center fixed;
+            background-size: cover;
             display: flex;
             justify-content: center;
             align-items: center;
+            backdrop-filter: blur(10px); /* Adds a blur effect to the background */
         }
 
         .overlay-container {
             background: white;
-            padding: 20px;
+            padding: 40px;
             border-radius: 10px;
-            width: 80%;
-            max-width: 600px;
+            width: 90%;
+            max-width: 1000px;
             box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
         }
 
@@ -38,6 +40,7 @@
             border-radius: 5px;
             cursor: pointer;
             font-size: 16px;
+            float: right;
         }
 
         .close-btn:hover {
@@ -51,8 +54,8 @@
 </head>
 <body>
     <div class="overlay-container">
-        <div class="breadcrumb" id="breadcrumb"></div>
         <button class="close-btn" onclick="window.close()">Close</button>
+        <div class="breadcrumb" id="breadcrumb"></div>
 
         <!-- Your personal information form -->
         <div class="form-box">
