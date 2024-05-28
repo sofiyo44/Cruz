@@ -1309,16 +1309,17 @@
         document.querySelector('.select-cabin-btn').addEventListener('click', function () {
             const numberOfGuests = document.getElementById('number-of-guests').value;
             const guestAges = Array.from(document.querySelectorAll('.age-guest')).map(input => input.value);
-            const guestResidency = document.getElementById('guest-residency').value;
-            const guestState = guestResidency === 'US' ? document.getElementById('guest-state').value : '';
+            const residencyCountry = document.getElementById('guest-residency').value;
+            const residencyState = document.getElementById('guest-state').value;
             const selectedCabin = document.querySelector('.selected-cabin').innerText;
-
-            const breadcrumb = `Guests: ${numberOfGuests} (${guestAges.join(', ')}) | Residency: ${guestResidency}${guestState ? `, ${guestState}` : ''} | Cabin: ${selectedCabin}`;
-
-            // Redirect to cruise-booking.html with breadcrumb data
-            const url = new URL('https://sofiyo44.github.io/Cruz/cruise-booking.html', window.location.origin);
-            url.searchParams.append('breadcrumb', encodeURIComponent(breadcrumb));
-            window.location.href = url.toString();
+            const formData = {
+                numberOfGuests,
+                guestAges,
+                residencyCountry,
+                residencyState,
+                selectedCabin
+            };
+            console.log('Form Data:', formData);
         });
     });
 </script>
