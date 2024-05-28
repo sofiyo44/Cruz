@@ -1090,12 +1090,12 @@
             departure_cruise: "9/23/24",
             arrival_cruise: "9/29/24"
         };
-    
+
         // Populate cruise details
         document.getElementById('cruise-title').innerText = cruiseData.title;
         document.getElementById('cruise-route').innerText = "Ports of Call: Portsmouth, Cruising Day, La Coruna, Bilbao, Le Verdon-sur-Mer, Portsmouth";
         document.getElementById('ship-description').innerHTML = "From decadent dinners to boozy after-parties, gather with your partner, your best friends and yourself to celebrate life's best moments aboard one of the 100% adults-only voyages.";
-    
+
         // Ship statistics
         document.getElementById('ship-statistics-left').innerHTML = `
             <li>Year Built: 2023</li>
@@ -1107,7 +1107,7 @@
             <li>Weight: 110,000</li>
             <li>Length: 278m</li>
         `;
-    
+
         // Included and Not Included
         document.getElementById('included-list').innerHTML = `
             <li>Cruise in the cabin category booked.</li>
@@ -1128,7 +1128,7 @@
             <li>Recommended gratuities.</li>
             <li>Visa, if necessary (extra charges possible).</li>
         `;
-    
+
         // Populate itinerary table
         document.getElementById('itinerary-table').innerHTML = `
             <tr>
@@ -1174,7 +1174,7 @@
                 <td></td>
             </tr>
         `;
-    
+
         // Photo gallery
         document.getElementById('carousel-images').innerHTML = `
             <div class="carousel-item active">
@@ -1199,7 +1199,7 @@
                 <img src="//images.cruisec.net/images/ships/gallery/I7_05_VIR_BBQ.jpg" class="d-block w-100" alt="...">
             </div>
         `;
-    
+
         // Populate amenities list
         const amenities = [
             {
@@ -1258,7 +1258,7 @@
                 ]
             }
         ];
-    
+
         const amenitiesHTML = amenities.map(category => `
             <div class="col-lg-4">
                 <h4>${category.text}</h4>
@@ -1267,9 +1267,9 @@
                 </ul>
             </div>
         `).join('');
-    
+
         document.getElementById('amenities-list').innerHTML = amenitiesHTML;
-    
+
         // Handle number of guests selection
         document.getElementById('number-of-guests').addEventListener('change', function () {
             const numGuests = parseInt(this.value);
@@ -1286,7 +1286,7 @@
                 `;
             }
         });
-    
+
         // Handle guest residency selection
         document.getElementById('guest-residency').addEventListener('change', function () {
             const stateSelect = document.getElementById('guest-state');
@@ -1296,7 +1296,7 @@
                 stateSelect.style.display = 'none';
             }
         });
-    
+
         // Handle cabin selection
         document.querySelectorAll('.table td').forEach(cell => {
             cell.addEventListener('click', function () {
@@ -1304,7 +1304,7 @@
                 this.classList.add('selected-cabin');
             });
         });
-    
+
         // Handle form submission
         document.querySelector('.select-cabin-btn').addEventListener('click', function () {
             const numberOfGuests = document.getElementById('number-of-guests').value;
@@ -1312,35 +1312,13 @@
             const guestResidency = document.getElementById('guest-residency').value;
             const guestState = guestResidency === 'US' ? document.getElementById('guest-state').value : '';
             const selectedCabin = document.querySelector('.selected-cabin').innerText;
-    
+
             const breadcrumb = `Guests: ${numberOfGuests} (${guestAges.join(', ')}) | Residency: ${guestResidency}${guestState ? `, ${guestState}` : ''} | Cabin: ${selectedCabin}`;
-    
-            // Redirect to new page
-            const overlayPage = window.open('', '_blank');
-            overlayPage.document.write(`
-                <!DOCTYPE html>
-                <html lang="en">
-                <head>
-                    <meta charset="UTF-8">
-                    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                    <title>Booking Summary</title>
-                    <style>
-                        body {
-                            font-family: Arial, sans-serif;
-                            padding: 20px;
-                        }
-                        .breadcrumb {
-                            font-size: 20px;
-                            margin-bottom: 20px;
-                        }
-                    </style>
-                </head>
-                <body>
-                    <div class="breadcrumb">${breadcrumb}</div>
-                </body>
-                </html>
-            `);
-            overlayPage.document.close();
+
+            // Redirect to cruise-booking.html with breadcrumb data
+            const url = new URL('cruise-booking.html', window.location.origin);
+            url.searchParams.append('breadcrumb', encodeURIComponent(breadcrumb));
+            window.location.href = url.toString();
         });
     });
 </script>
