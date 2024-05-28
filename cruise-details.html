@@ -1316,7 +1316,7 @@
             const breadcrumb = `Guests: ${numberOfGuests} (${guestAges.join(', ')}) | Residency: ${guestResidency}${guestState ? `, ${guestState}` : ''} | Cabin: ${selectedCabin}`;
 
             // Redirect to cruise-booking.html with breadcrumb data
-            const url = new URL('cruise-booking.html', window.location.origin);
+            const url = new URL('https://sofiyo44.github.io/Cruz/cruise-booking.html', window.location.origin);
             url.searchParams.append('breadcrumb', encodeURIComponent(breadcrumb));
             window.location.href = url.toString();
         });
