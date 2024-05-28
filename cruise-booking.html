@@ -14,19 +14,19 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            backdrop-filter: blur(10px); /* Adds a blur effect to the background */
-            padding: 10px; /* Add padding to ensure the overlay doesn't touch the edges */
+            backdrop-filter: blur(10px);
+            padding: 10px;
         }
 
         .overlay-container {
             background: white;
-            padding: 20px; /* Reduced padding for better fit */
+            padding: 20px;
             border-radius: 10px;
             width: 95%;
-            max-width: 1200px; /* Increased max-width for wider overlay */
+            max-width: 1200px;
             box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
-            overflow-y: auto; /* Add scrolling if content overflows */
-            max-height: 90vh; /* Ensure it doesn't overflow the viewport height */
+            overflow-y: auto;
+            max-height: 90vh;
         }
 
         .breadcrumb {
@@ -48,6 +48,15 @@
 
         .close-btn:hover {
             background: #ff1a1a;
+        }
+
+        .carousel-item img {
+            width: 100%;
+            height: auto;
+        }
+
+        .card {
+            margin: 15px;
         }
     </style>
 
@@ -74,7 +83,6 @@
                 <span class="sr-only">Next</span>
             </a>
         </div>
-    </div>
 
         <!-- Booking Details -->
         <div class="form-box booking-detail-form">
@@ -115,13 +123,13 @@
                             <li><span>Cabin Type:</span>Grand Suite</li>
                             <li><span>Food & Dining:</span>$110</li>
                             <li><span>Cruise Price:</span>$130</li>
-                            <li><span>Passengers:</span>4</li>
+                            <li>Passengers: 4</li>
                         </ul>
                         <div class="section-block"></div>
                         <ul class="list-items list-items-2 pt-3">
-                            <li><span>Sub Total:</span>$240</li>
-                            <li><span>Taxes And Fees:</span>$5</li>
-                            <li><span>Total Price:</span>$245</li>
+                            <li>Sub Total: $240</li>
+                            <li>Taxes And Fees: $5</li>
+                            <li>Total Price: $245</li>
                         </ul>
                     </div>
                 </div>
@@ -131,22 +139,8 @@
 
     <!-- External JS Files -->
     <script src="js/jquery-3.7.1.min.js"></script>
-    <script src="js/jquery-ui.js"></script>
     <script src="js/popper.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
-    <script src="js/bootstrap-select.min.js"></script>
-    <script src="js/main.js"></script>
-    <script>
-        // Function to retrieve and display the breadcrumb
-        function displayBreadcrumb() {
-            const params = new URLSearchParams(window.location.search);
-            const breadcrumb = params.get('breadcrumb');
-            document.getElementById('breadcrumb').innerText = breadcrumb;
-        }
-
-        // Call the function to display the breadcrumb on page load
-        window.onload = displayBreadcrumb;
-    </script>
     <script>
         // Function to retrieve and display the breadcrumb
         function displayBreadcrumb() {
