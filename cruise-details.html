@@ -473,7 +473,7 @@
                                     <div class="cabin-card" style="display: flex; align-items: center; margin-bottom: 20px;">
                                         <img src="//images.cruisec.net/images/ships/cabins/I7_OS.jpg" style="width: 400px; height: auto; margin-right: 20px;" alt="Outside cabin">
                                         <div style="flex-grow: 1;">
-                                            <h5 class="card-title">Outside cabin</h5>
+                                                                                        <h5 class="card-title">Outside cabin</h5>
                                             <ul class="list-items" style="font-size: 10px; list-style-type: disc; padding-left: 20px;">
                                                 <li style="margin-bottom: 2px;">Approx. 12 - 18 m&sup2;</li>
                                                 <li style="margin-bottom: 2px;">Large window or large porthole with window seating</li>
@@ -546,174 +546,109 @@
                     </div>
                 </div>
                 <div class="col-lg-4">
-                        <!-- Sidebar content -->
-                        <div class="sidebar single-content-sidebar mb-0">
-                            <div class="sidebar-widget single-content-widget">
-                                <div class="sidebar-widget-item">
-                                    <div class="sidebar-book-title-wrap mb-3">
-                                        <h3>Popular</h3>
-                                        <p><span class="text-form">From</span><span class="text-value ml-2 mr-1" id="cruise-price">$743</span></p>
-                                    </div>
-                                </div><!-- end sidebar-widget-item -->
-                                <div class="sidebar-widget-item">
-                                    <div class="contact-form-action">
-                                        <form action="#">
+                    <div class="sidebar single-content-sidebar mb-0">
+                        <div class="sidebar-widget single-content-widget">
+                            <div class="sidebar-widget-item">
+                                <div class="sidebar-book-title-wrap mb-3">
+                                    <h3>Popular</h3>
+                                    <p><span class="text-form">From</span><span class="text-value ml-2 mr-1" id="cruise-price">$743</span></p>
+                                </div>
+                            </div><!-- end sidebar-widget-item -->
+                            <div class="sidebar-widget-item">
+                                <div class="contact-form-action">
+                                    <form action="#">
+                                        <div class="input-box">
+                                            <label class="label-text">Number of Guests</label>
+                                            <div class="form-group">
+                                                <select class="form-control" id="number-of-guests">
+                                                    <option value="1">1</option>
+                                                    <option value="2">2</option>
+                                                    <option value="3">3</option>
+                                                    <option value="4">4</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div id="age-inputs">
                                             <div class="input-box">
-                                                <label class="label-text">Number of Guests</label>
+                                                <label class="label-text">Age of Guest</label>
                                                 <div class="form-group">
-                                                    <select class="form-control" id="number-of-guests">
-                                                        <option value="1">1</option>
-                                                        <option value="2">2</option>
-                                                        <option value="3">3</option>
-                                                        <option value="4">4</option>
-                                                    </select>
+                                                    <input type="text" class="form-control age-guest" id="age-guest-1" placeholder="Age of Guest 1">
                                                 </div>
                                             </div>
-                                            <div id="age-inputs">
-                                                <div class="input-box">
-                                                    <label class="label-text">Age of Guest</label>
-                                                    <div class="form-group">
-                                                        <input type="text" class="form-control age-guest" id="age-guest-1" placeholder="Age of Guest 1">
-                                                    </div>
-                                                </div>
+                                        </div>
+                                        <div class="input-box">
+                                            <label class="label-text">Guest Residency</label>
+                                            <div class="form-group">
+                                                <select class="form-control" id="guest-residency">
+                                                    <option value="">Select Country</option>
+                                                    <option value="US">US</option>
+                                                    <option value="CA">CA</option>
+                                                    <option value="EU">EU</option>
+                                                    <option value="UK">UK</option>
+                                                    <option value="Other">All Other Countries</option>
+                                                </select>
+                                                <select class="form-control" id="guest-state" style="display: none;">
+                                                    <option value="">Select State</option>
+                                                    <!-- Add all 50 states and territories -->
+                                                    <option value="AL">Alabama</option>
+                                                    <option value="AK">Alaska</option>
+                                                    <option value="AZ">Arizona</option>
+                                                    <option value="AR">Arkansas</option>
+                                                    <option value="CA">California</option>
+                                                    <option value="CO">Colorado</option>
+                                                    <option value="CT">Connecticut</option>
+                                                    <option value="DE">Delaware</option>
+                                                    <option value="FL">Florida</option>
+                                                    <option value="GA">Georgia</option>
+                                                    <option value="HI">Hawaii</option>
+                                                    <option value="ID">Idaho</option>
+                                                    <option value="IL">Illinois</option>
+                                                    <option value="IN">Indiana</option>
+                                                    <option value="IA">Iowa</option>
+                                                    <option value="KS">Kansas</option>
+                                                    <option value="KY">Kentucky</option>
+                                                    <option value="LA">Louisiana</option>
+                                                    <option value="ME">Maine</option>
+                                                    <option value="MD">Maryland</option>
+                                                    <option value="MA">Massachusetts</option>
+                                                    <option value="MI">Michigan</option>
+                                                    <option value="MN">Minnesota</option>
+                                                    <option value="MS">Mississippi</option>
+                                                    <option value="MO">Missouri</option>
+                                                    <option value="MT">Montana</option>
+                                                    <option value="NE">Nebraska</option>
+                                                    <option value="NV">Nevada</option>
+                                                    <option value="NH">New Hampshire</option>
+                                                    <option value="NJ">New Jersey</option>
+                                                    <option value="NM">New Mexico</option>
+                                                    <option value="NY">New York</option>
+                                                    <option value="NC">North Carolina</option>
+                                                    <option value="ND">North Dakota</option>
+                                                    <option value="OH">Ohio</option>
+                                                    <option value="OK">Oklahoma</option>
+                                                    <option value="OR">Oregon</option>
+                                                    <option value="PA">Pennsylvania</option>
+                                                    <option value="RI">Rhode Island</option>
+                                                    <option value="SC">South Carolina</option>
+                                                    <option value="SD">South Dakota</option>
+                                                    <option value="TN">Tennessee</option>
+                                                    <option value="TX">Texas</option>
+                                                    <option value="UT">Utah</option>
+                                                    <option value="VT">Vermont</option>
+                                                    <option value="VA">Virginia</option>
+                                                    <option value="WA">Washington</option>
+                                                    <option value="WV">West Virginia</option>
+                                                    <option value="WI">Wisconsin</option>
+                                                    <option value="WY">Wyoming</option>
+                                                </select>
                                             </div>
-                                            <div class="input-box">
-                                                <label class="label-text">Guest Residency</label>
-                                                <div class="form-group">
-                                                    <select class="form-control" id="guest-residency">
-                                                        <option value="">Select Country</option>
-                                                        <option value="US">US</option>
-                                                        <option value="CA">CA</option>
-                                                        <option value="EU">EU</option>
-                                                        <option value="UK">UK</option>
-                                                        <option value="Other">All Other Countries</option>
-                                                    </select>
-                                                    <select class="form-control" id="guest-state" style="display: none;">
-                                                        <option value="">Select State</option>
-                                                        <!-- Add all 50 states and territories -->
-                                                        <option value="AL">Alabama</option>
-                                                        <option value="AK">Alaska</option>
-                                                        <option value="AZ">Arizona</option>
-                                                        <option value="AR">Arkansas</option>
-                                                        <option value="CA">California</option>
-                                                        <option value="CO">Colorado</option>
-                                                        <option value="CT">Connecticut</option>
-                                                        <option value="DE">Delaware</option>
-                                                        <option value="FL">Florida</option>
-                                                        <option value="GA">Georgia</option>
-                                                        <option value="HI">Hawaii</option>
-                                                        <option value="ID">Idaho</option>
-                                                        <option value="IL">Illinois</option>
-                                                        <option value="IN">Indiana</option>
-                                                        <option value="IA">Iowa</option>
-                                                        <option value="KS">Kansas</option>
-                                                        <option value="KY">Kentucky</option>
-                                                        <option value="LA">Louisiana</option>
-                                                        <option value="ME">Maine</option>
-                                                        <option value="MD">Maryland</option>
-                                                        <option value="MA">Massachusetts</option>
-                                                        <option value="MI">Michigan</option>
-                                                        <option value="MN">Minnesota</option>
-                                                        <option value="MS">Mississippi</option>
-                                                        <option value="MO">Missouri</option>
-                                                        <option value="MT">Montana</option>
-                                                        <option value="NE">Nebraska</option>
-                                                        <option value="NV">Nevada</option>
-                                                        <option value="NH">New Hampshire</option>
-                                                        <option value="NJ">New Jersey</option>
-                                                        <option value="NM">New Mexico</option>
-                                                        <option value="NY">New York</option>
-                                                        <option value="NC">North Carolina</option>
-                                                        <option value="ND">North Dakota</option>
-                                                        <option value="OH">Ohio</option>
-                                                        <option value="OK">Oklahoma</option>
-                                                        <option value="OR">Oregon</option>
-                                                        <option value="PA">Pennsylvania</option>
-                                                        <option value="RI">Rhode Island</option>
-                                                        <option value="SC">South Carolina</option>
-                                                        <option value="SD">South Dakota</option>
-                                                        <option value="TN">Tennessee</option>
-                                                        <option value="TX">Texas</option>
-                                                        <option value="UT">Utah</option>
-                                                        <option value="VT">Vermont</option>
-                                                        <option value="VA">Virginia</option>
-                                                        <option value="WA">Washington</option>
-                                                        <option value="WV">West Virginia</option>
-                                                        <option value="WI">Wisconsin</option>
-                                                        <option value="WY">Wyoming</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                        </form>
-                                    </div>
+                                        </div>
+                                        <div class="btn-box">
+                                            <button type="button" class="theme-btn w-100" id="book-now-btn">Book Now</button>
+                                        </div>
+                                    </form>
                                 </div>
-                                <div class="sidebar-widget-item">
-                                    <div class="table-form table-responsive">
-                                        <table class="table">
-                                            <thead>
-                                                <tr>
-                                                    <th scope="col" id="inside-cabin" class="cabin-option" data-cabin-type="IS" style="cursor: pointer;">Inside</th>
-                                                    <th scope="col" id="outside-cabin" class="cabin-option" data-cabin-type="OS" style="cursor: pointer;">Outside</th>
-                                                    <th scope="col" id="balcony-cabin" class="cabin-option" data-cabin-type="BK" style="cursor: pointer;">Balcony</th>
-                                                    <th scope="col" id="suite-cabin" class="cabin-option" data-cabin-type="SU" style="cursor: pointer;">Suite</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td class="cabin-price" data-cabin-type="IS">$959 USD</td>
-                                                    <td class="cabin-price" data-cabin-type="OS">$1,063 USD</td>
-                                                    <td class="cabin-price" data-cabin-type="BK">$1,139 USD</td>
-                                                    <td class="cabin-price" data-cabin-type="SU">$3,824 USD</td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                                <div class="btn-box pt-2">
-                                    <button id="select-room-btn" class="theme-btn text-center w-100 mb-2">
-                                        <i class="la la-shopping-cart mr-2 font-size-18"></i>Select My Room Type
-                                    </button>
-                                </div>
-                            </div><!-- end sidebar-widget -->
-                            <!-- Other sidebar widgets... -->
-                        </div><!-- end sidebar -->
-                        <div class="sidebar-widget single-content-widget">
-                            <h3 class="title stroke-shape">Cruise Itinerary</h3>
-                            <div class="single-content-item" style="padding-top: 10px; padding-bottom: 10px;">
-                                <div class="table-form table-responsive" style="padding-top: 15px;">
-                                    <table class="table">
-                                        <thead>
-                                            <tr>
-                                                <th scope="col" style="font-size: 10px;">Days</th>
-                                                <th scope="col" style="font-size: 10px;">Ports of Call</th>
-                                                <th scope="col" style="font-size: 10px;">Arrival</th>
-                                                <th scope="col" style="font-size: 10px;">Departure</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody id="itinerary-table" style="font-size: 10px;"></tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div><!-- end sidebar-widget -->
-                        <div class="sidebar-widget single-content-widget">
-                            <h3 class="title stroke-shape">Why Book With Us?</h3>
-                            <div class="sidebar-list">
-                                <ul class="list-items">
-                                    <li><i class="la la-dollar icon-element mr-2"></i>No-hassle best price guarantee</li>
-                                    <li><i class="la la-microphone icon-element mr-2"></i>Customer care available 24/7</li>
-                                    <li><i class="la la-thumbs-up icon-element mr-2"></i>Hand-picked Tours & Activities</li>
-                                    <li><i class="la la-file-text icon-element mr-2"></i>Free Travel Insurance</li>
-                                </ul>
-                            </div><!-- end sidebar-list -->
-                        </div><!-- end sidebar-widget -->
-                        <div class="sidebar-widget single-content-widget">
-                            <h3 class="title stroke-shape">Got a Question?</h3>
-                            <p class="font-size-14 line-height-24">Do not hesitate to give us a call. We are an expert team and we are happy to talk to you.</p>
-                            <div class="sidebar-list pt-3">
-                                <ul class="list-items">
-                                    <li><i class="la la-envelope icon-element mr-2"></i><a href="mailto:info@stasis.com">info@stasis.com</a></li>
-                                </ul>
-                            </div><!-- end sidebar-list -->
+                            </div><!-- end sidebar-widget-item -->
                         </div><!-- end sidebar-widget -->
                     </div><!-- end sidebar -->
                 </div><!-- end col-lg-4 -->
@@ -724,6 +659,7 @@
 <!-- ================================
     END CRUISE DETAIL AREA
 ================================= -->
+
 <!-- ================================
     START CTA AREA
 ================================= -->
@@ -1083,6 +1019,12 @@
 <script src="js/main.js"></script>
 <script src="cruise-detail-temp.js"></script>
 <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" integrity="sha512-GvTx5Z5+G7ZSM7zSYlTkKQ2ad9I5fIRyQ2I5XIs64EV6UO8qFecp6Do2uIH7+3H1mBjd+z5x6TBe+9U/8A0pMw==" crossorigin=""></script>
+<!-- Template JS Files -->
+<script src="js/jquery-3.7.1.min.js"></script>
+<script src="js/jquery-ui.js"></script>
+<script src="js/popper.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/main.js"></script>
 <script>
     document.addEventListener('DOMContentLoaded', function () {
         const cruiseData = {
