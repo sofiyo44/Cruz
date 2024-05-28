@@ -214,25 +214,24 @@
             </div>
         </div>
     </div>
-</section>
 
-<!-- External JS Files -->
-<script src="js/jquery-3.7.1.min.js"></script>
-<script src="js/jquery-ui.js"></script>
-<script src="js/popper.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
-<script src="js/bootstrap-select.min.js"></script>
-<script src="js/main.js"></script>
-<script>
-    // Function to retrieve and display the breadcrumb
-    function displayBreadcrumb() {
-        const params = new URLSearchParams(window.location.search);
-        const breadcrumb = params.get('breadcrumb');
-        document.getElementById('breadcrumb').innerText = breadcrumb;
-    }
+    <!-- External JS Files -->
+    <script src="js/jquery-3.7.1.min.js"></script>
+    <script src="js/jquery-ui.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/bootstrap-select.min.js"></script>
+    <script src="js/main.js"></script>
+    <script>
+        // Function to retrieve and display the breadcrumb
+        function displayBreadcrumb() {
+            const params = new URLSearchParams(window.location.search);
+            const breadcrumb = params.get('breadcrumb');
+            document.getElementById('breadcrumb').innerText = breadcrumb;
+        }
 
-    // Call the function to display the breadcrumb on page load
-    window.onload = displayBreadcrumb;
-</script>
+        // Call the function to display the breadcrumb on page load
+        window.onload = displayBreadcrumb;
+    </script>
 </body>
 </html>
