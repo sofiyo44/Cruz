@@ -473,41 +473,24 @@ document.addEventListener('DOMContentLoaded', function () {
           }
         }
     };
-    const carouselInner = document.getElementById('carousel-cabin-modal');
-
     const populateCarousel = () => {
-        Object.keys(cabinData).forEach((key, index) => {
+        Object.keys(cabinData).forEach(key => {
             const cabin = cabinData[key];
-            const isActive = index === 0 ? 'active' : '';
+            const cabinHeader = document.getElementById(`cabin-header-${cabin.id}`);
+            const cabinImg = document.getElementById(`cabin-img-${cabin.id}`);
+            const cabinTitle = document.getElementById(`cabin-title-${cabin.id}`);
+            const cabinPrice = document.getElementById(`cabin-price-${cabin.id}`);
+            const cabinAvailability = document.getElementById(`cabin-availability-${cabin.id}`);
+            const cabinDescription = document.getElementById(`cabin-description-${cabin.id}`);
 
-            const carouselHeader = document.createElement('div');
-            carouselHeader.className = `carousel-item ${isActive}`;
-            carouselHeader.innerHTML = `
-                <div class="section-header">
-                    <h4>${cabin.text} - from ${cabin.price}</h4>
-                </div>
-            `;
-
-            carouselInner.appendChild(carouselHeader);
-
-            cabin.children.forEach((child, childIndex) => {
-                const childIsActive = index === 0 && childIndex === 0 ? 'active' : '';
-                const carouselItem = document.createElement('div');
-                carouselItem.className = `carousel-item ${childIsActive}`;
-                carouselItem.innerHTML = `
-                    <div class="card">
-                        <img src="${child.img}" class="card-img-top" alt="${child.text}">
-                        <div class="card-body">
-                            <h5 class="card-title">${child.text}</h5>
-                            <p class="card-text">Price: ${child.price}</p>
-                            <p class="card-text">Availability: ${child.availability}</p>
-                            <p class="card-text">${child.description.join('<br>')}</p>
-                        </div>
-                    </div>
-                `;
-
-                carouselInner.appendChild(carouselItem);
-            });
+            if (cabinHeader && cabinImg && cabinTitle && cabinPrice && cabinAvailability && cabinDescription) {
+                cabinHeader.innerText = `${cabin.text} - from ${cabin.price}`;
+                cabinImg.src = cabin.img;
+                cabinTitle.innerText = cabin.text;
+                cabinPrice.innerText = `Price: ${cabin.price}`;
+                cabinAvailability.innerText = `Availability: ${cabin.availability}`;
+                cabinDescription.innerHTML = cabin.children.map(child => child.description.join('<br>')).join('<br><br>');
+            }
         });
     };
 
