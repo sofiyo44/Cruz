@@ -686,8 +686,9 @@
                                 </div>
                             </div>
                             <!-- Select My Cabin Button -->
+                            <!-- Select My Cabin Button -->
                             <div class="btn-box pt-2">
-                                <button id="select-room-btn" class="theme-btn text-center w-100 mb-2" data-toggle="modal" data-target="#bookingModal">
+                                <button id="select-room-btn" class="theme-btn text-center w-100 mb-2">
                                     <i class="la la-shopping-cart mr-2 font-size-18"></i>Select My Room Type
                                 </button>
                             </div>
@@ -1346,7 +1347,32 @@
                 ]
             }
         ];
-
+       
+        // Photo gallery
+        document.getElementById('carousel-images').innerHTML = `
+            <div class="carousel-item active">
+                <img src="//images.cruisec.net/images/ships/gallery/I7_0_VIR_Restaurant_2.jpg" class="d-block w-100" alt="...">
+            </div>
+            <div class="carousel-item">
+                <img src="//images.cruisec.net/images/ships/gallery/I7_00__VIR_Burgerrestaurant.jpg" class="d-block w-100" alt="...">
+            </div>
+            <div class="carousel-item">
+                <img src="//images.cruisec.net/images/ships/gallery/I7_01_VIR_Sport.jpg" class="d-block w-100" alt="...">
+            </div>
+            <div class="carousel-item">
+                <img src="//images.cruisec.net/images/ships/gallery/I7_02_VIR_SPA.jpg" class="d-block w-100" alt="...">
+            </div>
+            <div class="carousel-item">
+                <img src="//images.cruisec.net/images/ships/gallery/I7_03_VIR_Theater.jpg" class="d-block w-100" alt="...">
+            </div>
+            <div class="carousel-item">
+                <img src="//images.cruisec.net/images/ships/gallery/I7_04_VIR_Disco.jpg" class="d-block w-100" alt="...">
+            </div>
+            <div class="carousel-item">
+                <img src="//images.cruisec.net/images/ships/gallery/I7_05_VIR_BBQ.jpg" class="d-block w-100" alt="...">
+            </div>
+        `;
+        
         const amenitiesHTML = amenities.map(category => `
             <div class="col-lg-4">
                 <h4>${category.text}</h4>
