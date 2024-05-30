@@ -36,12 +36,19 @@
             font-weight: bold;
         }
         .carousel-item {
-            max-height: 400px; /* Adjust height as needed */
-            overflow: hidden;
-        } 
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 400px;
+        }
+        
+        .carousel-item .card {
+            width: 18rem;
+            text-align: center;
+        }
+        
         .carousel-item img {
-            width: 100%;
-            height: auto;
+            height: 200px;
             object-fit: cover;
         }
     </style>
@@ -1063,7 +1070,7 @@
 
 <!-- Cabin Selection Overlay Modal Structure -->
 <div class="modal fade" id="bookingModal" tabindex="-1" role="dialog" aria-labelledby="bookingModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
+    <div class="modal-dialog modal-lg" role="document" style="max-width: 90%;">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="bookingModalLabel">Booking Summary</h5>
