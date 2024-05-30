@@ -1095,7 +1095,7 @@
                     <div class="breadcrumb" id="breadcrumb"></div>
                     <!-- Cabin Carousel -->
                     <div id="cabinCarousel" class="carousel slide" data-ride="carousel">
-                        <div class="carousel-inner" id="carousel-inner">
+                        <div class="carousel-inner" id="carousel-cabin-modal">
                             <!-- Cabin cards will be populated here by JavaScript -->
                         </div>
                         <a class="carousel-control-prev" href="#cabinCarousel" role="button" data-slide="prev">
@@ -2708,7 +2708,7 @@
             }
         };
 
-        const carouselInner = document.getElementById('carousel-inner');
+        const carouselInner = document.getElementById('carousel-cabin-modal');
         carouselInner.innerHTML = '';
 
         Object.keys(cabinData).forEach((key, index) => {
