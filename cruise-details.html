@@ -1518,6 +1518,30 @@
     
         // Save form data initially
         saveFormData();
+    
+        // Handle modal button click
+        document.getElementById('select-room-btn').addEventListener('click', function () {
+            const selectedCabin = document.querySelector('.selected-cabin');
+            if (selectedCabin) {
+                const formData = JSON.parse(localStorage.getItem('cruiseFormData'));
+    
+                // Update breadcrumbs with form data
+                document.getElementById('breadcrumb-list').innerHTML = `
+                    <li class="list-inline-item">Guests: ${formData.numberOfGuests}</li>
+                    <li class="list-inline-item">Ages: ${formData.ages}</li>
+                    <li class="list-inline-item">Residency: ${formData.guestResidency}</li>
+                    <li class="list-inline-item">State: ${formData.guestState}</li>
+                `;
+    
+                // Show selected cabin type
+                document.getElementById('selected-cabin').innerText = selectedCabin.querySelector('.card-title').innerText;
+                document.getElementById('passengers-count').innerText = `Passengers: ${formData.numberOfGuests}`;
+    
+                $('#bookingModal').modal('show');
+            } else {
+                alert('Please select a cabin first.');
+            }
+        });
     });
 </script>
 </body>
