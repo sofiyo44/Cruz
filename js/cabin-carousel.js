@@ -476,7 +476,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const createCard = (cabin) => {
         return `
         <div class="col-md-4 mb-4">
-            <div class="card">
+            <div class="card cabin-option" data-cabin-type="${cabin.id}">
                 <img src="${cabin.img}" class="card-img-top" alt="${cabin.text}">
                 <div class="card-body">
                     <h5 class="card-title">${cabin.text}</h5>
