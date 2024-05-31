@@ -473,34 +473,72 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     };
 
-    const createCard = (cabin) => {
-        return `
-        <div class="col-md-4 mb-4">
-            <div class="card cabin-option" data-cabin-type="${cabin.id}">
-                <img src="${cabin.img}" class="card-img-top" alt="${cabin.text}">
-                <div class="card-body">
-                    <h5 class="card-title">${cabin.text}</h5>
-                    <p class="card-text">Price: ${cabin.price}</p>
-                    <p class="card-text">Availability: ${cabin.availability}</p>
-                    <p class="card-text">${cabin.children.map(child => child.description.join('<br>')).join('<br><br>')}</p>
-                </div>
-            </div>
-        </div>`;
-    };
-
-    const populateCabinCards = () => {
-        const cabinCardsContainer = document.getElementById('cabin-cards');
-        let cabinCardsHTML = '';
+    const populateCabinChips = () => {
+        const cabinChipsContainer = document.getElementById('cabin-chips');
+        let cabinChipsHTML = '';
         Object.keys(cabinData).forEach(key => {
             const cabin = cabinData[key];
-            cabinCardsHTML += createCard(cabin);
+            cabinChipsHTML += createChipButton(cabin.id, cabin.text);
         });
-        cabinCardsContainer.innerHTML = cabinCardsHTML;
+        cabinChipsContainer.innerHTML = cabinChipsHTML;
     };
 
-    populateCabinCards();
+    const populateChildCards = (cabinType) => {
+        const cabinCardsContainer = document.getElementById('cabin-cards');
+        let childCardsHTML = '';
+        cabinData[cabinType].children.forEach(child => {
+            childCardsHTML += createChildCard(child);
+        });
+        cabinCardsContainer.innerHTML = childCardsHTML;
+
+        // Add event listeners to the "Select" buttons
+        document.querySelectorAll('.select-cabin-btn').forEach(button => {
+            button.addEventListener('click', function () {
+                const card = button.closest('.child-cabin');
+                card.querySelectorAll('.select-cabin-btn').forEach(btn => btn.textContent = 'Select');
+                button.textContent = 'Selected';
+            });
+        });
+    };
+
+    // Initial population of cabin chips
+    populateCabinChips();
+
+    // Event listeners for chip buttons
+    document.querySelectorAll('.cabin-chip').forEach(chip => {
+        chip.addEventListener('click', function () {
+            document.querySelectorAll('.cabin-chip').forEach(chip => chip.classList.remove('active'));
+            chip.classList.add('active');
+            const cabinType = chip.getAttribute('data-cabin-type');
+            populateChildCards(cabinType);
+        });
+    });
 
     document.getElementById('select-room-btn').addEventListener('click', function () {
-        $('#bookingModal').modal('show');
+        const selectedCabin = document.querySelector('.child-cabin .btn-primary:contains("Selected")');
+        if (selectedCabin) {
+            // Update breadcrumbs with form data
+            const numberOfGuests = document.getElementById('number-of-guests').value;
+            const guestResidency = document.getElementById('guest-residency').value;
+            const guestState = guestResidency === 'US' ? document.getElementById('guest-state').value : 'N/A';
+
+            const ageInputs = document.querySelectorAll('.age-guest');
+            const ages = Array.from(ageInputs).map(input => input.value).join(', ');
+
+            document.getElementById('breadcrumb-list').innerHTML = `
+                <li class="list-inline-item">Guests: ${numberOfGuests}</li>
+                <li class="list-inline-item">Ages: ${ages}</li>
+                <li class="list-inline-item">Residency: ${guestResidency}</li>
+                <li class="list-inline-item">State: ${guestState}</li>
+            `;
+
+            // Show selected cabin type
+            document.getElementById('selected-cabin').innerText = selectedCabin.querySelector('.card-title').innerText;
+            document.getElementById('passengers-count').innerText = `Passengers: ${numberOfGuests}`;
+
+            $('#bookingModal').modal('show');
+        } else {
+            alert('Please select a cabin first.');
+        }
     });
 });
