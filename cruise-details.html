@@ -1197,15 +1197,13 @@
             </div>
             <div class="modal-body">
                 <div class="overlay-container">
-                    <div class="breadcrumb" id="breadcrumb-container">
-                        <!-- Breadcrumbs will be populated by JavaScript -->
-                    </div>
-                    <!-- Parent Image -->
-                    <div id="parent-image-container" class="text-center mb-3">
-                        <!-- Parent image will be populated by JavaScript -->
+                    <div class="breadcrumb" id="breadcrumb">
+                        <ul id="breadcrumb-list" class="list-inline"></ul>
                     </div>
                     <!-- Cabin Chip Buttons -->
                     <div id="cabin-chips" class="d-flex flex-wrap mb-3"></div>
+                    <!-- Parent Image -->
+                    <div id="parent-image" class="mb-3"></div>
                     <!-- Cabin Cards -->
                     <div class="container">
                         <div class="row" id="cabin-cards">
@@ -1219,6 +1217,11 @@
                         </div>
                         <div class="form-content">
                             <div class="card-item shadow-none radius-none mb-0">
+                                <div class="card-img pb-4">
+                                    <a href="cruise-details.html" class="d-block">
+                                        <img src="images/cruise-img.jpg" alt="cruise-img">
+                                    </a>
+                                </div>
                                 <div class="card-body p-0">
                                     <div class="d-flex justify-content-between">
                                         <div>
@@ -1269,6 +1272,7 @@
         </div>
     </div>
 </div>
+
 
 
 
