@@ -1,6 +1,5 @@
 document.addEventListener('DOMContentLoaded', function () {
     const cabinData = {
-    const cabinData = {
         "IS": {
             "id": "IS",
             "text": "Inside cabin",
@@ -474,94 +473,80 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     };
 
-    const createChipButton = (id, text) => {
-        return `<button class="btn btn-outline-secondary m-1 cabin-chip" data-cabin-type="${id}">${text}</button>`;
+    const showParentImage = (parent) => {
+        const parentImageContainer = document.getElementById('parent-image');
+        parentImageContainer.innerHTML = `
+            <img src="${parent.img}" alt="${parent.text}" class="img-fluid">
+        `;
     };
 
     const createChildCard = (child) => {
         return `
-        <div class="col-md-4 mb-4">
-            <div class="card child-cabin" data-cabin-id="${child.id}">
-                <div class="card-body">
-                    <h5 class="card-title">${child.text}</h5>
-                    <p class="card-text">Price: ${child.price}</p>
-                    <p class="card-text">Availability: ${child.availability}</p>
-                    <ul class="card-text small">
-                        ${child.description.map(desc => `<li>${desc}</li>`).join('')}
-                    </ul>
-                    <button class="btn btn-primary select-cabin-btn">Select</button>
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">${child.text}</h5>
+                        <p class="card-text">Price: ${child.price}</p>
+                        <p class="card-text">Availability: ${child.availability}</p>
+                        <ul class="card-text" style="font-size: 0.9em;">
+                            ${child.description.map(item => `<li>${item}</li>`).join('')}
+                        </ul>
+                        <button class="btn btn-primary select-cabin-btn" data-cabin-id="${child.id}">Select</button>
+                    </div>
                 </div>
             </div>
-        </div>`;
+        `;
+    };
+
+    const populateChildCards = (parent) => {
+        const cabinCardsContainer = document.getElementById('cabin-cards');
+        cabinCardsContainer.innerHTML = parent.children.map(child => createChildCard(child)).join('');
     };
 
     const populateCabinChips = () => {
         const cabinChipsContainer = document.getElementById('cabin-chips');
-        let cabinChipsHTML = '';
-        Object.keys(cabinData).forEach(key => {
+        cabinChipsContainer.innerHTML = Object.keys(cabinData).map(key => {
             const cabin = cabinData[key];
-            cabinChipsHTML += createChipButton(cabin.id, cabin.text);
-        });
-        cabinChipsContainer.innerHTML = cabinChipsHTML;
+            return `
+                <button class="btn btn-outline-primary m-1 cabin-chip" data-cabin-id="${cabin.id}">${cabin.text}</button>
+            `;
+        }).join('');
     };
 
-    const populateChildCards = (cabinType) => {
-        const cabinCardsContainer = document.getElementById('cabin-cards');
-        let childCardsHTML = '';
-        cabinData[cabinType].children.forEach(child => {
-            childCardsHTML += createChildCard(child);
-        });
-        cabinCardsContainer.innerHTML = childCardsHTML;
-
-        // Add event listeners to the "Select" buttons
-        document.querySelectorAll('.select-cabin-btn').forEach(button => {
-            button.addEventListener('click', function () {
-                document.querySelectorAll('.select-cabin-btn').forEach(btn => btn.textContent = 'Select');
-                button.textContent = 'Selected';
-            });
-        });
+    const updateBreadcrumb = () => {
+        const formData = JSON.parse(localStorage.getItem('cruiseFormData'));
+        if (formData) {
+            document.getElementById('breadcrumb-list').innerHTML = `
+                <li class="list-inline-item">Guests: ${formData.numberOfGuests}</li>
+                <li class="list-inline-item">Ages: ${formData.ages.join(', ')}</li>
+                <li class="list-inline-item">Residency: ${formData.guestResidency}</li>
+                <li class="list-inline-item">State: ${formData.guestState}</li>
+            `;
+        }
     };
 
-    const showParentImage = (cabinType) => {
-        const parentImageContainer = document.getElementById('parent-image-container');
-        parentImageContainer.innerHTML = `<img src="${cabinData[cabinType].img}" class="img-fluid" alt="${cabinData[cabinType].text}">`;
-    };
-
-    // Initial population of cabin chips
-    populateCabinChips();
-
-    // Event listeners for chip buttons
-    document.querySelectorAll('.cabin-chip').forEach(chip => {
-        chip.addEventListener('click', function () {
-            document.querySelectorAll('.cabin-chip').forEach(chip => chip.classList.remove('active'));
-            chip.classList.add('active');
-            const cabinType = chip.getAttribute('data-cabin-type');
-            showParentImage(cabinType);
-            populateChildCards(cabinType);
-        });
+    document.getElementById('select-room-btn').addEventListener('click', function () {
+        updateBreadcrumb();
+        $('#bookingModal').modal('show');
     });
 
-    // Function to generate breadcrumb
-    const generateBreadcrumb = () => {
-        const formData = JSON.parse(localStorage.getItem('cruiseFormData'));
-        if (!formData) return '';
+    document.getElementById('cabin-chips').addEventListener('click', function (e) {
+        if (e.target.classList.contains('cabin-chip')) {
+            const cabinId = e.target.getAttribute('data-cabin-id');
+            const selectedCabin = cabinData[cabinId];
+            showParentImage(selectedCabin);
+            populateChildCards(selectedCabin);
+        }
+    });
 
-        const { numberOfGuests, guestResidency, guestState, ages } = formData;
+    document.getElementById('cabin-cards').addEventListener('click', function (e) {
+        if (e.target.classList.contains('select-cabin-btn')) {
+            const buttons = document.querySelectorAll('.select-cabin-btn');
+            buttons.forEach(button => button.textContent = 'Select');
+            e.target.textContent = 'Selected';
+        }
+    });
 
-        return `
-            <nav aria-label="breadcrumb">
-                <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="#">Home</a></li>
-                    <li class="breadcrumb-item"><a href="#">Cruise Details</a></li>
-                    <li class="breadcrumb-item"><a href="#">Cabin Selection</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">
-                        Guests: ${numberOfGuests}, Residency: ${guestResidency}, State: ${guestState}, Ages: ${ages.join(', ')}
-                    </li>
-                </ol>
-            </nav>`;
-    };
-
-    // Populate the breadcrumb
-    const breadcrumbContainer = document.getElementById('breadcrumb-container');
-    breadcrumbContainer.innerHTML = generateBreadcrumb();
+    // Initial setup
+    populateCabinChips();
 });
