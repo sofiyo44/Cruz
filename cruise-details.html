@@ -1303,7 +1303,7 @@
 <script src="js/bootstrap.min.js"></script>
 <script src="js/main.js"></script>
 <script src="js/cabin-carousel.js"></script>
-<script>    
+<script>
     document.addEventListener('DOMContentLoaded', function () {
         const cruiseData = {
             title: "Atlantic Ocean Europe 7 days from/to Portsmouth",
@@ -1501,11 +1501,15 @@
             const ageInputs = document.querySelectorAll('.age-guest');
             const ages = Array.from(ageInputs).map(input => input.value).join(', ');
     
+            const selectedCabin = document.querySelector('.selected-cabin');
+            const cabinType = selectedCabin ? selectedCabin.dataset.cabinId : '';
+    
             const formData = {
                 numberOfGuests,
                 guestResidency,
                 guestState,
-                ages
+                ages,
+                cabinType
             };
     
             localStorage.setItem('cruiseFormData', JSON.stringify(formData));
@@ -1516,31 +1520,56 @@
             element.addEventListener('change', saveFormData);
         });
     
+        // Handle cabin selection
+        const selectCabinButtons = document.querySelectorAll('.select-cabin-btn');
+        const cabinOptions = document.querySelectorAll('.cabin-option, .cabin-price');
+    
+        const toggleCabinSelection = (cabinId) => {
+            // Remove 'selected' from all buttons and highlight
+            selectCabinButtons.forEach(button => button.innerText = 'Select Cabin');
+            cabinOptions.forEach(option => option.classList.remove('highlighted'));
+    
+            // Add 'selected' to the clicked button and highlight the cabin option
+            const selectedButton = document.querySelector(`.select-cabin-btn[data-cabin-id="${cabinId}"]`);
+            if (selectedButton) {
+                selectedButton.innerText = 'Selected';
+            }
+            const selectedOption = document.querySelector(`.cabin-option[data-cabin-type="${cabinId}"], .cabin-price[data-cabin-type="${cabinId}"]`);
+            if (selectedOption) {
+                selectedOption.classList.add('highlighted');
+            }
+    
+            // Mark the selected cabin
+            document.querySelectorAll('.cabin-card').forEach(card => card.classList.remove('selected-cabin'));
+            if (selectedButton) {
+                selectedButton.closest('.cabin-card').classList.add('selected-cabin');
+            }
+        };
+    
+        selectCabinButtons.forEach(button => {
+            button.addEventListener('click', function () {
+                const cabinId = this.dataset.cabinId;
+                toggleCabinSelection(cabinId);
+                saveFormData();
+            });
+        });
+    
+        cabinOptions.forEach(option => {
+            option.addEventListener('click', function () {
+                const cabinId = this.dataset.cabinType;
+                toggleCabinSelection(cabinId);
+                saveFormData();
+            });
+        });
+    
         // Save form data initially
         saveFormData();
     
         // Handle modal button click
         document.getElementById('select-room-btn').addEventListener('click', function () {
-            const selectedCabin = document.querySelector('.selected-cabin');
-            if (selectedCabin) {
-                const formData = JSON.parse(localStorage.getItem('cruiseFormData'));
+            const formData = JSON.parse(localStorage.getItem('cruiseFormData'));
     
-                // Update breadcrumbs with form data
-                document.getElementById('breadcrumb-list').innerHTML = `
-                    <li class="list-inline-item">Guests: ${formData.numberOfGuests}</li>
-                    <li class="list-inline-item">Ages: ${formData.ages}</li>
-                    <li class="list-inline-item">Residency: ${formData.guestResidency}</li>
-                    <li class="list-inline-item">State: ${formData.guestState}</li>
-                `;
-    
-                // Show selected cabin type
-                document.getElementById('selected-cabin').innerText = selectedCabin.querySelector('.card-title').innerText;
-                document.getElementById('passengers-count').innerText = `Passengers: ${formData.numberOfGuests}`;
-    
-                $('#bookingModal').modal('show');
-            } else {
-                alert('Please select a cabin first.');
-            }
+            $('#bookingModal').modal('show');
         });
     });
 </script>
