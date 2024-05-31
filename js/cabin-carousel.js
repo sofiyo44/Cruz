@@ -473,28 +473,32 @@ document.addEventListener('DOMContentLoaded', function () {
           }
         }
     };
-    const populateCarousel = () => {
-        Object.keys(cabinData).forEach(key => {
-            const cabin = cabinData[key];
-            const cabinHeader = document.getElementById(`cabin-header-${cabin.id}`);
-            const cabinImg = document.getElementById(`cabin-img-${cabin.id}`);
-            const cabinTitle = document.getElementById(`cabin-title-${cabin.id}`);
-            const cabinPrice = document.getElementById(`cabin-price-${cabin.id}`);
-            const cabinAvailability = document.getElementById(`cabin-availability-${cabin.id}`);
-            const cabinDescription = document.getElementById(`cabin-description-${cabin.id}`);
-
-            if (cabinHeader && cabinImg && cabinTitle && cabinPrice && cabinAvailability && cabinDescription) {
-                cabinHeader.innerText = `${cabin.text} - from ${cabin.price}`;
-                cabinImg.src = cabin.img;
-                cabinTitle.innerText = cabin.text;
-                cabinPrice.innerText = `Price: ${cabin.price}`;
-                cabinAvailability.innerText = `Availability: ${cabin.availability}`;
-                cabinDescription.innerHTML = cabin.children.map(child => child.description.join('<br>')).join('<br><br>');
-            }
-        });
+    const createCard = (cabin) => {
+        return `
+        <div class="col-md-4 mb-4">
+            <div class="card">
+                <img src="${cabin.img}" class="card-img-top" alt="${cabin.text}">
+                <div class="card-body">
+                    <h5 class="card-title">${cabin.text}</h5>
+                    <p class="card-text">Price: ${cabin.price}</p>
+                    <p class="card-text">Availability: ${cabin.availability}</p>
+                    <p class="card-text">${cabin.children.map(child => child.description.join('<br>')).join('<br><br>')}</p>
+                </div>
+            </div>
+        </div>`;
     };
 
-    populateCarousel();
+    const populateCabinCards = () => {
+        const cabinCardsContainer = document.getElementById('cabin-cards');
+        let cabinCardsHTML = '';
+        Object.keys(cabinData).forEach(key => {
+            const cabin = cabinData[key];
+            cabinCardsHTML += createCard(cabin);
+        });
+        cabinCardsContainer.innerHTML = cabinCardsHTML;
+    };
+
+    populateCabinCards();
 
     document.getElementById('select-room-btn').addEventListener('click', function () {
         $('#bookingModal').modal('show');
