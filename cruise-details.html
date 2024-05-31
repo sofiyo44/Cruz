@@ -1197,8 +1197,8 @@
             </div>
             <div class="modal-body">
                 <div class="overlay-container">
-                    <div class="breadcrumb" id="breadcrumb">
-                        <ul id="breadcrumb-list" class="list-inline"></ul>
+                    <div class="breadcrumb" id="breadcrumb-container">
+                        <!-- Breadcrumbs will be populated by JavaScript -->
                     </div>
                     <!-- Cabin Chip Buttons -->
                     <div id="cabin-chips" class="d-flex flex-wrap mb-3"></div>
@@ -1488,66 +1488,32 @@
             }
         });
     
-        // Handle cabin selection
-        const cabinOptions = document.querySelectorAll('.cabin-option');
-        const cabinPrices = document.querySelectorAll('.cabin-price');
+        // Save form data to local storage
+        const saveFormData = () => {
+            const numberOfGuests = document.getElementById('number-of-guests').value;
+            const guestResidency = document.getElementById('guest-residency').value;
+            const guestState = guestResidency === 'US' ? document.getElementById('guest-state').value : 'N/A';
     
-        cabinOptions.forEach(option => {
-            option.addEventListener('click', function () {
-                cabinOptions.forEach(opt => opt.classList.remove('selected-cabin'));
-                option.classList.add('selected-cabin');
-            });
+            const ageInputs = document.querySelectorAll('.age-guest');
+            const ages = Array.from(ageInputs).map(input => input.value).join(', ');
+    
+            const formData = {
+                numberOfGuests,
+                guestResidency,
+                guestState,
+                ages
+            };
+    
+            localStorage.setItem('cruiseFormData', JSON.stringify(formData));
+        };
+    
+        // Save form data when form changes
+        document.querySelectorAll('#number-of-guests, #guest-residency, .age-guest, #guest-state').forEach(element => {
+            element.addEventListener('change', saveFormData);
         });
     
-        cabinPrices.forEach(price => {
-            price.addEventListener('click', function () {
-                const cabinType = price.getAttribute('data-cabin-type');
-                cabinOptions.forEach(option => {
-                    if (option.getAttribute('data-cabin-type') === cabinType) {
-                        option.click();
-                    }
-                });
-            });
-        });
-    
-        document.querySelectorAll('.select-cabin-btn').forEach(button => {
-            button.addEventListener('click', function () {
-                const cabinType = button.getAttribute('data-cabin-id');
-                cabinOptions.forEach(option => {
-                    if (option.getAttribute('data-cabin-type') === cabinType) {
-                        option.click();
-                    }
-                });
-            });
-        });
-    
-        document.getElementById('select-room-btn').addEventListener('click', function () {
-            const selectedCabin = document.querySelector('.selected-cabin');
-            if (selectedCabin) {
-                // Update breadcrumbs with form data
-                const numberOfGuests = document.getElementById('number-of-guests').value;
-                const guestResidency = document.getElementById('guest-residency').value;
-                const guestState = guestResidency === 'US' ? document.getElementById('guest-state').value : 'N/A';
-    
-                const ageInputs = document.querySelectorAll('.age-guest');
-                const ages = Array.from(ageInputs).map(input => input.value).join(', ');
-    
-                document.getElementById('breadcrumb-list').innerHTML = `
-                    <li class="list-inline-item">Guests: ${numberOfGuests}</li>
-                    <li class="list-inline-item">Ages: ${ages}</li>
-                    <li class="list-inline-item">Residency: ${guestResidency}</li>
-                    <li class="list-inline-item">State: ${guestState}</li>
-                `;
-    
-                // Show selected cabin type
-                document.getElementById('selected-cabin').innerText = selectedCabin.querySelector('.card-title').innerText;
-                document.getElementById('passengers-count').innerText = `Passengers: ${numberOfGuests}`;
-    
-                $('#bookingModal').modal('show');
-            } else {
-                alert('Please select a cabin first.');
-            }
-        });
+        // Save form data initially
+        saveFormData();
     });
 </script>
 </body>
