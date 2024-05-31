@@ -1175,7 +1175,7 @@
     </div>
 </div><!-- end modal-popup -->
 
-<!-- Cabin Selection Overlay Modal Structure -->
+<!-- Booking Modal -->
 <div class="modal fade" id="bookingModal" tabindex="-1" role="dialog" aria-labelledby="bookingModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document" style="max-width: 90%;">
         <div class="modal-content">
@@ -1186,9 +1186,10 @@
                 </button>
             </div>
             <div class="modal-body">
-                <!-- Modal content copied from the previous overlay page structure -->
                 <div class="overlay-container">
-                    <div class="breadcrumb" id="breadcrumb"></div>
+                    <div class="breadcrumb" id="breadcrumb">
+                        <ul id="breadcrumb-list" class="list-inline"></ul>
+                    </div>
                     <!-- Cabin Cards -->
                     <div class="container">
                         <div class="row" id="cabin-cards">
@@ -1210,7 +1211,7 @@
                                 <div class="card-body p-0">
                                     <div class="d-flex justify-content-between">
                                         <div>
-                                            <h3 class="card-title">5 Nights Bermuda Cruise</h3>
+                                            <h3 class="card-title" id="cruise-title">5 Nights Bermuda Cruise</h3>
                                             <p class="card-meta">Puerto Vallarta, Mexico</p>
                                         </div>
                                         <div>
@@ -1231,10 +1232,10 @@
                                     <div class="section-block"></div>
                                     <ul class="list-items list-items-2 py-3">
                                         <li><span>Cruise:</span>MSC Cruise</li>
-                                        <li><span>Cabin Type:</span>Grand Suite</li>
+                                        <li><span>Cabin Type:</span><span id="selected-cabin">Grand Suite</span></li>
                                         <li><span>Food & Dining:</span>$110</li>
                                         <li><span>Cruise Price:</span>$130</li>
-                                        <li>Passengers: 4</li>
+                                        <li id="passengers-count">Passengers: 4</li>
                                     </ul>
                                     <div class="section-block"></div>
                                     <ul class="list-items list-items-2 pt-3">
@@ -1246,6 +1247,8 @@
                             </div>
                         </div>
                     </div>
+                    <!-- Amenities and other details -->
+                    <div id="amenities-list" class="row"></div>
                 </div>
             </div>
             <div class="modal-footer">
@@ -1254,8 +1257,7 @@
             </div>
         </div>
     </div>
-</div><!-- end modal-popup -->
-
+</div>
 
 
 <!-- Template JS Files -->
@@ -1285,236 +1287,255 @@
 <script src="js/main.js"></script>
 <script src="js/cabin-carousel.js"></script>
 <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const cruiseData = {
-                title: "Atlantic Ocean Europe 7 days from/to Portsmouth",
-                departure_cruise: "9/23/24",
-                arrival_cruise: "9/29/24"
-            };
-
-            // Populate cruise details
-            document.getElementById('cruise-title').innerText = cruiseData.title;
-            document.getElementById('cruise-route').innerText = "Ports of Call: Portsmouth, Cruising Day, La Coruna, Bilbao, Le Verdon-sur-Mer, Portsmouth";
-            document.getElementById('ship-description').innerHTML = "From decadent dinners to boozy after-parties, gather with your partner, your best friends and yourself to celebrate life's best moments aboard one of the 100% adults-only voyages.";
-
-            // Ship statistics
-            document.getElementById('ship-statistics-left').innerHTML = `
-                <li>Year Built: 2023</li>
-                <li>Speed: 20kn</li>
-                <li>Cabins: 1404</li>
-            `;
-            document.getElementById('ship-statistics-right').innerHTML = `
-                <li>Passengers: 2762</li>
-                <li>Weight: 110,000</li>
-                <li>Length: 278m</li>
-            `;
-
-            // Included and Not Included
-            document.getElementById('included-list').innerHTML = `
-                <li>Cruise in the cabin category booked.</li>
-                <li>Full board.</li>
-                <li>Entertainment program on board.</li>
-                <li>Use of onboard facilities. (extra charges possible)</li>
-                <li>Port charges and taxes.</li>
-                <li>Luggages transportation to/from cabin.</li>
-            `;
-            document.getElementById('excluded-list').innerHTML = `
-                <li>Arrival and departure.</li>
-                <li>Beverages, unless specified.</li>
-                <li>Meals and drinks in the specialty restaurants.</li>
-                <li>Personal expenses aboard.</li>
-                <li>Shore excursions.</li>
-                <li>Medical service.</li>
-                <li>Travel insurances.</li>
-                <li>Recommended gratuities.</li>
-                <li>Visa, if necessary (extra charges possible).</li>
-            `;
-
-            // Populate itinerary table
-            document.getElementById('itinerary-table').innerHTML = `
-                <tr>
-                    <td>1</td>
-                    <td>Portsmouth, United Kingdom</td>
-                    <td></td>
-                    <td>18:00</td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>Cruising Day</td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td>La Coruna, Spain</td>
-                    <td>08:00</td>
-                    <td>17:00</td>
-                </tr>
-                <tr>
-                    <td>4</td>
-                    <td>Bilbao, Spain</td>
-                    <td>10:00</td>
-                    <td>18:00</td>
-                </tr>
-                <tr>
-                    <td>5</td>
-                    <td>Le Verdon-sur-Mer, France</td>
-                    <td>08:00</td>
-                    <td>20:00</td>
-                </tr>
-                <tr>
-                    <td>6</td>
-                    <td>Cruising Day</td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>7</td>
-                    <td>Portsmouth, United Kingdom</td>
-                    <td>06:00</td>
-                    <td></td>
-                </tr>
-            `;
-
-            // Populate amenities list
-            const amenities = [
-                {
-                    text: "Bars and Cafes",
-                    children: [
-                        { text: "Coffeebar" },
-                        { text: "Champagne/caviar bar" },
-                        { text: "Club lounge" },
-                        { text: "Cocktailbar" },
-                        { text: "Pool bar" },
-                        { text: "Winecellar/vinothek" }
-                    ]
-                },
-                {
-                    text: "Onboard language",
-                    children: [
-                        { text: "English" }
-                    ]
-                },
-                {
-                    text: "Travel documents",
-                    children: [
-                        { text: "Passport required" }
-                    ]
-                },
-                {
-                    text: "Restaurants",
-                    children: [
-                        { text: "Italian Restaurant" },
-                        { text: "French Restaurant" },
-                        { text: "Steakhouse" },
-                        { text: "Sushi Bar" },
-                        { text: "Seafood Restaurant" },
-                        { text: "Buffet" }
-                    ]
-                },
-                {
-                    text: "Activities",
-                    children: [
-                        { text: "Swimming Pool" },
-                        { text: "Fitness Center" },
-                        { text: "Spa" },
-                        { text: "Theater" },
-                        { text: "Casino" },
-                        { text: "Mini Golf" }
-                    ]
-                },
-                {
-                    text: "Services",
-                    children: [
-                        { text: "Room Service" },
-                        { text: "Laundry Service" },
-                        { text: "Concierge" },
-                        { text: "Medical Center" },
-                        { text: "Wi-Fi" }
-                    ]
-                }
-            ];
-           
-            const amenitiesHTML = amenities.map(category => `
-                <div class="col-lg-4">
-                    <h4>${category.text}</h4>
-                    <ul class="list-items">
-                        ${category.children.map(item => `<li>${item.text}</li>`).join('')}
-                    </ul>
-                </div>
-            `).join('');
-
-            document.getElementById('amenities-list').innerHTML = amenitiesHTML;
-
-            // Handle number of guests selection
-            document.getElementById('number-of-guests').addEventListener('change', function () {
-                const numGuests = parseInt(this.value);
-                const ageInputs = document.getElementById('age-inputs');
-                ageInputs.innerHTML = '';
-                for (let i = 1; i <= numGuests; i++) {
-                    ageInputs.innerHTML += `
-                        <div class="input-box">
-                            <label class="label-text">Age of Guest ${i}</label>
-                            <div class="form-group">
-                                <input type="text" class="form-control age-guest" id="age-guest-${i}" placeholder="Age of Guest ${i}">
-                            </div>
+    document.addEventListener('DOMContentLoaded', function () {
+        const cruiseData = {
+            title: "Atlantic Ocean Europe 7 days from/to Portsmouth",
+            departure_cruise: "9/23/24",
+            arrival_cruise: "9/29/24"
+        };
+    
+        // Populate cruise details
+        document.getElementById('cruise-title').innerText = cruiseData.title;
+        document.getElementById('cruise-route').innerText = "Ports of Call: Portsmouth, Cruising Day, La Coruna, Bilbao, Le Verdon-sur-Mer, Portsmouth";
+        document.getElementById('ship-description').innerHTML = "From decadent dinners to boozy after-parties, gather with your partner, your best friends and yourself to celebrate life's best moments aboard one of the 100% adults-only voyages.";
+    
+        // Ship statistics
+        document.getElementById('ship-statistics-left').innerHTML = `
+            <li>Year Built: 2023</li>
+            <li>Speed: 20kn</li>
+            <li>Cabins: 1404</li>
+        `;
+        document.getElementById('ship-statistics-right').innerHTML = `
+            <li>Passengers: 2762</li>
+            <li>Weight: 110,000</li>
+            <li>Length: 278m</li>
+        `;
+    
+        // Included and Not Included
+        document.getElementById('included-list').innerHTML = `
+            <li>Cruise in the cabin category booked.</li>
+            <li>Full board.</li>
+            <li>Entertainment program on board.</li>
+            <li>Use of onboard facilities. (extra charges possible)</li>
+            <li>Port charges and taxes.</li>
+            <li>Luggages transportation to/from cabin.</li>
+        `;
+        document.getElementById('excluded-list').innerHTML = `
+            <li>Arrival and departure.</li>
+            <li>Beverages, unless specified.</li>
+            <li>Meals and drinks in the specialty restaurants.</li>
+            <li>Personal expenses aboard.</li>
+            <li>Shore excursions.</li>
+            <li>Medical service.</li>
+            <li>Travel insurances.</li>
+            <li>Recommended gratuities.</li>
+            <li>Visa, if necessary (extra charges possible).</li>
+        `;
+    
+        // Populate itinerary table
+        document.getElementById('itinerary-table').innerHTML = `
+            <tr>
+                <td>1</td>
+                <td>Portsmouth, United Kingdom</td>
+                <td></td>
+                <td>18:00</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>Cruising Day</td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>La Coruna, Spain</td>
+                <td>08:00</td>
+                <td>17:00</td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td>Bilbao, Spain</td>
+                <td>10:00</td>
+                <td>18:00</td>
+            </tr>
+            <tr>
+                <td>5</td>
+                <td>Le Verdon-sur-Mer, France</td>
+                <td>08:00</td>
+                <td>20:00</td>
+            </tr>
+            <tr>
+                <td>6</td>
+                <td>Cruising Day</td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>7</td>
+                <td>Portsmouth, United Kingdom</td>
+                <td>06:00</td>
+                <td></td>
+            </tr>
+        `;
+    
+        // Populate amenities list
+        const amenities = [
+            {
+                text: "Bars and Cafes",
+                children: [
+                    { text: "Coffeebar" },
+                    { text: "Champagne/caviar bar" },
+                    { text: "Club lounge" },
+                    { text: "Cocktailbar" },
+                    { text: "Pool bar" },
+                    { text: "Winecellar/vinothek" }
+                ]
+            },
+            {
+                text: "Onboard language",
+                children: [
+                    { text: "English" }
+                ]
+            },
+            {
+                text: "Travel documents",
+                children: [
+                    { text: "Passport required" }
+                ]
+            },
+            {
+                text: "Restaurants",
+                children: [
+                    { text: "Italian Restaurant" },
+                    { text: "French Restaurant" },
+                    { text: "Steakhouse" },
+                    { text: "Sushi Bar" },
+                    { text: "Seafood Restaurant" },
+                    { text: "Buffet" }
+                ]
+            },
+            {
+                text: "Activities",
+                children: [
+                    { text: "Swimming Pool" },
+                    { text: "Fitness Center" },
+                    { text: "Spa" },
+                    { text: "Theater" },
+                    { text: "Casino" },
+                    { text: "Mini Golf" }
+                ]
+            },
+            {
+                text: "Services",
+                children: [
+                    { text: "Room Service" },
+                    { text: "Laundry Service" },
+                    { text: "Concierge" },
+                    { text: "Medical Center" },
+                    { text: "Wi-Fi" }
+                ]
+            }
+        ];
+    
+        const amenitiesHTML = amenities.map(category => `
+            <div class="col-lg-4">
+                <h4>${category.text}</h4>
+                <ul class="list-items">
+                    ${category.children.map(item => `<li>${item.text}</li>`).join('')}
+                </ul>
+            </div>
+        `).join('');
+    
+        document.getElementById('amenities-list').innerHTML = amenitiesHTML;
+    
+        // Handle number of guests selection
+        document.getElementById('number-of-guests').addEventListener('change', function () {
+            const numGuests = parseInt(this.value);
+            const ageInputs = document.getElementById('age-inputs');
+            ageInputs.innerHTML = '';
+            for (let i = 1; i <= numGuests; i++) {
+                ageInputs.innerHTML += `
+                    <div class="input-box">
+                        <label class="label-text">Age of Guest ${i}</label>
+                        <div class="form-group">
+                            <input type="text" class="form-control age-guest" id="age-guest-${i}" placeholder="Age of Guest ${i}">
                         </div>
-                    `;
-                }
-            });
-
-            // Handle guest residency selection
-            document.getElementById('guest-residency').addEventListener('change', function () {
-                const stateSelect = document.getElementById('guest-state');
-                if (this.value === 'US') {
-                    stateSelect.style.display = 'block';
-                } else {
-                    stateSelect.style.display = 'none';
-                }
-            });
-
-            // Handle cabin selection
-            const cabinOptions = document.querySelectorAll('.cabin-option');
-            const cabinPrices = document.querySelectorAll('.cabin-price');
-
-            cabinOptions.forEach(option => {
-                option.addEventListener('click', function () {
-                    cabinOptions.forEach(opt => opt.classList.remove('selected-cabin'));
-                    option.classList.add('selected-cabin');
-                });
-            });
-
-            cabinPrices.forEach(price => {
-                price.addEventListener('click', function () {
-                    const cabinType = price.getAttribute('data-cabin-type');
-                    cabinOptions.forEach(option => {
-                        if (option.getAttribute('data-cabin-type') === cabinType) {
-                            option.click();
-                        }
-                    });
-                });
-            });
-
-            document.querySelectorAll('.select-cabin-btn').forEach(button => {
-                button.addEventListener('click', function () {
-                    const cabinType = button.getAttribute('data-cabin-id');
-                    cabinOptions.forEach(option => {
-                        if (option.getAttribute('data-cabin-type') === cabinType) {
-                            option.click();
-                        }
-                    });
-                });
-            });
-
-            document.getElementById('select-room-btn').addEventListener('click', function () {
-                const selectedCabin = document.querySelector('.selected-cabin');
-                if (selectedCabin) {
-                    $('#bookingModal').modal('show');
-                } else {
-                    alert('Please select a cabin first.');
-                }
+                    </div>
+                `;
+            }
+        });
+    
+        // Handle guest residency selection
+        document.getElementById('guest-residency').addEventListener('change', function () {
+            const stateSelect = document.getElementById('guest-state');
+            if (this.value === 'US') {
+                stateSelect.style.display = 'block';
+            } else {
+                stateSelect.style.display = 'none';
+            }
+        });
+    
+        // Handle cabin selection
+        const cabinOptions = document.querySelectorAll('.cabin-option');
+        const cabinPrices = document.querySelectorAll('.cabin-price');
+    
+        cabinOptions.forEach(option => {
+            option.addEventListener('click', function () {
+                cabinOptions.forEach(opt => opt.classList.remove('selected-cabin'));
+                option.classList.add('selected-cabin');
             });
         });
+    
+        cabinPrices.forEach(price => {
+            price.addEventListener('click', function () {
+                const cabinType = price.getAttribute('data-cabin-type');
+                cabinOptions.forEach(option => {
+                    if (option.getAttribute('data-cabin-type') === cabinType) {
+                        option.click();
+                    }
+                });
+            });
+        });
+    
+        document.querySelectorAll('.select-cabin-btn').forEach(button => {
+            button.addEventListener('click', function () {
+                const cabinType = button.getAttribute('data-cabin-id');
+                cabinOptions.forEach(option => {
+                    if (option.getAttribute('data-cabin-type') === cabinType) {
+                        option.click();
+                    }
+                });
+            });
+        });
+    
+        document.getElementById('select-room-btn').addEventListener('click', function () {
+            const selectedCabin = document.querySelector('.selected-cabin');
+            if (selectedCabin) {
+                // Update breadcrumbs with form data
+                const numberOfGuests = document.getElementById('number-of-guests').value;
+                const guestResidency = document.getElementById('guest-residency').value;
+                const guestState = guestResidency === 'US' ? document.getElementById('guest-state').value : 'N/A';
+    
+                const ageInputs = document.querySelectorAll('.age-guest');
+                const ages = Array.from(ageInputs).map(input => input.value).join(', ');
+    
+                document.getElementById('breadcrumb-list').innerHTML = `
+                    <li class="list-inline-item">Guests: ${numberOfGuests}</li>
+                    <li class="list-inline-item">Ages: ${ages}</li>
+                    <li class="list-inline-item">Residency: ${guestResidency}</li>
+                    <li class="list-inline-item">State: ${guestState}</li>
+                `;
+    
+                // Show selected cabin type
+                document.getElementById('selected-cabin').innerText = selectedCabin.querySelector('.card-title').innerText;
+                document.getElementById('passengers-count').innerText = `Passengers: ${numberOfGuests}`;
+    
+                $('#bookingModal').modal('show');
+            } else {
+                alert('Please select a cabin first.');
+            }
+        });
+    });
 </script>
 </body>
 </html>
