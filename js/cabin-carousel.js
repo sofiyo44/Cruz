@@ -473,6 +473,26 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     };
 
+    const createChipButton = (id, text) => {
+        return `<button class="btn btn-outline-secondary m-1 cabin-chip" data-cabin-type="${id}">${text}</button>`;
+    };
+
+    const createChildCard = (child) => {
+        return `
+        <div class="col-md-4 mb-4">
+            <div class="card child-cabin" data-cabin-id="${child.id}">
+                <img src="${child.img}" class="card-img-top" alt="${child.text}">
+                <div class="card-body">
+                    <h5 class="card-title">${child.text}</h5>
+                    <p class="card-text">Price: ${child.price}</p>
+                    <p class="card-text">Availability: ${child.availability}</p>
+                    <p class="card-text">${child.description.join('<br>')}</p>
+                    <button class="btn btn-primary select-cabin-btn">Select</button>
+                </div>
+            </div>
+        </div>`;
+    };
+
     const populateCabinChips = () => {
         const cabinChipsContainer = document.getElementById('cabin-chips');
         let cabinChipsHTML = '';
@@ -494,8 +514,7 @@ document.addEventListener('DOMContentLoaded', function () {
         // Add event listeners to the "Select" buttons
         document.querySelectorAll('.select-cabin-btn').forEach(button => {
             button.addEventListener('click', function () {
-                const card = button.closest('.child-cabin');
-                card.querySelectorAll('.select-cabin-btn').forEach(btn => btn.textContent = 'Select');
+                document.querySelectorAll('.select-cabin-btn').forEach(btn => btn.textContent = 'Select');
                 button.textContent = 'Selected';
             });
         });
@@ -514,31 +533,35 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
+    // Function to generate breadcrumb
+    const generateBreadcrumb = () => {
+        const formData = JSON.parse(localStorage.getItem('cruiseFormData'));
+        if (!formData) return '';
+
+        const { numberOfGuests, guestResidency, guestState, ages } = formData;
+
+        return `
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item"><a href="#">Cruise Details</a></li>
+                    <li class="breadcrumb-item"><a href="#">Cabin Selection</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">
+                        Guests: ${numberOfGuests}, Residency: ${guestResidency}, State: ${guestState}, Ages: ${ages}
+                    </li>
+                </ol>
+            </nav>
+        `;
+    };
+
+    // Display breadcrumb on modal show
+    $('#bookingModal').on('show.bs.modal', function () {
+        const breadcrumb = generateBreadcrumb();
+        document.getElementById('breadcrumb-container').innerHTML = breadcrumb;
+    });
+
+    // Handle the "Select My Room Type" button click
     document.getElementById('select-room-btn').addEventListener('click', function () {
-        const selectedCabin = document.querySelector('.child-cabin .btn-primary:contains("Selected")');
-        if (selectedCabin) {
-            // Update breadcrumbs with form data
-            const numberOfGuests = document.getElementById('number-of-guests').value;
-            const guestResidency = document.getElementById('guest-residency').value;
-            const guestState = guestResidency === 'US' ? document.getElementById('guest-state').value : 'N/A';
-
-            const ageInputs = document.querySelectorAll('.age-guest');
-            const ages = Array.from(ageInputs).map(input => input.value).join(', ');
-
-            document.getElementById('breadcrumb-list').innerHTML = `
-                <li class="list-inline-item">Guests: ${numberOfGuests}</li>
-                <li class="list-inline-item">Ages: ${ages}</li>
-                <li class="list-inline-item">Residency: ${guestResidency}</li>
-                <li class="list-inline-item">State: ${guestState}</li>
-            `;
-
-            // Show selected cabin type
-            document.getElementById('selected-cabin').innerText = selectedCabin.querySelector('.card-title').innerText;
-            document.getElementById('passengers-count').innerText = `Passengers: ${numberOfGuests}`;
-
-            $('#bookingModal').modal('show');
-        } else {
-            alert('Please select a cabin first.');
-        }
+        $('#bookingModal').modal('show');
     });
 });
