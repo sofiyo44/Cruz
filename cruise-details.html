@@ -1196,83 +1196,68 @@
                 </button>
             </div>
             <div class="modal-body">
-                <div class="overlay-container">
-                    <div class="breadcrumb" id="breadcrumb">
-                        <ul id="breadcrumb-list" class="list-inline"></ul>
-                    </div>
-                    <!-- Cabin Chip Buttons -->
-                    <div id="cabin-chips" class="d-flex flex-wrap mb-3"></div>
-                    <!-- Parent Image -->
-                    <div id="parent-image" class="mb-3"></div>
-                    <!-- Cabin Cards -->
-                    <div class="container">
-                        <div class="row" id="cabin-cards">
-                            <!-- Cabin cards will be populated by JavaScript -->
+                <div id="step1" class="step">
+                    <!-- Step 1: Booking Summary -->
+                    <div class="overlay-container">
+                        <!-- Existing Booking Summary content -->
+                        <div class="breadcrumb" id="breadcrumb">
+                            <ul id="breadcrumb-list" class="list-inline"></ul>
                         </div>
-                    </div>
-                    <!-- Booking Details -->
-                    <div class="form-box booking-detail-form">
-                        <div class="form-title-wrap">
-                            <h3 class="title">Booking Details</h3>
+                        <div id="cabin-chips" class="d-flex flex-wrap mb-3"></div>
+                        <div id="parent-image" class="mb-3"></div>
+                        <div class="container">
+                            <div class="row" id="cabin-cards"></div>
                         </div>
-                        <div class="form-content">
-                            <div class="card-item shadow-none radius-none mb-0">
-                                <div class="card-img pb-4">
-                                    <a href="cruise-details.html" class="d-block">
-                                    </a>
-                                </div>
-                                <div class="card-body p-0 d-flex">
-                                    <div style="width: 50%;">
-                                        <div class="d-flex justify-content-between">
-                                            <div>
-                                                <h3 class="card-title cruise-title">5 Nights Bermuda Cruise</h3>
-                                                <p class="card-meta cruise-line">Virgin Voyages</p>
-                                            </div>
-                                            <div>
-                                                <a href="cruise-details.html" class="btn ml-1"><i class="la la-edit" data-toggle="tooltip" data-placement="top" title="Edit"></i></a>
-                                            </div>
-                                        </div>
-                                        <div class="card-rating">
-                                            <span class="badge text-white">4.4/5</span>
-                                            <span class="review__text">Average</span>
-                                            <span class="rating__text">(30 Reviews)</span>
-                                        </div>
-                                        <div class="section-block"></div>
-                                        <ul class="list-items list-items-2 list-items-flush py-2">
-                                            <li class="font-size-15"><span class="w-auto d-block mb-n1"><i class="la la-ship mr-1 text-black font-size-17"></i>Departs</span><span class="departure-date">12 May 2020 7:40am</span></li>
-                                            <li class="font-size-15"><span class="w-auto d-block mb-n1"><i class="la la-ship mr-1 text-black font-size-17"></i>Returns</span><span class="arrival-date">16 May 2020 8:40am</span></li>
-                                        </ul>
-                                        <h3 class="card-title pb-3">Order Details</h3>
-                                        <div class="section-block"></div>
-                                        <ul class="list-items list-items-2 py-3">
-                                            <li><span>Cruise:</span><span class="cruise-line">Virgin Voyages</span></li>
-                                            <li><span>Food & Dining:</span><span id="booking-food-dining">$110</span></li>
-                                            <li><span>Cruise Price:</span><span id="booking-cruise-price">$130</span></li>
-                                            <li id="passengers-count">Passengers: 4</li>
-                                        </ul>
-                                        <div class="section-block"></div>
-                                        <ul class="list-items list-items-2 pt-3">
-                                            <li id="booking-sub-total">Sub Total: $240</li>
-                                            <li id="booking-taxes-fees">Taxes And Fees: $5</li>
-                                            <li id="booking-total-price">Total Price: $245</li>
-                                        </ul>
+                        <div class="form-box booking-detail-form">
+                            <div class="form-title-wrap">
+                                <h3 class="title">Booking Details</h3>
+                            </div>
+                            <div class="form-content">
+                                <div class="card-item shadow-none radius-none mb-0">
+                                    <div class="card-img pb-4">
+                                        <a href="cruise-details.html" class="d-block"></a>
                                     </div>
-                                    <div id="selected-cabin-card" style="width: 50%;"></div>
+                                    <div class="card-body p-0 d-flex">
+                                        <div style="width: 50%;">
+                                            <!-- Existing Booking Details content -->
+                                        </div>
+                                        <div id="selected-cabin-card" style="width: 50%;"></div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
+                        <div id="amenities-list" class="row"></div>
                     </div>
-                    <!-- Amenities and other details -->
-                    <div id="amenities-list" class="row"></div>
+                </div>
+                <div id="step2" class="step d-none">
+                    <!-- Step 2: Passenger Information -->
+                    <h3>Passenger Information</h3>
+                    <div id="passenger-info-container">
+                        <!-- Passenger information form will be dynamically generated based on the number of passengers -->
+                    </div>
+                    <button type="button" id="add-passenger" class="btn btn-secondary">Add Passenger</button>
+                </div>
+                <div id="step3" class="step d-none">
+                    <!-- Step 3: Payment -->
+                    <h3>Payment</h3>
+                    <div id="payment-summary">
+                        <!-- Order Total and line items will be dynamically generated -->
+                    </div>
+                    <form id="payment-form">
+                        <!-- Stripe Payment form elements -->
+                        <div id="card-element"><!-- Stripe's Card Element will be inserted here --></div>
+                        <button type="submit" class="btn btn-primary">Pay</button>
+                    </form>
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Confirm Booking</button>
+                <button type="button" class="btn btn-secondary" id="prev-step">Previous</button>
+                <button type="button" class="btn btn-primary" id="next-step">Next</button>
             </div>
         </div>
     </div>
 </div>
+
 
 
 
