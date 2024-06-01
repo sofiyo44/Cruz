@@ -1199,7 +1199,6 @@
                 <div id="step1" class="step">
                     <!-- Step 1: Booking Summary -->
                     <div class="overlay-container">
-                        <!-- Existing Booking Summary content -->
                         <div class="breadcrumb" id="breadcrumb">
                             <ul id="breadcrumb-list" class="list-inline"></ul>
                         </div>
@@ -1219,7 +1218,17 @@
                                     </div>
                                     <div class="card-body p-0 d-flex">
                                         <div style="width: 50%;">
-                                            <!-- Existing Booking Details content -->
+                                            <h3 class="card-title pb-3">Order Details</h3>
+                                            <div class="section-block"></div>
+                                            <ul class="list-items list-items-2 py-3" id="order-details-list">
+                                                <!-- Line items will be populated here -->
+                                            </ul>
+                                            <div class="section-block"></div>
+                                            <ul class="list-items list-items-2 pt-3">
+                                                <li id="booking-sub-total">Sub Total: $0</li>
+                                                <li id="booking-taxes-fees">Taxes And Fees: $5</li>
+                                                <li id="booking-total-price">Total Price: $5</li>
+                                            </ul>
                                         </div>
                                         <div id="selected-cabin-card" style="width: 50%;"></div>
                                     </div>
@@ -1252,7 +1261,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" id="prev-step">Previous</button>
-                <button type="button" class="btn btn-primary" id="next-step">Next</button>
+                <button type="button" class="btn btn-primary" id="next-step">Continue</button>
             </div>
         </div>
     </div>
