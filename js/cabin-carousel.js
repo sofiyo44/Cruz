@@ -566,15 +566,19 @@ document.addEventListener('DOMContentLoaded', function () {
             buttons.forEach(button => button.textContent = 'Select');
             e.target.textContent = 'Selected';
             const selectedCabinId = e.target.getAttribute('data-cabin-id');
-            const selectedCabin = Object.keys(cabinData).find(key =>
+            const selectedCabinKey = Object.keys(cabinData).find(key =>
                 cabinData[key].children.some(child => child.id === selectedCabinId)
             );
             const formData = JSON.parse(localStorage.getItem('cruiseFormData')) || {};
-            formData.cabinType = selectedCabin;
+            formData.cabinType = selectedCabinKey;
             localStorage.setItem('cruiseFormData', JSON.stringify(formData));
         }
     });
 
     // Initial setup
     populateCabinChips();
+    $('#bookingModal').on('shown.bs.modal', function () {
+        updateBreadcrumb();
+        highlightSelectedChip();
+    });
 });
