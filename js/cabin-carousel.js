@@ -577,25 +577,61 @@ document.addEventListener('DOMContentLoaded', function () {
         const cardButton = document.querySelector(`.select-cabin-btn[data-cabin-id="${cabinId}"]`);
         if (cardButton) {
             cardButton.textContent = 'Select';
+            const selectedCabinKey = Object.keys(cabinData).find(key =>
+                cabinData[key].children.some(child => child.id === cabinId)
+            );
+            const selectedChild = cabinData[selectedCabinKey].children.find(child => child.id === cabinId);
+            selectedChild.selected = false;
         }
         cardContainer.remove();
     };
 
-    document.getElementById('cabin-cards').addEventListener('click', (e) => {
-        if (e.target.classList.contains('select-cabin-btn')) {
+    document.getElementById('select-room-btn').addEventListener('click', function () {
+        updateBreadcrumb();
+        highlightSelectedChip();
+        $('#bookingModal').modal('show');
+    });
+
+    document.getElementById('cabin-chips').addEventListener('click', function (e) {
+        if (e.target.classList.contains('cabin-chip')) {
             const cabinId = e.target.getAttribute('data-cabin-id');
-            const parent = cabinData[cabinId];
-            if (parent) {
-                const child = parent.children.find(child => child.id === cabinId);
-                if (child) {
-                    addSelectedCabinToBookingDetails(child);
-                    e.target.textContent = 'Selected';
-                }
-            }
+            const selectedCabin = cabinData[cabinId];
+            showParentImage(selectedCabin);
+            populateChildCards(selectedCabin);
+            const chips = document.querySelectorAll('.cabin-chip');
+            chips.forEach(chip => chip.classList.remove('active'));
+            e.target.classList.add('active');
         }
     });
 
-    document.getElementById('selected-cabin-card').addEventListener('click', (e) => {
+    document.getElementById('cabin-cards').addEventListener('click', function (e) {
+        if (e.target.classList.contains('select-cabin-btn')) {
+            const selectedCabinId = e.target.getAttribute('data-cabin-id');
+            const selectedCabinKey = Object.keys(cabinData).find(key =>
+                cabinData[key].children.some(child => child.id === selectedCabinId)
+            );
+            const selectedChild = cabinData[selectedCabinKey].children.find(child => child.id === selectedCabinId);
+
+            if (selectedChild.selected) {
+                const existingCard = document.querySelector(`.selected-cabin-card-container[data-cabin-id="${selectedCabinId}"]`);
+                if (existingCard) {
+                    existingCard.remove();
+                    e.target.textContent = 'Select';
+                    selectedChild.selected = false;
+                }
+            } else {
+                e.target.textContent = 'Selected';
+                selectedChild.selected = true;
+                addSelectedCabinToBookingDetails(selectedChild);
+            }
+
+            const formData = JSON.parse(localStorage.getItem('cruiseFormData')) || {};
+            formData.cabinType = selectedCabinKey;
+            localStorage.setItem('cruiseFormData', JSON.stringify(formData));
+        }
+    });
+
+    document.getElementById('selected-cabin-card').addEventListener('click', function (e) {
         if (e.target.classList.contains('toggle-btn')) {
             handleToggleContent(e);
         } else if (e.target.classList.contains('close-cabin-btn')) {
@@ -603,7 +639,95 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 
-    // Other existing event listeners and functions...
+    // Steps and Validation JavaScript
+    let currentStep = 1;
+    const totalSteps = 3;
+
+    const showStep = (step) => {
+        for (let i = 1; i <= totalSteps; i++) {
+            document.getElementById(`step${i}`).classList.toggle('d-none', i !== step);
+        }
+    };
+
+    const nextStep = () => {
+        if (currentStep < totalSteps) {
+            currentStep++;
+            showStep(currentStep);
+        }
+    };
+
+    const prevStep = () => {
+        if (currentStep > 1) {
+            currentStep--;
+            showStep(currentStep);
+        }
+    };
+
+    const generatePassengerForm = (numPassengers) => {
+        const container = document.getElementById('passenger-info-container');
+        container.innerHTML = '';
+        for (let i = 0; i < numPassengers; i++) {
+            const passengerForm = `
+                <div class="passenger-form">
+                    <h4>Passenger ${i + 1}</h4>
+                    <div class="form-group">
+                        <label for="fullName${i}">Full Name</label>
+                        <input type="text" class="form-control" id="fullName${i}" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="dob${i}">Date of Birth</label>
+                        <input type="date" class="form-control" id="dob${i}" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="nationality${i}">Nationality</label>
+                        <input type="text" class="form-control" id="nationality${i}" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="passport${i}">Passport/ID</label>
+                        <input type="text" class="form-control" id="passport${i}" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="proofOfID${i}">Proof of Valid ID</label>
+                        <input type="file" class="form-control" id="proofOfID${i}" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="specialNeeds${i}">Special Needs/Medical Conditions</label>
+                        <input type="text" class="form-control" id="specialNeeds${i}">
+                    </div>
+                    <div class="form-group">
+                        <label for="address${i}">Home/Billing Address</label>
+                        <input type="text" class="form-control" id="address${i}" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone${i}">Telephone Number(s)</label>
+                        <input type="text" class="form-control" id="phone${i}" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email${i}">Email Address</label>
+                        <input type="email" class="form-control" id="email${i}" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="emergencyContact${i}">Emergency Contact</label>
+                        <input type="text" class="form-control" id="emergencyContact${i}" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="signature${i}">Signature</label>
+                        <input type="text" class="form-control" id="signature${i}" required>
+                    </div>
+                </div>
+            `;
+            container.innerHTML += passengerForm;
+        }
+    };
+
+    const populatePaymentSummary = () => {
+        const formData = JSON.parse(localStorage.getItem('cruiseFormData'));
+        const paymentSummaryContainer = document.getElementById('payment-summary');
+        paymentSummaryContainer.innerHTML = `
+            <p>Order Total: <strong>${formData.totalPrice}</strong></p>
+            <!-- Add line items here -->
+        `;
+    };
 
     document.getElementById('next-step').addEventListener('click', nextStep);
     document.getElementById('prev-step').addEventListener('click', prevStep);
