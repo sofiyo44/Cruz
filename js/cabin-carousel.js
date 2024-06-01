@@ -480,7 +480,7 @@ document.addEventListener('DOMContentLoaded', function () {
         `;
     };
 
-    const createChildCard = (child) => {
+    const createChildCard = (child, selectable = true) => {
         return `
             <div class="col-md-4 mb-4">
                 <div class="card">
@@ -491,7 +491,7 @@ document.addEventListener('DOMContentLoaded', function () {
                         <ul class="card-text" style="font-size: 0.9em;">
                             ${child.description.map(item => `<li>${item}</li>`).join('')}
                         </ul>
-                        <button class="btn btn-primary select-cabin-btn" data-cabin-id="${child.id}">Select</button>
+                        ${selectable ? `<button class="btn btn-primary select-cabin-btn" data-cabin-id="${child.id}">Select</button>` : ''}
                     </div>
                 </div>
             </div>
@@ -542,6 +542,11 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     };
 
+    const addSelectedCabinToBookingDetails = (child) => {
+        const bookingDetailsContainer = document.getElementById('selected-cabin-card');
+        bookingDetailsContainer.innerHTML = createChildCard(child, false);
+    };
+
     document.getElementById('select-room-btn').addEventListener('click', function () {
         updateBreadcrumb();
         highlightSelectedChip();
@@ -569,6 +574,9 @@ document.addEventListener('DOMContentLoaded', function () {
             const selectedCabinKey = Object.keys(cabinData).find(key =>
                 cabinData[key].children.some(child => child.id === selectedCabinId)
             );
+            const selectedChild = cabinData[selectedCabinKey].children.find(child => child.id === selectedCabinId);
+            addSelectedCabinToBookingDetails(selectedChild);
+
             const formData = JSON.parse(localStorage.getItem('cruiseFormData')) || {};
             formData.cabinType = selectedCabinKey;
             localStorage.setItem('cruiseFormData', JSON.stringify(formData));
