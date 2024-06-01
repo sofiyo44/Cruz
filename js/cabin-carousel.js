@@ -482,7 +482,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     const createChildCard = (child, selectable = true) => {
         return `
-            <div class="col-md-4 mb-4">
+            <div class="col-md-4 mb-4 selected-cabin-card-container" data-cabin-id="${child.id}">
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title">${child.text}</h5>
@@ -544,7 +544,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     const addSelectedCabinToBookingDetails = (child) => {
         const bookingDetailsContainer = document.getElementById('selected-cabin-card');
-        bookingDetailsContainer.innerHTML = createChildCard(child, false);
+        bookingDetailsContainer.innerHTML += createChildCard(child, false);
     };
 
     document.getElementById('select-room-btn').addEventListener('click', function () {
@@ -568,14 +568,24 @@ document.addEventListener('DOMContentLoaded', function () {
     document.getElementById('cabin-cards').addEventListener('click', function (e) {
         if (e.target.classList.contains('select-cabin-btn')) {
             const buttons = document.querySelectorAll('.select-cabin-btn');
-            buttons.forEach(button => button.textContent = 'Select');
-            e.target.textContent = 'Selected';
             const selectedCabinId = e.target.getAttribute('data-cabin-id');
             const selectedCabinKey = Object.keys(cabinData).find(key =>
                 cabinData[key].children.some(child => child.id === selectedCabinId)
             );
             const selectedChild = cabinData[selectedCabinKey].children.find(child => child.id === selectedCabinId);
-            addSelectedCabinToBookingDetails(selectedChild);
+
+            if (selectedChild.selected) {
+                const existingCard = document.querySelector(`.selected-cabin-card-container[data-cabin-id="${selectedCabinId}"]`);
+                if (existingCard) {
+                    existingCard.remove();
+                    e.target.textContent = 'Select';
+                    selectedChild.selected = false;
+                }
+            } else {
+                e.target.textContent = 'Selected';
+                selectedChild.selected = true;
+                addSelectedCabinToBookingDetails(selectedChild);
+            }
 
             const formData = JSON.parse(localStorage.getItem('cruiseFormData')) || {};
             formData.cabinType = selectedCabinKey;
