@@ -303,6 +303,124 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 
+// Cabin API Call and strip intergration CHANGE SOON DOES NOT HAVE FORM OR TOTAL LOGIC
+
+document.addEventListener('DOMContentLoaded', async function () {
+    // Replace this with your actual API call
+    const response = await fetch('https://api.example.com/cabins');
+    const cabinData = await response.json();
+
+    const showParentImage = (parent) => {
+        const parentImageContainer = document.getElementById('parent-image');
+        parentImageContainer.innerHTML = `
+            <img src="${parent.img}" alt="${parent.text}" class="img-fluid">
+        `;
+    };
+
+    const createChildCard = (child) => {
+        return `
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">${child.text}</h5>
+                        <p class="card-text">Price: ${child.price}</p>
+                        <p class="card-text">Availability: ${child.availability}</p>
+                        <ul class="card-text" style="font-size: 0.9em;">
+                            ${child.description.map(item => `<li>${item}</li>`).join('')}
+                        </ul>
+                        <button class="btn btn-primary select-cabin-btn" data-cabin-id="${child.id}" data-cabin-price="${child.price_touroperator}">Select</button>
+                    </div>
+                </div>
+            </div>
+        `;
+    };
+
+    const populateChildCards = (parent) => {
+        const cabinCardsContainer = document.getElementById('cabin-cards');
+        cabinCardsContainer.innerHTML = parent.children.map(child => createChildCard(child)).join('');
+    };
+
+    const populateCabinChips = () => {
+        const cabinChipsContainer = document.getElementById('cabin-chips');
+        cabinChipsContainer.innerHTML = Object.keys(cabinData).map(key => {
+            const cabin = cabinData[key];
+            return `
+                <button class="btn btn-outline-primary m-1 cabin-chip" data-cabin-id="${cabin.id}">${cabin.text}</button>
+            `;
+        }).join('');
+    };
+
+    document.getElementById('cabin-chips').addEventListener('click', function (e) {
+        if (e.target.classList.contains('cabin-chip')) {
+            const cabinId = e.target.getAttribute('data-cabin-id');
+            const selectedCabin = cabinData[cabinId];
+            showParentImage(selectedCabin);
+            populateChildCards(selectedCabin);
+            const chips = document.querySelectorAll('.cabin-chip');
+            chips.forEach(chip => chip.classList.remove('active'));
+            e.target.classList.add('active');
+        }
+    });
+
+    document.getElementById('cabin-cards').addEventListener('click', function (e) {
+        if (e.target.classList.contains('select-cabin-btn')) {
+            const buttons = document.querySelectorAll('.select-cabin-btn');
+            buttons.forEach(button => button.textContent = 'Select');
+            e.target.textContent = 'Selected';
+            const selectedCabinPrice = e.target.getAttribute('data-cabin-price');
+            document.getElementById('paymentForm').style.display = 'block';
+            setupStripe(selectedCabinPrice);
+        }
+    });
+
+    const setupStripe = (amount) => {
+        const stripe = Stripe('your-publishable-key-here');
+        const elements = stripe.elements();
+        const cardElement = elements.create('card');
+        cardElement.mount('#card-element');
+
+        document.getElementById('payButton').addEventListener('click', async () => {
+            const { paymentIntent, error } = await stripe.confirmCardPayment('client-secret-here', {
+                payment_method: {
+                    card: cardElement,
+                    billing_details: {
+                        name: 'Customer Name'
+                    }
+                }
+            });
+
+            if (error) {
+                console.error(error);
+                alert('Payment failed');
+            } else {
+                alert('Payment successful');
+                // Process the order on your server
+                await fetch('https://api.example.com/orders', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        amount,
+                        paymentIntentId: paymentIntent.id
+                    })
+                });
+            }
+        });
+    };
+
+    // Initial setup
+    populateCabinChips();
+});
+
+
+
+
+
+
+
+
+
 
 
 
