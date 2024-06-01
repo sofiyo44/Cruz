@@ -1245,17 +1245,17 @@
                                     <h3 class="card-title pb-3">Order Details</h3>
                                     <div class="section-block"></div>
                                     <ul class="list-items list-items-2 py-3">
-                                        <li><span>Cruise:</span>MSC Cruise</li>
+                                        <li><span>Cruise:</span><span id="booking-cruise-line">MSC Cruise</span></li>
                                         <li><span>Cabin Type:</span><span id="selected-cabin">Grand Suite</span></li>
-                                        <li><span>Food & Dining:</span>$110</li>
-                                        <li><span>Cruise Price:</span>$130</li>
+                                        <li><span>Food & Dining:</span><span id="booking-food-dining">$110</span></li>
+                                        <li><span>Cruise Price:</span><span id="booking-cruise-price">$130</span></li>
                                         <li id="passengers-count">Passengers: 4</li>
                                     </ul>
                                     <div class="section-block"></div>
                                     <ul class="list-items list-items-2 pt-3">
-                                        <li>Sub Total: $240</li>
-                                        <li>Taxes And Fees: $5</li>
-                                        <li>Total Price: $245</li>
+                                        <li id="booking-sub-total">Sub Total: $240</li>
+                                        <li id="booking-taxes-fees">Taxes And Fees: $5</li>
+                                        <li id="booking-total-price">Total Price: $245</li>
                                     </ul>
                                 </div>
                             </div>
@@ -1308,7 +1308,14 @@
         const cruiseData = {
             title: "Atlantic Ocean Europe 7 days from/to Portsmouth",
             departure_cruise: "9/23/24",
-            arrival_cruise: "9/29/24"
+            arrival_cruise: "9/29/24",
+            cruiseLine: "MSC Cruise",
+            foodDining: "$110",
+            cruisePrice: "$130",
+            passengers: 4,
+            subTotal: "$240",
+            taxesFees: "$5",
+            totalPrice: "$245"
         };
     
         // Populate cruise details
@@ -1574,6 +1581,16 @@
                 alert('Please fill in all form fields and select a cabin.');
                 return;
             }
+            // Populate booking details in modal
+            document.getElementById('selected-cabin').innerText = formData.cabinType || "N/A";
+            document.getElementById('passengers-count').innerText = `Passengers: ${formData.numberOfGuests}`;
+            document.getElementById('cruise-title').innerText = cruiseData.title;
+            document.getElementById('booking-cruise-line').innerText = cruiseData.cruiseLine;
+            document.getElementById('booking-food-dining').innerText = cruiseData.foodDining;
+            document.getElementById('booking-cruise-price').innerText = cruiseData.cruisePrice;
+            document.getElementById('booking-sub-total').innerText = `Sub Total: ${cruiseData.subTotal}`;
+            document.getElementById('booking-taxes-fees').innerText = `Taxes And Fees: ${cruiseData.taxesFees}`;
+            document.getElementById('booking-total-price').innerText = `Total Price: ${cruiseData.totalPrice}`;
             $('#bookingModal').modal('show');
         });
     });
