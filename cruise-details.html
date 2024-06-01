@@ -1222,40 +1222,43 @@
                                         <img src="images/cruise-img.jpg" alt="cruise-img">
                                     </a>
                                 </div>
-                                <div class="card-body p-0">
-                                    <div class="d-flex justify-content-between">
-                                        <div style="width: 50%;">
-                                            <h3 class="card-title cruise-title">5 Nights Bermuda Cruise</h3>
-                                            <p class="card-meta cruise-line">Virgin Voyages</p>
+                                <div class="card-body p-0 d-flex">
+                                    <div style="width: 50%;">
+                                        <div class="d-flex justify-content-between">
+                                            <div>
+                                                <h3 class="card-title cruise-title">5 Nights Bermuda Cruise</h3>
+                                                <p class="card-meta cruise-line">Virgin Voyages</p>
+                                            </div>
+                                            <div>
+                                                <a href="cruise-details.html" class="btn ml-1"><i class="la la-edit" data-toggle="tooltip" data-placement="top" title="Edit"></i></a>
+                                            </div>
                                         </div>
-                                        <div>
-                                            <a href="cruise-details.html" class="btn ml-1"><i class="la la-edit" data-toggle="tooltip" data-placement="top" title="Edit"></i></a>
+                                        <div class="card-rating">
+                                            <span class="badge text-white">4.4/5</span>
+                                            <span class="review__text">Average</span>
+                                            <span class="rating__text">(30 Reviews)</span>
                                         </div>
+                                        <div class="section-block"></div>
+                                        <ul class="list-items list-items-2 list-items-flush py-2">
+                                            <li class="font-size-15"><span class="w-auto d-block mb-n1"><i class="la la-ship mr-1 text-black font-size-17"></i>Departs</span><span class="departure-date">12 May 2020 7:40am</span></li>
+                                            <li class="font-size-15"><span class="w-auto d-block mb-n1"><i class="la la-ship mr-1 text-black font-size-17"></i>Returns</span><span class="arrival-date">16 May 2020 8:40am</span></li>
+                                        </ul>
+                                        <h3 class="card-title pb-3">Order Details</h3>
+                                        <div class="section-block"></div>
+                                        <ul class="list-items list-items-2 py-3">
+                                            <li><span>Cruise:</span><span class="cruise-line">Virgin Voyages</span></li>
+                                            <li><span>Food & Dining:</span><span id="booking-food-dining">$110</span></li>
+                                            <li><span>Cruise Price:</span><span id="booking-cruise-price">$130</span></li>
+                                            <li id="passengers-count">Passengers: 4</li>
+                                        </ul>
+                                        <div class="section-block"></div>
+                                        <ul class="list-items list-items-2 pt-3">
+                                            <li id="booking-sub-total">Sub Total: $240</li>
+                                            <li id="booking-taxes-fees">Taxes And Fees: $5</li>
+                                            <li id="booking-total-price">Total Price: $245</li>
+                                        </ul>
                                     </div>
-                                    <div class="card-rating">
-                                        <span class="badge text-white">4.4/5</span>
-                                        <span class="review__text">Average</span>
-                                        <span class="rating__text">(30 Reviews)</span>
-                                    </div>
-                                    <div class="section-block"></div>
-                                    <ul class="list-items list-items-2 list-items-flush py-2">
-                                        <li class="font-size-15"><span class="w-auto d-block mb-n1"><i class="la la-ship mr-1 text-black font-size-17"></i>Departs</span><span class="departure-date">12 May 2020 7:40am</span></li>
-                                        <li class="font-size-15"><span class="w-auto d-block mb-n1"><i class="la la-ship mr-1 text-black font-size-17"></i>Returns</span><span class="arrival-date">16 May 2020 8:40am</span></li>
-                                    </ul>
-                                    <h3 class="card-title pb-3">Order Details</h3>
-                                    <div class="section-block"></div>
-                                    <ul class="list-items list-items-2 py-3">
-                                        <li><span>Cruise:</span><span class="cruise-line">Virgin Voyages</span></li>
-                                        <li><span>Food & Dining:</span><span id="booking-food-dining">$110</span></li>
-                                        <li><span>Cruise Price:</span><span id="booking-cruise-price">$130</span></li>
-                                        <li id="passengers-count">Passengers: 4</li>
-                                    </ul>
-                                    <div class="section-block"></div>
-                                    <ul class="list-items list-items-2 pt-3">
-                                        <li id="booking-sub-total">Sub Total: $240</li>
-                                        <li id="booking-taxes-fees">Taxes And Fees: $5</li>
-                                        <li id="booking-total-price">Total Price: $245</li>
-                                    </ul>
+                                    <div id="selected-cabin-card" style="width: 50%;"></div>
                                 </div>
                             </div>
                         </div>
@@ -1271,6 +1274,7 @@
         </div>
     </div>
 </div>
+
 
 
 
