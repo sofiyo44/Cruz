@@ -525,8 +525,26 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     };
 
+    const highlightSelectedChip = () => {
+        const formData = JSON.parse(localStorage.getItem('cruiseFormData'));
+        if (formData && formData.cabinType) {
+            const selectedCabin = cabinData[formData.cabinType];
+            if (selectedCabin) {
+                showParentImage(selectedCabin);
+                populateChildCards(selectedCabin);
+                const chips = document.querySelectorAll('.cabin-chip');
+                chips.forEach(chip => chip.classList.remove('active'));
+                const selectedChip = document.querySelector(`.cabin-chip[data-cabin-id="${formData.cabinType}"]`);
+                if (selectedChip) {
+                    selectedChip.classList.add('active');
+                }
+            }
+        }
+    };
+
     document.getElementById('select-room-btn').addEventListener('click', function () {
         updateBreadcrumb();
+        highlightSelectedChip();
         $('#bookingModal').modal('show');
     });
 
@@ -536,6 +554,9 @@ document.addEventListener('DOMContentLoaded', function () {
             const selectedCabin = cabinData[cabinId];
             showParentImage(selectedCabin);
             populateChildCards(selectedCabin);
+            const chips = document.querySelectorAll('.cabin-chip');
+            chips.forEach(chip => chip.classList.remove('active'));
+            e.target.classList.add('active');
         }
     });
 
@@ -544,6 +565,13 @@ document.addEventListener('DOMContentLoaded', function () {
             const buttons = document.querySelectorAll('.select-cabin-btn');
             buttons.forEach(button => button.textContent = 'Select');
             e.target.textContent = 'Selected';
+            const selectedCabinId = e.target.getAttribute('data-cabin-id');
+            const selectedCabin = Object.keys(cabinData).find(key =>
+                cabinData[key].children.some(child => child.id === selectedCabinId)
+            );
+            const formData = JSON.parse(localStorage.getItem('cruiseFormData')) || {};
+            formData.cabinType = selectedCabin;
+            localStorage.setItem('cruiseFormData', JSON.stringify(formData));
         }
     });
 
