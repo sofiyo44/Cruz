@@ -592,7 +592,7 @@
                                 <h3 class="title font-size-20">Select a Cabin Type</h3>
                                 <div id="cabin-types" class="cabin-type padding-top-30px">
                                     <div class="cabin-card" style="display: flex; align-items: center; margin-bottom: 20px;">
-                                        <img src="//images.cruisec.net/images/ships/cabins/I7_IS.jpg" style="width: 400px; height: auto; margin-right: 20px;" alt="Inside cabin">
+                                        <img src="//images.cruisec.net/images/ships/cabins/I7_IS.jpg" style="width: 300px; height: auto; margin-right: 20px;" alt="Inside cabin">
                                         <div style="flex-grow: 1;">
                                             <h5 class="card-title">Inside cabin</h5>
                                             <ul class="list-items" style="font-size: 10px; list-style-type: disc; padding-left: 20px;">
@@ -608,7 +608,7 @@
                                         <button class="btn btn-primary select-cabin-btn" data-cabin-id="IS" data-cabin-text="Inside cabin" data-cabin-price="$743" style="margin-left: 20px;">Select Cabin</button>
                                     </div>
                                     <div class="cabin-card" style="display: flex; align-items: center; margin-bottom: 20px;">
-                                        <img src="//images.cruisec.net/images/ships/cabins/I7_OS.jpg" style="width: 400px; height: auto; margin-right: 20px;" alt="Outside cabin">
+                                        <img src="//images.cruisec.net/images/ships/cabins/I7_OS.jpg" style="width: 300px; height: auto; margin-right: 20px;" alt="Outside cabin">
                                         <div style="flex-grow: 1;">
                                             <h5 class="card-title">Outside cabin</h5>
                                             <ul class="list-items" style="font-size: 10px; list-style-type: disc; padding-left: 20px;">
@@ -625,7 +625,7 @@
                                         <button class="btn btn-primary select-cabin-btn" data-cabin-id="OS" data-cabin-text="Outside cabin" data-cabin-price="$764" style="margin-left: 20px;">Select Cabin</button>
                                     </div>
                                     <div class="cabin-card" style="display: flex; align-items: center; margin-bottom: 20px;">
-                                        <img src="//images.cruisec.net/images/ships/cabins/I7_BK.jpg" style="width: 400px; height: auto; margin-right: 20px;" alt="Balcony cabin">
+                                        <img src="//images.cruisec.net/images/ships/cabins/I7_BK.jpg" style="width: 300px; height: auto; margin-right: 20px;" alt="Balcony cabin">
                                         <div style="flex-grow: 1;">
                                             <h5 class="card-title">Balcony cabin</h5>
                                             <ul class="list-items" style="font-size: 10px; list-style-type: disc; padding-left: 20px;">
@@ -642,7 +642,7 @@
                                         <button class="btn btn-primary select-cabin-btn" data-cabin-id="BK" data-cabin-text="Balcony cabin" data-cabin-price="$759" style="margin-left: 20px;">Select Cabin</button>
                                     </div>
                                     <div class="cabin-card" style="display: flex; align-items: center; margin-bottom: 20px;">
-                                        <img src="//images.cruisec.net/images/ships/cabins/I7_SU.jpg" style="width: 400px; height: auto; margin-right: 20px;" alt="Suite">
+                                        <img src="//images.cruisec.net/images/ships/cabins/I7_SU.jpg" style="width: 300px; height: auto; margin-right: 20px;" alt="Suite">
                                         <div style="flex-grow: 1;">
                                             <h5 class="card-title">Suite</h5>
                                             <ul class="list-items" style="font-size: 10px; list-style-type: disc; padding-left: 20px;">
@@ -1475,7 +1475,7 @@
                     <div class="input-box">
                         <label class="label-text">Age of Guest ${i}</label>
                         <div class="form-group">
-                            <input type="text" class="form-control age-guest" id="age-guest-${i}" placeholder="Age of Guest ${i}">
+                            <input type="text" class="form-control age-guest" id="age-guest-${i}" placeholder="Age of Guest ${i}" required>
                         </div>
                     </div>
                 `;
@@ -1487,8 +1487,10 @@
             const stateSelect = document.getElementById('guest-state');
             if (this.value === 'US') {
                 stateSelect.style.display = 'block';
+                stateSelect.setAttribute('required', 'true');
             } else {
                 stateSelect.style.display = 'none';
+                stateSelect.removeAttribute('required');
             }
         });
     
@@ -1499,7 +1501,7 @@
             const guestState = guestResidency === 'US' ? document.getElementById('guest-state').value : 'N/A';
     
             const ageInputs = document.querySelectorAll('.age-guest');
-            const ages = Array.from(ageInputs).map(input => input.value).join(', ');
+            const ages = Array.from(ageInputs).map(input => input.value);
     
             const selectedCabin = document.querySelector('.selected-cabin');
             const cabinType = selectedCabin ? selectedCabin.dataset.cabinId : '';
@@ -1568,7 +1570,10 @@
         // Handle modal button click
         document.getElementById('select-room-btn').addEventListener('click', function () {
             const formData = JSON.parse(localStorage.getItem('cruiseFormData'));
-    
+            if (!formData || !formData.numberOfGuests || !formData.guestResidency || !formData.ages.length || !formData.cabinType) {
+                alert('Please fill in all form fields and select a cabin.');
+                return;
+            }
             $('#bookingModal').modal('show');
         });
     });
