@@ -473,6 +473,13 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     };
 
+    let totalPrice = 0;
+
+    const updateTotalPrice = (amount) => {
+        totalPrice += amount;
+        document.getElementById('total-price').textContent = `Total Price: $${totalPrice.toFixed(2)}`;
+    };
+
     const showParentImage = (parent) => {
         const parentImageContainer = document.getElementById('parent-image');
         parentImageContainer.innerHTML = `
@@ -548,6 +555,8 @@ document.addEventListener('DOMContentLoaded', function () {
     const addSelectedCabinToBookingDetails = (child) => {
         const bookingDetailsContainer = document.getElementById('selected-cabin-card');
         bookingDetailsContainer.innerHTML += createChildCard(child, false, true);
+        const price = parseFloat(child.price.replace('$', ''));
+        updateTotalPrice(price);
     };
 
     const handleToggleContent = (e) => {
@@ -568,6 +577,8 @@ document.addEventListener('DOMContentLoaded', function () {
             );
             const selectedChild = cabinData[selectedCabinKey].children.find(child => child.id === cabinId);
             selectedChild.selected = false;
+            const price = parseFloat(selectedChild.price.replace('$', ''));
+            updateTotalPrice(-price);
         }
         cardContainer.remove();
     };
@@ -604,6 +615,8 @@ document.addEventListener('DOMContentLoaded', function () {
                     existingCard.remove();
                     e.target.textContent = 'Select';
                     selectedChild.selected = false;
+                    const price = parseFloat(selectedChild.price.replace('$', ''));
+                    updateTotalPrice(-price);
                 }
             } else {
                 e.target.textContent = 'Selected';
