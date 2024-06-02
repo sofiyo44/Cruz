@@ -1219,7 +1219,6 @@
 <script src="cruise-detail-temp.js"></script>
 <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" integrity="sha512-GvTx5Z5+G7ZSM7zSYlTkKQ2ad9I5fIRyQ2I5XIs64EV6UO8qFecp6Do2uIH7+3H1mBjd+z5x6TBe+9U/8A0pMw==" crossorigin=""></script>
 <script src="js/cabin-cards.js"></script>
-
 <script>
     document.addEventListener('DOMContentLoaded', function () {
         console.log('DOM fully loaded and parsed');
@@ -1551,6 +1550,10 @@
         };
     
         showStep(currentStep);
+    
+        // Event listeners for next and previous buttons
+        document.getElementById('next-step').addEventListener('click', nextStep);
+        document.getElementById('prev-step').addEventListener('click', prevStep);
     });
 </script>
 </body>
