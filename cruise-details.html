@@ -1230,7 +1230,7 @@
             arrival_cruise: "9/29/24",
             cruiseline: "Virgin Voyages"
         };
-
+    
         // Populate cruise details
         document.querySelectorAll('.cruise-title').forEach(el => el.innerText = cruiseData.title);
         document.querySelectorAll('.departure-date').forEach(el => el.innerText = cruiseData.departure_cruise);
@@ -1238,7 +1238,7 @@
         document.querySelectorAll('.cruise-line').forEach(el => el.innerText = cruiseData.cruiseline);
         document.getElementById('cruise-route').innerText = "Ports of Call: Portsmouth, Cruising Day, La Coruna, Bilbao, Le Verdon-sur-Mer, Portsmouth";
         document.getElementById('ship-description').innerHTML = "From decadent dinners to boozy after-parties, gather with your partner, your best friends and yourself to celebrate life's best moments aboard one of the 100% adults-only voyages.";
-
+    
         // Ship statistics
         document.getElementById('ship-statistics-left').innerHTML = `
             <li>Year Built: 2023</li>
@@ -1250,7 +1250,7 @@
             <li>Weight: 110,000</li>
             <li>Length: 278m</li>
         `;
-
+    
         // Included and Not Included
         document.getElementById('included-list').innerHTML = `
             <li>Cruise in the cabin category booked.</li>
@@ -1271,7 +1271,7 @@
             <li>Recommended gratuities.</li>
             <li>Visa, if necessary (extra charges possible).</li>
         `;
-
+    
         // Populate itinerary table
         document.getElementById('itinerary-table').innerHTML = `
             <tr>
@@ -1317,7 +1317,7 @@
                 <td></td>
             </tr>
         `;
-
+    
         // Populate amenities list
         const amenities = [
             {
@@ -1376,7 +1376,7 @@
                 ]
             }
         ];
-
+    
         const amenitiesHTML = amenities.map(category => `
             <div class="col-lg-4">
                 <h4>${category.text}</h4>
@@ -1385,9 +1385,9 @@
                 </ul>
             </div>
         `).join('');
-
+    
         document.getElementById('amenities-list').innerHTML = amenitiesHTML;
-
+    
         // Handle number of guests selection
         document.getElementById('number-of-guests').addEventListener('change', function () {
             const numGuests = parseInt(this.value);
@@ -1404,7 +1404,7 @@
                 `;
             }
         });
-
+    
         // Handle guest residency selection
         document.getElementById('guest-residency').addEventListener('change', function () {
             const stateSelect = document.getElementById('guest-state');
@@ -1416,79 +1416,50 @@
                 stateSelect.removeAttribute('required');
             }
         });
-
+    
         // Save form data to local storage
         const saveFormData = () => {
             const numberOfGuests = document.getElementById('number-of-guests').value;
             const guestResidency = document.getElementById('guest-residency').value;
             const guestState = guestResidency === 'US' ? document.getElementById('guest-state').value : 'N/A';
-
+    
             const ageInputs = document.querySelectorAll('.age-guest');
             const ages = Array.from(ageInputs).map(input => input.value);
-
+    
             const selectedCabin = document.querySelector('.selected-cabin');
             const cabinType = selectedCabin ? selectedCabin.dataset.cabinId : '';
-
+    
             const formData = {
                 numberOfGuests,
                 guestResidency,
                 guestState,
                 ages,
-                cabinType
+                cabinType,
+                totalPrice: JSON.parse(localStorage.getItem('cruiseFormData')).totalPrice || 0
             };
-
+    
             localStorage.setItem('cruiseFormData', JSON.stringify(formData));
         };
-
+    
         // Save form data when form changes
         document.querySelectorAll('#number-of-guests, #guest-residency, .age-guest, #guest-state').forEach(element => {
             element.addEventListener('change', saveFormData);
         });
-
-        // Handle cabin selection
-        const selectCabinButtons = document.querySelectorAll('.select-cabin-btn');
-        const cabinOptions = document.querySelectorAll('.cabin-option, .cabin-price');
-
-        const toggleCabinSelection = (cabinId) => {
-            // Remove 'selected' from all buttons and highlight
-            selectCabinButtons.forEach(button => button.innerText = 'Select Cabin');
-            cabinOptions.forEach(option => option.classList.remove('highlighted'));
-
-            // Add 'selected' to the clicked button and highlight the cabin option
-            const selectedButton = document.querySelector(`.select-cabin-btn[data-cabin-id="${cabinId}"]`);
-            if (selectedButton) {
-                selectedButton.innerText = 'Selected';
-                selectedButton.closest('.cabin-option').classList.add('highlighted');
-            }
-
-            // Update the selected cabin ID
-            document.getElementById('selected-cabin').value = cabinId;
-
-            // Save form data to local storage
-            saveFormData();
-        };
-
+    
         const modalTrigger = document.getElementById('select-room-btn');
         modalTrigger.addEventListener('click', function () {
             console.log('Select Room button clicked');
             const formData = JSON.parse(localStorage.getItem('cruiseFormData'));
             console.log('Form Data:', formData);
-
+    
             if (!formData || !formData.numberOfGuests || !formData.guestResidency || !formData.ages.length || !formData.cabinType) {
                 alert('Please fill in all form fields and select a cabin.');
             }
-
+    
             // Initialize and show the modal using jQuery
             $('#bookingModal').modal('show');
         });
-
-        selectCabinButtons.forEach(button => {
-            button.addEventListener('click', function () {
-                const cabinId = this.dataset.cabinId;
-                toggleCabinSelection(cabinId);
-            });
-        });
-
+    
         // Steps and Validation JavaScript
         let currentStep = 1;
         const totalSteps = 3;
@@ -1574,52 +1545,12 @@
             const formData = JSON.parse(localStorage.getItem('cruiseFormData'));
             const paymentSummaryContainer = document.getElementById('payment-summary');
             paymentSummaryContainer.innerHTML = `
-                <p>Order Total: <strong>${formData.totalPrice}</strong></p>
+                <p>Order Total: <strong>$${(formData.totalPrice + 5).toFixed(2)}</strong></p>
                 <!-- Add line items here -->
             `;
         };
+    
         showStep(currentStep);
-    
-        // Use cabinData from cabin-cards.js
-        console.log('Cabin Data:', cabinData);
-        // Perform operations with cabinData
-    
-        // Example usage of cabinData
-        const displayCabinPrices = (cabinData) => {
-            // Assuming we have a container to display cabin prices
-            const cabinPriceContainer = document.getElementById('cabin-prices');
-            cabinPriceContainer.innerHTML = ''; // Clear any existing content
-            
-            Object.keys(cabinData).forEach(cabinId => {
-                const cabin = cabinData[cabinId];
-                const cabinPriceElement = document.createElement('div');
-                cabinPriceElement.innerHTML = `
-                    <h4>${cabin.text}</h4>
-                    <p>Price: ${cabin.price}</p>
-                `;
-                cabinPriceContainer.appendChild(cabinPriceElement);
-            });
-        };
-    
-        // Display cabin prices
-        displayCabinPrices(cabinData);
-    
-        // Load prices from external JSON
-        fetch('prices.json')
-            .then(response => response.json())
-            .then(data => {
-                console.log('Prices loaded:', data);
-                // Use the data here
-                // Example: update cabin prices based on the loaded data
-                Object.keys(data).forEach(cabinId => {
-                    if (cabinData[cabinId]) {
-                        cabinData[cabinId].price = data[cabinId].price;
-                    }
-                });
-                // Update the displayed cabin prices
-                displayCabinPrices(cabinData);
-            })
-            .catch(error => console.error('Error loading prices:', error));
     });
 </script>
 </body>
