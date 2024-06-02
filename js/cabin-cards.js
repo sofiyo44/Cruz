@@ -473,31 +473,25 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     };
 
-document.addEventListener('DOMContentLoaded', function () {
-    const cabinData = {
-        // Your cabin data here...
-    };
-
     const showParentImage = (parent) => {
         const parentImageContainer = document.getElementById('parent-image');
-        parentImageContainer.innerHTML = `<img src="${parent.img}" alt="${parent.text}" class="img-fluid">`;
+        parentImageContainer.innerHTML = `
+            <img src="${parent.img}" alt="${parent.text}" class="img-fluid">
+        `;
     };
 
-    const createChildCard = (child, selectable = true, smallFont = false) => {
+    const createChildCard = (child, selectable = true) => {
         return `
-            <div class="col-md-4 mb-4 selected-cabin-card-container" data-cabin-id="${child.id}">
+            <div class="col-md-4 mb-4">
                 <div class="card">
-                    <div class="card-body ${smallFont ? 'small-font' : ''}">
-                        <button class="btn btn-sm btn-danger float-right close-cabin-btn">&times;</button>
+                    <div class="card-body">
                         <h5 class="card-title">${child.text}</h5>
-                        <div class="card-text toggle-content" style="display: none;">
-                            <p>Price: ${child.price}</p>
-                            <p>Availability: ${child.availability}</p>
-                            <ul style="font-size: 0.9em;">
-                                ${child.description.map(item => `<li>${item}</li>`).join('')}
-                            </ul>
-                        </div>
-                        ${selectable ? `<button class="btn btn-primary select-cabin-btn" data-cabin-id="${child.id}">Select</button>` : '<button class="btn btn-secondary toggle-btn">More Info</button>'}
+                        <p class="card-text">Price: ${child.price}</p>
+                        <p class="card-text">Availability: ${child.availability}</p>
+                        <ul class="card-text" style="font-size: 0.9em;">
+                            ${child.description.map(item => `<li>${item}</li>`).join('')}
+                        </ul>
+                        ${selectable ? `<button class="btn btn-primary select-cabin-btn" data-cabin-id="${child.id}">Select</button>` : ''}
                     </div>
                 </div>
             </div>
@@ -513,7 +507,9 @@ document.addEventListener('DOMContentLoaded', function () {
         const cabinChipsContainer = document.getElementById('cabin-chips');
         cabinChipsContainer.innerHTML = Object.keys(cabinData).map(key => {
             const cabin = cabinData[key];
-            return `<button class="btn btn-outline-primary m-1 cabin-chip" data-cabin-id="${cabin.id}">${cabin.text}</button>`;
+            return `
+                <button class="btn btn-outline-primary m-1 cabin-chip" data-cabin-id="${cabin.id}">${cabin.text}</button>
+            `;
         }).join('');
     };
 
@@ -548,41 +544,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     const addSelectedCabinToBookingDetails = (child) => {
         const bookingDetailsContainer = document.getElementById('selected-cabin-card');
-        bookingDetailsContainer.innerHTML += createChildCard(child, false, true);
-
-        const orderDetailsList = document.getElementById('order-details-list');
-        const price = parseFloat(child.price.replace('$', ''));
-        subTotal += price;
-
-        const listItem = document.createElement('li');
-        listItem.innerHTML = `<span>${child.text}</span><span>${child.price}</span>`;
-        orderDetailsList.appendChild(listItem);
-
-        document.getElementById('booking-sub-total').innerHTML = `Sub Total: $${subTotal.toFixed(2)}`;
-        const totalPrice = subTotal + 5; // Adding a fixed tax and fee of $5
-        document.getElementById('booking-total-price').innerHTML = `Total Price: $${totalPrice.toFixed(2)}`;
-    };
-
-    const handleToggleContent = (e) => {
-        const cardBody = e.target.closest('.card-body');
-        const content = cardBody.querySelector('.toggle-content');
-        content.style.display = content.style.display === 'none' ? 'block' : 'none';
-        e.target.textContent = content.style.display === 'none' ? 'More Info' : 'Less Info';
-    };
-
-    const handleCloseCard = (e) => {
-        const cardContainer = e.target.closest('.selected-cabin-card-container');
-        const cabinId = cardContainer.getAttribute('data-cabin-id');
-        const cardButton = document.querySelector(`.select-cabin-btn[data-cabin-id="${cabinId}"]`);
-        if (cardButton) {
-            cardButton.textContent = 'Select';
-            const selectedCabinKey = Object.keys(cabinData).find(key =>
-                cabinData[key].children.some(child => child.id === cabinId)
-            );
-            const selectedChild = cabinData[selectedCabinKey].children.find(child => child.id === cabinId);
-            selectedChild.selected = false;
-        }
-        cardContainer.remove();
+        bookingDetailsContainer.innerHTML = createChildCard(child, false);
     };
 
     document.getElementById('select-room-btn').addEventListener('click', function () {
@@ -605,36 +567,19 @@ document.addEventListener('DOMContentLoaded', function () {
 
     document.getElementById('cabin-cards').addEventListener('click', function (e) {
         if (e.target.classList.contains('select-cabin-btn')) {
+            const buttons = document.querySelectorAll('.select-cabin-btn');
+            buttons.forEach(button => button.textContent = 'Select');
+            e.target.textContent = 'Selected';
             const selectedCabinId = e.target.getAttribute('data-cabin-id');
             const selectedCabinKey = Object.keys(cabinData).find(key =>
                 cabinData[key].children.some(child => child.id === selectedCabinId)
             );
             const selectedChild = cabinData[selectedCabinKey].children.find(child => child.id === selectedCabinId);
-
-            if (selectedChild.selected) {
-                const existingCard = document.querySelector(`.selected-cabin-card-container[data-cabin-id="${selectedCabinId}"]`);
-                if (existingCard) {
-                    existingCard.remove();
-                    e.target.textContent = 'Select';
-                    selectedChild.selected = false;
-                }
-            } else {
-                e.target.textContent = 'Selected';
-                selectedChild.selected = true;
-                addSelectedCabinToBookingDetails(selectedChild);
-            }
+            addSelectedCabinToBookingDetails(selectedChild);
 
             const formData = JSON.parse(localStorage.getItem('cruiseFormData')) || {};
             formData.cabinType = selectedCabinKey;
             localStorage.setItem('cruiseFormData', JSON.stringify(formData));
-        }
-    });
-
-    document.getElementById('selected-cabin-card').addEventListener('click', function (e) {
-        if (e.target.classList.contains('toggle-btn')) {
-            handleToggleContent(e);
-        } else if (e.target.classList.contains('close-cabin-btn')) {
-            handleCloseCard(e);
         }
     });
 
