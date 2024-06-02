@@ -27,15 +27,16 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" integrity="sha512-xodZBNTC5n17Xt2gLVRzT5LgAZQ2ikqHjxUzngF5DgEC5ihJ72e9UBHhC4G5GA5/fdUjO1F3Wpx3RYZ1Qf4Htw==" crossorigin=""/>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
     <style>
         .selected-cabin {
             background-color: #f0f0f0;
             font-weight: bold;
         }
-    
         .card {
             width: 100%;
             border: none;
@@ -44,82 +45,64 @@
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             transition: transform 0.3s, box-shadow 0.3s;
         }
-    
         .card:hover {
             transform: translateY(-10px);
             box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
         }
-    
         .cabin-chip {
             margin: 0.5rem;
         }
-        
         .cabin-chip.active {
             background-color: #007bff;
             color: white;
         }
-        
         .card img {
             height: 200px;
             object-fit: cover;
         }
-        
-        }
-    
         .card-body {
             padding: 15px;
         }
-    
         .card-title {
             font-size: 1.25rem;
             font-weight: bold;
             color: #333;
         }
-    
         .card-text {
             font-size: 1rem;
             color: #666;
         }
-    
         .card-text p {
             margin: 0.5rem 0;
         }
-    
         .modal-header,
         .modal-footer {
             border: none;
         }
-    
         .modal-header {
             border-bottom: 1px solid #eee;
         }
-    
         .modal-footer {
             border-top: 1px solid #eee;
         }
-    
         .btn-primary {
             background-color: #007bff;
             border-color: #007bff;
             transition: background-color 0.3s, border-color 0.3s;
         }
-    
         .btn-primary:hover {
             background-color: #0056b3;
             border-color: #0056b3;
         }
-    
         .btn-secondary {
             background-color: #6c757d;
             border-color: #6c757d;
             transition: background-color 0.3s, border-color 0.3s;
         }
-    
         .btn-secondary:hover {
             background-color: #565e64;
             border-color: #565e64;
         }
-    
         .breadcrumb {
             padding: 0.75rem 1rem;
             margin-bottom: 1rem;
@@ -127,49 +110,45 @@
             background-color: #f8f9fa;
             border-radius: 0.25rem;
         }
-    
         .breadcrumb-item + .breadcrumb-item::before {
             display: inline-block;
             padding-right: 0.5rem;
             color: #6c757d;
             content: ">";
         }
-    
         .breadcrumb-item a {
             color: #007bff;
             text-decoration: none;
         }
-    
         .breadcrumb-item a:hover {
             color: #0056b3;
             text-decoration: underline;
         }
-    
         .container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 15px;
         }
-    
         .row {
             display: flex;
             flex-wrap: wrap;
             margin-right: -15px;
             margin-left: -15px;
         }
-    
         .col-md-4 {
             position: relative;
             width: 100%;
             padding-right: 15px;
             padding-left: 15px;
         }
-    
         .mb-4 {
             margin-bottom: 1.5rem !important;
         }
     </style>
 </head>
+
+
+    
 <body>
 <!-- start cssload-loader -->
 <div class="preloader" id="preloader">
@@ -1246,8 +1225,6 @@
 <script src="js/main.js"></script>
 <script src="cruise-detail-temp.js"></script>
 <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" integrity="sha512-GvTx5Z5+G7ZSM7zSYlTkKQ2ad9I5fIRyQ2I5XIs64EV6UO8qFecp6Do2uIH7+3H1mBjd+z5x6TBe+9U/8A0pMw==" crossorigin=""></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <script src="js/cabin-cards.js"></script>
 <script>
     document.addEventListener('DOMContentLoaded', function () {
