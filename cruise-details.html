@@ -1516,6 +1516,15 @@
     
         // Save form data initially
         saveFormData();
+        
+        document.getElementById('select-room-btn').addEventListener('click', function () {
+            const formData = JSON.parse(localStorage.getItem('cruiseFormData'));
+            if (!formData || !formData.numberOfGuests || !formData.guestResidency || !formData.ages.length || !formData.cabinType) {
+                alert('Please fill in all form fields and select a cabin.');
+                return;
+            }
+            $('#bookingModal').modal('show');
+        });
     
         // Booking Modal JavaScript
         let subTotal = 0;
