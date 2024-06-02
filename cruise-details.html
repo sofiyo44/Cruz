@@ -26,9 +26,8 @@
     <link rel="stylesheet" href="css/flag-icon.min.css">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" integrity="sha512-xodZBNTC5n17Xt2gLVRzT5LgAZQ2ikqHjxUzngF5DgEC5ihJ72e9UBHhC4G5GA5/fdUjO1F3Wpx3RYZ1Qf4Htw==" crossorigin=""/>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 
@@ -1234,7 +1233,7 @@
             arrival_cruise: "9/29/24",
             cruiseline: "Virgin Voyages"
         };
-    
+
         // Populate cruise details
         document.querySelectorAll('.cruise-title').forEach(el => el.innerText = cruiseData.title);
         document.querySelectorAll('.departure-date').forEach(el => el.innerText = cruiseData.departure_cruise);
@@ -1242,7 +1241,7 @@
         document.querySelectorAll('.cruise-line').forEach(el => el.innerText = cruiseData.cruiseline);
         document.getElementById('cruise-route').innerText = "Ports of Call: Portsmouth, Cruising Day, La Coruna, Bilbao, Le Verdon-sur-Mer, Portsmouth";
         document.getElementById('ship-description').innerHTML = "From decadent dinners to boozy after-parties, gather with your partner, your best friends and yourself to celebrate life's best moments aboard one of the 100% adults-only voyages.";
-    
+
         // Ship statistics
         document.getElementById('ship-statistics-left').innerHTML = `
             <li>Year Built: 2023</li>
@@ -1254,7 +1253,7 @@
             <li>Weight: 110,000</li>
             <li>Length: 278m</li>
         `;
-    
+
         // Included and Not Included
         document.getElementById('included-list').innerHTML = `
             <li>Cruise in the cabin category booked.</li>
@@ -1275,7 +1274,7 @@
             <li>Recommended gratuities.</li>
             <li>Visa, if necessary (extra charges possible).</li>
         `;
-    
+
         // Populate itinerary table
         document.getElementById('itinerary-table').innerHTML = `
             <tr>
@@ -1321,7 +1320,7 @@
                 <td></td>
             </tr>
         `;
-    
+
         // Populate amenities list
         const amenities = [
             {
@@ -1380,7 +1379,7 @@
                 ]
             }
         ];
-    
+
         const amenitiesHTML = amenities.map(category => `
             <div class="col-lg-4">
                 <h4>${category.text}</h4>
@@ -1389,9 +1388,9 @@
                 </ul>
             </div>
         `).join('');
-    
+
         document.getElementById('amenities-list').innerHTML = amenitiesHTML;
-    
+
         // Handle number of guests selection
         document.getElementById('number-of-guests').addEventListener('change', function () {
             const numGuests = parseInt(this.value);
@@ -1408,7 +1407,7 @@
                 `;
             }
         });
-    
+
         // Handle guest residency selection
         document.getElementById('guest-residency').addEventListener('change', function () {
             const stateSelect = document.getElementById('guest-state');
@@ -1420,19 +1419,19 @@
                 stateSelect.removeAttribute('required');
             }
         });
-    
+
         // Save form data to local storage
         const saveFormData = () => {
             const numberOfGuests = document.getElementById('number-of-guests').value;
             const guestResidency = document.getElementById('guest-residency').value;
             const guestState = guestResidency === 'US' ? document.getElementById('guest-state').value : 'N/A';
-    
+
             const ageInputs = document.querySelectorAll('.age-guest');
             const ages = Array.from(ageInputs).map(input => input.value);
-    
+
             const selectedCabin = document.querySelector('.selected-cabin');
             const cabinType = selectedCabin ? selectedCabin.dataset.cabinId : '';
-    
+
             const formData = {
                 numberOfGuests,
                 guestResidency,
@@ -1440,200 +1439,96 @@
                 ages,
                 cabinType
             };
-    
+
             localStorage.setItem('cruiseFormData', JSON.stringify(formData));
         };
-    
+
         // Save form data when form changes
         document.querySelectorAll('#number-of-guests, #guest-residency, .age-guest, #guest-state').forEach(element => {
             element.addEventListener('change', saveFormData);
         });
-    
+
         // Handle cabin selection
         const selectCabinButtons = document.querySelectorAll('.select-cabin-btn');
         const cabinOptions = document.querySelectorAll('.cabin-option, .cabin-price');
-    
+
         const toggleCabinSelection = (cabinId) => {
             // Remove 'selected' from all buttons and highlight
             selectCabinButtons.forEach(button => button.innerText = 'Select Cabin');
             cabinOptions.forEach(option => option.classList.remove('highlighted'));
-    
+
             // Add 'selected' to the clicked button and highlight the cabin option
             const selectedButton = document.querySelector(`.select-cabin-btn[data-cabin-id="${cabinId}"]`);
             if (selectedButton) {
                 selectedButton.innerText = 'Selected';
+                selectedButton.closest('.cabin-option').classList.add('highlighted');
             }
-            const selectedOption = document.querySelector(`.cabin-option[data-cabin-type="${cabinId}"], .cabin-price[data-cabin-type="${cabinId}"]`);
-            if (selectedOption) {
-                selectedOption.classList.add('highlighted');
-            }
-    
-            // Mark the selected cabin
-            document.querySelectorAll('.cabin-card').forEach(card => card.classList.remove('selected-cabin'));
-            if (selectedButton) {
-                selectedButton.closest('.cabin-card').classList.add('selected-cabin');
-            }
+
+            // Update the selected cabin ID
+            document.getElementById('selected-cabin').value = cabinId;
+
+            // Save form data to local storage
+            saveFormData();
         };
-    
+
         selectCabinButtons.forEach(button => {
             button.addEventListener('click', function () {
                 const cabinId = this.dataset.cabinId;
                 toggleCabinSelection(cabinId);
-                saveFormData();
             });
         });
-    
-        cabinOptions.forEach(option => {
-            option.addEventListener('click', function () {
-                const cabinId = this.dataset.cabinType;
-                toggleCabinSelection(cabinId);
-                saveFormData();
-            });
-        });
-    
-        // Save form data initially
-        saveFormData();
-        
-document.addEventListener('DOMContentLoaded', function () {
-    console.log('DOM fully loaded and parsed');
-    document.getElementById('select-room-btn').addEventListener('click', function () {
-        console.log('Select Room button clicked');
-        const formData = JSON.parse(localStorage.getItem('cruiseFormData'));
-        console.log('Form Data:', formData);
-        if (!formData || !formData.numberOfGuests || !formData.guestResidency || !formData.ages.length || !formData.cabinType) {
-            alert('Please fill in all form fields and select a cabin.');
-            return;
-        }
-        $('#bookingModal').modal('show');
-    });
-});
 
-    
-        // Booking Modal JavaScript
-        let subTotal = 0;
-    
-        const showStep = (step) => {
-            for (let i = 1; i <= totalSteps; i++) {
-                document.getElementById(`step${i}`).classList.toggle('d-none', i !== step);
-            }
+        // Reset form data and UI
+        const resetForm = () => {
+            localStorage.removeItem('cruiseFormData');
+            document.getElementById('booking-form').reset();
+            toggleCabinSelection('');
         };
-    
-        const nextStep = () => {
+
+        document.getElementById('booking-form').addEventListener('submit', (event) => {
+            event.preventDefault();
+            saveFormData();
+            // Redirect to confirmation page or submit the form
+            // window.location.href = 'confirmation.html';
+        });
+
+        // Modal Step Navigation
+        let currentStep = 1;
+        const totalSteps = 3;
+
+        function showStep(step) {
+            for (let i = 1; i <= totalSteps; i++) {
+                const stepElement = document.getElementById(`step${i}`);
+                if (stepElement) {
+                    stepElement.classList.toggle('d-none', i !== step);
+                }
+            }
+        }
+
+        function handleNextStep() {
             if (currentStep < totalSteps) {
                 currentStep++;
                 showStep(currentStep);
             }
-        };
-    
-        const prevStep = () => {
+        }
+
+        function handlePrevStep() {
             if (currentStep > 1) {
                 currentStep--;
                 showStep(currentStep);
             }
-        };
-    
-        const generatePassengerForm = (numPassengers) => {
-            const container = document.getElementById('passenger-info-container');
-            container.innerHTML = '';
-            for (let i = 0; i < numPassengers; i++) {
-                const passengerForm = `
-                    <div class="passenger-form">
-                        <h4>Passenger ${i + 1}</h4>
-                        <div class="form-group">
-                            <label for="fullName${i}">Full Name</label>
-                            <input type="text" class="form-control" id="fullName${i}" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="dob${i}">Date of Birth</label>
-                            <input type="date" class="form-control" id="dob${i}" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="nationality${i}">Nationality</label>
-                            <input type="text" class="form-control" id="nationality${i}" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="passport${i}">Passport/ID</label>
-                            <input type="text" class="form-control" id="passport${i}" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="proofOfID${i}">Proof of Valid ID</label>
-                            <input type="file" class="form-control" id="proofOfID${i}" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="specialNeeds${i}">Special Needs/Medical Conditions</label>
-                            <input type="text" class="form-control" id="specialNeeds${i}">
-                        </div>
-                        <div class="form-group">
-                            <label for="address${i}">Home/Billing Address</label>
-                            <input type="text" class="form-control" id="address${i}" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="phone${i}">Telephone Number(s)</label>
-                            <input type="text" class="form-control" id="phone${i}" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="email${i}">Email Address</label>
-                            <input type="email" class="form-control" id="email${i}" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="emergencyContact${i}">Emergency Contact</label>
-                            <input type="text" class="form-control" id="emergencyContact${i}" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="signature${i}">Signature</label>
-                            <input type="text" class="form-control" id="signature${i}" required>
-                        </div>
-                    </div>
-                `;
-                container.innerHTML += passengerForm;
-            }
-        };
-    
-        const populatePaymentSummary = () => {
-            const formData = JSON.parse(localStorage.getItem('cruiseFormData'));
-            const paymentSummaryContainer = document.getElementById('payment-summary');
-            paymentSummaryContainer.innerHTML = `
-                <p>Order Total: <strong>${formData.totalPrice}</strong></p>
-                <!-- Add line items here -->
-            `;
-        };
-    
-        document.getElementById('next-step').addEventListener('click', nextStep);
-        document.getElementById('prev-step').addEventListener('click', prevStep);
-    
-        const getNumberOfPassengersFromSidebar = () => {
-            const sidebarPassengerCount = document.querySelector('#sidebar-passenger-count');
-            return parseInt(sidebarPassengerCount ? sidebarPassengerCount.value : 1, 10);
-        };
-    
-        // Retrieve the number of passengers from the sidebar and generate the passenger forms
-        const numberOfPassengers = getNumberOfPassengersFromSidebar();
-        generatePassengerForm(numberOfPassengers);
-    
-        // Initialize Stripe elements for payment
-        const stripe = Stripe('your-publishable-key');
-        const elements = stripe.elements();
-        const card = elements.create('card');
-        card.mount('#card-element');
-    
-        const form = document.getElementById('payment-form');
-        form.addEventListener('submit', async (event) => {
-            event.preventDefault();
-            const { token, error } = await stripe.createToken(card);
-            if (error) {
-                // Handle error
-            } else {
-                // Handle successful token generation
-            }
-        });
-    
-        // Initial setup
-        populateCabinChips();
-        $('#bookingModal').on('shown.bs.modal', function () {
-            updateBreadcrumb();
-            highlightSelectedChip();
-        });
+        }
+
+        document.getElementById('next-step').addEventListener('click', handleNextStep);
+        document.getElementById('prev-step').addEventListener('click', handlePrevStep);
+
+        // Initialize the modal steps
         showStep(currentStep);
+
+        // Modal trigger
+        const modalTrigger = document.getElementById('select-room-btn');
+        modalTrigger.setAttribute('data-toggle', 'modal');
+        modalTrigger.setAttribute('data-target', '#bookingModal');
     });
 </script>
 </body>
