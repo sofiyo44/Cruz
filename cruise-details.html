@@ -1494,14 +1494,20 @@
         // Save form data initially
         saveFormData();
         
-        document.getElementById('select-room-btn').addEventListener('click', function () {
-            const formData = JSON.parse(localStorage.getItem('cruiseFormData'));
-            if (!formData || !formData.numberOfGuests || !formData.guestResidency || !formData.ages.length || !formData.cabinType) {
-                alert('Please fill in all form fields and select a cabin.');
-                return;
-            }
-            $('#bookingModal').modal('show');
-        });
+document.addEventListener('DOMContentLoaded', function () {
+    console.log('DOM fully loaded and parsed');
+    document.getElementById('select-room-btn').addEventListener('click', function () {
+        console.log('Select Room button clicked');
+        const formData = JSON.parse(localStorage.getItem('cruiseFormData'));
+        console.log('Form Data:', formData);
+        if (!formData || !formData.numberOfGuests || !formData.guestResidency || !formData.ages.length || !formData.cabinType) {
+            alert('Please fill in all form fields and select a cabin.');
+            return;
+        }
+        $('#bookingModal').modal('show');
+    });
+});
+
     
         // Booking Modal JavaScript
         let subTotal = 0;
