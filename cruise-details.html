@@ -1220,9 +1220,15 @@
 <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" integrity="sha512-GvTx5Z5+G7ZSM7zSYlTkKQ2ad9I5fIRyQ2I5XIs64EV6UO8qFecp6Do2uIH7+3H1mBjd+z5x6TBe+9U/8A0pMw==" crossorigin=""></script>
 <script src="js/cabin-cards.js"></script>
 <script>
-    document.addEventListener('DOMContentLoaded', function () {
+    document.addEventListener('DOMContentLoaded', async function () {
         console.log('DOM fully loaded and parsed');
-        
+    
+        const stripePromise = loadStripe('pk_live_51PHWHV09WcoQiYp2Ak6Ehxov0ecWSNuAqEyfoBt21SRdDyvVAK19bosBrNDKK8zUYUALwRSx2Hfr6G5H6dAhQ8yI00dMNe5UpZ');
+        const stripe = await stripePromise;
+        const elements = stripe.elements();
+        const cardElement = elements.create('card');
+        cardElement.mount('#card-element');
+    
         const cruiseData = {
             title: "Atlantic Ocean Europe 7 days from/to Portsmouth",
             departure_cruise: "9/23/24",
@@ -1317,155 +1323,18 @@
             </tr>
         `;
     
-        // Populate amenities list
-        const amenities = [
-            {
-                text: "Bars and Cafes",
-                children: [
-                    { text: "Coffeebar" },
-                    { text: "Champagne/caviar bar" },
-                    { text: "Club lounge" },
-                    { text: "Cocktailbar" },
-                    { text: "Pool bar" },
-                    { text: "Winecellar/vinothek" }
-                ]
-            },
-            {
-                text: "Onboard language",
-                children: [
-                    { text: "English" }
-                ]
-            },
-            {
-                text: "Travel documents",
-                children: [
-                    { text: "Passport required" }
-                ]
-            },
-            {
-                text: "Restaurants",
-                children: [
-                    { text: "Italian Restaurant" },
-                    { text: "French Restaurant" },
-                    { text: "Steakhouse" },
-                    { text: "Sushi Bar" },
-                    { text: "Seafood Restaurant" },
-                    { text: "Buffet" }
-                ]
-            },
-            {
-                text: "Activities",
-                children: [
-                    { text: "Swimming Pool" },
-                    { text: "Fitness Center" },
-                    { text: "Spa" },
-                    { text: "Theater" },
-                    { text: "Casino" },
-                    { text: "Mini Golf" }
-                ]
-            },
-            {
-                text: "Services",
-                children: [
-                    { text: "Room Service" },
-                    { text: "Laundry Service" },
-                    { text: "Concierge" },
-                    { text: "Medical Center" },
-                    { text: "Wi-Fi" }
-                ]
-            }
-        ];
-    
-        const amenitiesHTML = amenities.map(category => `
-            <div class="col-lg-4">
-                <h4>${category.text}</h4>
-                <ul class="list-items">
-                    ${category.children.map(item => `<li>${item.text}</li>`).join('')}
-                </ul>
-            </div>
-        `).join('');
-    
-        document.getElementById('amenities-list').innerHTML = amenitiesHTML;
-    
-        // Handle number of guests selection
-        document.getElementById('number-of-guests').addEventListener('change', function () {
-            const numGuests = parseInt(this.value);
-            const ageInputs = document.getElementById('age-inputs');
-            ageInputs.innerHTML = '';
-            for (let i = 1; i <= numGuests; i++) {
-                ageInputs.innerHTML += `
-                    <div class="input-box">
-                        <label class="label-text">Age of Guest ${i}</label>
-                        <div class="form-group">
-                            <input type="text" class="form-control age-guest" id="age-guest-${i}" placeholder="Age of Guest ${i}" required>
-                        </div>
-                    </div>
-                `;
-            }
-        });
-    
-        // Handle guest residency selection
-        document.getElementById('guest-residency').addEventListener('change', function () {
-            const stateSelect = document.getElementById('guest-state');
-            if (this.value === 'US') {
-                stateSelect.style.display = 'block';
-                stateSelect.setAttribute('required', 'true');
-            } else {
-                stateSelect.style.display = 'none';
-                stateSelect.removeAttribute('required');
-            }
-        });
-    
-        // Save form data to local storage
-        const saveFormData = () => {
-            const numberOfGuests = document.getElementById('number-of-guests').value;
-            const guestResidency = document.getElementById('guest-residency').value;
-            const guestState = guestResidency === 'US' ? document.getElementById('guest-state').value : 'N/A';
-    
-            const ageInputs = document.querySelectorAll('.age-guest');
-            const ages = Array.from(ageInputs).map(input => input.value);
-    
-            const selectedCabin = document.querySelector('.selected-cabin');
-            const cabinType = selectedCabin ? selectedCabin.dataset.cabinId : '';
-    
-            const formData = {
-                numberOfGuests,
-                guestResidency,
-                guestState,
-                ages,
-                cabinType,
-                totalPrice: JSON.parse(localStorage.getItem('cruiseFormData')).totalPrice || 0
-            };
-    
-            localStorage.setItem('cruiseFormData', JSON.stringify(formData));
-        };
-    
-        // Save form data when form changes
-        document.querySelectorAll('#number-of-guests, #guest-residency, .age-guest, #guest-state').forEach(element => {
-            element.addEventListener('change', saveFormData);
-        });
-    
-        const modalTrigger = document.getElementById('select-room-btn');
-        modalTrigger.addEventListener('click', function () {
-            console.log('Select Room button clicked');
-            const formData = JSON.parse(localStorage.getItem('cruiseFormData'));
-            console.log('Form Data:', formData);
-    
-            if (!formData || !formData.numberOfGuests || !formData.guestResidency || !formData.ages.length || !formData.cabinType) {
-                alert('Please fill in all form fields and select a cabin.');
-            }
-    
-            // Initialize and show the modal using jQuery
-            $('#bookingModal').modal('show');
-        });
-    
-        // Steps and Validation JavaScript
+        // Handle steps and form data
         let currentStep = 1;
         const totalSteps = 3;
     
         const showStep = (step) => {
             for (let i = 1; i <= totalSteps; i++) {
                 document.getElementById(`step${i}`).classList.toggle('d-none', i !== step);
+            }
+            if (step === 3) {
+                const formData = JSON.parse(localStorage.getItem('cruiseFormData'));
+                const totalPrice = formData ? formData.totalPrice : 0;
+                document.getElementById('payment-summary').innerHTML = `<p>Order Total: <strong>$${(totalPrice + 5).toFixed(2)}</strong></p>`;
             }
         };
     
@@ -1552,13 +1421,31 @@
             container.innerHTML += passengerForm;
         };
     
-        const populatePaymentSummary = () => {
+        const handlePayment = async (event) => {
+            event.preventDefault();
+    
             const formData = JSON.parse(localStorage.getItem('cruiseFormData'));
-            const paymentSummaryContainer = document.getElementById('payment-summary');
-            paymentSummaryContainer.innerHTML = `
-                <p>Order Total: <strong>$${(formData.totalPrice + 5).toFixed(2)}</strong></p>
-                <!-- Add line items here -->
-            `;
+            const totalPrice = formData ? formData.totalPrice : 0;
+    
+            const response = await fetch('/api/checkout_sessions', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    amount: totalPrice * 100, // Convert to cents
+                }),
+            });
+    
+            const session = await response.json();
+    
+            const result = await stripe.redirectToCheckout({
+                sessionId: session.id,
+            });
+    
+            if (result.error) {
+                console.error(result.error.message);
+            }
         };
     
         showStep(currentStep);
@@ -1573,6 +1460,9 @@
             const currentPassengerCount = container.querySelectorAll('.card').length;
             addPassengerForm(container, currentPassengerCount);
         });
+    
+        // Event listener for payment form submission
+        document.getElementById('payment-form').addEventListener('submit', handlePayment);
     });
 </script>
 </body>
