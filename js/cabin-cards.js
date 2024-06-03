@@ -492,15 +492,16 @@ document.addEventListener('DOMContentLoaded', function () {
     const showParentImage = (parent) => {
         const parentImageContainer = document.getElementById('parent-image');
         parentImageContainer.innerHTML = `
-            <img src="${parent.img}" alt="${parent.text}" class="img-fluid" style="width:30%; display:block; margin:auto;">
+            <img src="${parent.img}" alt="${parent.text}" class="img-fluid" style="width: 30%; display: block; margin: 0 auto;">
         `;
     };
 
-    const createChildCard = (child, selectable = true, smallFont = false) => {
+    const createChildCard = (child, selectable = true, smallFont = false, hideCloseBtn = false) => {
         return `
             <div class="col-md-6 mb-4 selected-cabin-card-container" data-cabin-id="${child.id}">
-                <div class="card" style="width: calc(50% - 15px);">
+                <div class="card" style="width: 100%; padding-right: 10px;">
                     <div class="card-body ${smallFont ? 'small-font' : ''}">
+                        ${hideCloseBtn ? '' : '<button class="btn btn-sm btn-danger float-right close-cabin-btn">&times;</button>'}
                         <h5 class="card-title">${child.text}</h5>
                         <div class="card-text toggle-content" style="display: none;">
                             <p>Price: ${child.price}</p>
@@ -518,7 +519,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     const populateChildCards = (parent) => {
         const cabinCardsContainer = document.getElementById('cabin-cards');
-        cabinCardsContainer.innerHTML = parent.children.map(child => createChildCard(child, true, false)).join('');
+        cabinCardsContainer.innerHTML = parent.children.map((child, index) => createChildCard(child, true, false, index % 2 === 0)).join('');
     };
 
     const populateCabinChips = () => {
@@ -526,7 +527,7 @@ document.addEventListener('DOMContentLoaded', function () {
         cabinChipsContainer.innerHTML = Object.keys(cabinData).map(key => {
             const cabin = cabinData[key];
             return `
-                <button class="btn btn-outline-primary m-1 cabin-chip" data-cabin-id="${cabin.id}" style="margin:auto;">${cabin.text}</button>
+                <button class="btn btn-outline-primary m-1 cabin-chip" data-cabin-id="${cabin.id}" style="display: block; margin: 10px auto;">${cabin.text}</button>
             `;
         }).join('');
     };
@@ -562,7 +563,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     const addSelectedCabinToBookingDetails = (child) => {
         const bookingDetailsContainer = document.getElementById('selected-cabin-card');
-        bookingDetailsContainer.innerHTML += createChildCard(child, false, true);
+        bookingDetailsContainer.innerHTML += createChildCard(child, false, true, true);
         const price = parseFloat(child.price.replace('$', ''));
         updateTotalPrice(price);
     };
