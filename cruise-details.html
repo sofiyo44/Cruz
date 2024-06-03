@@ -1223,12 +1223,6 @@
     document.addEventListener('DOMContentLoaded', async function () {
         console.log('DOM fully loaded and parsed');
     
-        const stripePromise = loadStripe('pk_live_51PHWHV09WcoQiYp2Ak6Ehxov0ecWSNuAqEyfoBt21SRdDyvVAK19bosBrNDKK8zUYUALwRSx2Hfr6G5H6dAhQ8yI00dMNe5UpZ');
-        const stripe = await stripePromise;
-        const elements = stripe.elements();
-        const cardElement = elements.create('card');
-        cardElement.mount('#card-element');
-    
         const cruiseData = {
             title: "Atlantic Ocean Europe 7 days from/to Portsmouth",
             departure_cruise: "9/23/24",
@@ -1421,34 +1415,6 @@
             container.innerHTML += passengerForm;
         };
     
-        const handlePayment = async (event) => {
-            event.preventDefault();
-    
-            const formData = JSON.parse(localStorage.getItem('cruiseFormData'));
-            const totalPrice = formData ? formData.totalPrice : 0;
-    
-            const response = await fetch('/api/checkout_sessions', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    amount: totalPrice * 100, // Convert to cents
-                }),
-            });
-    
-            const session = await response.json();
-    
-            const result = await stripe.redirectToCheckout({
-                sessionId: session.id,
-            });
-    
-            if (result.error) {
-                console.error(result.error.message);
-            }
-        };
-    
-        showStep(currentStep);
     
         // Event listeners for next and previous buttons
         document.getElementById('next-step').addEventListener('click', nextStep);
@@ -1461,8 +1427,6 @@
             addPassengerForm(container, currentPassengerCount);
         });
     
-        // Event listener for payment form submission
-        document.getElementById('payment-form').addEventListener('submit', handlePayment);
     });
 </script>
 </body>
