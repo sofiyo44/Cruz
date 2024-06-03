@@ -496,12 +496,12 @@ document.addEventListener('DOMContentLoaded', function () {
         `;
     };
 
-    const createChildCard = (child, selectable = true, smallFont = false) => {
+    const createChildCard = (child, selectable = true, smallFont = false, duplicate = false) => {
         return `
-            <div class="col-md-4 mb-4 selected-cabin-card-container" data-cabin-id="${child.id}">
-                <div class="card" style="width: 48%;">
+            <div class="col-lg-6 mb-4 selected-cabin-card-container" data-cabin-id="${child.id}">
+                <div class="card" style="width: 100%; padding: 1rem; box-shadow: 0 4px 8px rgba(0,0,0,0.1); border-radius: 10px;">
                     <div class="card-body ${smallFont ? 'small-font' : ''}">
-                        <button class="btn btn-sm btn-danger float-right close-cabin-btn">&times;</button>
+                        <button class="btn btn-sm btn-danger float-right close-cabin-btn" style="border-radius: 50%;">&times;</button>
                         <h5 class="card-title">${child.text}</h5>
                         <div class="card-text toggle-content" style="display: none;">
                             <p>Price: ${child.price}</p>
@@ -530,7 +530,7 @@ document.addEventListener('DOMContentLoaded', function () {
         cabinChipsContainer.innerHTML = Object.keys(cabinData).map(key => {
             const cabin = cabinData[key];
             return `
-                <button class="btn btn-outline-primary m-1 cabin-chip" data-cabin-id="${cabin.id}">${cabin.text}</button>
+                <button class="btn btn-outline-primary m-1 cabin-chip" style="border-radius: 20px; padding: 0.5rem 1rem;" data-cabin-id="${cabin.id}">${cabin.text}</button>
             `;
         }).join('');
     };
@@ -564,9 +564,9 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     };
 
-    const addSelectedCabinToBookingDetails = (child) => {
+    const addSelectedCabinToBookingDetails = (child, duplicate = false) => {
         const bookingDetailsContainer = document.getElementById('selected-cabin-card');
-        bookingDetailsContainer.innerHTML += createChildCard(child, false, true);
+        bookingDetailsContainer.innerHTML += createChildCard(child, false, true, duplicate);
         const price = parseFloat(child.price.replace('$', ''));
         updateTotalPrice(price);
     };
@@ -633,7 +633,7 @@ document.addEventListener('DOMContentLoaded', function () {
             } else {
                 e.target.textContent = 'Selected';
                 selectedChild.selected = true;
-                addSelectedCabinToBookingDetails(selectedChild);
+                addSelectedCabinToBookingDetails(selectedChild, false);
             }
 
             const formData = JSON.parse(localStorage.getItem('cruiseFormData')) || {};
