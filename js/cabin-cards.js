@@ -473,6 +473,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     };
 
+
     let totalPrice = 0;
 
     const updateTotalPrice = (amount) => {
@@ -500,7 +501,6 @@ document.addEventListener('DOMContentLoaded', function () {
             <div class="col-md-6 mb-4 selected-cabin-card-container" data-cabin-id="${child.id}">
                 <div class="card" style="width: calc(50% - 15px);">
                     <div class="card-body ${smallFont ? 'small-font' : ''}">
-                        ${selectable ? '<button class="btn btn-sm btn-danger float-right close-cabin-btn">&times;</button>' : ''}
                         <h5 class="card-title">${child.text}</h5>
                         <div class="card-text toggle-content" style="display: none;">
                             <p>Price: ${child.price}</p>
@@ -518,7 +518,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     const populateChildCards = (parent) => {
         const cabinCardsContainer = document.getElementById('cabin-cards');
-        cabinCardsContainer.innerHTML = parent.children.map((child, index) => createChildCard(child, true, true)).join('');
+        cabinCardsContainer.innerHTML = parent.children.map(child => createChildCard(child, true, false)).join('');
     };
 
     const populateCabinChips = () => {
