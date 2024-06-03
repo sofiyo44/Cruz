@@ -564,9 +564,9 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     };
 
-    const addSelectedCabinToBookingDetails = (child, duplicate = false) => {
+    const addSelectedCabinToBookingDetails = (child) => {
         const bookingDetailsContainer = document.getElementById('selected-cabin-card');
-        bookingDetailsContainer.innerHTML += createChildCard(child, false, true, duplicate);
+        bookingDetailsContainer.innerHTML += createChildCard(child, false, true);
         const price = parseFloat(child.price.replace('$', ''));
         updateTotalPrice(price);
     };
@@ -621,24 +621,18 @@ document.addEventListener('DOMContentLoaded', function () {
             );
             const selectedChild = cabinData[selectedCabinKey].children.find(child => child.id === selectedCabinId);
 
-            if (selectedChild.selected) {
-                const existingCard = document.querySelector(`.selected-cabin-card-container[data-cabin-id="${selectedCabinId}"]`);
-                if (existingCard) {
-                    existingCard.remove();
-                    e.target.textContent = 'Select';
-                    selectedChild.selected = false;
-                    const price = parseFloat(selectedChild.price.replace('$', ''));
-                    updateTotalPrice(-price);
-                }
-            } else {
+            if (!selectedChild.selected) {
                 e.target.textContent = 'Selected';
+                e.target.disabled = true;
                 selectedChild.selected = true;
-                addSelectedCabinToBookingDetails(selectedChild, false);
-            }
+                addSelectedCabinToBookingDetails(selectedChild, true);
 
-            const formData = JSON.parse(localStorage.getItem('cruiseFormData')) || {};
-            formData.cabinType = selectedCabinKey;
-            localStorage.setItem('cruiseFormData', JSON.stringify(formData));
+                const formData = JSON.parse(localStorage.getItem('cruiseFormData')) || {};
+                formData.cabinType = selectedCabinKey;
+                formData.selectedCabins = formData.selectedCabins || {};
+                formData.selectedCabins[selectedCabinId] = selectedCabinId;
+                localStorage.setItem('cruiseFormData', JSON.stringify(formData));
+            }
         }
     });
 
@@ -647,6 +641,15 @@ document.addEventListener('DOMContentLoaded', function () {
             handleToggleContent(e);
         } else if (e.target.classList.contains('close-cabin-btn')) {
             handleCloseCard(e);
+            const cabinId = e.target.closest('.selected-cabin-card-container').getAttribute('data-cabin-id');
+            const formData = JSON.parse(localStorage.getItem('cruiseFormData')) || {};
+            delete formData.selectedCabins[cabinId];
+            localStorage.setItem('cruiseFormData', JSON.stringify(formData));
+            const cardButton = document.querySelector(`.select-cabin-btn[data-cabin-id="${cabinId}"]`);
+            if (cardButton) {
+                cardButton.textContent = 'Select';
+                cardButton.disabled = false;
+            }
         }
     });
 
