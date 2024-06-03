@@ -1472,6 +1472,10 @@
         const nextStep = () => {
             if (currentStep < totalSteps) {
                 currentStep++;
+                if (currentStep === 2) {
+                    const numGuests = parseInt(document.getElementById('number-of-guests').value) || 0;
+                    generatePassengerForm(numGuests);
+                }
                 showStep(currentStep);
             }
         };
@@ -1487,57 +1491,65 @@
             const container = document.getElementById('passenger-info-container');
             container.innerHTML = '';
             for (let i = 0; i < numPassengers; i++) {
-                const passengerForm = `
-                    <div class="passenger-form">
-                        <h4>Passenger ${i + 1}</h4>
+                addPassengerForm(container, i);
+            }
+        };
+    
+        const addPassengerForm = (container, index) => {
+            const passengerForm = `
+                <div class="card mb-3">
+                    <div class="card-header">
+                        <h4>Passenger ${index + 1}</h4>
+                    </div>
+                    <div class="card-body">
                         <div class="form-group">
-                            <label for="fullName${i}">Full Name</label>
-                            <input type="text" class="form-control" id="fullName${i}" required>
+                            <label for="fullName${index}">Full Name</label>
+                            <input type="text" class="form-control" id="fullName${index}" required>
                         </div>
                         <div class="form-group">
-                            <label for="dob${i}">Date of Birth</label>
-                            <input type="date" class="form-control" id="dob${i}" required>
+                            <label for="dob${index}">Date of Birth</label>
+                            <input type="date" class="form-control" id="dob${index}" required>
                         </div>
                         <div class="form-group">
-                            <label for="nationality${i}">Nationality</label>
-                            <input type="text" class="form-control" id="nationality${i}" required>
+                            <label for="nationality${index}">Nationality</label>
+                            <input type="text" class="form-control" id="nationality${index}" required>
                         </div>
                         <div class="form-group">
-                            <label for="passport${i}">Passport/ID</label>
-                            <input type="text" class="form-control" id="passport${i}" required>
+                            <label for="passport${index}">Passport/ID</label>
+                            <input type="text" class="form-control" id="passport${index}" required>
                         </div>
                         <div class="form-group">
-                            <label for="proofOfID${i}">Proof of Valid ID</label>
-                            <input type="file" class="form-control" id="proofOfID${i}" required>
+                            <label for="proofOfID${index}">Proof of Valid ID</label>
+                            <input type="file" class="form-control" id="proofOfID${index}" required>
                         </div>
                         <div class="form-group">
-                            <label for="specialNeeds${i}">Special Needs/Medical Conditions</label>
-                            <input type="text" class="form-control" id="specialNeeds${i}">
+                            <label for="specialNeeds${index}">Special Needs/Medical Conditions</label>
+                            <input type="text" class="form-control" id="specialNeeds${index}">
                         </div>
                         <div class="form-group">
-                            <label for="address${i}">Home/Billing Address</label>
-                            <input type="text" class="form-control" id="address${i}" required>
+                            <label for="address${index}">Home/Billing Address</label>
+                            <input type="text" class="form-control" id="address${index}" required>
                         </div>
                         <div class="form-group">
-                            <label for="phone${i}">Telephone Number(s)</label>
-                            <input type="text" class="form-control" id="phone${i}" required>
+                            <label for="phone${index}">Telephone Number(s)</label>
+                            <input type="text" class="form-control" id="phone${index}" required>
                         </div>
                         <div class="form-group">
-                            <label for="email${i}">Email Address</label>
-                            <input type="email" class="form-control" id="email${i}" required>
+                            <label for="email${index}">Email Address</label>
+                            <input type="email" class="form-control" id="email${index}" required>
                         </div>
                         <div class="form-group">
-                            <label for="emergencyContact${i}">Emergency Contact</label>
-                            <input type="text" class="form-control" id="emergencyContact${i}" required>
+                            <label for="emergencyContact${index}">Emergency Contact</label>
+                            <input type="text" class="form-control" id="emergencyContact${index}" required>
                         </div>
                         <div class="form-group">
-                            <label for="signature${i}">Signature</label>
-                            <input type="text" class="form-control" id="signature${i}" required>
+                            <label for="signature${index}">Signature</label>
+                            <input type="text" class="form-control" id="signature${index}" required>
                         </div>
                     </div>
-                `;
-                container.innerHTML += passengerForm;
-            }
+                </div>
+            `;
+            container.innerHTML += passengerForm;
         };
     
         const populatePaymentSummary = () => {
@@ -1554,6 +1566,13 @@
         // Event listeners for next and previous buttons
         document.getElementById('next-step').addEventListener('click', nextStep);
         document.getElementById('prev-step').addEventListener('click', prevStep);
+    
+        // Event listener for add passenger button
+        document.getElementById('add-passenger').addEventListener('click', function () {
+            const container = document.getElementById('passenger-info-container');
+            const currentPassengerCount = container.querySelectorAll('.card').length;
+            addPassengerForm(container, currentPassengerCount);
+        });
     });
 </script>
 </body>
