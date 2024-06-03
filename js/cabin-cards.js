@@ -496,12 +496,12 @@ document.addEventListener('DOMContentLoaded', function () {
         `;
     };
 
-    const createChildCard = (child, selectable = true, smallFont = false) => {
+    const createChildCard = (child, selectable = true, smallFont = false, duplicate = false) => {
         return `
-            <div class="col-md-6 mb-4 selected-cabin-card-container" data-cabin-id="${child.id}" style="flex: 1 1 48%;">
-                <div class="card">
+            <div class="col-md-4 mb-4 selected-cabin-card-container" data-cabin-id="${child.id}">
+                <div class="card" style="width: ${duplicate ? '100%' : '48%'};">
                     <div class="card-body ${smallFont ? 'small-font' : ''}">
-                        ${!selectable ? '' : '<button class="btn btn-sm btn-danger float-right close-cabin-btn">&times;</button>'}
+                        ${duplicate ? '' : '<button class="btn btn-sm btn-danger float-right close-cabin-btn">&times;</button>'}
                         <h5 class="card-title">${child.text}</h5>
                         <div class="card-text toggle-content" style="display: none;">
                             <p>Price: ${child.price}</p>
@@ -524,14 +524,15 @@ document.addEventListener('DOMContentLoaded', function () {
 
     const populateCabinChips = () => {
         const cabinChipsContainer = document.getElementById('cabin-chips');
+        cabinChipsContainer.style.display = 'flex';
+        cabinChipsContainer.style.justifyContent = 'center';
+        cabinChipsContainer.style.flexWrap = 'wrap';
         cabinChipsContainer.innerHTML = Object.keys(cabinData).map(key => {
             const cabin = cabinData[key];
             return `
                 <button class="btn btn-outline-primary m-1 cabin-chip" data-cabin-id="${cabin.id}">${cabin.text}</button>
             `;
         }).join('');
-        cabinChipsContainer.style.display = 'flex';
-        cabinChipsContainer.style.justifyContent = 'center';
     };
 
     const updateBreadcrumb = () => {
@@ -563,9 +564,9 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     };
 
-    const addSelectedCabinToBookingDetails = (child) => {
+    const addSelectedCabinToBookingDetails = (child, duplicate = false) => {
         const bookingDetailsContainer = document.getElementById('selected-cabin-card');
-        bookingDetailsContainer.innerHTML += createChildCard(child, false, true);
+        bookingDetailsContainer.innerHTML += createChildCard(child, false, true, duplicate);
         const price = parseFloat(child.price.replace('$', ''));
         updateTotalPrice(price);
     };
@@ -632,7 +633,7 @@ document.addEventListener('DOMContentLoaded', function () {
             } else {
                 e.target.textContent = 'Selected';
                 selectedChild.selected = true;
-                addSelectedCabinToBookingDetails(selectedChild);
+                addSelectedCabinToBookingDetails(selectedChild, false);
             }
 
             const formData = JSON.parse(localStorage.getItem('cruiseFormData')) || {};
