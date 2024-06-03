@@ -496,12 +496,12 @@ document.addEventListener('DOMContentLoaded', function () {
         `;
     };
 
-    const createChildCard = (child, selectable = true, smallFont = false, duplicate = false) => {
+    const createChildCard = (child, selectable = true, smallFont = false) => {
         return `
             <div class="col-md-4 mb-4 selected-cabin-card-container" data-cabin-id="${child.id}">
-                <div class="card" style="width: ${duplicate ? '100%' : '48%'};">
+                <div class="card" style="width: 48%;">
                     <div class="card-body ${smallFont ? 'small-font' : ''}">
-                        ${duplicate ? '' : '<button class="btn btn-sm btn-danger float-right close-cabin-btn">&times;</button>'}
+                        <button class="btn btn-sm btn-danger float-right close-cabin-btn">&times;</button>
                         <h5 class="card-title">${child.text}</h5>
                         <div class="card-text toggle-content" style="display: none;">
                             <p>Price: ${child.price}</p>
@@ -564,9 +564,9 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     };
 
-    const addSelectedCabinToBookingDetails = (child, duplicate = false) => {
+    const addSelectedCabinToBookingDetails = (child) => {
         const bookingDetailsContainer = document.getElementById('selected-cabin-card');
-        bookingDetailsContainer.innerHTML += createChildCard(child, false, true, duplicate);
+        bookingDetailsContainer.innerHTML += createChildCard(child, false, true);
         const price = parseFloat(child.price.replace('$', ''));
         updateTotalPrice(price);
     };
@@ -633,7 +633,7 @@ document.addEventListener('DOMContentLoaded', function () {
             } else {
                 e.target.textContent = 'Selected';
                 selectedChild.selected = true;
-                addSelectedCabinToBookingDetails(selectedChild, false);
+                addSelectedCabinToBookingDetails(selectedChild);
             }
 
             const formData = JSON.parse(localStorage.getItem('cruiseFormData')) || {};
