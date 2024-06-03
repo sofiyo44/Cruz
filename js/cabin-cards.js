@@ -584,6 +584,7 @@ document.addEventListener('DOMContentLoaded', function () {
         const cardButton = document.querySelector(`.select-cabin-btn[data-cabin-id="${cabinId}"]`);
         if (cardButton) {
             cardButton.textContent = 'Select';
+            cardButton.disabled = false;
             const selectedCabinKey = Object.keys(cabinData).find(key =>
                 cabinData[key].children.some(child => child.id === cabinId)
             );
