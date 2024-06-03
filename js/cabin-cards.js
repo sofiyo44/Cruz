@@ -479,6 +479,13 @@ document.addEventListener('DOMContentLoaded', function () {
         totalPrice += amount;
         document.getElementById('booking-sub-total').textContent = `Sub Total: $${totalPrice.toFixed(2)}`;
         document.getElementById('booking-total-price').textContent = `Total Price: $${(totalPrice + 5).toFixed(2)}`; // Assuming Taxes and Fees is $5
+        saveTotalPrice(totalPrice);
+    };
+
+    const saveTotalPrice = (total) => {
+        const formData = JSON.parse(localStorage.getItem('cruiseFormData')) || {};
+        formData.totalPrice = total;
+        localStorage.setItem('cruiseFormData', JSON.stringify(formData));
     };
 
     const showParentImage = (parent) => {
