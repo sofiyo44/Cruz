@@ -1177,6 +1177,55 @@
                         <!-- Passenger information form will be dynamically generated based on the number of passengers -->
                     </div>
                     <button type="button" id="add-passenger" class="btn btn-secondary">Add Passenger</button>
+
+                    <!-- New Section for Passenger Permissions and Signature -->
+                    <div class="permissions-section mt-4">
+                        <h3>Passenger Permissions</h3>
+                        <form id="permissions-form">
+                            <div class="permission-item">
+                                <input type="checkbox" id="travel-insurance" name="travel-insurance">
+                                <label for="travel-insurance">I understand that travel insurance is highly recommended for this trip. I have either purchased travel insurance or have chosen to decline it at my own risk.</label>
+                            </div>
+                            <div class="permission-item">
+                                <input type="checkbox" id="health-safety" name="health-safety">
+                                <label for="health-safety">I acknowledge that I am responsible for understanding and complying with all health and safety protocols established by the cruise line, including any requirements related to COVID-19 or other infectious diseases.</label>
+                            </div>
+                            <div class="permission-item">
+                                <input type="checkbox" id="liability-waiver" name="liability-waiver">
+                                <label for="liability-waiver">I agree to release and hold harmless the cruise company from any liability, claims, or damages arising from my participation in the cruise, except for those caused by the cruise company's gross negligence.</label>
+                            </div>
+                            <div class="permission-item">
+                                <input type="checkbox" id="cancellation-policy" name="cancellation-policy">
+                                <label for="cancellation-policy">I have read and agree to the cruise line's cancellation policy, including any penalties that may apply for canceling my reservation.</label>
+                            </div>
+                            <div class="permission-item">
+                                <input type="checkbox" id="terms-conditions" name="terms-conditions">
+                                <label for="terms-conditions">I have read and agree to the cruise line's terms and conditions, including payment schedules, itinerary changes, and any other relevant policies.</label>
+                            </div>
+                            <div class="permission-item">
+                                <input type="checkbox" id="medical-information" name="medical-information">
+                                <label for="medical-information">I confirm that I have provided accurate medical information for all passengers in my booking and understand the cruise line's policies regarding medical conditions and medications.</label>
+                            </div>
+                            <div class="permission-item">
+                                <input type="checkbox" id="data-use" name="data-use">
+                                <label for="data-use">I consent to the collection and use of my personal data in accordance with the cruise line's privacy policy.</label>
+                            </div>
+                            <div class="permission-item">
+                                <input type="checkbox" id="excursion-liability" name="excursion-liability">
+                                <label for="excursion-liability">I understand that any shore excursions booked through the cruise line are subject to separate terms and conditions, and I accept the associated risks and liability.</label>
+                            </div>
+                            <div class="permission-item">
+                                <input type="checkbox" id="fitness-to-travel" name="fitness-to-travel">
+                                <label for="fitness-to-travel">I confirm that I am fit to travel and participate in the activities offered on the cruise. I will notify the cruise line of any changes to my health status before departure.</label>
+                            </div>
+                        </form>
+                    </div>
+
+                    <!-- Signature Section -->
+                    <div class="signature-section mt-4">
+                        <label for="signature">Signature:</label>
+                        <input type="text" id="signature" name="signature" class="form-control">
+                    </div>
                 </div>
                 <div id="step3" class="step d-none">
                     <!-- Step 3: Payment -->
@@ -1198,6 +1247,7 @@
         </div>
     </div>
 </div>
+
 
 <!-- Template JS Files -->
 <script src="js/jquery-3.7.1.min.js"></script>
