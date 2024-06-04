@@ -1174,118 +1174,51 @@
                     <!-- Step 2: Passenger Information -->
                     <h3>Passenger Information</h3>
                     <div id="passenger-info-container">
-                        <!-- Passenger information form -->
-                        <form>
-                            <!-- Individual Passenger Cards (without signature) -->
-                            <div class="passenger-card">
-                                <h3>Passenger 1</h3>
-                                <div class="form-group">
-                                    <label for="fullName0">Full Name</label>
-                                    <input type="text" class="form-control" id="fullName0" required>
-                                </div>
-                                <div class="form-group">
-                                    <label for="dob0">Date of Birth</label>
-                                    <input type="date" class="form-control" id="dob0" required>
-                                </div>
-                                <div class="form-group">
-                                    <label for="nationality0">Nationality</label>
-                                    <input type="text" class="form-control" id="nationality0" required>
-                                </div>
-                                <div class="form-group">
-                                    <label for="passport0">Passport/ID</label>
-                                    <input type="text" class="form-control" id="passport0" required>
-                                </div>
-                                <div class="form-group">
-                                    <label for="proofOfID0">Proof of Valid ID</label>
-                                    <input type="file" class="form-control" id="proofOfID0" required>
-                                </div>
-                                <div class="form-group">
-                                    <label for="specialNeeds0">Special Needs/Medical Conditions</label>
-                                    <input type="text" class="form-control" id="specialNeeds0">
-                                </div>
-                                <div class="form-group">
-                                    <label for="address0">Street Address</label>
-                                    <input type="text" class="form-control" id="address0" required>
-                                </div>
-                                <div class="form-row">
-                                    <div class="form-group col-md-4">
-                                        <label for="city0">City</label>
-                                        <input type="text" class="form-control" id="city0" required>
-                                    </div>
-                                    <div class="form-group col-md-4">
-                                        <label for="state0">State</label>
-                                        <input type="text" class="form-control" id="state0" required>
-                                    </div>
-                                    <div class="form-group col-md-4">
-                                        <label for="zip0">Zip Code</label>
-                                        <input type="text" class="form-control" id="zip0" required>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="phone0">Telephone Number(s)</label>
-                                    <input type="text" class="form-control" id="phone0" required>
-                                </div>
-                                <div class="form-group">
-                                    <label for="email0">Email Address</label>
-                                    <input type="email" class="form-control" id="email0" required>
-                                </div>
-                                <div class="form-group">
-                                    <label for="emergencyContact0">Emergency Contact Name</label>
-                                    <input type="text" class="form-control" id="emergencyContact0" required>
-                                </div>
-                                <div class="form-row">
-                                    <div class="form-group col-md-6">
-                                        <label for="emergencyContactEmail0">Emergency Contact Email</label>
-                                        <input type="email" class="form-control" id="emergencyContactEmail0" required>
-                                    </div>
-                                    <div class="form-group col-md-6">
-                                        <label for="emergencyContactPhone0">Emergency Contact Phone</label>
-                                        <input type="text" class="form-control" id="emergencyContactPhone0" required>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <!-- Additional passengers will be added here -->
-                            
-                            <!-- Terms and Policies Section -->
-                            <div class="terms-and-policies">
-                                <h3>Terms and Policies</h3>
-                                <button type="button" id="toggle-policies" class="btn btn-link">Show Terms and Policies</button>
-                                <div id="policies-content" style="display: none;">
+                        <!-- Passenger information form will be dynamically generated based on the number of passengers -->
+                    </div>
+                    <div class="terms-and-policies">
+                        <h3>Terms and Policies</h3>
+                        <button type="button" id="toggle-policies" class="btn btn-link">Show Terms and Policies</button>
+                        <div id="policies-content" style="display: none;">
+                            <ul>
+                                <li><strong>Travel Insurance:</strong> I understand that travel insurance is highly recommended for this trip. I have either purchased travel insurance or have chosen to decline it at my own risk.</li>
+                                <li><strong>Health and Safety Acknowledgment:</strong> I acknowledge that I am responsible for understanding and complying with all health and safety protocols established by the cruise line, including any requirements related to COVID-19 or other infectious diseases.</li>
+                                <li><strong>Liability Waiver:</strong> I agree to release and hold harmless the cruise company from any liability, claims, or damages arising from my participation in the cruise, except for those caused by the cruise company's gross negligence.</li>
+                                <li><strong>Cancellation Policy:</strong> I have read and agree to the cruise line's cancellation policy, including any penalties that may apply for canceling my reservation.</li>
+                                <li><strong>Terms and Conditions:</strong> I have read and agree to the cruise line's terms and conditions, including payment schedules, itinerary changes, and any other relevant policies.</li>
+                                <li><strong>Medical Information:</strong> I confirm that I have provided accurate medical information for all passengers in my booking and understand the cruise line's policies regarding medical conditions and medications.</li>
+                                <li><strong>Excursion Liability:</strong> I understand that any shore excursions booked through the cruise line are subject to separate terms and conditions, and I accept the associated risks and liability.</li>
+                                <li><strong>Fitness to Travel:</strong> I confirm that I am fit to travel and participate in the activities offered on the cruise. I will notify the cruise line of any changes to my health status before departure.</li>
+                                <li><strong>Cancellation Fees:</strong>
                                     <ul>
-                                        <li><strong>Travel Insurance:</strong> I understand that travel insurance is highly recommended for this trip. I have either purchased travel insurance or have chosen to decline it at my own risk.</li>
-                                        <li><strong>Health and Safety Acknowledgment:</strong> I acknowledge that I am responsible for understanding and complying with all health and safety protocols established by the cruise line, including any requirements related to COVID-19 or other infectious diseases.</li>
-                                        <li><strong>Liability Waiver:</strong> I agree to release and hold harmless the cruise company from any liability, claims, or damages arising from my participation in the cruise, except for those caused by the cruise company's gross negligence.</li>
-                                        <li><strong>Cancellation Policy:</strong> I have read and agree to the cruise line's cancellation policy, including any penalties that may apply for canceling my reservation.</li>
-                                        <li><strong>Terms and Conditions:</strong> I have read and agree to the cruise line's terms and conditions, including payment schedules, itinerary changes, and any other relevant policies.</li>
-                                        <li><strong>Medical Information:</strong> I confirm that I have provided accurate medical information for all passengers in my booking and understand the cruise line's policies regarding medical conditions and medications.</li>
-                                        <li><strong>Excursion Liability:</strong> I understand that any shore excursions booked through the cruise line are subject to separate terms and conditions, and I accept the associated risks and liability.</li>
-                                        <li><strong>Fitness to Travel:</strong> I confirm that I am fit to travel and participate in the activities offered on the cruise. I will notify the cruise line of any changes to my health status before departure.</li>
-                                        <li><strong>Cancellation Fees:</strong>
-                                            <ul>
-                                                <li>Cancellations made more than 90 days before the departure date will incur a fee of $100 per passenger.</li>
-                                                <li>Cancellations made between 60 and 89 days before the departure date will incur a fee of 50% of the total booking cost.</li>
-                                                <li>Cancellations made between 30 and 59 days before the departure date will incur a fee of 75% of the total booking cost.</li>
-                                                <li>Cancellations made within 29 days of the departure date will incur a fee of 100% of the total booking cost.</li>
-                                            </ul>
-                                        </li>
-                                        <li><strong>Non-Refundable Deposits:</strong> I understand that any deposits paid are non-refundable, except as outlined in the cruise line's cancellation policy.</li>
-                                        <li><strong>Travel Documentation:</strong> I acknowledge that it is my responsibility to ensure that all passengers have valid passports, visas, and any other required travel documents.</li>
-                                        <li><strong>Age Restrictions:</strong> I understand that certain activities and areas of the ship may have age restrictions, and I agree to comply with these policies.</li>
-                                        <li><strong>Force Majeure:</strong> I understand that the cruise line is not liable for any delays, changes, or cancellations due to events beyond its control, including but not limited to natural disasters, political unrest, and pandemics.</li>
+                                        <li>Cancellations made more than 90 days before the departure date will incur a fee of $100 per passenger.</li>
+                                        <li>Cancellations made between 60 and 89 days before the departure date will incur a fee of 50% of the total booking cost.</li>
+                                        <li>Cancellations made between 30 and 59 days before the departure date will incur a fee of 75% of the total booking cost.</li>
+                                        <li>Cancellations made within 29 days of the departure date will incur a fee of 100% of the total booking cost.</li>
                                     </ul>
-                                </div>
-                                <div class="form-group form-check">
-                                    <input type="checkbox" class="form-check-input" id="termsCheck" required>
-                                    <label class="form-check-label" for="termsCheck">I agree to the terms and policies</label>
-                                </div>
-                            </div>
-                        </form>
+                                </li>
+                                <li><strong>Non-Refundable Deposits:</strong> I understand that any deposits paid are non-refundable, except as outlined in the cruise line's cancellation policy.</li>
+                                <li><strong>Travel Documentation:</strong> I acknowledge that it is my responsibility to ensure that all passengers have valid passports, visas, and any other required travel documents.</li>
+                                <li><strong>Age Restrictions:</strong> I understand that certain activities and areas of the ship may have age restrictions, and I agree to comply with these policies.</li>
+                                <li><strong>Force Majeure:</strong> I understand that the cruise line is not liable for any delays, changes, or cancellations due to events beyond its control, including but not limited to natural disasters, political unrest, and pandemics.</li>
+                            </ul>
+                        </div>
+                        <div class="form-group form-check">
+                            <input type="checkbox" class="form-check-input" id="termsCheck" required>
+                            <label class="form-check-label" for="termsCheck">I agree to the terms and policies</label>
+                        </div>
+                        <div class="form-group">
+                            <label for="signature">Signature</label>
+                            <input type="text" class="form-control" id="signature" required>
+                        </div>
                     </div>
                 </div>
                 <div id="step3" class="step d-none">
                     <!-- Step 3: Payment Information -->
                     <h3>Payment Information</h3>
+                    <div id="payment-summary">
+                        <p>Cabin Price Subtotal: <strong id="cabin-subtotal"></strong></p>
+                    </div>
                     <form id="payment-form">
                         <!-- Payment form elements -->
                         <div class="form-group">
@@ -1311,6 +1244,12 @@
     </div>
 </div>
 
+
+
+
+
+
+
 <!-- Template JS Files -->
 <script src="js/jquery-3.7.1.min.js"></script>
 <script src="js/jquery-ui.js"></script>
@@ -1334,14 +1273,14 @@
 <script>
     document.addEventListener('DOMContentLoaded', async function () {
         console.log('DOM fully loaded and parsed');
-    
+
         const cruiseData = {
             title: "Atlantic Ocean Europe 7 days from/to Portsmouth",
             departure_cruise: "9/23/24",
             arrival_cruise: "9/29/24",
             cruiseline: "Virgin Voyages"
         };
-    
+
         // Populate cruise details
         document.querySelectorAll('.cruise-title').forEach(el => el.innerText = cruiseData.title);
         document.querySelectorAll('.departure-date').forEach(el => el.innerText = cruiseData.departure_cruise);
@@ -1349,7 +1288,7 @@
         document.querySelectorAll('.cruise-line').forEach(el => el.innerText = cruiseData.cruiseline);
         document.getElementById('cruise-route').innerText = "Ports of Call: Portsmouth, Cruising Day, La Coruna, Bilbao, Le Verdon-sur-Mer, Portsmouth";
         document.getElementById('ship-description').innerHTML = "From decadent dinners to boozy after-parties, gather with your partner, your best friends and yourself to celebrate life's best moments aboard one of the 100% adults-only voyages.";
-    
+
         // Ship statistics
         document.getElementById('ship-statistics-left').innerHTML = `
             <li>Year Built: 2023</li>
@@ -1361,7 +1300,7 @@
             <li>Weight: 110,000</li>
             <li>Length: 278m</li>
         `;
-    
+
         // Included and Not Included
         document.getElementById('included-list').innerHTML = `
             <li>Cruise in the cabin category booked.</li>
@@ -1382,7 +1321,7 @@
             <li>Recommended gratuities.</li>
             <li>Visa, if necessary (extra charges possible).</li>
         `;
-    
+
         // Populate itinerary table
         document.getElementById('itinerary-table').innerHTML = `
             <tr>
@@ -1428,11 +1367,11 @@
                 <td></td>
             </tr>
         `;
-    
+
         // Handle steps and form data
         let currentStep = 1;
         const totalSteps = 3;
-    
+
         const showStep = (step) => {
             for (let i = 1; i <= totalSteps; i++) {
                 document.getElementById(`step${i}`).classList.toggle('d-none', i !== step);
@@ -1440,31 +1379,32 @@
             if (step === 3) {
                 const formData = JSON.parse(localStorage.getItem('cruiseFormData'));
                 const totalPrice = formData ? formData.totalPrice : 0;
-                document.getElementById('payment-summary').innerHTML = `<p>Order Total: <strong>$${(totalPrice + 5).toFixed(2)}</strong></p>`;
+                document.getElementById('payment-summary').innerHTML = `<p>Cabin Price Subtotal: <strong>$${totalPrice.toFixed(2)}</strong></p>`;
+                document.getElementById('payment-summary').innerHTML += `<p>Order Total: <strong>$${(totalPrice + 5).toFixed(2)}</strong></p>`;
             }
         };
-    
+
         const nextStep = () => {
             if (currentStep < totalSteps) {
+                if (currentStep === 2) {
+                    savePassengerInfo();
+                }
                 currentStep++;
                 if (currentStep === 2) {
                     const numGuests = parseInt(document.getElementById('number-of-guests').value) || 0;
                     generatePassengerForm(numGuests);
                 }
                 showStep(currentStep);
-                if (currentStep === 3) {
-                    savePassengerInfo();
-                }
             }
         };
-    
+
         const prevStep = () => {
             if (currentStep > 1) {
                 currentStep--;
                 showStep(currentStep);
             }
         };
-    
+
         const generatePassengerForm = (numPassengers) => {
             const container = document.getElementById('passenger-info-container');
             container.innerHTML = '';
@@ -1472,7 +1412,7 @@
                 addPassengerForm(container, i);
             }
         };
-    
+
         const addPassengerForm = (container, index) => {
             const passengerForm = `
                 <div class="card mb-3">
@@ -1599,7 +1539,6 @@
                 this.textContent = 'Show Terms and Policies';
             }
         });
-    
     });
 </script>
 </body>
