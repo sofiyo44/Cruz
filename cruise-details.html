@@ -1179,27 +1179,73 @@
                             <!-- Individual Passenger Cards (without signature) -->
                             <div class="passenger-card">
                                 <h3>Passenger 1</h3>
-                                <label for="name1">Name:</label>
-                                <input type="text" id="name1" name="name1">
-                                <label for="dob1">Date of Birth:</label>
-                                <input type="date" id="dob1" name="dob1">
-                                <label for="passport1">Passport Number:</label>
-                                <input type="text" id="passport1" name="passport1">
-                                <!-- Additional passenger information fields -->
+                                <div class="form-group">
+                                    <label for="fullName0">Full Name</label>
+                                    <input type="text" class="form-control" id="fullName0" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="dob0">Date of Birth</label>
+                                    <input type="date" class="form-control" id="dob0" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="nationality0">Nationality</label>
+                                    <input type="text" class="form-control" id="nationality0" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="passport0">Passport/ID</label>
+                                    <input type="text" class="form-control" id="passport0" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="proofOfID0">Proof of Valid ID</label>
+                                    <input type="file" class="form-control" id="proofOfID0" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="specialNeeds0">Special Needs/Medical Conditions</label>
+                                    <input type="text" class="form-control" id="specialNeeds0">
+                                </div>
+                                <div class="form-group">
+                                    <label for="address0">Street Address</label>
+                                    <input type="text" class="form-control" id="address0" required>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group col-md-4">
+                                        <label for="city0">City</label>
+                                        <input type="text" class="form-control" id="city0" required>
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                        <label for="state0">State</label>
+                                        <input type="text" class="form-control" id="state0" required>
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                        <label for="zip0">Zip Code</label>
+                                        <input type="text" class="form-control" id="zip0" required>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="phone0">Telephone Number(s)</label>
+                                    <input type="text" class="form-control" id="phone0" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="email0">Email Address</label>
+                                    <input type="email" class="form-control" id="email0" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="emergencyContact0">Emergency Contact Name</label>
+                                    <input type="text" class="form-control" id="emergencyContact0" required>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <label for="emergencyContactEmail0">Emergency Contact Email</label>
+                                        <input type="email" class="form-control" id="emergencyContactEmail0" required>
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="emergencyContactPhone0">Emergency Contact Phone</label>
+                                        <input type="text" class="form-control" id="emergencyContactPhone0" required>
+                                    </div>
+                                </div>
                             </div>
                             
-                            <div class="passenger-card">
-                                <h3>Passenger 2</h3>
-                                <label for="name2">Name:</label>
-                                <input type="text" id="name2" name="name2">
-                                <label for="dob2">Date of Birth:</label>
-                                <input type="date" id="dob2" name="dob2">
-                                <label for="passport2">Passport Number:</label>
-                                <input type="text" id="passport2" name="passport2">
-                                <!-- Additional passenger information fields -->
-                            </div>
-                            
-                            <!-- Add more passenger cards as needed -->
+                            <!-- Additional passengers will be added here -->
                             
                             <!-- Terms and Policies Section -->
                             <div class="terms-and-policies">
@@ -1223,43 +1269,43 @@
                                                 <li>Cancellations made within 29 days of the departure date will incur a fee of 100% of the total booking cost.</li>
                                             </ul>
                                         </li>
-                                        <li><strong>Non-Refundable Deposits:</strong> I acknowledge that any deposits made are non-refundable and will be retained by the cruise line in the event of cancellation.</li>
-                                        <li><strong>Change of Dates or Itinerary:</strong> I understand that changes to the travel dates or itinerary are subject to availability and may incur additional fees as outlined in the cruise line's policies.</li>
-                                        <li><strong>Third-Party Bookings:</strong> I recognize that if my booking includes third-party services (such as flights or excursions), their respective cancellation policies and fees will apply in addition to the cruise line's cancellation fees.</li>
-                                        <li><strong>Travel Insurance:</strong> I understand that travel insurance is recommended to cover potential cancellation costs, and it is my responsibility to obtain appropriate coverage.</li>
-                                        <li><strong>Refund Process:</strong> I acknowledge that any eligible refunds will be processed within 30 days of the cancellation request, according to the cruise line's refund policy.</li>
+                                        <li><strong>Non-Refundable Deposits:</strong> I understand that any deposits paid are non-refundable, except as outlined in the cruise line's cancellation policy.</li>
+                                        <li><strong>Travel Documentation:</strong> I acknowledge that it is my responsibility to ensure that all passengers have valid passports, visas, and any other required travel documents.</li>
+                                        <li><strong>Age Restrictions:</strong> I understand that certain activities and areas of the ship may have age restrictions, and I agree to comply with these policies.</li>
+                                        <li><strong>Force Majeure:</strong> I understand that the cruise line is not liable for any delays, changes, or cancellations due to events beyond its control, including but not limited to natural disasters, political unrest, and pandemics.</li>
                                     </ul>
-                                    <label>
-                                        <input type="checkbox" name="terms_agreement"> By checking this box, I confirm that I have read, understood, and agree to the above cancellation terms and conditions.
-                                    </label>
                                 </div>
-                            </div>
-                            
-                            <!-- Signature Section -->
-                            <div class="signature-section">
-                                <label for="signature">Signature:</label>
-                                <input type="text" id="signature" name="signature">
+                                <div class="form-group form-check">
+                                    <input type="checkbox" class="form-check-input" id="termsCheck" required>
+                                    <label class="form-check-label" for="termsCheck">I agree to the terms and policies</label>
+                                </div>
                             </div>
                         </form>
                     </div>
-                    <button type="button" id="add-passenger" class="btn btn-secondary">Add Passenger</button>
                 </div>
                 <div id="step3" class="step d-none">
-                    <!-- Step 3: Payment -->
-                    <h3>Payment</h3>
-                    <div id="payment-summary">
-                        <!-- Order Total and line items will be dynamically generated -->
-                    </div>
+                    <!-- Step 3: Payment Information -->
+                    <h3>Payment Information</h3>
                     <form id="payment-form">
-                        <!-- Stripe Payment form elements -->
-                        <div id="card-element"><!-- Stripe's Card Element will be inserted here --></div>
-                        <button type="submit" class="btn btn-primary">Pay</button>
+                        <!-- Payment form elements -->
+                        <div class="form-group">
+                            <label for="cardNumber">Card Number</label>
+                            <input type="text" class="form-control" id="cardNumber" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="expiryDate">Expiry Date</label>
+                            <input type="text" class="form-control" id="expiryDate" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="cvv">CVV</label>
+                            <input type="text" class="form-control" id="cvv" required>
+                        </div>
                     </form>
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" id="prev-step">Previous</button>
-                <button type="button" class="btn btn-primary" id="next-step">Next</button>
+                <button type="button" class="btn btn-secondary" id="prevBtn">Previous</button>
+                <button type="button" class="btn btn-primary" id="nextBtn">Next</button>
             </div>
         </div>
     </div>
@@ -1411,6 +1457,9 @@
                     generatePassengerForm(numGuests);
                 }
                 showStep(currentStep);
+                if (currentStep === 3) {
+                    savePassengerInfo();
+                }
             }
         };
     
@@ -1461,8 +1510,22 @@
                             <input type="text" class="form-control" id="specialNeeds${index}">
                         </div>
                         <div class="form-group">
-                            <label for="address${index}">Home/Billing Address</label>
+                            <label for="address${index}">Street Address</label>
                             <input type="text" class="form-control" id="address${index}" required>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-4">
+                                <label for="city${index}">City</label>
+                                <input type="text" class="form-control" id="city${index}" required>
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="state${index}">State</label>
+                                <input type="text" class="form-control" id="state${index}" required>
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="zip${index}">Zip Code</label>
+                                <input type="text" class="form-control" id="zip${index}" required>
+                            </div>
                         </div>
                         <div class="form-group">
                             <label for="phone${index}">Telephone Number(s)</label>
@@ -1473,29 +1536,73 @@
                             <input type="email" class="form-control" id="email${index}" required>
                         </div>
                         <div class="form-group">
-                            <label for="emergencyContact${index}">Emergency Contact</label>
+                            <label for="emergencyContact${index}">Emergency Contact Name</label>
                             <input type="text" class="form-control" id="emergencyContact${index}" required>
                         </div>
-                        <div class="form-group">
-                            <label for="signature${index}">Signature</label>
-                            <input type="text" class="form-control" id="signature${index}" required>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="emergencyContactEmail${index}">Emergency Contact Email</label>
+                                <input type="email" class="form-control" id="emergencyContactEmail${index}" required>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="emergencyContactPhone${index}">Emergency Contact Phone</label>
+                                <input type="text" class="form-control" id="emergencyContactPhone${index}" required>
+                            </div>
                         </div>
                     </div>
                 </div>
             `;
             container.innerHTML += passengerForm;
         };
-    
-    
+
+        const savePassengerInfo = () => {
+            const passengerCards = document.querySelectorAll('.passenger-card');
+            const passengersData = Array.from(passengerCards).map((card, index) => ({
+                fullName: card.querySelector(`#fullName${index}`).value,
+                dob: card.querySelector(`#dob${index}`).value,
+                nationality: card.querySelector(`#nationality${index}`).value,
+                passport: card.querySelector(`#passport${index}`).value,
+                proofOfID: card.querySelector(`#proofOfID${index}`).files[0] ? card.querySelector(`#proofOfID${index}`).files[0].name : '',
+                specialNeeds: card.querySelector(`#specialNeeds${index}`).value,
+                address: card.querySelector(`#address${index}`).value,
+                city: card.querySelector(`#city${index}`).value,
+                state: card.querySelector(`#state${index}`).value,
+                zip: card.querySelector(`#zip${index}`).value,
+                phone: card.querySelector(`#phone${index}`).value,
+                email: card.querySelector(`#email${index}`).value,
+                emergencyContact: card.querySelector(`#emergencyContact${index}`).value,
+                emergencyContactEmail: card.querySelector(`#emergencyContactEmail${index}`).value,
+                emergencyContactPhone: card.querySelector(`#emergencyContactPhone${index}`).value
+            }));
+            const termsCheck = document.querySelector('#termsCheck').checked;
+            const bookingData = {
+                passengers: passengersData,
+                termsAccepted: termsCheck
+            };
+            localStorage.setItem('bookingData', JSON.stringify(bookingData));
+        };
+
         // Event listeners for next and previous buttons
         document.getElementById('next-step').addEventListener('click', nextStep);
         document.getElementById('prev-step').addEventListener('click', prevStep);
-    
+
         // Event listener for add passenger button
         document.getElementById('add-passenger').addEventListener('click', function () {
             const container = document.getElementById('passenger-info-container');
             const currentPassengerCount = container.querySelectorAll('.card').length;
             addPassengerForm(container, currentPassengerCount);
+        });
+
+        // Event listener for toggle policies button
+        document.getElementById('toggle-policies').addEventListener('click', function() {
+            const policiesContent = document.getElementById('policies-content');
+            if (policiesContent.style.display === 'none' || policiesContent.style.display === '') {
+                policiesContent.style.display = 'block';
+                this.textContent = 'Hide Terms and Policies';
+            } else {
+                policiesContent.style.display = 'none';
+                this.textContent = 'Show Terms and Policies';
+            }
         });
     
     });
