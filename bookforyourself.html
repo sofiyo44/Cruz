@@ -878,81 +878,6 @@
 ================================= -->
 
     <!-- ================================
-    START RECOM AREA
-================================= -->
-  <section class="recom-area position-relative section-bg padding-top-100px padding-bottom-140px">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="section-heading text-center">
-                    <h2 class="sec__title">Recommended For You</h2>
-                </div>
-            </div>
-        </div>
-        <div class="row padding-top-50px">
-            <div class="col-lg-12">
-                <div class="car-wrap">
-                    <div class="car-carousel carousel-action" id="cruiseCarousel">
-                        <!-- Cruise cards will be injected here -->
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <svg class="cta-svg" viewBox="0 0 500 150" preserveAspectRatio="none">
-        <path d="M-103.55,167.27 C150.39,-132.72 134.59,237.33 517.77,30.09 L500.00,150.00 L0.00,150.00 Z"></path>
-    </svg>
-</section>
-<script>
-document.addEventListener("DOMContentLoaded", function() {
-     fetch('https://api.example.com/cruises', {
-       headers: {
-        'Authorization': 'Bearer YOUR_API_KEY'  // Replace YOUR_API_KEY with your actual API key
-    }
-})
-.then(response => response.json())
-.then(data => {
-            const carousel = document.getElementById('cruiseCarousel');
-            data.cruises.forEach(cruise => {
-                const cardHtml = `
-                    <div class="card-item cruise--card mb-0">
-                        <div class="card-img">
-                            <a href="${cruise.detailsUrl}" class="d-block">
-                                <img src="${cruise.imageUrl}" alt="cruise-img" />
-                            </a>
-                        </div>
-                        <div class="card-body">
-                            <img src="${cruise.logoUrl}" alt="" class="cruise-logo" />
-                            <h3 class="card-title">
-                                <a href="${cruise.detailsUrl}">${cruise.title}</a>
-                            </h3>
-                            <p class="card-meta">Departing ${cruise.departureCity}</p>
-                            <div class="card-rating">
-                                <span class="badge text-white">${cruise.rating}/5</span>
-                                <span class="review__text">${cruise.reviewText}</span>
-                                <span class="rating__text">(${cruise.reviewCount} Reviews)</span>
-                            </div>
-                            <div class="card-price d-flex align-items-center justify-content-between">
-                                <p>
-                                    <span class="price__from">From</span>
-                                    <span class="price__num">$${cruise.price}</span>
-                                </p>
-                                <a href="${cruise.detailsUrl}" class="btn-text">Read details<i class="la la-angle-right"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                `;
-                carousel.innerHTML += cardHtml;
-            });
-        })
-        .catch(error => console.error('Error fetching cruise data:', error));
-});
-</script>
-    <!-- ================================
-    END RECOM AREA
-================================= -->
-
-    <!-- ================================
     START CRUISE LINE AREA
 ================================= -->
     <section class="cruise-line-area padding-top-80px padding-bottom-90px">
@@ -1081,7 +1006,7 @@ document.addEventListener("DOMContentLoaded", function() {
               </div>
               <!-- end logo -->
               <p class="footer__desc">
-                Morbi convallis bibendum urna ut viverra. Maecenas consequat
+                Our company started in 2024, and we hope to soon be your favorite booking service!
               </p>
               <ul class="list-items pt-3">
                 <li>
@@ -1105,10 +1030,7 @@ document.addEventListener("DOMContentLoaded", function() {
               <ul class="list-items list--items">
                 <li><a href="about.html">About us</a></li>
                 <li><a href="services.html">Services</a></li>
-                <li><a href="#">Jobs</a></li>
-                <li><a href="blog-grid.html">News</a></li>
-                <li><a href="contact.html">Support</a></li>
-                <li><a href="#">Advertising</a></li>
+                <li><a href="blog-grid.html">News (Coming Soon)</a></li>
               </ul>
             </div>
             <!-- end footer-item -->
@@ -1120,11 +1042,10 @@ document.addEventListener("DOMContentLoaded", function() {
                 class="title curve-shape pb-3 margin-bottom-20px"
                 data-text="curvs"
               >
-                Other Services
+                Other Services (Coming Soon)
               </h4>
               <ul class="list-items list--items">
                 <li><a href="#">Sustainability Review</a></li>
-                <li><a href="#">Cruise Information</a></li>
                 <li><a href="#">Partners</a></li>
                 <li><a href="#">All Cruises</a></li>
                 <li><a href="#">All Hotels</a></li>
@@ -1140,7 +1061,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 class="title curve-shape pb-3 margin-bottom-20px"
                 data-text="curvs"
               >
-                Other Links
+                Other Links (Coming Soon)
               </h4>
               <ul class="list-items list--items">
                 <li><a href="#">Stasis Vacation Packages</a></li>
@@ -1153,38 +1074,6 @@ document.addEventListener("DOMContentLoaded", function() {
             <!-- end footer-item -->
           </div>
           <!-- end col-lg-3 -->
-        </div>
-        <!-- end row -->
-        <div class="row align-items-center">
-          <div class="col-lg-8">
-            <div class="term-box footer-item">
-              <ul class="list-items list--items d-flex align-items-center">
-                <li><a href="#">Terms & Conditions</a></li>
-                <li><a href="#">Privacy Policy</a></li>
-                <li><a href="#">Help Center</a></li>
-              </ul>
-            </div>
-          </div>
-          <!-- end col-lg-8 -->
-          <div class="col-lg-4">
-            <div class="footer-social-box text-right">
-              <ul class="social-profile">
-                <li>
-                  <a href="#"><i class="lab la-facebook-f"></i></a>
-                </li>
-                <li>
-                  <a href="#"><i class="lab la-twitter"></i></a>
-                </li>
-                <li>
-                  <a href="#"><i class="lab la-instagram"></i></a>
-                </li>
-                <li>
-                  <a href="#"><i class="lab la-linkedin-in"></i></a>
-                </li>
-              </ul>
-            </div>
-          </div>
-          <!-- end col-lg-4 -->
         </div>
         <!-- end row -->
       </div>
@@ -1203,16 +1092,6 @@ document.addEventListener("DOMContentLoaded", function() {
             <!-- end copy-right -->
           </div>
           <!-- end col-lg-7 -->
-          <div class="col-lg-5">
-            <div
-              class="copy-right-content d-flex align-items-center justify-content-end padding-top-30px"
-            >
-              <h3 class="title font-size-15 pr-2">We Accept</h3>
-              <img src="images/payment-img.png" alt="" />
-            </div>
-            <!-- end copy-right-content -->
-          </div>
-          <!-- end col-lg-5 -->
         </div>
         <!-- end row -->
       </div>
