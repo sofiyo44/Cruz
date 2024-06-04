@@ -1576,12 +1576,12 @@
 <script>
     document.addEventListener('DOMContentLoaded', function () {
         const cruiseListData = JSON.parse(localStorage.getItem('cruiseListData'));
-    
+
         if (cruiseListData) {
             const resultsContainer = document.getElementById('results');
             const cruiseCount = document.getElementById('cruise-count');
             let displayedCruises = 10;
-    
+
             function createCruiseCard(cruise) {
                 return `
                     <div class="col-lg-9">
@@ -1596,6 +1596,7 @@
                                 <img src="${cruise.cruiseLineLogo}" alt="${cruise.shipImage}" class="cruise-logo">
                                 <h3 class="card-title"><a href="cruise-details.html">${cruise.title}</a></h3>
                                 <p class="card-meta">Departing ${cruise.departure}</p>
+                                <p class="card-route">${cruise.route}</p>
                                 <div class="card-price d-flex align-items-center justify-content-between">
                                     <p>
                                         <span class="price__from">From</span>
@@ -1608,7 +1609,7 @@
                     </div>
                 `;
             }
-    
+
             function displayCruises(limit, cruises) {
                 resultsContainer.innerHTML = '';
                 const cruisesToShow = cruises.slice(0, limit);
@@ -1617,7 +1618,7 @@
                 });
                 cruiseCount.textContent = `Showing 1 - ${limit} of ${cruises.length} Cruises`;
             }
-    
+
             function filterCruises() {
                 let filteredCruises = [...cruiseListData.cruises];
                 const seaValue = document.querySelector('input[name="sea"]:checked').value;
@@ -1628,42 +1629,42 @@
                 const durationValues = Array.from(document.querySelectorAll('input[name="duration"]:checked')).map(input => input.value);
                 const departureValue = document.getElementById('departure-date-early').value;
                 const arrivalValue = document.getElementById('departure-date-late').value;
-    
+
                 if (seaValue) {
                     filteredCruises = filteredCruises.filter(cruise => cruise.sea === parseInt(seaValue));
                 }
-    
+
                 if (packageValue && packageValue !== 'all') {
                     filteredCruises = filteredCruises.filter(cruise => cruise.package === packageValue);
                 }
-    
+
                 if (areaValues.length > 0) {
                     filteredCruises = filteredCruises.filter(cruise => areaValues.includes(cruise.area));
                 }
-    
+
                 if (cruiseLineValues.length > 0) {
                     filteredCruises = filteredCruises.filter(cruise => cruiseLineValues.includes(cruise.cruiseLineID));
                 }
-    
+
                 if (shipValues.length > 0) {
                     filteredCruises = filteredCruises.filter(cruise => shipValues.includes(cruise.shipID));
                 }
-    
+
                 if (durationValues.length > 0) {
                     filteredCruises = filteredCruises.filter(cruise => durationValues.includes(cruise.duration));
                 }
-    
+
                 if (departureValue) {
                     filteredCruises = filteredCruises.filter(cruise => new Date(cruise.departure_raw) >= new Date(departureValue));
                 }
-    
+
                 if (arrivalValue) {
                     filteredCruises = filteredCruises.filter(cruise => new Date(cruise.arrival_raw) <= new Date(arrivalValue));
                 }
-    
+
                 return filteredCruises;
             }
-    
+
             function sortCruises(cruises) {
                 const sortOption = document.getElementById('sort-options').value;
                 let sortedCruises = [...cruises];
@@ -1688,15 +1689,15 @@
                 }
                 return sortedCruises;
             }
-    
+
             function applyFilters() {
                 let filteredCruises = filterCruises();
                 let sortedCruises = sortCruises(filteredCruises);
                 displayCruises(displayedCruises, sortedCruises);
             }
-    
+
             displayCruises(displayedCruises, cruiseListData.cruises);
-    
+
             document.getElementById('load-more-btn').addEventListener('click', function () {
                 displayedCruises += 10;
                 if (displayedCruises > cruiseListData.count.entries) {
@@ -1704,25 +1705,25 @@
                 }
                 applyFilters();
             });
-    
+
             document.getElementById('search-now-btn').addEventListener('click', function () {
                 applyFilters();
             });
-    
+
             document.getElementById('sort-options').addEventListener('change', function () {
                 applyFilters();
             });
-    
+
             document.querySelectorAll('input[name="sea"], input[name="package"], input[name="area"], input[name="cruiseline"], input[name="ship"], input[name="duration"]').forEach(input => {
                 input.addEventListener('change', function () {
                     applyFilters();
                 });
             });
-    
+
             document.getElementById('apply-price-filter').addEventListener('click', function () {
                 applyFilters();
             });
-    
+
             document.getElementById('apply-price-sidebar').addEventListener('click', function () {
                 applyFilters();
             });
