@@ -25,6 +25,8 @@
     <link rel="stylesheet" href="css/jquery-ui.css">
     <link rel="stylesheet" href="css/flag-icon.min.css">
     <link rel="stylesheet" href="css/style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/15.5.1/nouislider.min.css" rel="stylesheet">
+    
     <style>
     .card-item {
         border: 1px solid #ddd;
@@ -338,7 +340,7 @@
                 <div class="filter-wrap margin-bottom-30px">
                     <div class="filter-top d-flex align-items-center justify-content-between pb-4">
                         <div>
-                            <h3 class="title font-size-24">24 Cruises found</h3>
+                            <h3 class="title font-size-24" id="cruises-found">24 Cruises found</h3>
                             <p class="font-size-14 line-height-20 pt-1">Book with confidence: No cruise booking fees</p>
                         </div>
                         <div class="layout-view d-flex align-items-center">
@@ -351,76 +353,10 @@
                             <div class="filter-option">
                                 <h3 class="title font-size-16">Filter by:</h3>
                             </div>
-                            <div class="filter-option">
-                                <div class="dropdown dropdown-contain">
-                                    <a class="dropdown-toggle dropdown-btn dropdown--btn" href="#" role="button" data-toggle="dropdown">
-                                        Filter Price
-                                    </a>
-                                    <div class="dropdown-menu dropdown-menu-wrap">
-                                        <div class="dropdown-item">
-                                            <div class="slider-range-wrap">
-                                                <div class="price-slider-amount padding-bottom-20px">
-                                                    <label for="amount" class="filter__label">Price:</label>
-                                                    <input type="text" id="amount" class="amounts">
-                                                </div>
-                                                <div id="slider-range"></div>
-                                            </div>
-                                            <div class="btn-box pt-4">
-                                                <button class="theme-btn theme-btn-small theme-btn-transparent" type="button" id="apply-price-filter">Apply</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="filter-option">
-                                <div class="dropdown dropdown-contain">
-                                    <a class="dropdown-toggle dropdown-btn dropdown--btn" href="#" role="button" data-toggle="dropdown">
-                                        Categories
-                                    </a>
-                                    <div class="dropdown-menu dropdown-menu-wrap">
-                                        <div class="dropdown-item">
-                                            <div class="checkbox-wrap" id="categories-checkboxes">
-                                                <div class="custom-checkbox">
-                                                    <input type="checkbox" id="catChb1" value="any-cruise-line">
-                                                    <label for="catChb1">Any Cruise line</label>
-                                                </div>
-                                                <div class="custom-checkbox">
-                                                    <input type="checkbox" id="catChb2" value="carnival-cruise-lines">
-                                                    <label for="catChb2">Carnival Cruise lines</label>
-                                                </div>
-                                                <div class="custom-checkbox">
-                                                    <input type="checkbox" id="catChb3" value="celebrity-cruise">
-                                                    <label for="catChb3">Celebrity Cruise</label>
-                                                </div>
-                                                <div class="custom-checkbox">
-                                                    <input type="checkbox" id="catChb4" value="disney-cruise-line">
-                                                    <label for="catChb4">Disney Cruise line</label>
-                                                </div>
-                                                <div class="custom-checkbox">
-                                                    <input type="checkbox" id="catChb5" value="holland-america-line">
-                                                    <label for="catChb5">Holland America line</label>
-                                                </div>
-                                                <div class="custom-checkbox">
-                                                    <input type="checkbox" id="catChb6" value="msc-cruise">
-                                                    <label for="catChb6">MSC Cruise</label>
-                                                </div>
-                                                <div class="custom-checkbox">
-                                                    <input type="checkbox" id="catChb7" value="norwegian-cruise-line">
-                                                    <label for="catChb7">Norwegian Cruise line</label>
-                                                </div>
-                                                <div class="custom-checkbox">
-                                                    <input type="checkbox" id="catChb8" value="royal-caribbean">
-                                                    <label for="catChb8">Royal Caribbean</label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
                         </div>
                         <div class="select-contain">
                             <select class="select-contain-select" id="sort-options">
-                                <option value="default">Short by default</option>
+                                <option value="default">Sort by default</option>
                                 <option value="new">New Cruise</option>
                                 <option value="popular">Popular Cruise</option>
                                 <option value="low-to-high">Price: low to high</option>
@@ -436,65 +372,9 @@
             <div class="col-lg-3">
                 <div class="sidebar mt-0">
                     <div class="sidebar-widget">
-                        <h3 class="title stroke-shape">Search Cruises</h3>
-                        <div class="sidebar-widget-item">
-                            <div class="contact-form-action">
-                                <form id="search-form">
-                                    <div class="input-box">
-                                        <label class="label-text">Going to</label>
-                                        <div class="form-group">
-                                            <div class="select-contain w-auto">
-                                                <select class="select-contain-select" id="destination-select">
-                                                    <option value="">Select destination</option>
-                                                    <optgroup label="Most Popular">
-                                                        <option value="caribbean">Caribbean</option>
-                                                        <option value="bahamas">Bahamas</option>
-                                                        <option value="mexico">Mexico</option>
-                                                        <option value="alaska">Alaska</option>
-                                                        <option value="europe">Europe</option>
-                                                        <option value="bermuda">Bermuda</option>
-                                                        <option value="hawaii">Hawaii</option>
-                                                        <option value="nepal">Nepal</option>
-                                                        <option value="italy">Italy</option>
-                                                        <option value="canada-new-england">Canada / New England</option>
-                                                    </optgroup>
-                                                    <optgroup label="Other Destinations">
-                                                        <option value="arctic-antarctic">Arctic / Antarctic</option>
-                                                        <option value="middle-east">Middle East</option>
-                                                        <option value="africa">Africa</option>
-                                                        <option value="panama-canal">Panama Canal</option>
-                                                        <option value="asia">Asia</option>
-                                                        <option value="pacific-coastal">Pacific Coastal</option>
-                                                        <option value="australia-new-zealand">Australia / New Zealand</option>
-                                                        <option value="central-america">Central America</option>
-                                                        <option value="galapagos">Galapagos</option>
-                                                        <option value="getaway-at-sea">Getaway at Sea</option>
-                                                        <option value="transatlantic">Transatlantic</option>
-                                                        <option value="world-cruise">World</option>
-                                                        <option value="south-america">South America</option>
-                                                        <option value="south-pacific">South Pacific</option>
-                                                        <option value="transpacific">Transpacific</option>
-                                                    </optgroup>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="input-box">
-                                        <label class="label-text">Departs as early as</label>
-                                        <div class="form-group">
-                                            <span class="la la-calendar form-icon"></span>
-                                            <input class="date-range form-control" id="departure-date-early" type="date" name="daterange" readonly />
-                                        </div>
-                                    </div>
-                                    <div class="input-box">
-                                        <label class="label-text">Departs as late as</label>
-                                        <div class="form-group">
-                                            <span class="la la-calendar form-icon"></span>
-                                            <input class="date-range form-control" id="departure-date-late" type="date" name="daterange" readonly />
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
+                        <h3 class="title stroke-shape">Departure Port</h3>
+                        <div class="sidebar-category" id="departure-port-list">
+                            <!-- Departure Ports will be populated here by JavaScript -->
                         </div>
                     </div>
                     <div class="sidebar-widget">
@@ -510,57 +390,6 @@
                             <div class="btn-box pt-4">
                                 <button class="theme-btn theme-btn-small theme-btn-transparent" type="button" id="apply-price-sidebar">Apply</button>
                             </div>
-                        </div>
-                    </div>
-                    <div class="sidebar-widget">
-                        <h3 class="title stroke-shape">Categories</h3>
-                        <div class="sidebar-category">
-                            <div class="custom-checkbox">
-                                <input type="checkbox" id="cat1" value="all">
-                                <label for="cat1">All <span class="font-size-13 ml-1">(24)</span></label>
-                            </div>
-                            <div class="custom-checkbox">
-                                <input type="checkbox" id="cat2" value="any-cruise-line">
-                                <label for="cat2">Any Cruise line <span class="font-size-13 ml-1">(2)</span></label>
-                            </div>
-                            <div class="custom-checkbox">
-                                <input type="checkbox" id="cat3" value="carnival-cruise-lines">
-                                <label for="cat3">Carnival Cruise Lines <span class="font-size-13 ml-1">(2)</span></label>
-                            </div>
-                            <div class="custom-checkbox">
-                                <input type="checkbox" id="cat4" value="celebrity-cruises">
-                                <label for="cat4">Celebrity Cruises <span class="font-size-13 ml-1">(2)</span></label>
-                            </div>
-                            <div class="custom-checkbox">
-                                <input type="checkbox" id="cat5" value="disney-cruise-line">
-                                <label for="cat5">Disney Cruise Line <span class="font-size-13 ml-1">(3)</span></label>
-                            </div>
-                            <div class="custom-checkbox">
-                                <input type="checkbox" id="cat6" value="holland-america-line">
-                                <label for="cat6">Holland America Line <span class="font-size-13 ml-1">(1)</span></label>
-                            </div>
-                            <div class="collapse" id="categoryMenu">
-                                <div class="custom-checkbox">
-                                    <input type="checkbox" id="cat7" value="msc-cruises">
-                                    <label for="cat7">MSC Cruises <span class="font-size-13 ml-1">(1)</span></label>
-                                </div>
-                                <div class="custom-checkbox">
-                                    <input type="checkbox" id="cat8" value="norwegian-cruise-line">
-                                    <label for="cat8">Norwegian Cruise Line <span class="font-size-13 ml-1">(4)</span></label>
-                                </div>
-                                <div class="custom-checkbox">
-                                    <input type="checkbox" id="cat9" value="princess-cruises">
-                                    <label for="cat9">Princess Cruises <span class="font-size-13 ml-1">(6)</span></label>
-                                </div>
-                                <div class="custom-checkbox">
-                                    <input type="checkbox" id="cat10" value="royal-caribbean-international">
-                                    <label for="cat10">Royal Caribbean International <span class="font-size-13 ml-1">(3)</span></label>
-                                </div>
-                            </div>
-                            <a class="btn-text" data-toggle="collapse" href="#categoryMenu" role="button" aria-expanded="false" aria-controls="categoryMenu">
-                                <span class="show-more">Show More <i class="la la-angle-down"></i></span>
-                                <span class="show-less">Show Less <i class="la la-angle-up"></i></span>
-                            </a>
                         </div>
                     </div>
                 </div>
@@ -668,108 +497,116 @@
     END CTA AREA
 ================================= -->
 
-<!-- ================================
+    <!-- ================================
        START FOOTER AREA
 ================================= -->
-<section class="footer-area section-bg padding-top-100px padding-bottom-30px">
-    <div class="container">
+    <section
+      class="footer-area section-bg padding-top-100px padding-bottom-30px"
+    >
+      <div class="container">
         <div class="row">
-            <div class="col-lg-3 responsive-column">
-                <div class="footer-item">
-                    <div class="footer-logo padding-bottom-30px">
-                        <a href="index.html" class="foot__logo"><img src="images/logo.png" alt="logo"></a>
-                    </div><!-- end logo -->
-                    <p class="footer__desc">Morbi convallis bibendum urna ut viverra. Maecenas consequat</p>
-                    <ul class="list-items pt-3">
-                        <li>3015 Grand Ave, Coconut Grove,<br> Cerrick Way, FL 12345</li>
-                        <li>+123-456-789</li>
-                        <li><a href="#">trizen@yourwebsite.com</a></li>
-                    </ul>
-                </div><!-- end footer-item -->
-            </div><!-- end col-lg-3 -->
-            <div class="col-lg-3 responsive-column">
-                <div class="footer-item">
-                    <h4 class="title curve-shape pb-3 margin-bottom-20px" data-text="curvs">Company</h4>
-                    <ul class="list-items list--items">
-                        <li><a href="about.html">About us</a></li>
-                        <li><a href="services.html">Services</a></li>
-                        <li><a href="#">Jobs</a></li>
-                        <li><a href="blog-grid.html">News</a></li>
-                        <li><a href="contact.html">Support</a></li>
-                        <li><a href="#">Advertising</a></li>
-                    </ul>
-                </div><!-- end footer-item -->
-            </div><!-- end col-lg-3 -->
-            <div class="col-lg-3 responsive-column">
-                <div class="footer-item">
-                    <h4 class="title curve-shape pb-3 margin-bottom-20px" data-text="curvs">Other Services</h4>
-                    <ul class="list-items list--items">
-                        <li><a href="#">Investor Relations</a></li>
-                        <li><a href="#">Trizen.com Rewards</a></li>
-                        <li><a href="#">Partners</a></li>
-                        <li><a href="#">List My Hotel</a></li>
-                        <li><a href="#">All Hotels</a></li>
-                        <li><a href="#">TV Ads</a></li>
-                    </ul>
-                </div><!-- end footer-item -->
-            </div><!-- end col-lg-3 -->
-            <div class="col-lg-3 responsive-column">
-                <div class="footer-item">
-                    <h4 class="title curve-shape pb-3 margin-bottom-20px" data-text="curvs">Other Links</h4>
-                    <ul class="list-items list--items">
-                        <li><a href="#">USA Vacation Packages</a></li>
-                        <li><a href="#">USA Flights</a></li>
-                        <li><a href="#">USA Hotels</a></li>
-                        <li><a href="#">USA Car Hire</a></li>
-                        <li><a href="#">Create an Account</a></li>
-                        <li><a href="#">Trizen Reviews</a></li>
-                    </ul>
-                </div><!-- end footer-item -->
-            </div><!-- end col-lg-3 -->
-        </div><!-- end row -->
+          <div class="col-lg-3 responsive-column">
+            <div class="footer-item">
+              <div class="footer-logo padding-bottom-30px">
+                <a href="index.html" class="foot__logo"
+                  ><img src="images/Logo1.png" alt="logo"
+                /></a>
+              </div>
+              <!-- end logo -->
+              <p class="footer__desc">
+                Our company started in 2024, and we hope to soon be your favorite booking service!
+              </p>
+              <ul class="list-items pt-3">
+                <li>
+                  New York, New York 10027<br />
+                  USA
+                </li>
+                <li><a href="#">info@stasis.com</a></li>
+              </ul>
+            </div>
+            <!-- end footer-item -->
+          </div>
+          <!-- end col-lg-3 -->
+          <div class="col-lg-3 responsive-column">
+            <div class="footer-item">
+              <h4
+                class="title curve-shape pb-3 margin-bottom-20px"
+                data-text="curvs"
+              >
+                Company
+              </h4>
+              <ul class="list-items list--items">
+                <li><a href="about.html">About us</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="blog-grid.html">News (Coming Soon)</a></li>
+              </ul>
+            </div>
+            <!-- end footer-item -->
+          </div>
+          <!-- end col-lg-3 -->
+          <div class="col-lg-3 responsive-column">
+            <div class="footer-item">
+              <h4
+                class="title curve-shape pb-3 margin-bottom-20px"
+                data-text="curvs"
+              >
+                Other Services (Coming Soon)
+              </h4>
+              <ul class="list-items list--items">
+                <li><a href="#">Sustainability Review</a></li>
+                <li><a href="#">Partners</a></li>
+                <li><a href="#">All Cruises</a></li>
+                <li><a href="#">All Hotels</a></li>
+                <li><a href="#">Flight Look-up</a></li>
+              </ul>
+            </div>
+            <!-- end footer-item -->
+          </div>
+          <!-- end col-lg-3 -->
+          <div class="col-lg-3 responsive-column">
+            <div class="footer-item">
+              <h4
+                class="title curve-shape pb-3 margin-bottom-20px"
+                data-text="curvs"
+              >
+                Other Links (Coming Soon)
+              </h4>
+              <ul class="list-items list--items">
+                <li><a href="#">Stasis Vacation Packages</a></li>
+                <li><a href="#">Stasis Inovation</a></li>
+                <li><a href="#">Partner with Stasis</a></li>
+                <li><a href="#">Create an Account</a></li>
+                <li><a href="#">Stasis Reviews</a></li>
+              </ul>
+            </div>
+            <!-- end footer-item -->
+          </div>
+          <!-- end col-lg-3 -->
+        </div>
+        <!-- end row -->
+      </div>
+      <!-- end container -->
+      <div class="section-block mt-4"></div>
+      <div class="container">
         <div class="row align-items-center">
-            <div class="col-lg-8">
-                <div class="term-box footer-item">
-                    <ul class="list-items list--items d-flex align-items-center">
-                        <li><a href="#">Terms & Conditions</a></li>
-                        <li><a href="#">Privacy Policy</a></li>
-                        <li><a href="#">Help Center</a></li>
-                    </ul>
-                </div>
-            </div><!-- end col-lg-8 -->
-            <div class="col-lg-4">
-                <div class="footer-social-box text-right">
-                    <ul class="social-profile">
-                        <li><a href="#"><i class="lab la-facebook-f"></i></a></li>
-                        <li><a href="#"><i class="lab la-twitter"></i></a></li>
-                        <li><a href="#"><i class="lab la-instagram"></i></a></li>
-                        <li><a href="#"><i class="lab la-linkedin-in"></i></a></li>
-                    </ul>
-                </div>
-            </div><!-- end col-lg-4 -->
-        </div><!-- end row -->
-    </div><!-- end container -->
-    <div class="section-block mt-4"></div>
-    <div class="container">
-        <div class="row align-items-center">
-            <div class="col-lg-7">
-                <div class="copy-right padding-top-30px">
-                    <p class="copy__desc">
-                        &copy; Copyright Trizen <span id="get-year"></span> . Made with
-                        <span class="la la-heart"></span> by <a href="https://themeforest.net/user/techydevs/portfolio">TechyDevs</a>
-                    </p>
-                </div><!-- end copy-right -->
-            </div><!-- end col-lg-7 -->
-            <div class="col-lg-5">
-                <div class="copy-right-content d-flex align-items-center justify-content-end padding-top-30px">
-                    <h3 class="title font-size-15 pr-2">We Accept</h3>
-                    <img src="images/payment-img.png" alt="">
-                </div><!-- end copy-right-content -->
-            </div><!-- end col-lg-5 -->
-        </div><!-- end row -->
-    </div><!-- end container -->
-</section><!-- end footer-area -->
-<!-- ================================
+          <div class="col-lg-7">
+            <div class="copy-right padding-top-30px">
+              <p class="copy__desc">
+                &copy; Stasis 2024. Made with
+                <span class="la la-heart"></span>
+                >
+              </p>
+            </div>
+            <!-- end copy-right -->
+          </div>
+          <!-- end col-lg-7 -->
+        </div>
+        <!-- end row -->
+      </div>
+      <!-- end container -->
+    </section>
+    <!-- end footer-area -->
+    <!-- ================================
        START FOOTER AREA
 ================================= -->
 
@@ -918,6 +755,7 @@
 <script src="js/animated-headline.js"></script>
 <script src="js/jquery.ripples-min.js"></script>
 <script src="js/main.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/15.5.1/nouislider.min.js"></script>
 <script src="js/cruise-detail-temp.js"></script>
 <script>
     document.addEventListener('DOMContentLoaded', function() {
@@ -1581,12 +1419,13 @@
 <script>
     document.addEventListener('DOMContentLoaded', function () {
         const cruiseListData = JSON.parse(localStorage.getItem('cruiseListData'));
-
+    
         if (cruiseListData) {
             const resultsContainer = document.getElementById('results');
             const cruiseCount = document.getElementById('cruise-count');
+            const departurePortList = document.getElementById('departure-port-list');
             let displayedCruises = 10;
-
+    
             function createCruiseCard(cruise) {
                 return `
                     <div class="col-lg-9">
@@ -1614,7 +1453,7 @@
                     </div>
                 `;
             }
-
+    
             function displayCruises(limit, cruises) {
                 resultsContainer.innerHTML = '';
                 const cruisesToShow = cruises.slice(0, limit);
@@ -1623,53 +1462,53 @@
                 });
                 cruiseCount.textContent = `Showing 1 - ${limit} of ${cruises.length} Cruises`;
             }
-
+    
+            function getUniqueDeparturePorts(cruises) {
+                const ports = cruises.map(cruise => cruise.route.split(' - ')[0]);
+                const portCount = {};
+                ports.forEach(port => {
+                    if (portCount[port]) {
+                        portCount[port]++;
+                    } else {
+                        portCount[port] = 1;
+                    }
+                });
+                return portCount;
+            }
+    
+            function createDeparturePortFilters(ports) {
+                departurePortList.innerHTML = '';
+                Object.keys(ports).forEach(port => {
+                    const portCheckbox = document.createElement('div');
+                    portCheckbox.classList.add('custom-checkbox');
+                    portCheckbox.innerHTML = `
+                        <input type="checkbox" id="port-${port}" value="${port}">
+                        <label for="port-${port}">${port} <span class="font-size-13 ml-1">(${ports[port]})</span></label>
+                    `;
+                    departurePortList.appendChild(portCheckbox);
+                });
+            }
+    
             function filterCruises() {
                 let filteredCruises = [...cruiseListData.cruises];
-                const seaValue = document.querySelector('input[name="sea"]:checked').value;
-                const packageValue = document.querySelector('input[name="package"]:checked').value;
-                const areaValues = Array.from(document.querySelectorAll('input[name="area"]:checked')).map(input => input.value);
-                const cruiseLineValues = Array.from(document.querySelectorAll('input[name="cruiseline"]:checked')).map(input => input.value);
-                const shipValues = Array.from(document.querySelectorAll('input[name="ship"]:checked')).map(input => input.value);
-                const durationValues = Array.from(document.querySelectorAll('input[name="duration"]:checked')).map(input => input.value);
-                const departureValue = document.getElementById('departure-date-early').value;
-                const arrivalValue = document.getElementById('departure-date-late').value;
-
-                if (seaValue) {
-                    filteredCruises = filteredCruises.filter(cruise => cruise.sea === parseInt(seaValue));
+                const selectedPorts = Array.from(document.querySelectorAll('#departure-port-list input:checked')).map(input => input.value);
+                const minPrice = parseInt(document.getElementById('amount2').value.split('-')[0].replace('$', '').trim());
+                const maxPrice = parseInt(document.getElementById('amount2').value.split('-')[1].replace('$', '').trim());
+    
+                if (selectedPorts.length > 0) {
+                    filteredCruises = filteredCruises.filter(cruise => selectedPorts.includes(cruise.route.split(' - ')[0]));
                 }
-
-                if (packageValue && packageValue !== 'all') {
-                    filteredCruises = filteredCruises.filter(cruise => cruise.package === packageValue);
+    
+                if (!isNaN(minPrice) && !isNaN(maxPrice)) {
+                    filteredCruises = filteredCruises.filter(cruise => {
+                        const price = parseInt(cruise.price.replace('$', '').replace(',', ''));
+                        return price >= minPrice && price <= maxPrice;
+                    });
                 }
-
-                if (areaValues.length > 0) {
-                    filteredCruises = filteredCruises.filter(cruise => areaValues.includes(cruise.area));
-                }
-
-                if (cruiseLineValues.length > 0) {
-                    filteredCruises = filteredCruises.filter(cruise => cruiseLineValues.includes(cruise.cruiseLineID));
-                }
-
-                if (shipValues.length > 0) {
-                    filteredCruises = filteredCruises.filter(cruise => shipValues.includes(cruise.shipID));
-                }
-
-                if (durationValues.length > 0) {
-                    filteredCruises = filteredCruises.filter(cruise => durationValues.includes(cruise.duration));
-                }
-
-                if (departureValue) {
-                    filteredCruises = filteredCruises.filter(cruise => new Date(cruise.departure_raw) >= new Date(departureValue));
-                }
-
-                if (arrivalValue) {
-                    filteredCruises = filteredCruises.filter(cruise => new Date(cruise.arrival_raw) <= new Date(arrivalValue));
-                }
-
+    
                 return filteredCruises;
             }
-
+    
             function sortCruises(cruises) {
                 const sortOption = document.getElementById('sort-options').value;
                 let sortedCruises = [...cruises];
@@ -1694,43 +1533,62 @@
                 }
                 return sortedCruises;
             }
-
+    
             function applyFilters() {
                 let filteredCruises = filterCruises();
                 let sortedCruises = sortCruises(filteredCruises);
                 displayCruises(displayedCruises, sortedCruises);
+                document.getElementById('cruises-found').textContent = `${filteredCruises.length} Cruises found`;
             }
-
+    
+            const departurePorts = getUniqueDeparturePorts(cruiseListData.cruises);
+            createDeparturePortFilters(departurePorts);
             displayCruises(displayedCruises, cruiseListData.cruises);
-
+    
             document.getElementById('load-more-btn').addEventListener('click', function () {
                 displayedCruises += 10;
-                if (displayedCruises > cruiseListData.count.entries) {
-                    displayedCruises = cruiseListData.count.entries;
+                if (displayedCruises > cruiseListData.cruises.length) {
+                    displayedCruises = cruiseListData.cruises.length;
                 }
                 applyFilters();
             });
-
-            document.getElementById('search-now-btn').addEventListener('click', function () {
-                applyFilters();
-            });
-
+    
             document.getElementById('sort-options').addEventListener('change', function () {
                 applyFilters();
             });
-
-            document.querySelectorAll('input[name="sea"], input[name="package"], input[name="area"], input[name="cruiseline"], input[name="ship"], input[name="duration"]').forEach(input => {
+    
+            document.querySelectorAll('#departure-port-list input').forEach(input => {
                 input.addEventListener('change', function () {
                     applyFilters();
                 });
             });
-
-            document.getElementById('apply-price-filter').addEventListener('click', function () {
-                applyFilters();
-            });
-
+    
             document.getElementById('apply-price-sidebar').addEventListener('click', function () {
                 applyFilters();
+            });
+    
+            // Initialize the price range slider
+            const slider = document.getElementById('slider-range2');
+            noUiSlider.create(slider, {
+                start: [0, 10000],
+                connect: true,
+                range: {
+                    'min': 0,
+                    'max': 10000
+                },
+                tooltips: [true, true],
+                format: {
+                    to: function (value) {
+                        return '$' + value.toFixed(2);
+                    },
+                    from: function (value) {
+                        return Number(value.replace('$', ''));
+                    }
+                }
+            });
+    
+            slider.noUiSlider.on('update', function (values, handle) {
+                document.getElementById('amount2').value = `${values[0]} - ${values[1]}`;
             });
         }
     });
