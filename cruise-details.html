@@ -38,10 +38,6 @@
             background-color: #f0f0f0;
             font-weight: bold;
         }
-        .selected {
-            background-color: #f0f0f0;
-            font-weight: bold;
-        }
         .card {
             width: 100%;
             border: none;
@@ -1449,64 +1445,124 @@
                             <label for="emergencyContact${index}">Emergency Contact Name</label>
                             <input type="text" class="form-control" id="emergencyContact${index}" required>
                         </div>
-                        <div class="form-group">
-                            <label for="emergencyPhone${index}">Emergency Contact Telephone Number</label>
-                            <input type="text" class="form-control" id="emergencyPhone${index}" required>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="emergencyContactEmail${index}">Emergency Contact Email</label>
+                                <input type="email" class="form-control" id="emergencyContactEmail${index}" required>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="emergencyContactPhone${index}">Emergency Contact Phone</label>
+                                <input type="text" class="form-control" id="emergencyContactPhone${index}" required>
+                            </div>
                         </div>
                     </div>
                 </div>
             `;
-            container.insertAdjacentHTML('beforeend', passengerForm);
+            container.innerHTML += passengerForm;
         };
 
         const savePassengerInfo = () => {
-            const numPassengers = document.getElementById('numPassengers').value;
-            const passengerData = [];
-            for (let i = 0; i < numPassengers; i++) {
-                const passenger = {
-                    fullName: document.getElementById(`fullName${i}`).value,
-                    dob: document.getElementById(`dob${i}`).value,
-                    nationality: document.getElementById(`nationality${i}`).value,
-                    passport: document.getElementById(`passport${i}`).value,
-                    proofOfID: document.getElementById(`proofOfID${i}`).files[0],
-                    specialNeeds: document.getElementById(`specialNeeds${i}`).value,
-                    address: document.getElementById(`address${i}`).value,
-                    city: document.getElementById(`city${i}`).value,
-                    state: document.getElementById(`state${i}`).value,
-                    zip: document.getElementById(`zip${i}`).value,
-                    phone: document.getElementById(`phone${i}`).value,
-                    email: document.getElementById(`email${i}`).value,
-                    emergencyContact: document.getElementById(`emergencyContact${i}`).value,
-                    emergencyPhone: document.getElementById(`emergencyPhone${i}`).value,
-                };
-                passengerData.push(passenger);
-            }
-            localStorage.setItem('cruisePassengerData', JSON.stringify(passengerData));
+            const passengerCards = document.querySelectorAll('.passenger-card');
+            const passengersData = Array.from(passengerCards).map((card, index) => ({
+                fullName: card.querySelector(`#fullName${index}`).value,
+                dob: card.querySelector(`#dob${index}`).value,
+                nationality: card.querySelector(`#nationality${index}`).value,
+                passport: card.querySelector(`#passport${index}`).value,
+                proofOfID: card.querySelector(`#proofOfID${index}`).files[0] ? card.querySelector(`#proofOfID${index}`).files[0].name : '',
+                specialNeeds: card.querySelector(`#specialNeeds${index}`).value,
+                address: card.querySelector(`#address${index}`).value,
+                city: card.querySelector(`#city${index}`).value,
+                state: card.querySelector(`#state${index}`).value,
+                zip: card.querySelector(`#zip${index}`).value,
+                phone: card.querySelector(`#phone${index}`).value,
+                email: card.querySelector(`#email${index}`).value,
+                emergencyContact: card.querySelector(`#emergencyContact${index}`).value,
+                emergencyContactEmail: card.querySelector(`#emergencyContactEmail${index}`).value,
+                emergencyContactPhone: card.querySelector(`#emergencyContactPhone${index}`).value
+            }));
+            const termsCheck = document.querySelector('#termsCheck').checked;
+            const bookingData = {
+                passengers: passengersData,
+                termsAccepted: termsCheck
+            };
+            localStorage.setItem('bookingData', JSON.stringify(bookingData));
         };
 
-        // Handling cabin selection
+        // Event listeners for next and previous buttons
+        document.getElementById('nextBtn').addEventListener('click', nextStep);
+        document.getElementById('prevBtn').addEventListener('click', prevStep);
+
+        // Event listener for add passenger button
+        document.getElementById('add-passenger').addEventListener('click', function () {
+            const container = document.getElementById('passenger-info-container');
+            const currentPassengerCount = container.querySelectorAll('.card').length;
+            addPassengerForm(container, currentPassengerCount);
+        });
+
+        // Event listener for toggle policies button
+        document.getElementById('toggle-policies').addEventListener('click', function() {
+            const policiesContent = document.getElementById('policies-content');
+            if (policiesContent.style.display === 'none' || policiesContent.style.display === '') {
+                policiesContent.style.display = 'block';
+                this.textContent = 'Hide Terms and Policies';
+            } else {
+                policiesContent.style.display = 'none';
+                this.textContent = 'Show Terms and Policies';
+            }
+        });
+
+        // Cabin selection functionality
+        const cabinButtons = document.querySelectorAll('.select-cabin-btn');
         const cabinOptions = document.querySelectorAll('.cabin-option');
-        cabinOptions.forEach(option => {
-            option.addEventListener('click', () => {
-                cabinOptions.forEach(opt => opt.classList.remove('selected'));
-                option.classList.add('selected');
-                const selectedCabinType = option.getAttribute('data-cabin-type');
-                console.log('Selected Cabin Type:', selectedCabinType);
+
+        cabinButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                // Deselect previously selected cabin
+                const previouslySelected = document.querySelector('.select-cabin-btn.selected');
+                if (previouslySelected) {
+                    previouslySelected.classList.remove('selected');
+                    previouslySelected.textContent = 'Select Cabin';
+                    previouslySelected.disabled = false;
+                }
+
+                // Select new cabin
+                this.classList.add('selected');
+                this.textContent = 'Selected';
+                this.disabled = true;
+
+                // Highlight corresponding cabin in table
+                const cabinId = this.getAttribute('data-cabin-id');
+                cabinOptions.forEach(option => {
+                    option.classList.toggle('highlight', option.getAttribute('data-cabin-type') === cabinId);
+                });
             });
         });
 
-        // Adding CSS for selected cabin option
-        const style = document.createElement('style');
-        style.innerHTML = `
-            .selected {
-                background-color: #f0f0f0;
-                font-weight: bold;
-            }
-        `;
-        document.head.appendChild(style);
+        // Highlight corresponding cabin in table when clicked
+        cabinOptions.forEach(option => {
+            option.addEventListener('click', function() {
+                const cabinId = this.getAttribute('data-cabin-type');
 
-        // Initially display the first step
-        showStep(currentStep);
+                // Deselect previously selected cabin
+                const previouslySelectedButton = document.querySelector('.select-cabin-btn.selected');
+                if (previouslySelectedButton) {
+                    previouslySelectedButton.classList.remove('selected');
+                    previouslySelectedButton.textContent = 'Select Cabin';
+                    previouslySelectedButton.disabled = false;
+                }
+
+                // Select new cabin in table
+                cabinOptions.forEach(opt => {
+                    opt.classList.toggle('highlight', opt === this);
+                });
+
+                // Select corresponding cabin card button
+                const correspondingButton = document.querySelector(`.select-cabin-btn[data-cabin-id="${cabinId}"]`);
+                correspondingButton.classList.add('selected');
+                correspondingButton.textContent = 'Selected';
+                correspondingButton.disabled = true;
+            });
+        });
     });
 </script>
 </body>
