@@ -75,6 +75,10 @@
         text-decoration: none;
         font-weight: bold;
     }
+    .card-route {
+    font-size: 0.875em;
+    }
+
 </style>
 </head>
 <body>
@@ -1595,8 +1599,8 @@
                             <div class="card-body">
                                 <img src="${cruise.cruiseLineLogo}" alt="${cruise.shipImage}" class="cruise-logo">
                                 <h3 class="card-title"><a href="cruise-details.html">${cruise.title}</a></h3>
-                                <p class="card-meta">Departing ${cruise.departure}</p>
                                 <p class="card-route">${cruise.route}</p>
+                                <p class="card-meta">Departing ${cruise.departure}</p>                  
                                 <div class="card-price d-flex align-items-center justify-content-between">
                                     <p>
                                         <span class="price__from">From</span>
