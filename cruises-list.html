@@ -392,6 +392,171 @@
                             </div>
                         </div>
                     </div>
+                    <div class="sidebar-widget">
+                        <h3 class="title stroke-shape">Search Cruises</h3>
+                        <div class="contact-form-action">
+                            <form id="searchForm" action="search.js" method="GET">
+                                <div class="input-box">
+                                    <label class="label-text">Where would like to go?</label>
+                                    <div class="form-group">
+                                        <div class="select-contain select-contain-shadow w-auto">
+                                            <select class="select-contain-select" name="area">
+                                                <option value="">Select destination</option>
+                                                <optgroup label="Most Popular">
+                                                    <option value="caribbean">Caribbean</option>
+                                                    <option value="bahamas">Bahamas</option>
+                                                    <option value="mexico">Mexico</option>
+                                                    <option value="alaska">Alaska</option>
+                                                    <option value="europe">Europe</option>
+                                                    <option value="bermuda">Bermuda</option>
+                                                    <option value="hawaii">Hawaii</option>
+                                                    <option value="nepal">Nepal</option>
+                                                    <option value="italy">Italy</option>
+                                                    <option value="canada-new-england">Canada / New England</option>
+                                                </optgroup>
+                                                <optgroup label="Continents">
+                                                    <option value="100" style="font-weight: bold;">Africa</option>
+                                                    <option value="51">Round Africa</option>
+                                                    <option value="5">South Africa</option>
+                                                    <option value="102" style="font-weight: bold;">America</option>
+                                                    <option value="4">Central America/Caribbean</option>
+                                                    <option value="202">North America</option>
+                                                    <option value="10">South America</option>
+                                                    <option value="84" style="font-weight: bold;">Arctic</option>
+                                                    <option value="87">Greenland</option>
+                                                    <option value="63">Northwest Passage</option>
+                                                    <option value="103" style="font-weight: bold;">Asia</option>
+                                                    <option value="12">Far East</option>
+                                                    <option value="15">Indian Ocean</option>
+                                                    <option value="19">South East Asia</option>
+                                                    <option value="105" style="font-weight: bold;">Europe</option>
+                                                    <option value="68">Mediterranean</option>
+                                                    <option value="205">Northern Europe</option>
+                                                    <option value="206">Southern Europe</option>
+                                                    <option value="207">Western Europe</option>
+                                                    <option value="108" style="font-weight: bold;">Middle East</option>
+                                                    <option value="23">Arabic Sea</option>
+                                                    <option value="46">Red Sea</option>
+                                                    <option value="104" style="font-weight: bold;">Pacific</option>
+                                                    <option value="18">Australia</option>
+                                                    <option value="11">Hawaii</option>
+                                                    <option value="54">Mexican Riviera</option>
+                                                    <option value="13">South Pacific</option>
+                                                </optgroup>
+                                                <optgroup label="Transoceanic Cruises">
+                                                    <option value="107">Trans-Cruises</option>
+                                                    <option value="58">Transafrica</option>
+                                                    <option value="59">Transamerica</option>
+                                                    <option value="60">Transasia</option>
+                                                    <option value="9">Transatlantic</option>
+                                                    <option value="56">Transorient</option>
+                                                    <option value="57">Transpacific</option>
+                                                </optgroup>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="input-box">
+                                    <label class="label-text">Departing from</label>
+                                    <div class="form-group">
+                                        <div class="select-contain select-contain-shadow w-auto">
+                                            <select class="select-contain-select" name="departing_from">
+                                                <option value="">Select departure port</option>
+                                                <optgroup label="United States">
+                                                    <option value="alabama">Alabama</option>
+                                                    <option value="alaska">Alaska</option>
+                                                    <option value="california">California</option>
+                                                    <option value="florida">Florida</option>
+                                                    <option value="hawaii">Hawaii</option>
+                                                    <option value="louisiana">Louisiana</option>
+                                                    <option value="maryland">Maryland</option>
+                                                    <option value="new_york">New York</option>
+                                                    <option value="texas">Texas</option>
+                                                </optgroup>
+                                                <optgroup label="Other">
+                                                    <option value="united_kingdom">United Kingdom</option>
+                                                    <option value="germany">Germany</option>
+                                                    <option value="australia">Australia</option>
+                                                    <option value="europe">Europe</option>
+                                                </optgroup>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="input-box">
+                                    <label class="label-text">Departure Date</label>
+                                    <div class="form-group">
+                                        <span class="la la-calendar form-icon"></span>
+                                        <input class="date-range form-control" type="text" name="date" placeholder="YYYY-MM-DD" />
+                                    </div>
+                                </div>
+                                <div class="input-box">
+                                    <label class="label-text">Cruise Line</label>
+                                    <div class="form-group">
+                                        <div class="select-contain select-contain-shadow w-auto">
+                                            <select class="select-contain-select" name="cruiseline">
+                                                <option value="">Select Top Partners</option>
+                                                <option value="CCL">Carnival Cruise Line</option>
+                                                <option value="CEL">Celebrity Cruises</option>
+                                                <option value="CUN">Cunard</option>
+                                                <option value="DIS">Disney CRUISE LINE</option>
+                                                <option value="HAL">Holland America</option>
+                                                <option value="MSC">MSC Cruises</option>
+                                                <option value="NCL">Norwegian Cruise Line</option>
+                                                <option value="COM">PONANT</option>
+                                                <option value="PCL">Princess Cruises</option>
+                                                <option value="REG">Regent Seven Seas</option>
+                                                <option value="RCI">Royal Caribbean</option>
+                                                <option value="SBN">Seabourn Cruise Line</option>
+                                                <option value="VIR">Virgin Voyages</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="input-box">
+                                    <label class="label-text">Ship</label>
+                                    <div class="form-group">
+                                        <div class="select-contain select-contain-shadow w-auto">
+                                            <select class="select-contain-select" name="ship">
+                                                <!-- Ships options here as in the given example -->
+                                                <!-- example: <option value="V1">Breeze</option> -->
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="input-box">
+                                    <label class="label-text">Cruise Type</label>
+                                    <div class="form-group" style="font-size: 0.875rem;">
+                                        <div class="checkbox">
+                                            <label>
+                                                <input type="checkbox" name="cruise_type[]" value="sea_cruise"> Sea Cruise
+                                            </label>
+                                        </div>
+                                        <div class="checkbox">
+                                            <label>
+                                                <input type="checkbox" name="cruise_type[]" value="river_cruise"> River Cruise
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="input-box">
+                                    <label class="label-text">Package Options</label>
+                                    <div class="form-group" style="font-size: 0.875rem;">
+                                        <div class="checkbox">
+                                            <label>
+                                                <input type="checkbox" name="package_options[]" value="see_packages"> See Packages Only
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="d-flex justify-content-center">
+                                    <div class="form-group">
+                                        <button type="submit" class="theme-btn">Search Now</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="col-lg-9">
@@ -756,6 +921,7 @@
 <script src="js/jquery.ripples-min.js"></script>
 <script src="js/main.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/15.5.1/nouislider.min.js"></script>
+<script src="search.js"></script>
 <script src="js/cruise-detail-temp.js"></script>
 <script>
     document.addEventListener('DOMContentLoaded', function() {
