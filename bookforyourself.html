@@ -372,10 +372,10 @@
                                     <!-- end col-lg-2 -->
                                     <div class="col-lg-2 col-sm-6 pr-0">
                                         <div class="input-box">
-                                            <label class="label-text">Departure Date Range</label>
+                                            <label class="label-text">Departure Date</label>
                                             <div class="form-group">
                                                 <span class="la la-calendar form-icon"></span>
-                                                <input class="date-range form-control" type="text" name="date_range" placeholder="YYYY-MM-DD to YYYY-MM-DD" />
+                                                <input class="date-range form-control" type="text" name="date" placeholder="YYYY-MM-DD" />
                                             </div>
                                         </div>
                                     </div>
@@ -614,50 +614,48 @@
                                         </div>
                                     </div>
                                     <!-- end col-lg-2 -->
-                                    <div class="col-lg-2 col-sm-6 pr-0">
-                                        <div class="input-box">
-                                            <label class="label-text">Cruise Type</label>
-                                            <div class="form-group">
-                                                <div class="checkbox">
-                                                    <label>
-                                                        <input type="checkbox" name="cruise_type[]" value="sea_cruise"> Sea Cruise
-                                                    </label>
-                                                </div>
-                                                <div class="checkbox">
-                                                    <label>
-                                                        <input type="checkbox" name="cruise_type[]" value="river_cruise"> River Cruise
-                                                    </label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- end col-lg-2 -->
-                                    <div class="col-lg-2 col-sm-6 pr-0">
-                                        <div class="input-box">
-                                            <label class="label-text">Package Options</label>
-                                            <div class="form-group">
-                                                <div class="checkbox">
-                                                    <label>
-                                                        <input type="checkbox" name="package_options[]" value="all_inclusive"> All Inclusive
-                                                    </label>
-                                                </div>
-                                                <div class="checkbox">
-                                                    <label>
-                                                        <input type="checkbox" name="package_options[]" value="family"> Family
-                                                    </label>
+                                    <div class="row">
+                                        <div class="col-lg-2 col-sm-6 pr-0">
+                                            <div class="input-box">
+                                                <label class="label-text">Cruise Type</label>
+                                                <div class="form-group">
+                                                    <div class="checkbox">
+                                                        <label>
+                                                            <input type="checkbox" name="cruise_type[]" value="sea_cruise"> Sea Cruise
+                                                        </label>
+                                                    </div>
+                                                    <div class="checkbox">
+                                                        <label>
+                                                            <input type="checkbox" name="cruise_type[]" value="river_cruise"> River Cruise
+                                                        </label>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <!-- end col-lg-2 -->
-                                    <div class="col-lg-12">
-                                        <div class="input-box">
-                                            <div class="form-group">
-                                                <button type="submit" class="theme-btn">Search Now</button>
+                                        <!-- end col-lg-2 -->
+                                        <div class="col-lg-2 col-sm-6 pr-0">
+                                            <div class="input-box">
+                                                <label class="label-text">Package Options</label>
+                                                <div class="form-group">
+                                                    <div class="checkbox">
+                                                        <label>
+                                                            <input type="checkbox" name="package_options[]" value="see_packages"> See Packages Only
+                                                        </label>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
+                                        <!-- end col-lg-2 -->
+                                        <div class="col-lg-8">
+                                            <div class="input-box">
+                                                <div class="form-group text-right">
+                                                    <button type="submit" class="theme-btn">Search Now</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- end col-lg-8 -->
                                     </div>
-                                    <!-- end col-lg-12 -->
+                                    <!-- end row -->
                                 </form>
                             </div>
                         </div>
@@ -677,6 +675,7 @@
 <!-- ================================
     END HERO-WRAPPER AREA
 ================================= -->
+
 
     <!-- ================================
     START INFO AREA
