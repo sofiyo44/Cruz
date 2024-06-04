@@ -528,31 +528,15 @@
                                         <label class="label-text">Departs as early as</label>
                                         <div class="form-group">
                                             <span class="la la-calendar form-icon"></span>
-                                            <input class="date-range form-control" type="text" name="departure-date-early" id="departure-date-early">
+                                            <input class="date-range form-control" id="departure-date-early" type="date" name="daterange" readonly />
                                         </div>
                                     </div>
                                     <div class="input-box">
                                         <label class="label-text">Departs as late as</label>
                                         <div class="form-group">
                                             <span class="la la-calendar form-icon"></span>
-                                            <input class="date-range form-control" type="text" name="departure-date-late" id="departure-date-late">
+                                            <input class="date-range form-control" id="departure-date-late" type="date" name="daterange" readonly />
                                         </div>
-                                    </div>
-                                    <div class="input-box">
-                                        <label class="label-text">Cruise Lines</label>
-                                        <div class="form-group">
-                                            <div class="select-contain w-auto">
-                                                <select class="select-contain-select" id="cruise-line-select">
-                                                    <option value="">Select Cruise Line</option>
-                                                    <option value="popular-cruises">Popular Cruises</option>
-                                                    <option value="luxury-cruises">Luxury Cruises</option>
-                                                    <option value="river-cruises">River Cruises</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="btn-box pt-2">
-                                        <button type="button" class="theme-btn" id="search-now-btn">Search Now</button>
                                     </div>
                                 </form>
                             </div>
@@ -1675,50 +1659,69 @@
                 `;
             }
     
-            function displayCruises(limit) {
+            function displayCruises(limit, cruises) {
                 resultsContainer.innerHTML = '';
-                const cruisesToShow = cruiseListData.cruises.slice(0, limit);
+                const cruisesToShow = cruises.slice(0, limit);
                 cruisesToShow.forEach(cruise => {
                     resultsContainer.innerHTML += createCruiseCard(cruise);
                 });
-                cruiseCount.textContent = `Showing 1 - ${limit} of ${cruiseListData.count.entries} Cruises`;
+                cruiseCount.textContent = `Showing 1 - ${limit} of ${cruises.length} Cruises`;
             }
     
-            displayCruises(displayedCruises);
+            function filterCruises() {
+                let filteredCruises = [...cruiseListData.cruises];
+                const seaValue = document.querySelector('input[name="sea"]:checked').value;
+                const packageValue = document.querySelector('input[name="package"]:checked').value;
+                const areaValues = Array.from(document.querySelectorAll('input[name="area"]:checked')).map(input => input.value);
+                const cruiseLineValues = Array.from(document.querySelectorAll('input[name="cruiseline"]:checked')).map(input => input.value);
+                const shipValues = Array.from(document.querySelectorAll('input[name="ship"]:checked')).map(input => input.value);
+                const durationValues = Array.from(document.querySelectorAll('input[name="duration"]:checked')).map(input => input.value);
+                const departureValue = document.getElementById('departure-date-early').value;
+                const arrivalValue = document.getElementById('departure-date-late').value;
     
-            document.getElementById('load-more-btn').addEventListener('click', function () {
-                displayedCruises += 10;
-                if (displayedCruises > cruiseListData.count.entries) {
-                    displayedCruises = cruiseListData.count.entries;
+                if (seaValue) {
+                    filteredCruises = filteredCruises.filter(cruise => cruise.sea === parseInt(seaValue));
                 }
-                displayCruises(displayedCruises);
-            });
     
-            document.getElementById('apply-price-filter').addEventListener('click', function () {
-                const priceRange = document.getElementById('amount').value;
-                const [minPrice, maxPrice] = priceRange.split('-').map(price => parseInt(price.trim().replace('$', '')));
-                const filteredCruises = cruiseListData.cruises.filter(cruise => {
-                    const cruisePrice = parseInt(cruise.price.replace('$', ''));
-                    return cruisePrice >= minPrice && cruisePrice <= maxPrice;
-                });
-                displayFilteredCruises(filteredCruises);
-            });
+                if (packageValue && packageValue !== 'all') {
+                    filteredCruises = filteredCruises.filter(cruise => cruise.package === packageValue);
+                }
     
-            document.getElementById('categories-checkboxes').addEventListener('change', function () {
-                const checkedCategories = Array.from(document.querySelectorAll('#categories-checkboxes input:checked')).map(input => input.value);
-                const filteredCruises = cruiseListData.cruises.filter(cruise => checkedCategories.includes(cruise.category));
-                displayFilteredCruises(filteredCruises);
-            });
+                if (areaValues.length > 0) {
+                    filteredCruises = filteredCruises.filter(cruise => areaValues.includes(cruise.area));
+                }
     
-            document.getElementById('sort-options').addEventListener('change', function () {
-                const sortOption = this.value;
-                let sortedCruises = [...cruiseListData.cruises];
+                if (cruiseLineValues.length > 0) {
+                    filteredCruises = filteredCruises.filter(cruise => cruiseLineValues.includes(cruise.cruiseLineID));
+                }
+    
+                if (shipValues.length > 0) {
+                    filteredCruises = filteredCruises.filter(cruise => shipValues.includes(cruise.shipID));
+                }
+    
+                if (durationValues.length > 0) {
+                    filteredCruises = filteredCruises.filter(cruise => durationValues.includes(cruise.duration));
+                }
+    
+                if (departureValue) {
+                    filteredCruises = filteredCruises.filter(cruise => new Date(cruise.departure_raw) >= new Date(departureValue));
+                }
+    
+                if (arrivalValue) {
+                    filteredCruises = filteredCruises.filter(cruise => new Date(cruise.arrival_raw) <= new Date(arrivalValue));
+                }
+    
+                return filteredCruises;
+            }
+    
+            function sortCruises(cruises) {
+                const sortOption = document.getElementById('sort-options').value;
+                let sortedCruises = [...cruises];
                 switch (sortOption) {
                     case 'new':
                         sortedCruises.sort((a, b) => new Date(b.departure) - new Date(a.departure));
                         break;
                     case 'popular':
-                        // Assuming popularity can be determined by reviews count or similar
                         sortedCruises.sort((a, b) => b.reviews - a.reviews);
                         break;
                     case 'low-to-high':
@@ -1731,19 +1734,48 @@
                         sortedCruises.sort((a, b) => a.title.localeCompare(b.title));
                         break;
                     default:
-                        // Default sorting logic
                         break;
                 }
-                displayFilteredCruises(sortedCruises);
+                return sortedCruises;
+            }
+    
+            function applyFilters() {
+                let filteredCruises = filterCruises();
+                let sortedCruises = sortCruises(filteredCruises);
+                displayCruises(displayedCruises, sortedCruises);
+            }
+    
+            displayCruises(displayedCruises, cruiseListData.cruises);
+    
+            document.getElementById('load-more-btn').addEventListener('click', function () {
+                displayedCruises += 10;
+                if (displayedCruises > cruiseListData.count.entries) {
+                    displayedCruises = cruiseListData.count.entries;
+                }
+                applyFilters();
             });
     
-            function displayFilteredCruises(cruises) {
-                resultsContainer.innerHTML = '';
-                cruises.forEach(cruise => {
-                    resultsContainer.innerHTML += createCruiseCard(cruise);
+            document.getElementById('search-now-btn').addEventListener('click', function () {
+                applyFilters();
+            });
+    
+            document.getElementById('sort-options').addEventListener('change', function () {
+                applyFilters();
+            });
+    
+            document.querySelectorAll('input[name="sea"], input[name="package"], input[name="area"], input[name="cruiseline"], input[name="ship"], input[name="duration"]').forEach(input => {
+                input.addEventListener('change', function () {
+                    applyFilters();
                 });
-                cruiseCount.textContent = `${cruises.length} Cruises found`;
-            }
+            });
+    
+            document.getElementById('apply-price-filter').addEventListener('click', function () {
+                applyFilters();
+            });
+    
+            document.getElementById('apply-price-sidebar').addEventListener('click', function () {
+                applyFilters();
+            });
         }
     });
 </script>
