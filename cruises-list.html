@@ -378,7 +378,7 @@
 ================================= -->
 <section class="card-area section--padding">
     <div class="container">
-         <div class="row">
+        <div class="row">
             <div class="col-lg-12">
                 <div class="filter-wrap margin-bottom-30px">
                     <div class="filter-top d-flex align-items-center justify-content-between pb-4">
@@ -390,7 +390,7 @@
                             <a href="cruises.html" data-toggle="tooltip" data-placement="top" title="Grid View"><i class="la la-th-large"></i></a>
                             <a href="cruises-list.html" data-toggle="tooltip" data-placement="top" title="List View" class="active"><i class="la la-th-list"></i></a>
                         </div>
-                    </div><!-- end filter-top -->
+                    </div>
                     <div class="filter-bar d-flex align-items-center justify-content-between">
                         <div class="filter-bar-filter d-flex flex-wrap align-items-center">
                             <div class="filter-option">
@@ -407,93 +407,15 @@
                                                 <div class="price-slider-amount padding-bottom-20px">
                                                     <label for="amount" class="filter__label">Price:</label>
                                                     <input type="text" id="amount" class="amounts">
-                                                </div><!-- end price-slider-amount -->
-                                                <div id="slider-range"></div><!-- end slider-range -->
-                                            </div><!-- end slider-range-wrap -->
+                                                </div>
+                                                <div id="slider-range"></div>
+                                            </div>
                                             <div class="btn-box pt-4">
-                                                <button class="theme-btn theme-btn-small theme-btn-transparent" type="button">Apply</button>
+                                                <button class="theme-btn theme-btn-small theme-btn-transparent" type="button" id="apply-price-filter">Apply</button>
                                             </div>
-                                        </div><!-- end dropdown-item -->
-                                    </div><!-- end dropdown-menu -->
-                                </div><!-- end dropdown -->
-                            </div>
-                            <div class="filter-option">
-                                <div class="dropdown dropdown-contain">
-                                    <a class="dropdown-toggle dropdown-btn dropdown--btn" href="#" role="button" data-toggle="dropdown">
-                                        Review Score
-                                    </a>
-                                    <div class="dropdown-menu dropdown-menu-wrap">
-                                        <div class="dropdown-item">
-                                            <div class="checkbox-wrap">
-                                                <div class="custom-checkbox">
-                                                    <input type="checkbox" id="r1">
-                                                    <label for="r1">
-                                                        <span class="ratings d-flex align-items-center">
-                                                            <i class="la la-star"></i>
-                                                            <i class="la la-star"></i>
-                                                            <i class="la la-star"></i>
-                                                            <i class="la la-star"></i>
-                                                            <i class="la la-star"></i>
-                                                            <span class="color-text-3 font-size-13 ml-1">(55.590)</span>
-                                                        </span>
-                                                    </label>
-                                                </div>
-                                                <div class="custom-checkbox">
-                                                    <input type="checkbox" id="r2">
-                                                    <label for="r2">
-                                                        <span class="ratings d-flex align-items-center">
-                                                            <i class="la la-star"></i>
-                                                            <i class="la la-star"></i>
-                                                            <i class="la la-star"></i>
-                                                            <i class="la la-star"></i>
-                                                            <i class="la la-star-o"></i>
-                                                            <span class="color-text-3 font-size-13 ml-1">(40.590)</span>
-                                                        </span>
-                                                    </label>
-                                                </div>
-                                                <div class="custom-checkbox">
-                                                    <input type="checkbox" id="r3">
-                                                    <label for="r3">
-                                                        <span class="ratings d-flex align-items-center">
-                                                            <i class="la la-star"></i>
-                                                            <i class="la la-star"></i>
-                                                            <i class="la la-star"></i>
-                                                            <i class="la la-star-o"></i>
-                                                            <i class="la la-star-o"></i>
-                                                            <span class="color-text-3 font-size-13 ml-1">(23.590)</span>
-                                                        </span>
-                                                    </label>
-                                                </div>
-                                                <div class="custom-checkbox">
-                                                    <input type="checkbox" id="r4">
-                                                    <label for="r4">
-                                                        <span class="ratings d-flex align-items-center">
-                                                            <i class="la la-star"></i>
-                                                            <i class="la la-star"></i>
-                                                            <i class="la la-star-o"></i>
-                                                            <i class="la la-star-o"></i>
-                                                            <i class="la la-star-o"></i>
-                                                            <span class="color-text-3 font-size-13 ml-1">(12.590)</span>
-                                                        </span>
-                                                    </label>
-                                                </div>
-                                                <div class="custom-checkbox">
-                                                    <input type="checkbox" id="r5">
-                                                    <label for="r5">
-                                                        <span class="ratings d-flex align-items-center">
-                                                            <i class="la la-star"></i>
-                                                            <i class="la la-star-o"></i>
-                                                            <i class="la la-star-o"></i>
-                                                            <i class="la la-star-o"></i>
-                                                            <i class="la la-star-o"></i>
-                                                            <span class="color-text-3 font-size-13 ml-1">(590)</span>
-                                                        </span>
-                                                    </label>
-                                                </div>
-                                            </div>
-                                        </div><!-- end dropdown-item -->
-                                    </div><!-- end dropdown-menu -->
-                                </div><!-- end dropdown -->
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                             <div class="filter-option">
                                 <div class="dropdown dropdown-contain">
@@ -502,59 +424,59 @@
                                     </a>
                                     <div class="dropdown-menu dropdown-menu-wrap">
                                         <div class="dropdown-item">
-                                            <div class="checkbox-wrap">
+                                            <div class="checkbox-wrap" id="categories-checkboxes">
                                                 <div class="custom-checkbox">
-                                                    <input type="checkbox" id="catChb1">
+                                                    <input type="checkbox" id="catChb1" value="any-cruise-line">
                                                     <label for="catChb1">Any Cruise line</label>
                                                 </div>
                                                 <div class="custom-checkbox">
-                                                    <input type="checkbox" id="catChb2">
+                                                    <input type="checkbox" id="catChb2" value="carnival-cruise-lines">
                                                     <label for="catChb2">Carnival Cruise lines</label>
                                                 </div>
                                                 <div class="custom-checkbox">
-                                                    <input type="checkbox" id="catChb3">
+                                                    <input type="checkbox" id="catChb3" value="celebrity-cruise">
                                                     <label for="catChb3">Celebrity Cruise</label>
                                                 </div>
                                                 <div class="custom-checkbox">
-                                                    <input type="checkbox" id="catChb4">
+                                                    <input type="checkbox" id="catChb4" value="disney-cruise-line">
                                                     <label for="catChb4">Disney Cruise line</label>
                                                 </div>
                                                 <div class="custom-checkbox">
-                                                    <input type="checkbox" id="catChb5">
+                                                    <input type="checkbox" id="catChb5" value="holland-america-line">
                                                     <label for="catChb5">Holland America line</label>
                                                 </div>
                                                 <div class="custom-checkbox">
-                                                    <input type="checkbox" id="catChb6">
+                                                    <input type="checkbox" id="catChb6" value="msc-cruise">
                                                     <label for="catChb6">MSC Cruise</label>
                                                 </div>
                                                 <div class="custom-checkbox">
-                                                    <input type="checkbox" id="catChb7">
+                                                    <input type="checkbox" id="catChb7" value="norwegian-cruise-line">
                                                     <label for="catChb7">Norwegian Cruise line</label>
                                                 </div>
                                                 <div class="custom-checkbox">
-                                                    <input type="checkbox" id="catChb8">
+                                                    <input type="checkbox" id="catChb8" value="royal-caribbean">
                                                     <label for="catChb8">Royal Caribbean</label>
                                                 </div>
                                             </div>
-                                        </div><!-- end dropdown-item -->
-                                    </div><!-- end dropdown-menu -->
-                                </div><!-- end dropdown -->
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                        </div><!-- end filter-bar-filter -->
+                        </div>
                         <div class="select-contain">
-                            <select class="select-contain-select">
-                                <option value="1">Short by default</option>
-                                <option value="2">New Cruise</option>
-                                <option value="3">Popular Cruise</option>
-                                <option value="4">Price: low to high</option>
-                                <option value="5">Price: high to low</option>
-                                <option value="6">A to Z</option>
+                            <select class="select-contain-select" id="sort-options">
+                                <option value="default">Short by default</option>
+                                <option value="new">New Cruise</option>
+                                <option value="popular">Popular Cruise</option>
+                                <option value="low-to-high">Price: low to high</option>
+                                <option value="high-to-low">Price: high to low</option>
+                                <option value="a-to-z">A to Z</option>
                             </select>
-                        </div><!-- end select-contain -->
-                    </div><!-- end filter-bar -->
-                </div><!-- end filter-wrap -->
-            </div><!-- end col-lg-12 -->
-        </div><!-- end row -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="row">
             <div class="col-lg-3">
                 <div class="sidebar mt-0">
@@ -562,12 +484,12 @@
                         <h3 class="title stroke-shape">Search Cruises</h3>
                         <div class="sidebar-widget-item">
                             <div class="contact-form-action">
-                                <form action="#">
+                                <form id="search-form">
                                     <div class="input-box">
                                         <label class="label-text">Going to</label>
                                         <div class="form-group">
                                             <div class="select-contain w-auto">
-                                                <select class="select-contain-select">
+                                                <select class="select-contain-select" id="destination-select">
                                                     <option value="">Select destination</option>
                                                     <optgroup label="Most Popular">
                                                         <option value="caribbean">Caribbean</option>
@@ -606,35 +528,36 @@
                                         <label class="label-text">Departs as early as</label>
                                         <div class="form-group">
                                             <span class="la la-calendar form-icon"></span>
-                                            <input class="date-range form-control" type="text" name="daterange-single">
+                                            <input class="date-range form-control" type="text" name="departure-date-early" id="departure-date-early">
                                         </div>
                                     </div>
                                     <div class="input-box">
                                         <label class="label-text">Departs as late as</label>
                                         <div class="form-group">
                                             <span class="la la-calendar form-icon"></span>
-                                            <input class="date-range form-control" type="text" name="daterange-single">
+                                            <input class="date-range form-control" type="text" name="departure-date-late" id="departure-date-late">
                                         </div>
                                     </div>
                                     <div class="input-box">
                                         <label class="label-text">Cruise Lines</label>
                                         <div class="form-group">
                                             <div class="select-contain w-auto">
-                                                <select class="select-contain-select">
-                                                    <option value="1">Popular Cruises</option>
-                                                    <option value="2">Luxury Cruises</option>
-                                                    <option value="3">River Cruises</option>
+                                                <select class="select-contain-select" id="cruise-line-select">
+                                                    <option value="">Select Cruise Line</option>
+                                                    <option value="popular-cruises">Popular Cruises</option>
+                                                    <option value="luxury-cruises">Luxury Cruises</option>
+                                                    <option value="river-cruises">River Cruises</option>
                                                 </select>
-                                            </div><!-- end select-contain -->
+                                            </div>
                                         </div>
+                                    </div>
+                                    <div class="btn-box pt-2">
+                                        <button type="button" class="theme-btn" id="search-now-btn">Search Now</button>
                                     </div>
                                 </form>
                             </div>
-                        </div><!-- end sidebar-widget-item -->
-                        <div class="btn-box pt-2">
-                            <a href="cruise-search-result.html" class="theme-btn">Search Now</a>
                         </div>
-                    </div><!-- end sidebar-widget -->
+                    </div>
                     <div class="sidebar-widget">
                         <h3 class="title stroke-shape">Filter by Price</h3>
                         <div class="sidebar-price-range">
@@ -642,162 +565,67 @@
                                 <div class="price-slider-amount padding-bottom-20px">
                                     <label for="amount2" class="filter__label">Price:</label>
                                     <input type="text" id="amount2" class="amounts">
-                                </div><!-- end price-slider-amount -->
-                                <div id="slider-range2"></div><!-- end slider-range -->
-                            </div><!-- end slider-range-wrap -->
+                                </div>
+                                <div id="slider-range2"></div>
+                            </div>
                             <div class="btn-box pt-4">
-                                <button class="theme-btn theme-btn-small theme-btn-transparent" type="button">Apply</button>
+                                <button class="theme-btn theme-btn-small theme-btn-transparent" type="button" id="apply-price-sidebar">Apply</button>
                             </div>
                         </div>
-                    </div><!-- end sidebar-widget -->
-                    <div class="sidebar-widget">
-                        <h3 class="title stroke-shape">Review Score</h3>
-                        <div class="sidebar-category">
-                            <div class="custom-checkbox">
-                                <input type="checkbox" id="r6">
-                                <label for="r6">Excellent</label>
-                            </div>
-                            <div class="custom-checkbox">
-                                <input type="checkbox" id="r7">
-                                <label for="r7">Very Good</label>
-                            </div>
-                            <div class="custom-checkbox">
-                                <input type="checkbox" id="r8">
-                                <label for="r8">Average</label>
-                            </div>
-                            <div class="custom-checkbox">
-                                <input type="checkbox" id="r9">
-                                <label for="r9">Poor</label>
-                            </div>
-                            <div class="custom-checkbox">
-                                <input type="checkbox" id="r10">
-                                <label for="r10">Terrible</label>
-                            </div>
-                        </div>
-                    </div><!-- end sidebar-widget -->
-                    <div class="sidebar-widget">
-                        <h3 class="title stroke-shape">Filter by Rating</h3>
-                        <div class="sidebar-review">
-                            <div class="custom-checkbox">
-                                <input type="checkbox" id="s1">
-                                <label for="s1">
-                                    <span class="ratings d-flex align-items-center">
-                                        <i class="la la-star"></i>
-                                        <i class="la la-star"></i>
-                                        <i class="la la-star"></i>
-                                        <i class="la la-star"></i>
-                                        <i class="la la-star"></i>
-                                        <span class="font-size-13 ml-1">(55.590)</span>
-                                    </span>
-                                </label>
-                            </div>
-                            <div class="custom-checkbox">
-                                <input type="checkbox" id="s2">
-                                <label for="s2">
-                                    <span class="ratings d-flex align-items-center">
-                                        <i class="la la-star"></i>
-                                        <i class="la la-star"></i>
-                                        <i class="la la-star"></i>
-                                        <i class="la la-star"></i>
-                                        <i class="la la-star-o"></i>
-                                        <span class="font-size-13 ml-1">(40.590)</span>
-                                    </span>
-                                </label>
-                            </div>
-                            <div class="custom-checkbox">
-                                <input type="checkbox" id="s3">
-                                <label for="s3">
-                                    <span class="ratings d-flex align-items-center">
-                                        <i class="la la-star"></i>
-                                        <i class="la la-star"></i>
-                                        <i class="la la-star"></i>
-                                        <i class="la la-star-o"></i>
-                                        <i class="la la-star-o"></i>
-                                        <span class="font-size-13 ml-1">(23.590)</span>
-                                    </span>
-                                </label>
-                            </div>
-                            <div class="custom-checkbox">
-                                <input type="checkbox" id="s4">
-                                <label for="s4">
-                                    <span class="ratings d-flex align-items-center">
-                                        <i class="la la-star"></i>
-                                        <i class="la la-star"></i>
-                                        <i class="la la-star-o"></i>
-                                        <i class="la la-star-o"></i>
-                                        <i class="la la-star-o"></i>
-                                        <span class="font-size-13 ml-1">(12.590)</span>
-                                    </span>
-                                </label>
-                            </div>
-                            <div class="custom-checkbox mb-0">
-                                <input type="checkbox" id="s5">
-                                <label for="s5">
-                                    <span class="ratings d-flex align-items-center">
-                                        <i class="la la-star"></i>
-                                        <i class="la la-star-o"></i>
-                                        <i class="la la-star-o"></i>
-                                        <i class="la la-star-o"></i>
-                                        <i class="la la-star-o"></i>
-                                        <span class="font-size-13 ml-1">(590)</span>
-                                    </span>
-                                </label>
-                            </div>
-                        </div>
-                    </div><!-- end sidebar-widget -->
+                    </div>
                     <div class="sidebar-widget">
                         <h3 class="title stroke-shape">Categories</h3>
                         <div class="sidebar-category">
                             <div class="custom-checkbox">
-                                <input type="checkbox" id="cat1">
+                                <input type="checkbox" id="cat1" value="all">
                                 <label for="cat1">All <span class="font-size-13 ml-1">(24)</span></label>
                             </div>
                             <div class="custom-checkbox">
-                                <input type="checkbox" id="cat2">
+                                <input type="checkbox" id="cat2" value="any-cruise-line">
                                 <label for="cat2">Any Cruise line <span class="font-size-13 ml-1">(2)</span></label>
                             </div>
                             <div class="custom-checkbox">
-                                <input type="checkbox" id="cat3">
+                                <input type="checkbox" id="cat3" value="carnival-cruise-lines">
                                 <label for="cat3">Carnival Cruise Lines <span class="font-size-13 ml-1">(2)</span></label>
                             </div>
                             <div class="custom-checkbox">
-                                <input type="checkbox" id="cat4">
+                                <input type="checkbox" id="cat4" value="celebrity-cruises">
                                 <label for="cat4">Celebrity Cruises <span class="font-size-13 ml-1">(2)</span></label>
                             </div>
                             <div class="custom-checkbox">
-                                <input type="checkbox" id="cat5">
+                                <input type="checkbox" id="cat5" value="disney-cruise-line">
                                 <label for="cat5">Disney Cruise Line <span class="font-size-13 ml-1">(3)</span></label>
                             </div>
                             <div class="custom-checkbox">
-                                <input type="checkbox" id="cat6">
+                                <input type="checkbox" id="cat6" value="holland-america-line">
                                 <label for="cat6">Holland America Line <span class="font-size-13 ml-1">(1)</span></label>
                             </div>
                             <div class="collapse" id="categoryMenu">
                                 <div class="custom-checkbox">
-                                    <input type="checkbox" id="cat7">
+                                    <input type="checkbox" id="cat7" value="msc-cruises">
                                     <label for="cat7">MSC Cruises <span class="font-size-13 ml-1">(1)</span></label>
                                 </div>
                                 <div class="custom-checkbox">
-                                    <input type="checkbox" id="cat8">
+                                    <input type="checkbox" id="cat8" value="norwegian-cruise-line">
                                     <label for="cat8">Norwegian Cruise Line <span class="font-size-13 ml-1">(4)</span></label>
                                 </div>
                                 <div class="custom-checkbox">
-                                    <input type="checkbox" id="cat9">
+                                    <input type="checkbox" id="cat9" value="princess-cruises">
                                     <label for="cat9">Princess Cruises <span class="font-size-13 ml-1">(6)</span></label>
                                 </div>
                                 <div class="custom-checkbox">
-                                    <input type="checkbox" id="cat10">
+                                    <input type="checkbox" id="cat10" value="royal-caribbean-international">
                                     <label for="cat10">Royal Caribbean International <span class="font-size-13 ml-1">(3)</span></label>
                                 </div>
-                            </div><!-- end collapse -->
+                            </div>
                             <a class="btn-text" data-toggle="collapse" href="#categoryMenu" role="button" aria-expanded="false" aria-controls="categoryMenu">
                                 <span class="show-more">Show More <i class="la la-angle-down"></i></span>
                                 <span class="show-less">Show Less <i class="la la-angle-up"></i></span>
                             </a>
                         </div>
-                    </div><!-- end sidebar-widget -->
-                </div><!-- end sidebar -->
-            </div><!-- end col-lg-3 -->
+                    </div>
+                </div>
+            </div>
             <div class="col-lg-9">
                 <div class="row" id="results"></div>
                 <div class="btn-box mt-3 text-center">
@@ -805,9 +633,9 @@
                     <p class="font-size-13 pt-2" id="cruise-count">Showing 1 - 10 of 100 Cruises</p>
                 </div>
             </div>
-        </div><!-- end row -->
-    </div><!-- end container -->
-</section><!-- end card-area -->
+        </div>
+    </div>
+</section>
 <!-- ================================
     END CARD AREA
 ================================= -->
@@ -1153,802 +981,771 @@
 <script src="js/main.js"></script>
 <script src="js/cruise-detail-temp.js"></script>
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-    const cruiseListData = JSON.parse(localStorage.getItem('cruiseListData'));
-
-    if (cruiseListData) {
-        const resultsContainer = document.getElementById('results');
-        const cruiseCount = document.getElementById('cruise-count');
-        let displayedCruises = 10;
-
-        function createCruiseCard(cruise) {
-            return `
-                <div class="col-lg-9">
-                    <div class="card-item cruise--card card-item-list">
-                        <div class="card-img">
-                            <a href="cruise-details.html" class="d-block">
-                                <img src="${cruise.shipImage}" alt="${cruise.cruiseLineLogo}">
-                                <span class="badge">${cruise.highlight ? 'Featured' : ''}</span>
-                            </a>
-                        </div>
-                        <div class="card-body">
-                            <img src="${cruise.cruiseLineLogo}" alt="${cruise.shipImage}" class="cruise-logo">
-                            <h3 class="card-title"><a href="cruise-details.html">${cruise.title}</a></h3>
-                            <p class="card-meta">Departing ${cruise.departure}</p>
-                            <div class="card-rating">
-                                <span class="badge text-white">4.4/5</span>
-                                <span class="review__text">Very good</span>
-                                <span class="rating__text">(30 Reviews)</span>
+    document.addEventListener('DOMContentLoaded', function() {
+        const cruiseListData = JSON.parse(localStorage.getItem('cruiseListData'));
+    
+        if (cruiseListData) {
+            const resultsContainer = document.getElementById('results');
+            const cruiseCount = document.getElementById('cruise-count');
+            let displayedCruises = 10;
+    
+            function createCruiseCard(cruise) {
+                return `
+                    <div class="col-lg-9">
+                        <div class="card-item cruise--card card-item-list">
+                            <div class="card-img">
+                                <a href="cruise-details.html" class="d-block">
+                                    <img src="${cruise.shipImage}" alt="${cruise.cruiseLineLogo}">
+                                    <span class="badge">${cruise.highlight ? 'Featured' : ''}</span>
+                                </a>
                             </div>
-                            <div class="card-price d-flex align-items-center justify-content-between">
-                                <p>
-                                    <span class="price__from">From</span>
-                                    <span class="price__num">${cruise.price}</span>
-                                </p>
-                                <a href="#" class="btn-text view-details">Read details<i class="la la-angle-right"></i></a>
+                            <div class="card-body">
+                                <img src="${cruise.cruiseLineLogo}" alt="${cruise.shipImage}" class="cruise-logo">
+                                <h3 class="card-title"><a href="cruise-details.html">${cruise.title}</a></h3>
+                                <p class="card-meta">Departing ${cruise.departure}</p>
+                                <div class="card-rating">
+                                    <span class="badge text-white">4.4/5</span>
+                                    <span class="review__text">Very good</span>
+                                    <span class="rating__text">(30 Reviews)</span>
+                                </div>
+                                <div class="card-price d-flex align-items-center justify-content-between">
+                                    <p>
+                                        <span class="price__from">From</span>
+                                        <span class="price__num">${cruise.price}</span>
+                                    </p>
+                                    <a href="#" class="btn-text view-details">Read details<i class="la la-angle-right"></i></a>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </div><!-- end card-item -->
-            `;
-        }
-
-        function displayCruises(limit) {
-            resultsContainer.innerHTML = '';
-            const cruisesToShow = cruiseListData.cruises.slice(0, limit);
-            cruisesToShow.forEach(cruise => {
-                resultsContainer.innerHTML += createCruiseCard(cruise);
-            });
-            cruiseCount.textContent = `Showing 1 - ${limit} of ${cruiseListData.count.entries} Cruises`;
-        }
-
-        displayCruises(displayedCruises);
-
-        document.getElementById('load-more-btn').addEventListener('click', function() {
-            displayedCruises += 10;
-            if (displayedCruises > cruiseListData.count.entries) {
-                displayedCruises = cruiseListData.count.entries;
+                    </div><!-- end card-item -->
+                `;
             }
+    
+            function displayCruises(limit) {
+                resultsContainer.innerHTML = '';
+                const cruisesToShow = cruiseListData.cruises.slice(0, limit);
+                cruisesToShow.forEach(cruise => {
+                    resultsContainer.innerHTML += createCruiseCard(cruise);
+                });
+                cruiseCount.textContent = `Showing 1 - ${limit} of ${cruiseListData.count.entries} Cruises`;
+            }
+    
             displayCruises(displayedCruises);
-        });
-    }
-});
-
-const cruiseListData = {
-  "count": {
-    "entries": 100,
-    "allentries": 106,
-    "page": 1,
-    "pages": 2
-  },
-  "cruises": [
-    {
-      "count": "1",
-      "masterCruiseID": "I7259565240929",
-      "productID": "I7PTHPTH259565",
-      "masterCruiseID_org": "I7259565240929",
-      "title": "Atlantic Ocean Europe 7 days from/to Portsmouth",
-      "ship": "Resilient Lady",
-      "shipID": "I7",
-      "shipImage": "//images.cruisec.net/images/ships/ships/I7.jpg",
-      "cruiseLine": "Virgin Voyages",
-      "cruiseLineID": "VIR",
-      "cruiseLineLogo": "//images.cruisec.net/images/ships/logos/VIR.png",
-      "duration": "6",
-      "departure": "9/23/24",
-      "departure_top": "23.",
-      "departure_bottom": "9/24",
-      "departure_raw": "2024-09-23",
-      "arrival": "9/29/24",
-      "departure_cruise": "9/23/24",
-      "arrival_cruise": "9/29/24",
-      "arrival_raw": "2024-09-29",
-      "airports": [],
-      "route": "Portsmouth - Cruising Day - La Coruna - Bilbao - Le Verdon-sur-Mer - Cruising Day - Portsmouth",
-      "depPortID": "",
-      "arrPortID": "",
-      "cruiseArea": "Atlantic Ocean Europe",
-      "cruiseAreaID": "45",
-      "filter": [],
-      "currency": "USD",
-      "currency_symbol": "$",
-      "price_strike": "",
-      "pricecat": [],
-      "masterCruiseIDs": [
-        "I7259565240929"
-      ],
-      "highlight": false,
-      "highlightColor": "",
-      "highlightColorHover": "",
-      "icon_url": "",
-      "priceUnformatted": "743",
-      "isDisabled": "",
-      "isUniqueContent": false,
-      "transferType": "none",
-      "price": "$743"
-    },
-    {
-      "count": "1",
-      "masterCruiseID": "I7259560240914",
-      "productID": "I7PTHPTH259560",
-      "masterCruiseID_org": "I7259560240914",
-      "title": "Atlantic Ocean Europe 7 days from/to Portsmouth",
-      "ship": "Resilient Lady",
-      "shipID": "I7",
-      "shipImage": "//images.cruisec.net/images/ships/ships/I7.jpg",
-      "cruiseLine": "Virgin Voyages",
-      "cruiseLineID": "VIR",
-      "cruiseLineLogo": "//images.cruisec.net/images/ships/logos/VIR.png",
-      "duration": "6",
-      "departure": "9/8/24",
-      "departure_top": "8.",
-      "departure_bottom": "9/24",
-      "departure_raw": "2024-09-08",
-      "arrival": "9/14/24",
-      "departure_cruise": "9/8/24",
-      "arrival_cruise": "9/14/24",
-      "arrival_raw": "2024-09-14",
-      "airports": [],
-      "route": "Portsmouth - Cruising Day - La Coruna - Bilbao - Le Verdon-sur-Mer - Cruising Day - Portsmouth",
-      "depPortID": "",
-      "arrPortID": "",
-      "cruiseArea": "Atlantic Ocean Europe",
-      "cruiseAreaID": "45",
-      "filter": [],
-      "currency": "USD",
-      "currency_symbol": "$",
-      "price_strike": "",
-      "pricecat": [],
-      "masterCruiseIDs": [
-        "I7259560240914"
-      ],
-      "highlight": false,
-      "highlightColor": "",
-      "highlightColorHover": "",
-      "icon_url": "",
-      "priceUnformatted": "783",
-      "isDisabled": "",
-      "isUniqueContent": false,
-      "transferType": "none",
-      "price": "$783"
-    },
-    {
-      "count": "1",
-      "masterCruiseID": "I7265195241206",
-      "productID": "I7MIASIG265195",
-      "masterCruiseID_org": "I7265195241206",
-      "title": "Eastern Caribbean 7 days from Miami to San Juan",
-      "ship": "Resilient Lady",
-      "shipID": "I7",
-      "shipImage": "//images.cruisec.net/images/ships/ships/I7.jpg",
-      "cruiseLine": "Virgin Voyages",
-      "cruiseLineID": "VIR",
-      "cruiseLineLogo": "//images.cruisec.net/images/ships/logos/VIR.png",
-      "duration": "6",
-      "departure": "11/30/24",
-      "departure_top": "30.",
-      "departure_bottom": "11/24",
-      "departure_raw": "2024-11-30",
-      "arrival": "12/6/24",
-      "departure_cruise": "11/30/24",
-      "arrival_cruise": "12/6/24",
-      "arrival_raw": "2024-12-06",
-      "airports": [],
-      "route": "Miami - Cruising Day - Grand Turk - Puerto Plata - Cruising Day - Basseterre - San Juan",
-      "depPortID": "",
-      "arrPortID": "",
-      "cruiseArea": "Caribbean (eastern)",
-      "cruiseAreaID": "40",
-      "filter": [],
-      "currency": "USD",
-      "currency_symbol": "$",
-      "price_strike": "",
-      "pricecat": [],
-      "masterCruiseIDs": [
-        "I7265195241206"
-      ],
-      "highlight": false,
-      "highlightColor": "",
-      "highlightColorHover": "",
-      "icon_url": "",
-      "priceUnformatted": "910",
-      "isDisabled": "",
-      "isUniqueContent": false,
-      "transferType": "none",
-      "price": "$910"
-    },
-    {
-      "count": "1",
-      "masterCruiseID": "I5259550240804",
-      "productID": "I5BCNBCN259550",
-      "masterCruiseID_org": "I5259550240804",
-      "title": "Mediterranean, western 8 days from/to Barcelona",
-      "ship": "Scarlet Lady",
-      "shipID": "I5",
-      "shipImage": "//images.cruisec.net/images/ships/ships/I5.jpg",
-      "cruiseLine": "Virgin Voyages",
-      "cruiseLineID": "VIR",
-      "cruiseLineLogo": "//images.cruisec.net/images/ships/logos/VIR.png",
-      "duration": "7",
-      "departure": "7/28/24",
-      "departure_top": "28.",
-      "departure_bottom": "7/24",
-      "departure_raw": "2024-07-28",
-      "arrival": "8/4/24",
-      "departure_cruise": "7/28/24",
-      "arrival_cruise": "8/4/24",
-      "arrival_raw": "2024-08-04",
-      "airports": [],
-      "route": "Barcelona - Toulon - Marina di Carrara - Cruising Day - Ajaccio, Corsica - Ibiza, Balearic Islands - Ibiza, Balearic Islands - Barcelona",
-      "depPortID": "",
-      "arrPortID": "",
-      "cruiseArea": "Mediterranean, western",
-      "cruiseAreaID": "1",
-      "filter": [],
-      "currency": "USD",
-      "currency_symbol": "$",
-      "price_strike": "",
-      "pricecat": [],
-      "masterCruiseIDs": [
-        "I5259550240804"
-      ],
-      "highlight": false,
-      "highlightColor": "",
-      "highlightColorHover": "",
-      "icon_url": "",
-      "priceUnformatted": "930",
-      "isDisabled": "",
-      "isUniqueContent": false,
-      "transferType": "none",
-      "price": "$930"
-    },
-    {
-      "count": "1",
-      "masterCruiseID": "I5259545240707",
-      "productID": "I5BCNBCN259545",
-      "masterCruiseID_org": "I5259545240707",
-      "title": "Mediterranean, western 8 days from/to Barcelona",
-      "ship": "Scarlet Lady",
-      "shipID": "I5",
-      "shipImage": "//images.cruisec.net/images/ships/ships/I5.jpg",
-      "cruiseLine": "Virgin Voyages",
-      "cruiseLineID": "VIR",
-      "cruiseLineLogo": "//images.cruisec.net/images/ships/logos/VIR.png",
-      "duration": "7",
-      "departure": "6/30/24",
-      "departure_top": "30.",
-      "departure_bottom": "6/24",
-      "departure_raw": "2024-06-30",
-      "arrival": "7/7/24",
-      "departure_cruise": "6/30/24",
-      "arrival_cruise": "7/7/24",
-      "arrival_raw": "2024-07-07",
-      "airports": [],
-      "route": "Barcelona - Toulon - Marina di Carrara - Ajaccio, Corsica - Cruising Day - Ibiza, Balearic Islands - Ibiza, Balearic Islands - Barcelona",
-      "depPortID": "",
-      "arrPortID": "",
-      "cruiseArea": "Mediterranean, western",
-      "cruiseAreaID": "1",
-      "filter": [],
-      "currency": "USD",
-      "currency_symbol": "$",
-      "price_strike": "",
-      "pricecat": [],
-      "masterCruiseIDs": [
-        "I5259545240707"
-      ],
-      "highlight": false,
-      "highlightColor": "",
-      "highlightColorHover": "",
-      "icon_url": "",
-      "priceUnformatted": "936",
-      "isDisabled": "",
-      "isUniqueContent": false,
-      "transferType": "none",
-      "price": "$936"
-    },
-    {
-      "count": "1",
-      "masterCruiseID": "I5259533240609",
-      "productID": "I5BCNBCN259533",
-      "masterCruiseID_org": "I5259533240609",
-      "title": "Mediterranean, western 8 days from/to Barcelona",
-      "ship": "Scarlet Lady",
-      "shipID": "I5",
-      "shipImage": "//images.cruisec.net/images/ships/ships/I5.jpg",
-      "cruiseLine": "Virgin Voyages",
-      "cruiseLineID": "VIR",
-      "cruiseLineLogo": "//images.cruisec.net/images/ships/logos/VIR.png",
-      "duration": "7",
-      "departure": "6/2/24",
-      "departure_top": "2.",
-      "departure_bottom": "6/24",
-      "departure_raw": "2024-06-02",
-      "arrival": "6/9/24",
-      "departure_cruise": "6/2/24",
-      "arrival_cruise": "6/9/24",
-      "arrival_raw": "2024-06-09",
-      "airports": [],
-      "route": "Barcelona - Toulon - Marina di Carrara - Cruising Day - Ajaccio, Corsica - Ibiza, Balearic Islands - Ibiza, Balearic Islands - Barcelona",
-      "depPortID": "",
-      "arrPortID": "",
-      "cruiseArea": "Mediterranean, western",
-      "cruiseAreaID": "1",
-      "filter": [],
-      "currency": "USD",
-      "currency_symbol": "$",
-      "price_strike": "",
-      "pricecat": [],
-      "masterCruiseIDs": [
-        "I5259533240609"
-      ],
-      "highlight": false,
-      "highlightColor": "",
-      "highlightColorHover": "",
-      "icon_url": "",
-      "priceUnformatted": "945",
-      "isDisabled": "",
-      "isUniqueContent": false,
-      "transferType": "none",
-      "price": "$945"
-    },
-    {
-      "count": "1",
-      "masterCruiseID": "I5268548240728",
-      "productID": "I5BCNBCN268548",
-      "masterCruiseID_org": "I5268548240728",
-      "title": "Mediterranean, western 8 days from/to Barcelona",
-      "ship": "Scarlet Lady",
-      "shipID": "I5",
-      "shipImage": "//images.cruisec.net/images/ships/ships/I5.jpg",
-      "cruiseLine": "Virgin Voyages",
-      "cruiseLineID": "VIR",
-      "cruiseLineLogo": "//images.cruisec.net/images/ships/logos/VIR.png",
-      "duration": "7",
-      "departure": "7/21/24",
-      "departure_top": "21.",
-      "departure_bottom": "7/24",
-      "departure_raw": "2024-07-21",
-      "arrival": "7/28/24",
-      "departure_cruise": "7/21/24",
-      "arrival_cruise": "7/28/24",
-      "arrival_raw": "2024-07-28",
-      "airports": [],
-      "route": "Barcelona - Marseille - Cannes - Cruising Day - Palma de Mallorca, Balearic Islands - Ibiza, Balearic Islands - Ibiza, Balearic Islands - Barcelona",
-      "depPortID": "",
-      "arrPortID": "",
-      "cruiseArea": "Mediterranean, western",
-      "cruiseAreaID": "1",
-      "filter": [],
-      "currency": "USD",
-      "currency_symbol": "$",
-      "price_strike": "",
-      "pricecat": [],
-      "masterCruiseIDs": [
-        "I5268548240728"
-      ],
-      "highlight": false,
-      "highlightColor": "",
-      "highlightColorHover": "",
-      "icon_url": "",
-      "priceUnformatted": "953",
-      "isDisabled": "",
-      "isUniqueContent": false,
-      "transferType": "none",
-      "price": "$953"
-    },
-    {
-      "count": "1",
-      "masterCruiseID": "I5259530240602",
-      "productID": "I5BCNBCN259530",
-      "masterCruiseID_org": "I5259530240602",
-      "title": "Mediterranean, western 8 days from/to Barcelona",
-      "ship": "Scarlet Lady",
-      "shipID": "I5",
-      "shipImage": "//images.cruisec.net/images/ships/ships/I5.jpg",
-      "cruiseLine": "Virgin Voyages",
-      "cruiseLineID": "VIR",
-      "cruiseLineLogo": "//images.cruisec.net/images/ships/logos/VIR.png",
-      "duration": "7",
-      "departure": "5/26/24",
-      "departure_top": "26.",
-      "departure_bottom": "5/24",
-      "departure_raw": "2024-05-26",
-      "arrival": "6/2/24",
-      "departure_cruise": "5/26/24",
-      "arrival_cruise": "6/2/24",
-      "arrival_raw": "2024-06-02",
-      "airports": [],
-      "route": "Barcelona - Marseille - Cannes - Cruising Day - Palma de Mallorca, Balearic Islands - Ibiza, Balearic Islands - Ibiza, Balearic Islands - Barcelona",
-      "depPortID": "",
-      "arrPortID": "",
-      "cruiseArea": "Mediterranean, western",
-      "cruiseAreaID": "1",
-      "filter": [],
-      "currency": "USD",
-      "currency_symbol": "$",
-      "price_strike": "",
-      "pricecat": [],
-      "masterCruiseIDs": [
-        "I5259530240602"
-      ],
-      "highlight": false,
-      "highlightColor": "",
-      "highlightColorHover": "",
-      "icon_url": "",
-      "priceUnformatted": "955",
-      "isDisabled": "",
-      "isUniqueContent": false,
-      "transferType": "none",
-      "price": "$955"
-    },
-    {
-      "count": "1",
-      "masterCruiseID": "I5259543240630",
-      "productID": "I5BCNBCN259543",
-      "masterCruiseID_org": "I5259543240630",
-      "title": "Mediterranean, western 8 days from/to Barcelona",
-      "ship": "Scarlet Lady",
-      "shipID": "I5",
-      "shipImage": "//images.cruisec.net/images/ships/ships/I5.jpg",
-      "cruiseLine": "Virgin Voyages",
-      "cruiseLineID": "VIR",
-      "cruiseLineLogo": "//images.cruisec.net/images/ships/logos/VIR.png",
-      "duration": "7",
-      "departure": "6/23/24",
-      "departure_top": "23.",
-      "departure_bottom": "6/24",
-      "departure_raw": "2024-06-23",
-      "arrival": "6/30/24",
-      "departure_cruise": "6/23/24",
-      "arrival_cruise": "6/30/24",
-      "arrival_raw": "2024-06-30",
-      "airports": [],
-      "route": "Barcelona - Marseille - Cannes - Cruising Day - Palma de Mallorca, Balearic Islands - Ibiza, Balearic Islands - Ibiza, Balearic Islands - Barcelona",
-      "depPortID": "",
-      "arrPortID": "",
-      "cruiseArea": "Mediterranean, western",
-      "cruiseAreaID": "1",
-      "filter": [],
-      "currency": "USD",
-      "currency_symbol": "$",
-      "price_strike": "",
-      "pricecat": [],
-      "masterCruiseIDs": [
-        "I5259543240630"
-      ],
-      "highlight": false,
-      "highlightColor": "",
-      "highlightColorHover": "",
-      "icon_url": "",
-      "priceUnformatted": "956",
-      "isDisabled": "",
-      "isUniqueContent": false,
-      "transferType": "none",
-      "price": "$956"
-    },
-    {
-      "count": "1",
-      "masterCruiseID": "I5259540240623",
-      "productID": "I5BCNBCN259540",
-      "masterCruiseID_org": "I5259540240623",
-      "title": "Mediterranean, western 8 days from/to Barcelona",
-      "ship": "Scarlet Lady",
-      "shipID": "I5",
-      "shipImage": "//images.cruisec.net/images/ships/ships/I5.jpg",
-      "cruiseLine": "Virgin Voyages",
-      "cruiseLineID": "VIR",
-      "cruiseLineLogo": "//images.cruisec.net/images/ships/logos/VIR.png",
-      "duration": "7",
-      "departure": "6/16/24",
-      "departure_top": "16.",
-      "departure_bottom": "6/24",
-      "departure_raw": "2024-06-16",
-      "arrival": "6/23/24",
-      "departure_cruise": "6/16/24",
-      "arrival_cruise": "6/23/24",
-      "arrival_raw": "2024-06-23",
-      "airports": [],
-      "route": "Barcelona - Toulon - Marina di Carrara - Civitavecchia, Rome - Cruising Day - Ibiza, Balearic Islands - Ibiza, Balearic Islands - Barcelona",
-      "depPortID": "",
-      "arrPortID": "",
-      "cruiseArea": "Mediterranean, western",
-      "cruiseAreaID": "1",
-      "filter": [],
-      "currency": "USD",
-      "currency_symbol": "$",
-      "price_strike": "",
-      "pricecat": [],
-      "masterCruiseIDs": [
-        "I5259540240623"
-      ],
-      "highlight": false,
-      "highlightColor": "",
-      "highlightColorHover": "",
-      "icon_url": "",
-      "priceUnformatted": "963",
-      "isDisabled": "",
-      "isUniqueContent": false,
-      "transferType": "none",
-      "price": "$963"
-    },
-    {
-      "count": "1",
-      "masterCruiseID": "I5268555240825",
-      "productID": "I5BCNBCN268555",
-      "masterCruiseID_org": "I5268555240825",
-      "title": "Mediterranean, western 8 days from/to Barcelona",
-      "ship": "Scarlet Lady",
-      "shipID": "I5",
-      "shipImage": "//images.cruisec.net/images/ships/ships/I5.jpg",
-      "cruiseLine": "Virgin Voyages",
-      "cruiseLineID": "VIR",
-      "cruiseLineLogo": "//images.cruisec.net/images/ships/logos/VIR.png",
-      "duration": "7",
-      "departure": "8/18/24",
-      "departure_top": "18.",
-      "departure_bottom": "8/24",
-      "departure_raw": "2024-08-18",
-      "arrival": "8/25/24",
-      "departure_cruise": "8/18/24",
-      "arrival_cruise": "8/25/24",
-      "arrival_raw": "2024-08-25",
-      "airports": [],
-      "route": "Barcelona - Marseille - Cannes - Cruising Day - Palma de Mallorca, Balearic Islands - Ibiza, Balearic Islands - Ibiza, Balearic Islands - Barcelona",
-      "depPortID": "",
-      "arrPortID": "",
-      "cruiseArea": "Mediterranean, western",
-      "cruiseAreaID": "1",
-      "filter": [],
-      "currency": "USD",
-      "currency_symbol": "$",
-      "price_strike": "",
-      "pricecat": [],
-      "masterCruiseIDs": [
-        "I5268555240825"
-      ],
-      "highlight": false,
-      "highlightColor": "",
-      "highlightColorHover": "",
-      "icon_url": "",
-      "priceUnformatted": "977",
-      "isDisabled": "",
-      "isUniqueContent": false,
-      "transferType": "none",
-      "price": "$977"
-    },
-    {
-      "count": "1",
-      "masterCruiseID": "I5259548240721",
-      "productID": "I5BCNBCN259548",
-      "masterCruiseID_org": "I5259548240721",
-      "title": "Mediterranean, western 8 days from/to Barcelona",
-      "ship": "Scarlet Lady",
-      "shipID": "I5",
-      "shipImage": "//images.cruisec.net/images/ships/ships/I5.jpg",
-      "cruiseLine": "Virgin Voyages",
-      "cruiseLineID": "VIR",
-      "cruiseLineLogo": "//images.cruisec.net/images/ships/logos/VIR.png",
-      "duration": "7",
-      "departure": "7/14/24",
-      "departure_top": "14.",
-      "departure_bottom": "7/24",
-      "departure_raw": "2024-07-14",
-      "arrival": "7/21/24",
-      "departure_cruise": "7/14/24",
-      "arrival_cruise": "7/21/24",
-      "arrival_raw": "2024-07-21",
-      "airports": [],
-      "route": "Barcelona - Toulon - Marina di Carrara - Civitavecchia, Rome - Cruising Day - Ibiza, Balearic Islands - Ibiza, Balearic Islands - Barcelona",
-      "depPortID": "",
-      "arrPortID": "",
-      "cruiseArea": "Mediterranean, western",
-      "cruiseAreaID": "1",
-      "filter": [],
-      "currency": "USD",
-      "currency_symbol": "$",
-      "price_strike": "",
-      "pricecat": [],
-      "masterCruiseIDs": [
-        "I5259548240721"
-      ],
-      "highlight": false,
-      "highlightColor": "",
-      "highlightColorHover": "",
-      "icon_url": "",
-      "priceUnformatted": "980",
-      "isDisabled": "",
-      "isUniqueContent": false,
-      "transferType": "none",
-      "price": "$980"
-    },
-    {
-      "count": "1",
-      "masterCruiseID": "I5259553240818",
-      "productID": "I5BCNBCN259553",
-      "masterCruiseID_org": "I5259553240818",
-      "title": "Mediterranean, western 8 days from/to Barcelona",
-      "ship": "Scarlet Lady",
-      "shipID": "I5",
-      "shipImage": "//images.cruisec.net/images/ships/ships/I5.jpg",
-      "cruiseLine": "Virgin Voyages",
-      "cruiseLineID": "VIR",
-      "cruiseLineLogo": "//images.cruisec.net/images/ships/logos/VIR.png",
-      "duration": "7",
-      "departure": "8/11/24",
-      "departure_top": "11.",
-      "departure_bottom": "8/24",
-      "departure_raw": "2024-08-11",
-      "arrival": "8/18/24",
-      "departure_cruise": "8/11/24",
-      "arrival_cruise": "8/18/24",
-      "arrival_raw": "2024-08-18",
-      "airports": [],
-      "route": "Barcelona - Toulon - Marina di Carrara - Civitavecchia, Rome - Cruising Day - Ibiza, Balearic Islands - Ibiza, Balearic Islands - Barcelona",
-      "depPortID": "",
-      "arrPortID": "",
-      "cruiseArea": "Mediterranean, western",
-      "cruiseAreaID": "1",
-      "filter": [],
-      "currency": "USD",
-      "currency_symbol": "$",
-      "price_strike": "",
-      "pricecat": [],
-      "masterCruiseIDs": [
-        "I5259553240818"
-      ],
-      "highlight": false,
-      "highlightColor": "",
-      "highlightColorHover": "",
-      "icon_url": "",
-      "priceUnformatted": "987",
-      "isDisabled": "",
-      "isUniqueContent": false,
-      "transferType": "none",
-      "price": "$987"
-    }
-    ]
-};
-localStorage.setItem('cruiseListData', JSON.stringify(cruiseListData))
+    
+            document.getElementById('load-more-btn').addEventListener('click', function() {
+                displayedCruises += 10;
+                if (displayedCruises > cruiseListData.count.entries) {
+                    displayedCruises = cruiseListData.count.entries;
+                }
+                displayCruises(displayedCruises);
+            });
+        }
+    });
+    
+    const cruiseListData = {
+      "count": {
+        "entries": 100,
+        "allentries": 106,
+        "page": 1,
+        "pages": 2
+      },
+      "cruises": [
+        {
+          "count": "1",
+          "masterCruiseID": "I7259565240929",
+          "productID": "I7PTHPTH259565",
+          "masterCruiseID_org": "I7259565240929",
+          "title": "Atlantic Ocean Europe 7 days from/to Portsmouth",
+          "ship": "Resilient Lady",
+          "shipID": "I7",
+          "shipImage": "//images.cruisec.net/images/ships/ships/I7.jpg",
+          "cruiseLine": "Virgin Voyages",
+          "cruiseLineID": "VIR",
+          "cruiseLineLogo": "//images.cruisec.net/images/ships/logos/VIR.png",
+          "duration": "6",
+          "departure": "9/23/24",
+          "departure_top": "23.",
+          "departure_bottom": "9/24",
+          "departure_raw": "2024-09-23",
+          "arrival": "9/29/24",
+          "departure_cruise": "9/23/24",
+          "arrival_cruise": "9/29/24",
+          "arrival_raw": "2024-09-29",
+          "airports": [],
+          "route": "Portsmouth - Cruising Day - La Coruna - Bilbao - Le Verdon-sur-Mer - Cruising Day - Portsmouth",
+          "depPortID": "",
+          "arrPortID": "",
+          "cruiseArea": "Atlantic Ocean Europe",
+          "cruiseAreaID": "45",
+          "filter": [],
+          "currency": "USD",
+          "currency_symbol": "$",
+          "price_strike": "",
+          "pricecat": [],
+          "masterCruiseIDs": [
+            "I7259565240929"
+          ],
+          "highlight": false,
+          "highlightColor": "",
+          "highlightColorHover": "",
+          "icon_url": "",
+          "priceUnformatted": "743",
+          "isDisabled": "",
+          "isUniqueContent": false,
+          "transferType": "none",
+          "price": "$743"
+        },
+        {
+          "count": "1",
+          "masterCruiseID": "I7259560240914",
+          "productID": "I7PTHPTH259560",
+          "masterCruiseID_org": "I7259560240914",
+          "title": "Atlantic Ocean Europe 7 days from/to Portsmouth",
+          "ship": "Resilient Lady",
+          "shipID": "I7",
+          "shipImage": "//images.cruisec.net/images/ships/ships/I7.jpg",
+          "cruiseLine": "Virgin Voyages",
+          "cruiseLineID": "VIR",
+          "cruiseLineLogo": "//images.cruisec.net/images/ships/logos/VIR.png",
+          "duration": "6",
+          "departure": "9/8/24",
+          "departure_top": "8.",
+          "departure_bottom": "9/24",
+          "departure_raw": "2024-09-08",
+          "arrival": "9/14/24",
+          "departure_cruise": "9/8/24",
+          "arrival_cruise": "9/14/24",
+          "arrival_raw": "2024-09-14",
+          "airports": [],
+          "route": "Portsmouth - Cruising Day - La Coruna - Bilbao - Le Verdon-sur-Mer - Cruising Day - Portsmouth",
+          "depPortID": "",
+          "arrPortID": "",
+          "cruiseArea": "Atlantic Ocean Europe",
+          "cruiseAreaID": "45",
+          "filter": [],
+          "currency": "USD",
+          "currency_symbol": "$",
+          "price_strike": "",
+          "pricecat": [],
+          "masterCruiseIDs": [
+            "I7259560240914"
+          ],
+          "highlight": false,
+          "highlightColor": "",
+          "highlightColorHover": "",
+          "icon_url": "",
+          "priceUnformatted": "783",
+          "isDisabled": "",
+          "isUniqueContent": false,
+          "transferType": "none",
+          "price": "$783"
+        },
+        {
+          "count": "1",
+          "masterCruiseID": "I7265195241206",
+          "productID": "I7MIASIG265195",
+          "masterCruiseID_org": "I7265195241206",
+          "title": "Eastern Caribbean 7 days from Miami to San Juan",
+          "ship": "Resilient Lady",
+          "shipID": "I7",
+          "shipImage": "//images.cruisec.net/images/ships/ships/I7.jpg",
+          "cruiseLine": "Virgin Voyages",
+          "cruiseLineID": "VIR",
+          "cruiseLineLogo": "//images.cruisec.net/images/ships/logos/VIR.png",
+          "duration": "6",
+          "departure": "11/30/24",
+          "departure_top": "30.",
+          "departure_bottom": "11/24",
+          "departure_raw": "2024-11-30",
+          "arrival": "12/6/24",
+          "departure_cruise": "11/30/24",
+          "arrival_cruise": "12/6/24",
+          "arrival_raw": "2024-12-06",
+          "airports": [],
+          "route": "Miami - Cruising Day - Grand Turk - Puerto Plata - Cruising Day - Basseterre - San Juan",
+          "depPortID": "",
+          "arrPortID": "",
+          "cruiseArea": "Caribbean (eastern)",
+          "cruiseAreaID": "40",
+          "filter": [],
+          "currency": "USD",
+          "currency_symbol": "$",
+          "price_strike": "",
+          "pricecat": [],
+          "masterCruiseIDs": [
+            "I7265195241206"
+          ],
+          "highlight": false,
+          "highlightColor": "",
+          "highlightColorHover": "",
+          "icon_url": "",
+          "priceUnformatted": "910",
+          "isDisabled": "",
+          "isUniqueContent": false,
+          "transferType": "none",
+          "price": "$910"
+        },
+        {
+          "count": "1",
+          "masterCruiseID": "I5259550240804",
+          "productID": "I5BCNBCN259550",
+          "masterCruiseID_org": "I5259550240804",
+          "title": "Mediterranean, western 8 days from/to Barcelona",
+          "ship": "Scarlet Lady",
+          "shipID": "I5",
+          "shipImage": "//images.cruisec.net/images/ships/ships/I5.jpg",
+          "cruiseLine": "Virgin Voyages",
+          "cruiseLineID": "VIR",
+          "cruiseLineLogo": "//images.cruisec.net/images/ships/logos/VIR.png",
+          "duration": "7",
+          "departure": "7/28/24",
+          "departure_top": "28.",
+          "departure_bottom": "7/24",
+          "departure_raw": "2024-07-28",
+          "arrival": "8/4/24",
+          "departure_cruise": "7/28/24",
+          "arrival_cruise": "8/4/24",
+          "arrival_raw": "2024-08-04",
+          "airports": [],
+          "route": "Barcelona - Toulon - Marina di Carrara - Cruising Day - Ajaccio, Corsica - Ibiza, Balearic Islands - Ibiza, Balearic Islands - Barcelona",
+          "depPortID": "",
+          "arrPortID": "",
+          "cruiseArea": "Mediterranean, western",
+          "cruiseAreaID": "1",
+          "filter": [],
+          "currency": "USD",
+          "currency_symbol": "$",
+          "price_strike": "",
+          "pricecat": [],
+          "masterCruiseIDs": [
+            "I5259550240804"
+          ],
+          "highlight": false,
+          "highlightColor": "",
+          "highlightColorHover": "",
+          "icon_url": "",
+          "priceUnformatted": "930",
+          "isDisabled": "",
+          "isUniqueContent": false,
+          "transferType": "none",
+          "price": "$930"
+        },
+        {
+          "count": "1",
+          "masterCruiseID": "I5259545240707",
+          "productID": "I5BCNBCN259545",
+          "masterCruiseID_org": "I5259545240707",
+          "title": "Mediterranean, western 8 days from/to Barcelona",
+          "ship": "Scarlet Lady",
+          "shipID": "I5",
+          "shipImage": "//images.cruisec.net/images/ships/ships/I5.jpg",
+          "cruiseLine": "Virgin Voyages",
+          "cruiseLineID": "VIR",
+          "cruiseLineLogo": "//images.cruisec.net/images/ships/logos/VIR.png",
+          "duration": "7",
+          "departure": "6/30/24",
+          "departure_top": "30.",
+          "departure_bottom": "6/24",
+          "departure_raw": "2024-06-30",
+          "arrival": "7/7/24",
+          "departure_cruise": "6/30/24",
+          "arrival_cruise": "7/7/24",
+          "arrival_raw": "2024-07-07",
+          "airports": [],
+          "route": "Barcelona - Toulon - Marina di Carrara - Ajaccio, Corsica - Cruising Day - Ibiza, Balearic Islands - Ibiza, Balearic Islands - Barcelona",
+          "depPortID": "",
+          "arrPortID": "",
+          "cruiseArea": "Mediterranean, western",
+          "cruiseAreaID": "1",
+          "filter": [],
+          "currency": "USD",
+          "currency_symbol": "$",
+          "price_strike": "",
+          "pricecat": [],
+          "masterCruiseIDs": [
+            "I5259545240707"
+          ],
+          "highlight": false,
+          "highlightColor": "",
+          "highlightColorHover": "",
+          "icon_url": "",
+          "priceUnformatted": "936",
+          "isDisabled": "",
+          "isUniqueContent": false,
+          "transferType": "none",
+          "price": "$936"
+        },
+        {
+          "count": "1",
+          "masterCruiseID": "I5259533240609",
+          "productID": "I5BCNBCN259533",
+          "masterCruiseID_org": "I5259533240609",
+          "title": "Mediterranean, western 8 days from/to Barcelona",
+          "ship": "Scarlet Lady",
+          "shipID": "I5",
+          "shipImage": "//images.cruisec.net/images/ships/ships/I5.jpg",
+          "cruiseLine": "Virgin Voyages",
+          "cruiseLineID": "VIR",
+          "cruiseLineLogo": "//images.cruisec.net/images/ships/logos/VIR.png",
+          "duration": "7",
+          "departure": "6/2/24",
+          "departure_top": "2.",
+          "departure_bottom": "6/24",
+          "departure_raw": "2024-06-02",
+          "arrival": "6/9/24",
+          "departure_cruise": "6/2/24",
+          "arrival_cruise": "6/9/24",
+          "arrival_raw": "2024-06-09",
+          "airports": [],
+          "route": "Barcelona - Toulon - Marina di Carrara - Cruising Day - Ajaccio, Corsica - Ibiza, Balearic Islands - Ibiza, Balearic Islands - Barcelona",
+          "depPortID": "",
+          "arrPortID": "",
+          "cruiseArea": "Mediterranean, western",
+          "cruiseAreaID": "1",
+          "filter": [],
+          "currency": "USD",
+          "currency_symbol": "$",
+          "price_strike": "",
+          "pricecat": [],
+          "masterCruiseIDs": [
+            "I5259533240609"
+          ],
+          "highlight": false,
+          "highlightColor": "",
+          "highlightColorHover": "",
+          "icon_url": "",
+          "priceUnformatted": "945",
+          "isDisabled": "",
+          "isUniqueContent": false,
+          "transferType": "none",
+          "price": "$945"
+        },
+        {
+          "count": "1",
+          "masterCruiseID": "I5268548240728",
+          "productID": "I5BCNBCN268548",
+          "masterCruiseID_org": "I5268548240728",
+          "title": "Mediterranean, western 8 days from/to Barcelona",
+          "ship": "Scarlet Lady",
+          "shipID": "I5",
+          "shipImage": "//images.cruisec.net/images/ships/ships/I5.jpg",
+          "cruiseLine": "Virgin Voyages",
+          "cruiseLineID": "VIR",
+          "cruiseLineLogo": "//images.cruisec.net/images/ships/logos/VIR.png",
+          "duration": "7",
+          "departure": "7/21/24",
+          "departure_top": "21.",
+          "departure_bottom": "7/24",
+          "departure_raw": "2024-07-21",
+          "arrival": "7/28/24",
+          "departure_cruise": "7/21/24",
+          "arrival_cruise": "7/28/24",
+          "arrival_raw": "2024-07-28",
+          "airports": [],
+          "route": "Barcelona - Marseille - Cannes - Cruising Day - Palma de Mallorca, Balearic Islands - Ibiza, Balearic Islands - Ibiza, Balearic Islands - Barcelona",
+          "depPortID": "",
+          "arrPortID": "",
+          "cruiseArea": "Mediterranean, western",
+          "cruiseAreaID": "1",
+          "filter": [],
+          "currency": "USD",
+          "currency_symbol": "$",
+          "price_strike": "",
+          "pricecat": [],
+          "masterCruiseIDs": [
+            "I5268548240728"
+          ],
+          "highlight": false,
+          "highlightColor": "",
+          "highlightColorHover": "",
+          "icon_url": "",
+          "priceUnformatted": "953",
+          "isDisabled": "",
+          "isUniqueContent": false,
+          "transferType": "none",
+          "price": "$953"
+        },
+        {
+          "count": "1",
+          "masterCruiseID": "I5259530240602",
+          "productID": "I5BCNBCN259530",
+          "masterCruiseID_org": "I5259530240602",
+          "title": "Mediterranean, western 8 days from/to Barcelona",
+          "ship": "Scarlet Lady",
+          "shipID": "I5",
+          "shipImage": "//images.cruisec.net/images/ships/ships/I5.jpg",
+          "cruiseLine": "Virgin Voyages",
+          "cruiseLineID": "VIR",
+          "cruiseLineLogo": "//images.cruisec.net/images/ships/logos/VIR.png",
+          "duration": "7",
+          "departure": "5/26/24",
+          "departure_top": "26.",
+          "departure_bottom": "5/24",
+          "departure_raw": "2024-05-26",
+          "arrival": "6/2/24",
+          "departure_cruise": "5/26/24",
+          "arrival_cruise": "6/2/24",
+          "arrival_raw": "2024-06-02",
+          "airports": [],
+          "route": "Barcelona - Marseille - Cannes - Cruising Day - Palma de Mallorca, Balearic Islands - Ibiza, Balearic Islands - Ibiza, Balearic Islands - Barcelona",
+          "depPortID": "",
+          "arrPortID": "",
+          "cruiseArea": "Mediterranean, western",
+          "cruiseAreaID": "1",
+          "filter": [],
+          "currency": "USD",
+          "currency_symbol": "$",
+          "price_strike": "",
+          "pricecat": [],
+          "masterCruiseIDs": [
+            "I5259530240602"
+          ],
+          "highlight": false,
+          "highlightColor": "",
+          "highlightColorHover": "",
+          "icon_url": "",
+          "priceUnformatted": "955",
+          "isDisabled": "",
+          "isUniqueContent": false,
+          "transferType": "none",
+          "price": "$955"
+        },
+        {
+          "count": "1",
+          "masterCruiseID": "I5259543240630",
+          "productID": "I5BCNBCN259543",
+          "masterCruiseID_org": "I5259543240630",
+          "title": "Mediterranean, western 8 days from/to Barcelona",
+          "ship": "Scarlet Lady",
+          "shipID": "I5",
+          "shipImage": "//images.cruisec.net/images/ships/ships/I5.jpg",
+          "cruiseLine": "Virgin Voyages",
+          "cruiseLineID": "VIR",
+          "cruiseLineLogo": "//images.cruisec.net/images/ships/logos/VIR.png",
+          "duration": "7",
+          "departure": "6/23/24",
+          "departure_top": "23.",
+          "departure_bottom": "6/24",
+          "departure_raw": "2024-06-23",
+          "arrival": "6/30/24",
+          "departure_cruise": "6/23/24",
+          "arrival_cruise": "6/30/24",
+          "arrival_raw": "2024-06-30",
+          "airports": [],
+          "route": "Barcelona - Marseille - Cannes - Cruising Day - Palma de Mallorca, Balearic Islands - Ibiza, Balearic Islands - Ibiza, Balearic Islands - Barcelona",
+          "depPortID": "",
+          "arrPortID": "",
+          "cruiseArea": "Mediterranean, western",
+          "cruiseAreaID": "1",
+          "filter": [],
+          "currency": "USD",
+          "currency_symbol": "$",
+          "price_strike": "",
+          "pricecat": [],
+          "masterCruiseIDs": [
+            "I5259543240630"
+          ],
+          "highlight": false,
+          "highlightColor": "",
+          "highlightColorHover": "",
+          "icon_url": "",
+          "priceUnformatted": "956",
+          "isDisabled": "",
+          "isUniqueContent": false,
+          "transferType": "none",
+          "price": "$956"
+        },
+        {
+          "count": "1",
+          "masterCruiseID": "I5259540240623",
+          "productID": "I5BCNBCN259540",
+          "masterCruiseID_org": "I5259540240623",
+          "title": "Mediterranean, western 8 days from/to Barcelona",
+          "ship": "Scarlet Lady",
+          "shipID": "I5",
+          "shipImage": "//images.cruisec.net/images/ships/ships/I5.jpg",
+          "cruiseLine": "Virgin Voyages",
+          "cruiseLineID": "VIR",
+          "cruiseLineLogo": "//images.cruisec.net/images/ships/logos/VIR.png",
+          "duration": "7",
+          "departure": "6/16/24",
+          "departure_top": "16.",
+          "departure_bottom": "6/24",
+          "departure_raw": "2024-06-16",
+          "arrival": "6/23/24",
+          "departure_cruise": "6/16/24",
+          "arrival_cruise": "6/23/24",
+          "arrival_raw": "2024-06-23",
+          "airports": [],
+          "route": "Barcelona - Toulon - Marina di Carrara - Civitavecchia, Rome - Cruising Day - Ibiza, Balearic Islands - Ibiza, Balearic Islands - Barcelona",
+          "depPortID": "",
+          "arrPortID": "",
+          "cruiseArea": "Mediterranean, western",
+          "cruiseAreaID": "1",
+          "filter": [],
+          "currency": "USD",
+          "currency_symbol": "$",
+          "price_strike": "",
+          "pricecat": [],
+          "masterCruiseIDs": [
+            "I5259540240623"
+          ],
+          "highlight": false,
+          "highlightColor": "",
+          "highlightColorHover": "",
+          "icon_url": "",
+          "priceUnformatted": "963",
+          "isDisabled": "",
+          "isUniqueContent": false,
+          "transferType": "none",
+          "price": "$963"
+        },
+        {
+          "count": "1",
+          "masterCruiseID": "I5268555240825",
+          "productID": "I5BCNBCN268555",
+          "masterCruiseID_org": "I5268555240825",
+          "title": "Mediterranean, western 8 days from/to Barcelona",
+          "ship": "Scarlet Lady",
+          "shipID": "I5",
+          "shipImage": "//images.cruisec.net/images/ships/ships/I5.jpg",
+          "cruiseLine": "Virgin Voyages",
+          "cruiseLineID": "VIR",
+          "cruiseLineLogo": "//images.cruisec.net/images/ships/logos/VIR.png",
+          "duration": "7",
+          "departure": "8/18/24",
+          "departure_top": "18.",
+          "departure_bottom": "8/24",
+          "departure_raw": "2024-08-18",
+          "arrival": "8/25/24",
+          "departure_cruise": "8/18/24",
+          "arrival_cruise": "8/25/24",
+          "arrival_raw": "2024-08-25",
+          "airports": [],
+          "route": "Barcelona - Marseille - Cannes - Cruising Day - Palma de Mallorca, Balearic Islands - Ibiza, Balearic Islands - Ibiza, Balearic Islands - Barcelona",
+          "depPortID": "",
+          "arrPortID": "",
+          "cruiseArea": "Mediterranean, western",
+          "cruiseAreaID": "1",
+          "filter": [],
+          "currency": "USD",
+          "currency_symbol": "$",
+          "price_strike": "",
+          "pricecat": [],
+          "masterCruiseIDs": [
+            "I5268555240825"
+          ],
+          "highlight": false,
+          "highlightColor": "",
+          "highlightColorHover": "",
+          "icon_url": "",
+          "priceUnformatted": "977",
+          "isDisabled": "",
+          "isUniqueContent": false,
+          "transferType": "none",
+          "price": "$977"
+        },
+        {
+          "count": "1",
+          "masterCruiseID": "I5259548240721",
+          "productID": "I5BCNBCN259548",
+          "masterCruiseID_org": "I5259548240721",
+          "title": "Mediterranean, western 8 days from/to Barcelona",
+          "ship": "Scarlet Lady",
+          "shipID": "I5",
+          "shipImage": "//images.cruisec.net/images/ships/ships/I5.jpg",
+          "cruiseLine": "Virgin Voyages",
+          "cruiseLineID": "VIR",
+          "cruiseLineLogo": "//images.cruisec.net/images/ships/logos/VIR.png",
+          "duration": "7",
+          "departure": "7/14/24",
+          "departure_top": "14.",
+          "departure_bottom": "7/24",
+          "departure_raw": "2024-07-14",
+          "arrival": "7/21/24",
+          "departure_cruise": "7/14/24",
+          "arrival_cruise": "7/21/24",
+          "arrival_raw": "2024-07-21",
+          "airports": [],
+          "route": "Barcelona - Toulon - Marina di Carrara - Civitavecchia, Rome - Cruising Day - Ibiza, Balearic Islands - Ibiza, Balearic Islands - Barcelona",
+          "depPortID": "",
+          "arrPortID": "",
+          "cruiseArea": "Mediterranean, western",
+          "cruiseAreaID": "1",
+          "filter": [],
+          "currency": "USD",
+          "currency_symbol": "$",
+          "price_strike": "",
+          "pricecat": [],
+          "masterCruiseIDs": [
+            "I5259548240721"
+          ],
+          "highlight": false,
+          "highlightColor": "",
+          "highlightColorHover": "",
+          "icon_url": "",
+          "priceUnformatted": "980",
+          "isDisabled": "",
+          "isUniqueContent": false,
+          "transferType": "none",
+          "price": "$980"
+        },
+        {
+          "count": "1",
+          "masterCruiseID": "I5259553240818",
+          "productID": "I5BCNBCN259553",
+          "masterCruiseID_org": "I5259553240818",
+          "title": "Mediterranean, western 8 days from/to Barcelona",
+          "ship": "Scarlet Lady",
+          "shipID": "I5",
+          "shipImage": "//images.cruisec.net/images/ships/ships/I5.jpg",
+          "cruiseLine": "Virgin Voyages",
+          "cruiseLineID": "VIR",
+          "cruiseLineLogo": "//images.cruisec.net/images/ships/logos/VIR.png",
+          "duration": "7",
+          "departure": "8/11/24",
+          "departure_top": "11.",
+          "departure_bottom": "8/24",
+          "departure_raw": "2024-08-11",
+          "arrival": "8/18/24",
+          "departure_cruise": "8/11/24",
+          "arrival_cruise": "8/18/24",
+          "arrival_raw": "2024-08-18",
+          "airports": [],
+          "route": "Barcelona - Toulon - Marina di Carrara - Civitavecchia, Rome - Cruising Day - Ibiza, Balearic Islands - Ibiza, Balearic Islands - Barcelona",
+          "depPortID": "",
+          "arrPortID": "",
+          "cruiseArea": "Mediterranean, western",
+          "cruiseAreaID": "1",
+          "filter": [],
+          "currency": "USD",
+          "currency_symbol": "$",
+          "price_strike": "",
+          "pricecat": [],
+          "masterCruiseIDs": [
+            "I5259553240818"
+          ],
+          "highlight": false,
+          "highlightColor": "",
+          "highlightColorHover": "",
+          "icon_url": "",
+          "priceUnformatted": "987",
+          "isDisabled": "",
+          "isUniqueContent": false,
+          "transferType": "none",
+          "price": "$987"
+        }
+        ]
+    };
+    localStorage.setItem('cruiseListData', JSON.stringify(cruiseListData))
 </script> 
 <script>
-document.addEventListener('DOMContentLoaded', function () {
-    fetchCruises();
-});
-
-async function fetchCruises() {
-    try {
-        const response = await fetch('/cruises');
-        const cruises = await response.json();
-        displayCruises(cruises);
-    } catch (error) {
-        console.error('Error fetching cruises:', error);
-    }
-}
-
-function displayCruises(cruises) {
-    const resultsDiv = document.getElementById('results');
-    resultsDiv.innerHTML = ''; // Clear previous results
-
-    cruises.forEach(cruise => {
-        const cruiseItem = document.createElement('div');
-        cruiseItem.className = 'col-lg-12';
-        cruiseItem.innerHTML = `
-            <div class="card-item">
-                <div class="card-body">
-                    <div class="col-lg-3 overview-right">
-                        <div class="logo">
-                            <div class="field field--name-field-cruiseline-logo field--type-entity-reference field--label-hidden field__item">
-                                <article class="media media--type-image media--view-mode-logo">
-                                    <div class="field field--name-field-media-image field--type-image field--label-hidden field__item">
-                                        <picture>
-                                            <source srcset="${cruise.cruiselineLogoWebp}" type="image/webp" width="200" height="60"/>
-                                            <source srcset="${cruise.cruiselineLogoPng}" type="image/png" width="200" height="60"/>
-                                            <img loading="lazy" src="${cruise.cruiselineLogoPng}" width="200" height="60" alt="${cruise.cruiseline}" class="img-fluid" />
-                                        </picture>
-                                    </div>
-                                </article>
+    document.addEventListener('DOMContentLoaded', function () {
+        const cruiseListData = JSON.parse(localStorage.getItem('cruiseListData'));
+    
+        if (cruiseListData) {
+            const resultsContainer = document.getElementById('results');
+            const cruiseCount = document.getElementById('cruise-count');
+            let displayedCruises = 10;
+    
+            function createCruiseCard(cruise) {
+                return `
+                    <div class="col-lg-9">
+                        <div class="card-item cruise--card card-item-list">
+                            <div class="card-img">
+                                <a href="cruise-details.html" class="d-block">
+                                    <img src="${cruise.shipImage}" alt="${cruise.cruiseLineLogo}">
+                                    <span class="badge">${cruise.highlight ? 'Featured' : ''}</span>
+                                </a>
                             </div>
-                        </div>
-                        <div class="price">
-                            <div class="field field--name-field-minimum-price field--type-decimal field--label-above">
-                                <div class="field__label">From</div>
-                                <div class="field__item">$${cruise.minimumPrice}</div>
-                            </div>
-                            <div class="field field--name-field-per-day-price field--type-decimal field--label-above">
-                                <div class="field__label">as little as</div>
-                                <div class="field__item">$${cruise.perDayPrice}/night</div>
-                            </div>
-                        </div>
-                        <div class="included">
-                            <a href="/sailing/${cruise.sailingId}/inclusions" class="use-ajax" data-dialog-type="modal" rel="nofollow" data-dialog-options="{&quot;width&quot;:&quot;700&quot;,&quot;height&quot;:&quot;80%&quot;,&quot;title&quot;:&quot;What&#039;s included in my Cruise?&quot;}">What's Included?</a>
-                        </div>
-                        <div class="paragraph paragraph--type--voyager-club-cta paragraph--view-mode--full cta-box">
-                            <div class="title">
-                                <div class="field field--name-field-heading field--type-string field--label-hidden field__item">Sail Safe</div>
-                            </div>
-                            <div class="clearfix text-formatted field field--name-field-description field--type-text-long field--label-hidden field__item">
-                                <p>${cruise.healthSafetyProtocols}</p>
-                            </div>
-                            <a href="/voyager-club/${cruise.voyagerClubId}" class="use-ajax voyager-club-info-link button" data-dialog-type="modal" rel="nofollow" data-dialog-options="{&quot;width&quot;:&quot;700&quot;,&quot;height&quot;:&quot;80%&quot;,&quot;title&quot;:&quot;Sail Safe&quot;}">Learn more</a>
-                        </div>
-                    </div>
-                    <div class="prices-section">
-                        <div class="views-element-container">
-                            <div class="view-content">
-                                <table class="table-bordered table table-striped views-table views-view-table cols-7">
-                                    <thead>
-                                        <tr>
-                                            <th class="views-align-center views-field views-field-field-sailing-departure-date views-align-center" scope="col">Departure Date</th>
-                                            <th class="views-align-center views-field views-field-field-applicable-rules views-align-center" scope="col">Bonus</th>
-                                            <th class="views-align-center views-field views-field-field-inside-price views-align-center" scope="col">Interior</th>
-                                            <th class="views-align-center views-field views-field-field-outside-price views-align-center" scope="col">Oceanview</th>
-                                            <th class="views-align-center views-field views-field-field-balcony-price views-align-center" scope="col">Balcony</th>
-                                            <th class="views-align-center views-field views-field-field-suite-price views-align-center" scope="col">Suite</th>
-                                            <th class="views-field views-field-field-sailing-package-id" scope="col"></th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        ${cruise.sailings.map(sailing => `
-                                            <tr>
-                                                <td class="views-field views-field-field-sailing-departure-date views-align-center">
-                                                    <time title="Save to Favorite" class="datetime toggle-favourite" data-sailing-id="${sailing.sailingId}" data-sailing-package-id="${sailing.packageId}">
-                                                        ${new Date(sailing.departureDate).toLocaleDateString()}
-                                                    </time>
-                                                </td>
-                                                <td class="views-field views-field-field-applicable-rules views-align-center">
-                                                    ${sailing.bonuses.map(bonus => `
-                                                        <a href="/sailing/${bonus.bonusId}/bonus" class="use-ajax" data-dialog-type="modal" rel="nofollow" data-dialog-options="{&quot;width&quot;:&quot;700&quot;,&quot;height&quot;:&quot;80%&quot;}">
-                                                            <img class="promo-icon img-fluid" src="${bonus.icon}" width="24" height="24" alt="${bonus.title}" loading="lazy" />
-                                                        </a>
-                                                    `).join(' ')}
-                                                </td>
-                                                <td class="views-field views-field-field-inside-price views-align-center">
-                                                    <div class="price">
-                                                        <span class="number">$${sailing.insidePrice}</span>
-                                                        <span class="currency">USD</span>
-                                                    </div>
-                                                </td>
-                                                <td class="views-field views-field-field-outside-price views-align-center">
-                                                    <div class="price">
-                                                        <span class="number">$${sailing.outsidePrice}</span>
-                                                        <span class="currency">USD</span>
-                                                    </div>
-                                                </td>
-                                                <td class="views-field views-field-field-balcony-price views-align-center">
-                                                    <div class="price">
-                                                        <span class="number">$${sailing.balconyPrice}</span>
-                                                        <span class="currency">USD</span>
-                                                    </div>
-                                                </td>
-                                                <td class="views-field views-field-field-suite-price views-align-center">
-                                                    <div class="price">
-                                                        <span class="number">$${sailing.suitePrice}</span>
-                                                        <span class="currency">USD</span>
-                                                    </div>
-                                                </td>
-                                                <td class="views-field views-field-field-sailing-package-id">
-                                                    <a class="btn btn-primary" href="https://book.cruisedirect.com/swift/cruise/package/${sailing.packageId}?siid=${sailing.siid}" rel="noreferrer" target="_blank">Select</a>
-                                                </td>
-                                            </tr>
-                                        `).join('')}
-                                    </tbody>
-                                </table>
+                            <div class="card-body">
+                                <img src="${cruise.cruiseLineLogo}" alt="${cruise.shipImage}" class="cruise-logo">
+                                <h3 class="card-title"><a href="cruise-details.html">${cruise.title}</a></h3>
+                                <p class="card-meta">Departing ${cruise.departure}</p>
+                                <div class="card-price d-flex align-items-center justify-content-between">
+                                    <p>
+                                        <span class="price__from">From</span>
+                                        <span class="price__num">${cruise.price}</span>
+                                    </p>
+                                    <a href="#" class="btn-text view-details">Read details<i class="la la-angle-right"></i></a>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
-        `;
-        resultsDiv.appendChild(cruiseItem);
+                `;
+            }
+    
+            function displayCruises(limit) {
+                resultsContainer.innerHTML = '';
+                const cruisesToShow = cruiseListData.cruises.slice(0, limit);
+                cruisesToShow.forEach(cruise => {
+                    resultsContainer.innerHTML += createCruiseCard(cruise);
+                });
+                cruiseCount.textContent = `Showing 1 - ${limit} of ${cruiseListData.count.entries} Cruises`;
+            }
+    
+            displayCruises(displayedCruises);
+    
+            document.getElementById('load-more-btn').addEventListener('click', function () {
+                displayedCruises += 10;
+                if (displayedCruises > cruiseListData.count.entries) {
+                    displayedCruises = cruiseListData.count.entries;
+                }
+                displayCruises(displayedCruises);
+            });
+    
+            document.getElementById('apply-price-filter').addEventListener('click', function () {
+                const priceRange = document.getElementById('amount').value;
+                const [minPrice, maxPrice] = priceRange.split('-').map(price => parseInt(price.trim().replace('$', '')));
+                const filteredCruises = cruiseListData.cruises.filter(cruise => {
+                    const cruisePrice = parseInt(cruise.price.replace('$', ''));
+                    return cruisePrice >= minPrice && cruisePrice <= maxPrice;
+                });
+                displayFilteredCruises(filteredCruises);
+            });
+    
+            document.getElementById('categories-checkboxes').addEventListener('change', function () {
+                const checkedCategories = Array.from(document.querySelectorAll('#categories-checkboxes input:checked')).map(input => input.value);
+                const filteredCruises = cruiseListData.cruises.filter(cruise => checkedCategories.includes(cruise.category));
+                displayFilteredCruises(filteredCruises);
+            });
+    
+            document.getElementById('sort-options').addEventListener('change', function () {
+                const sortOption = this.value;
+                let sortedCruises = [...cruiseListData.cruises];
+                switch (sortOption) {
+                    case 'new':
+                        sortedCruises.sort((a, b) => new Date(b.departure) - new Date(a.departure));
+                        break;
+                    case 'popular':
+                        // Assuming popularity can be determined by reviews count or similar
+                        sortedCruises.sort((a, b) => b.reviews - a.reviews);
+                        break;
+                    case 'low-to-high':
+                        sortedCruises.sort((a, b) => parseInt(a.price.replace('$', '')) - parseInt(b.price.replace('$', '')));
+                        break;
+                    case 'high-to-low':
+                        sortedCruises.sort((a, b) => parseInt(b.price.replace('$', '')) - parseInt(a.price.replace('$', '')));
+                        break;
+                    case 'a-to-z':
+                        sortedCruises.sort((a, b) => a.title.localeCompare(b.title));
+                        break;
+                    default:
+                        // Default sorting logic
+                        break;
+                }
+                displayFilteredCruises(sortedCruises);
+            });
+    
+            function displayFilteredCruises(cruises) {
+                resultsContainer.innerHTML = '';
+                cruises.forEach(cruise => {
+                    resultsContainer.innerHTML += createCruiseCard(cruise);
+                });
+                cruiseCount.textContent = `${cruises.length} Cruises found`;
+            }
+        }
     });
-
-    document.getElementById('cruise-count').innerText = `${cruises.length} Cruises found`;
-}
-
-document.getElementById('load-more-btn').addEventListener('click', function () {
-    // Add logic to load more cruises if pagination is implemented
-});
 </script>
 </body>
 </html>
