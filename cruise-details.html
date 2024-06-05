@@ -1177,9 +1177,7 @@
                         <p><strong>Cruise Line:</strong> <span id="summary-cruiseline"></span></p>
                         <p><strong>Route:</strong> <span id="summary-route"></span></p>
                     </div>
-                    <div id="selected-cabin-container" class="row mb-3" style="overflow-x: auto; white-space: nowrap; padding: 10px; border-radius: 10px; border: 1px solid #ddd;">
-                        <!-- Selected cabins will be dynamically inserted here -->
-                    </div>
+                    <div id="selected-cabin-container" class="d-flex flex-row"></div>
                     <div id="payment-summary" class="mb-3">
                         <p>Cabin Price Subtotal: <strong id="cabin-subtotal">$0</strong></p>
                         <p>Order Total: <strong id="order-total">$0</strong></p>
@@ -1492,48 +1490,30 @@
             const selectedCabins = formData.selectedCabins;
         
             selectedCabinContainer.innerHTML = ''; // Clear any existing content
-            selectedCabinContainer.style.display = 'flex';
-            selectedCabinContainer.style.overflowX = 'auto';
-            selectedCabinContainer.style.whiteSpace = 'nowrap';
-            selectedCabinContainer.style.padding = '10px';
-            selectedCabinContainer.style.borderRadius = '10px';
-            selectedCabinContainer.style.border = '1px solid #ddd';
         
             Object.keys(selectedCabins).forEach(cabinId => {
                 const cabin = selectedCabins[cabinId];
-                const cabinCard = document.createElement('div');
-                cabinCard.classList.add('col-lg-6', 'mb-4');
-                cabinCard.style.display = 'inline-block';
-                cabinCard.style.verticalAlign = 'top';
-                cabinCard.style.width = 'calc(33.3333% - 10px)'; // Adjust card width to fit 3 in a row
-                cabinCard.style.marginRight = '10px'; // Space between cards
-        
-                cabinCard.innerHTML = `
-                    <div class="card" style="width: 100%; padding: 1rem; box-shadow: 0 4px 8px rgba(0,0,0,0.1); border-radius: 10px;">
-                        <div class="card-body small-font">
-                            <h5 class="card-title">${cabin.text}</h5>
-                            <p>Price: ${cabin.price}</p>
+                selectedCabinContainer.innerHTML += `
+                    <div class="col-lg-2 mb-1" style="display: inline-block; vertical-align: top; flex: 0 0 auto;">
+                        <div class="card" style="padding: 1rem; box-shadow: 0 4px 8px rgba(0,0,0,0.1); border-radius: 10px;">
+                            <div class="card-body" style="font-size: 0.8em;">
+                                <h5 class="card-title">${cabin.text}</h5>
+                                <p>Price: ${cabin.price}</p>
+                            </div>
                         </div>
                     </div>
                 `;
-                selectedCabinContainer.appendChild(cabinCard);
             });
         
-            // Create chic, rounded scroller style
-            const style = document.createElement('style');
-            style.innerHTML = `
-                #selected-cabin-container::-webkit-scrollbar {
-                    height: 10px;
-                }
-                #selected-cabin-container::-webkit-scrollbar-thumb {
-                    background: #888;
-                    border-radius: 10px;
-                }
-                #selected-cabin-container::-webkit-scrollbar-thumb:hover {
-                    background: #555;
-                }
-            `;
-            document.head.appendChild(style);
+            // Add chic scroller styles
+            selectedCabinContainer.style.display = 'flex';
+            selectedCabinContainer.style.overflowX = 'auto';
+            selectedCabinContainer.style.scrollBehavior = 'smooth';
+            selectedCabinContainer.style.padding = '10px';
+            selectedCabinContainer.style.borderRadius = '10px';
+            selectedCabinContainer.style.border = '1px solid #ddd';
+            selectedCabinContainer.style.whiteSpace = 'nowrap';
+            selectedCabinContainer.style.webkitOverflowScrolling = 'touch'; // For smooth scrolling on iOS
         };
 
     
