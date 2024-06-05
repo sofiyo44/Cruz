@@ -474,190 +474,185 @@ document.addEventListener('DOMContentLoaded', function () {
     };
 
 
-    let totalPrice = 0;
+let totalPrice = 0;
 
-    const updateTotalPrice = (amount) => {
-        totalPrice += amount;
-        document.getElementById('booking-sub-total').textContent = `Sub Total: $${totalPrice.toFixed(2)}`;
-        document.getElementById('booking-total-price').textContent = `Total Price: $${(totalPrice + 5).toFixed(2)}`; // Assuming Taxes and Fees is $5
-        saveTotalPrice(totalPrice);
-    };
+const updateTotalPrice = (amount) => {
+    totalPrice += amount;
+    document.getElementById('booking-sub-total').textContent = `Sub Total: $${totalPrice.toFixed(2)}`;
+    document.getElementById('booking-total-price').textContent = `Total Price: $${(totalPrice + 5).toFixed(2)}`; // Assuming Taxes and Fees is $5
+    saveTotalPrice(totalPrice);
+};
 
-    const saveTotalPrice = (total) => {
-        const formData = JSON.parse(localStorage.getItem('cruiseFormData')) || {};
-        formData.totalPrice = total;
-        localStorage.setItem('cruiseFormData', JSON.stringify(formData));
-    };
+const saveTotalPrice = (total) => {
+    const formData = JSON.parse(localStorage.getItem('cruiseFormData')) || {};
+    formData.totalPrice = total;
+    localStorage.setItem('cruiseFormData', JSON.stringify(formData));
+};
 
-    const showParentImage = (parent) => {
-        const parentImageContainer = document.getElementById('parent-image');
-        parentImageContainer.innerHTML = `
-            <img src="${parent.img}" alt="${parent.text}" class="img-fluid" style="width: 30%; display: block; margin: auto;">
-        `;
-    };
+const showParentImage = (parent) => {
+    const parentImageContainer = document.getElementById('parent-image');
+    parentImageContainer.innerHTML = `
+        <img src="${parent.img}" alt="${parent.text}" class="img-fluid" style="width: 30%; display: block; margin: auto;">
+    `;
+};
 
-    const createChildCard = (child, selectable = true, smallFont = false, duplicate = false) => {
-        return `
-            <div class="col-lg-6 mb-4 selected-cabin-card-container" data-cabin-id="${child.id}">
-                <div class="card" style="width: 100%; padding: 1rem; box-shadow: 0 4px 8px rgba(0,0,0,0.1); border-radius: 10px;">
-                    <div class="card-body ${smallFont ? 'small-font' : ''}">
-                        <button class="btn btn-sm btn-danger float-right close-cabin-btn" style="border-radius: 50%;">&times;</button>
-                        <h5 class="card-title">${child.text}</h5>
-                        <div class="card-text toggle-content" style="display: none;">
-                            <p>Price: ${child.price}</p>
-                            <p>Availability: ${child.availability}</p>
-                            <ul style="font-size: 0.9em;">
-                                ${child.description.map(item => `<li>${item}</li>`).join('')}
-                            </ul>
-                        </div>
-                        ${selectable ? `<button class="btn btn-primary select-cabin-btn" data-cabin-id="${child.id}">Select</button>` : '<button class="btn btn-secondary toggle-btn">More Info</button>'}
+const createChildCard = (child, selectable = true, smallFont = false, duplicate = false) => {
+    return `
+        <div class="col-lg-6 mb-4 selected-cabin-card-container" data-cabin-id="${child.id}">
+            <div class="card" style="width: 100%; padding: 1rem; box-shadow: 0 4px 8px rgba(0,0,0,0.1); border-radius: 10px;">
+                <div class="card-body ${smallFont ? 'small-font' : ''}">
+                    <button class="btn btn-sm btn-danger float-right close-cabin-btn" style="border-radius: 50%;">&times;</button>
+                    <h5 class="card-title">${child.text}</h5>
+                    <div class="card-text toggle-content" style="display: none;">
+                        <p>Price: ${child.price}</p>
+                        <p>Availability: ${child.availability}</p>
+                        <ul style="font-size: 0.9em;">
+                            ${child.description.map(item => `<li>${item}</li>`).join('')}
+                        </ul>
                     </div>
+                    ${selectable ? `<button class="btn btn-primary select-cabin-btn" data-cabin-id="${child.id}">Select</button>` : '<button class="btn btn-secondary toggle-btn">More Info</button>'}
                 </div>
             </div>
+        </div>
+    `;
+};
+
+const populateChildCards = (parent) => {
+    const cabinCardsContainer = document.getElementById('cabin-cards');
+    cabinCardsContainer.innerHTML = parent.children.map(child => createChildCard(child)).join('');
+};
+
+const populateCabinChips = () => {
+    const cabinChipsContainer = document.getElementById('cabin-chips');
+    cabinChipsContainer.style.display = 'flex';
+    cabinChipsContainer.style.justifyContent = 'center';
+    cabinChipsContainer.style.flexWrap = 'wrap';
+    cabinChipsContainer.innerHTML = Object.keys(cabinData).map(key => {
+        const cabin = cabinData[key];
+        return `
+            <button class="btn btn-outline-primary m-1 cabin-chip" style="border-radius: 20px; padding: 0.5rem 1rem;" data-cabin-id="${cabin.id}">${cabin.text}</button>
         `;
-    };
+    }).join('');
+};
 
-    const populateChildCards = (parent) => {
-        const cabinCardsContainer = document.getElementById('cabin-cards');
-        cabinCardsContainer.innerHTML = parent.children.map(child => createChildCard(child)).join('');
-    };
+const updateBreadcrumb = () => {
+    const formData = JSON.parse(localStorage.getItem('cruiseFormData'));
+    if (formData) {
+        document.getElementById('breadcrumb-list').innerHTML = `
+            <li class="list-inline-item">Guests: ${formData.numberOfGuests}</li>
+            <li class="list-inline-item">Ages: ${formData.ages.join(', ')}</li>
+            <li class="list-inline-item">Residency: ${formData.guestResidency}</li>
+            <li class="list-inline-item">State: ${formData.guestState}</li>
+        `;
+    }
+};
 
-    const populateCabinChips = () => {
-        const cabinChipsContainer = document.getElementById('cabin-chips');
-        cabinChipsContainer.style.display = 'flex';
-        cabinChipsContainer.style.justifyContent = 'center';
-        cabinChipsContainer.style.flexWrap = 'wrap';
-        cabinChipsContainer.innerHTML = Object.keys(cabinData).map(key => {
-            const cabin = cabinData[key];
-            return `
-                <button class="btn btn-outline-primary m-1 cabin-chip" style="border-radius: 20px; padding: 0.5rem 1rem;" data-cabin-id="${cabin.id}">${cabin.text}</button>
-            `;
-        }).join('');
-    };
-
-    const updateBreadcrumb = () => {
-        const formData = JSON.parse(localStorage.getItem('cruiseFormData'));
-        if (formData) {
-            document.getElementById('breadcrumb-list').innerHTML = `
-                <li class="list-inline-item">Guests: ${formData.numberOfGuests}</li>
-                <li class="list-inline-item">Ages: ${formData.ages.join(', ')}</li>
-                <li class="list-inline-item">Residency: ${formData.guestResidency}</li>
-                <li class="list-inline-item">State: ${formData.guestState}</li>
-            `;
-        }
-    };
-
-    const highlightSelectedChip = () => {
-        const formData = JSON.parse(localStorage.getItem('cruiseFormData'));
-        if (formData && formData.cabinType) {
-            const selectedCabin = cabinData[formData.cabinType];
-            if (selectedCabin) {
-                showParentImage(selectedCabin);
-                populateChildCards(selectedCabin);
-                const chips = document.querySelectorAll('.cabin-chip');
-                chips.forEach(chip => chip.classList.remove('active'));
-                const selectedChip = document.querySelector(`.cabin-chip[data-cabin-id="${formData.cabinType}"]`);
-                if (selectedChip) {
-                    selectedChip.classList.add('active');
-                }
-            }
-        }
-    };
-
-    const addSelectedCabinToBookingDetails = (child) => {
-        const bookingDetailsContainer = document.getElementById('selected-cabin-card');
-        bookingDetailsContainer.innerHTML += createChildCard(child, false, true);
-        const price = parseFloat(child.price.replace('$', ''));
-        updateTotalPrice(price);
-    };
-
-    const handleToggleContent = (e) => {
-        const cardBody = e.target.closest('.card-body');
-        const content = cardBody.querySelector('.toggle-content');
-        content.style.display = content.style.display === 'none' ? 'block' : 'none';
-        e.target.textContent = content.style.display === 'none' ? 'More Info' : 'Less Info';
-    };
-
-    const handleCloseCard = (e) => {
-        const cardContainer = e.target.closest('.selected-cabin-card-container');
-        const cabinId = cardContainer.getAttribute('data-cabin-id');
-        const cardButton = document.querySelector(`.select-cabin-btn[data-cabin-id="${cabinId}"]`);
-        if (cardButton) {
-            cardButton.textContent = 'Select';
-            cardButton.disabled = false;
-            const selectedCabinKey = Object.keys(cabinData).find(key =>
-                cabinData[key].children.some(child => child.id === cabinId)
-            );
-            const selectedChild = cabinData[selectedCabinKey].children.find(child => child.id === cabinId);
-            selectedChild.selected = false;
-            const price = parseFloat(selectedChild.price.replace('$', ''));
-            updateTotalPrice(-price);
-        }
-        cardContainer.remove();
-    };
-
-    document.getElementById('select-room-btn').addEventListener('click', function () {
-        updateBreadcrumb();
-        highlightSelectedChip();
-        $('#bookingModal').modal('show');
-    });
-
-    document.getElementById('cabin-chips').addEventListener('click', function (e) {
-        if (e.target.classList.contains('cabin-chip')) {
-            const cabinId = e.target.getAttribute('data-cabin-id');
-            const selectedCabin = cabinData[cabinId];
+const highlightSelectedChip = () => {
+    const formData = JSON.parse(localStorage.getItem('cruiseFormData'));
+    if (formData && formData.cabinType) {
+        const selectedCabin = cabinData[formData.cabinType];
+        if (selectedCabin) {
             showParentImage(selectedCabin);
             populateChildCards(selectedCabin);
             const chips = document.querySelectorAll('.cabin-chip');
             chips.forEach(chip => chip.classList.remove('active'));
-            e.target.classList.add('active');
-        }
-    });
-
-    document.getElementById('cabin-cards').addEventListener('click', function (e) {
-        if (e.target.classList.contains('select-cabin-btn')) {
-            const selectedCabinId = e.target.getAttribute('data-cabin-id');
-            const selectedCabinKey = Object.keys(cabinData).find(key =>
-                cabinData[key].children.some(child => child.id === selectedCabinId)
-            );
-            const selectedChild = cabinData[selectedCabinKey].children.find(child => child.id === selectedCabinId);
-
-            if (!selectedChild.selected) {
-                e.target.textContent = 'Selected';
-                e.target.disabled = true;
-                selectedChild.selected = true;
-                addSelectedCabinToBookingDetails(selectedChild, true);
-
-                const formData = JSON.parse(localStorage.getItem('cruiseFormData')) || {};
-                formData.cabinType = selectedCabinKey;
-                formData.selectedCabins = formData.selectedCabins || {};
-                formData.selectedCabins[selectedCabinId] = selectedCabinId;
-                localStorage.setItem('cruiseFormData', JSON.stringify(formData));
+            const selectedChip = document.querySelector(`.cabin-chip[data-cabin-id="${formData.cabinType}"]`);
+            if (selectedChip) {
+                selectedChip.classList.add('active');
             }
         }
-    });
+    }
+};
 
-    document.getElementById('selected-cabin-card').addEventListener('click', function (e) {
-        if (e.target.classList.contains('toggle-btn')) {
-            handleToggleContent(e);
-        } else if (e.target.classList.contains('close-cabin-btn')) {
-            handleCloseCard(e);
-            const cabinId = e.target.closest('.selected-cabin-card-container').getAttribute('data-cabin-id');
+const addSelectedCabinToBookingDetails = (child) => {
+    const bookingDetailsContainer = document.getElementById('selected-cabin-card');
+    bookingDetailsContainer.innerHTML += createChildCard(child, false, true);
+    const price = parseFloat(child.price.replace('$', ''));
+    updateTotalPrice(price);
+};
+
+const handleToggleContent = (e) => {
+    const cardBody = e.target.closest('.card-body');
+    const content = cardBody.querySelector('.toggle-content');
+    content.style.display = content.style.display === 'none' ? 'block' : 'none';
+    e.target.textContent = content.style.display === 'none' ? 'More Info' : 'Less Info';
+};
+
+const handleCloseCard = (e) => {
+    const cardContainer = e.target.closest('.selected-cabin-card-container');
+    const cabinId = cardContainer.getAttribute('data-cabin-id');
+    const cardButton = document.querySelector(`.select-cabin-btn[data-cabin-id="${cabinId}"]`);
+    if (cardButton) {
+        cardButton.textContent = 'Select';
+        cardButton.disabled = false;
+        const selectedCabinKey = Object.keys(cabinData).find(key =>
+            cabinData[key].children.some(child => child.id === cabinId)
+        );
+        const selectedChild = cabinData[selectedCabinKey].children.find(child => child.id === cabinId);
+        selectedChild.selected = false;
+        const price = parseFloat(selectedChild.price.replace('$', ''));
+        updateTotalPrice(-price);
+    }
+    cardContainer.remove();
+
+    // Remove the cabin from localStorage
+    const formData = JSON.parse(localStorage.getItem('cruiseFormData')) || {};
+    delete formData.selectedCabins[cabinId];
+    localStorage.setItem('cruiseFormData', JSON.stringify(formData));
+};
+
+document.getElementById('select-room-btn').addEventListener('click', function () {
+    updateBreadcrumb();
+    highlightSelectedChip();
+    $('#bookingModal').modal('show');
+});
+
+document.getElementById('cabin-chips').addEventListener('click', function (e) {
+    if (e.target.classList.contains('cabin-chip')) {
+        const cabinId = e.target.getAttribute('data-cabin-id');
+        const selectedCabin = cabinData[cabinId];
+        showParentImage(selectedCabin);
+        populateChildCards(selectedCabin);
+        const chips = document.querySelectorAll('.cabin-chip');
+        chips.forEach(chip => chip.classList.remove('active'));
+        e.target.classList.add('active');
+    }
+});
+
+document.getElementById('cabin-cards').addEventListener('click', function (e) {
+    if (e.target.classList.contains('select-cabin-btn')) {
+        const selectedCabinId = e.target.getAttribute('data-cabin-id');
+        const selectedCabinKey = Object.keys(cabinData).find(key =>
+            cabinData[key].children.some(child => child.id === selectedCabinId)
+        );
+        const selectedChild = cabinData[selectedCabinKey].children.find(child => child.id === selectedCabinId);
+
+        if (!selectedChild.selected) {
+            e.target.textContent = 'Selected';
+            e.target.disabled = true;
+            selectedChild.selected = true;
+            addSelectedCabinToBookingDetails(selectedChild, true);
+
             const formData = JSON.parse(localStorage.getItem('cruiseFormData')) || {};
-            delete formData.selectedCabins[cabinId];
+            formData.cabinType = selectedCabinKey;
+            formData.selectedCabins = formData.selectedCabins || {};
+            formData.selectedCabins[selectedCabinId] = selectedCabinId;
             localStorage.setItem('cruiseFormData', JSON.stringify(formData));
-            const cardButton = document.querySelector(`.select-cabin-btn[data-cabin-id="${cabinId}"]`);
-            if (cardButton) {
-                cardButton.textContent = 'Select';
-                cardButton.disabled = false;
-            }
         }
-    });
+    }
+});
 
-    // Initial setup
-    populateCabinChips();
-    $('#bookingModal').on('shown.bs.modal', function () {
-        updateBreadcrumb();
-        highlightSelectedChip();
-    });
+document.getElementById('selected-cabin-card').addEventListener('click', function (e) {
+    if (e.target.classList.contains('toggle-btn')) {
+        handleToggleContent(e);
+    } else if (e.target.classList.contains('close-cabin-btn')) {
+        handleCloseCard(e);
+    }
+});
+
+// Initial setup
+populateCabinChips();
+$('#bookingModal').on('shown.bs.modal', function () {
+    updateBreadcrumb();
+    highlightSelectedChip();
 });
