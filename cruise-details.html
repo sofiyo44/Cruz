@@ -1490,23 +1490,52 @@
             const selectedCabinContainer = document.getElementById('selected-cabin-container');
             const formData = JSON.parse(localStorage.getItem('cruiseFormData')) || { selectedCabins: {} };
             const selectedCabins = formData.selectedCabins;
-    
+        
             selectedCabinContainer.innerHTML = ''; // Clear any existing content
-    
+            selectedCabinContainer.style.display = 'flex';
+            selectedCabinContainer.style.overflowX = 'auto';
+            selectedCabinContainer.style.whiteSpace = 'nowrap';
+            selectedCabinContainer.style.padding = '10px';
+            selectedCabinContainer.style.borderRadius = '10px';
+            selectedCabinContainer.style.border = '1px solid #ddd';
+        
             Object.keys(selectedCabins).forEach(cabinId => {
                 const cabin = selectedCabins[cabinId];
-                selectedCabinContainer.innerHTML += `
-                    <div class="col-lg-6 mb-4" style="display: inline-block; vertical-align: top;">
-                        <div class="card" style="width: 100%; padding: 1rem; box-shadow: 0 4px 8px rgba(0,0,0,0.1); border-radius: 10px;">
-                            <div class="card-body small-font">
-                                <h5 class="card-title">${cabin.text}</h5>
-                                <p>Price: ${cabin.price}</p>
-                            </div>
+                const cabinCard = document.createElement('div');
+                cabinCard.classList.add('col-lg-6', 'mb-4');
+                cabinCard.style.display = 'inline-block';
+                cabinCard.style.verticalAlign = 'top';
+                cabinCard.style.width = 'calc(33.3333% - 10px)'; // Adjust card width to fit 3 in a row
+                cabinCard.style.marginRight = '10px'; // Space between cards
+        
+                cabinCard.innerHTML = `
+                    <div class="card" style="width: 100%; padding: 1rem; box-shadow: 0 4px 8px rgba(0,0,0,0.1); border-radius: 10px;">
+                        <div class="card-body small-font">
+                            <h5 class="card-title">${cabin.text}</h5>
+                            <p>Price: ${cabin.price}</p>
                         </div>
                     </div>
                 `;
+                selectedCabinContainer.appendChild(cabinCard);
             });
+        
+            // Create chic, rounded scroller style
+            const style = document.createElement('style');
+            style.innerHTML = `
+                #selected-cabin-container::-webkit-scrollbar {
+                    height: 10px;
+                }
+                #selected-cabin-container::-webkit-scrollbar-thumb {
+                    background: #888;
+                    border-radius: 10px;
+                }
+                #selected-cabin-container::-webkit-scrollbar-thumb:hover {
+                    background: #555;
+                }
+            `;
+            document.head.appendChild(style);
         };
+
     
         const showStep = (step) => {
             for (let i = 1; i <= totalSteps; i++) {
