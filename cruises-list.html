@@ -383,7 +383,6 @@
                             <div class="slider-range-wrap">
                                 <div class="price-slider-amount padding-bottom-20px">
                                     <label for="amount2" class="filter__label">Price:</label>
-                                    <input type="text" id="amount2" class="amounts">
                                 </div>
                                 <div id="slider-range2"></div>
                             </div>
@@ -1732,7 +1731,7 @@
             document.getElementById('apply-price-sidebar').addEventListener('click', function () {
                 applyFilters();
             });
-    
+            
             // Initialize the price range slider
             const slider = document.getElementById('slider-range2');
             noUiSlider.create(slider, {
@@ -1752,12 +1751,6 @@
                     }
                 }
             });
-    
-            slider.noUiSlider.on('update', function (values, handle) {
-                document.getElementById('amount2').value = `${values[0]} - ${values[1]}`;
-            });
-        }
-    });
 </script>
 </body>
 </html>
