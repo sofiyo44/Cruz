@@ -472,6 +472,7 @@ document.addEventListener('DOMContentLoaded', function () {
             ]
         }
     };
+    
 
     let totalPrice = 0;
 
