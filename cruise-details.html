@@ -1195,35 +1195,35 @@
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" integrity="sha512-GvTx5Z5+G7ZSM7+3H1mBjd+z5x6TBe+9U/8A0pMw==" crossorigin=""></script>
     <script src="js/cabin-cards.js"></script>
     <script src="https://js.stripe.com/v3/"></script>
-<script>
+    <script>
     document.addEventListener('DOMContentLoaded', async function () {
         console.log('DOM fully loaded and parsed');
-
+    
         const stripe = Stripe('pk_test_51PHWHV09WcoQiYp2LY3F4iWLOiYKIpSNMNK0QPt58EIhgKcPC6xQucuZT7Dkeii1VTo0I0V9YKkoJUJHVah1MGG200JwErUvLp');
         let elements;
         let paymentElement;
-
+    
         const initializeStripeElements = async () => {
             const { clientSecret: paymentClientSecret } = await fetch('/create-payment-intent', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
             }).then((r) => r.json());
-
+    
             elements = stripe.elements();
             paymentElement = elements.create('payment');
             paymentElement.mount('#payment-element');
         };
-
+    
         document.getElementById('submit').addEventListener('click', async (event) => {
             event.preventDefault();
-
+    
             const { error: paymentError } = await stripe.confirmPayment({
                 elements,
                 confirmParams: {
                     return_url: 'https://sofiyo44.github.io/Cruz/payment-complete.html',
                 },
             });
-
+    
             if (paymentError) {
                 document.getElementById('error-message').textContent = paymentError.message;
             } else {
@@ -1232,13 +1232,13 @@
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                 }).then((r) => r.json());
-
+    
                 const { error: setupError } = await stripe.confirmCardSetup(setupClientSecret, {
                     payment_method: {
                         card: paymentElement,
                     },
                 });
-
+    
                 if (setupError) {
                     document.getElementById('error-message').textContent = setupError.message;
                 } else {
@@ -1247,14 +1247,14 @@
                 }
             }
         });
-
+    
         const cruiseData = {
             title: "Atlantic Ocean Europe 7 days from/to Portsmouth",
             departure_cruise: "9/23/24",
             arrival_cruise: "9/29/24",
             cruiseline: "Virgin Voyages"
         };
-
+    
         // Populate cruise details
         document.querySelectorAll('.cruise-title').forEach(el => el.innerText = cruiseData.title);
         document.querySelectorAll('.departure-date').forEach(el => el.innerText = cruiseData.departure_cruise);
@@ -1262,7 +1262,7 @@
         document.querySelectorAll('.cruise-line').forEach(el => el.innerText = cruiseData.cruiseline);
         document.getElementById('cruise-route').innerText = "Ports of Call: Portsmouth, Cruising Day, La Coruna, Bilbao, Le Verdon-sur-Mer, Portsmouth";
         document.getElementById('ship-description').innerHTML = "From decadent dinners to boozy after-parties, gather with your partner, your best friends and yourself to celebrate life's best moments aboard one of the 100% adults-only voyages.";
-
+    
         // Ship statistics
         document.getElementById('ship-statistics-left').innerHTML = `
             <li>Year Built: 2023</li>
@@ -1274,7 +1274,7 @@
             <li>Weight: 110,000</li>
             <li>Length: 278m</li>
         `;
-
+    
         // Included and Not Included
         document.getElementById('included-list').innerHTML = `
             <li>Cruise in the cabin category booked.</li>
@@ -1415,7 +1415,7 @@
                 $(this).prev('.single-content-item').find('a').attr('aria-expanded', 'true');
             });
         });
-
+    
         // Photo gallery
         document.getElementById('carousel-images').innerHTML = `
             <div class="carousel-item active">
@@ -1440,12 +1440,11 @@
                 <img src="//images.cruisec.net/images/ships/gallery/I7_05_VIR_BBQ.jpg" class="d-block w-100" alt="...">
             </div>
         `;
-
-
+    
         // Handle steps and form data
         let currentStep = 1;
         const totalSteps = 3;
-
+    
         const showStep = (step) => {
             for (let i = 1; i <= totalSteps; i++) {
                 document.getElementById(`step${i}`).classList.toggle('d-none', i !== step);
@@ -1458,7 +1457,7 @@
                 initializeStripeElements(); // Initialize Stripe elements when step 3 is shown
             }
         };
-
+    
         const nextStep = () => {
             if (currentStep < totalSteps) {
                 if (currentStep === 2) {
@@ -1468,14 +1467,14 @@
                 showStep(currentStep);
             }
         };
-
+    
         const prevStep = () => {
             if (currentStep > 1) {
                 currentStep--;
                 showStep(currentStep);
             }
         };
-
+    
         const generatePassengerForm = (numPassengers) => {
             const container = document.getElementById('passenger-info-container');
             container.innerHTML = '';
@@ -1483,10 +1482,10 @@
                 addPassengerForm(container, i);
             }
         };
-
+    
         const addPassengerForm = (container, index) => {
             const passengerForm = `
-                <div class="card mb-3">
+                <div class="card mb-3 passenger-card">
                     <div class="card-header">
                         <h4>Passenger ${index + 1}</h4>
                     </div>
@@ -1560,7 +1559,7 @@
             `;
             container.innerHTML += passengerForm;
         };
-
+    
         const savePassengerInfo = () => {
             const passengerCards = document.querySelectorAll('.passenger-card');
             const passengersData = Array.from(passengerCards).map((card, index) => ({
@@ -1587,18 +1586,18 @@
             };
             localStorage.setItem('bookingData', JSON.stringify(bookingData));
         };
-
+    
         // Event listeners for next and previous buttons
         document.getElementById('nextBtn').addEventListener('click', nextStep);
         document.getElementById('prevBtn').addEventListener('click', prevStep);
-
+    
         // Event listener for add passenger button
         document.getElementById('add-passenger').addEventListener('click', function () {
             const container = document.getElementById('passenger-info-container');
             const currentPassengerCount = container.querySelectorAll('.card').length;
             addPassengerForm(container, currentPassengerCount);
         });
-
+    
         // Event listener for toggle policies button
         document.getElementById('toggle-policies').addEventListener('click', function() {
             const policiesContent = document.getElementById('policies-content');
@@ -1610,11 +1609,11 @@
                 this.textContent = 'Show Terms and Policies';
             }
         });
-
+    
         // Cabin selection functionality
         const cabinButtons = document.querySelectorAll('.select-cabin-btn');
         const cabinOptions = document.querySelectorAll('.cabin-option');
-
+    
         cabinButtons.forEach(button => {
             button.addEventListener('click', function() {
                 // Deselect previously selected cabin
@@ -1624,12 +1623,12 @@
                     previouslySelected.textContent = 'Select Cabin';
                     previouslySelected.disabled = false;
                 }
-
+    
                 // Select new cabin
                 this.classList.add('selected');
                 this.textContent = 'Selected';
                 this.disabled = true;
-
+    
                 // Highlight corresponding cabin in table
                 const cabinId = this.getAttribute('data-cabin-id');
                 cabinOptions.forEach(option => {
@@ -1637,12 +1636,12 @@
                 });
             });
         });
-
+    
         // Highlight corresponding cabin in table when clicked
         cabinOptions.forEach(option => {
             option.addEventListener('click', function() {
                 const cabinId = this.getAttribute('data-cabin-type');
-
+    
                 // Deselect previously selected cabin
                 const previouslySelectedButton = document.querySelector('.select-cabin-btn.selected');
                 if (previouslySelectedButton) {
@@ -1650,12 +1649,12 @@
                     previouslySelectedButton.textContent = 'Select Cabin';
                     previouslySelectedButton.disabled = false;
                 }
-
+    
                 // Select new cabin in table
                 cabinOptions.forEach(opt => {
                     opt.classList.toggle('highlight', opt === this);
                 });
-
+    
                 // Select corresponding cabin card button
                 const correspondingButton = document.querySelector(`.select-cabin-btn[data-cabin-id="${cabinId}"]`);
                 correspondingButton.classList.add('selected');
@@ -1664,6 +1663,6 @@
             });
         });
     });
-</script>
+    </script>
 </body>
 </html>
