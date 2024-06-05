@@ -1017,43 +1017,6 @@
     </div>
 </div><!-- end modal-popup -->
 
-<!-- end modal-shared -->
-<div class="modal-popup">
-    <div class="modal fade" id="sharePopupForm" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title title" id="exampleModalLongTitle4">Share this tour</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true" class="la la-close"></span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div class="copy-to-clipboard-wrap">
-                        <div class="copy-to-clipboard">
-                            <div class="contact-form-action d-flex align-items-center">
-                                <span class="text-success-message">Copied!</span>
-                                <input type="text" class="form-control copy-input" value="https://www.tripstar.com/share/101WxMB0oac1hVQQ==/">
-                                <div class="btn-box">
-                                    <button class="theme-btn theme-btn-light copy-text">Copy</button>
-                                </div>
-                            </div>
-                        </div><!-- end copy-to-clipboard -->
-                        <ul class="social-profile text-center">
-                            <li><a href="#"><i class="lab la-facebook-f"></i></a></li>
-                            <li><a href="#"><i class="lab la-twitter"></i></a></li>
-                            <li><a href="#"><i class="lab la-instagram"></i></a></li>
-                            <li><a href="#"><i class="lab la-linkedin-in"></i></a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div><!-- end modal-popup -->
-
-    
-
 <!-- Booking Modal -->
 <div class="modal fade" id="bookingModal" tabindex="-1" role="dialog" aria-labelledby="bookingModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document" style="max-width: 90%;">
@@ -1065,73 +1028,52 @@
                 </button>
             </div>
             <div class="modal-body">
+                <!-- Step 1: Booking Summary -->
                 <div id="step1" class="step">
-                    <!-- Step 1: Booking Summary -->
-                    <div class="overlay-container">
-                        <div class="breadcrumb" id="breadcrumb">
-                            <ul id="breadcrumb-list" class="list-inline">
-                                <li class="list-inline-item active">1. Summary</li>
-                                <li class="list-inline-item">2. Passenger Info</li>
-                                <li class="list-inline-item">3. Payment</li>
-                            </ul>
+                    <div class="breadcrumb mb-4">
+                        <ul class="list-inline">
+                            <li class="list-inline-item active">1. Summary</li>
+                            <li class="list-inline-item">2. Passenger Info</li>
+                            <li class="list-inline-item">3. Payment</li>
+                        </ul>
+                    </div>
+                    <div id="cabin-chips" class="d-flex flex-wrap mb-3"></div>
+                    <div id="parent-image" class="mb-3 text-center"></div>
+                    <div class="container mb-3">
+                        <div class="row" id="cabin-cards"></div>
+                    </div>
+                    <div class="form-box booking-detail-form mb-4">
+                        <div class="form-title-wrap mb-3">
+                            <h3 class="title">Booking Details</h3>
                         </div>
-                        <div id="cabin-chips" class="d-flex flex-wrap mb-3">
-                            <!-- Cabin selection chips will be dynamically generated -->
-                        </div>
-                        <div id="parent-image" class="mb-3">
-                            <!-- Parent image of the cruise -->
-                        </div>
-                        <div class="container">
-                            <div class="row" id="cabin-cards">
-                                <!-- Cabin cards will be dynamically generated -->
-                            </div>
-                        </div>
-                        <div class="form-box booking-detail-form">
-                            <div class="form-title-wrap">
-                                <h3 class="title">Booking Details</h3>
-                            </div>
-                            <div class="form-content">
-                                <div class="card-item shadow-none radius-none mb-0">
-                                    <div class="card-img pb-4">
-                                        <a href="cruise-details.html" class="d-block">
-                                            <!-- Image of the selected cruise -->
-                                            <img src="path/to/cruise-image.jpg" alt="Cruise Image" class="img-fluid">
-                                        </a>
+                        <div class="form-content">
+                            <div class="card-item shadow-none radius-none mb-0">
+                                <div class="card-body p-0 d-flex">
+                                    <div class="order-details w-50">
+                                        <h3 class="card-title pb-3">Order Details</h3>
+                                        <ul id="order-details-list" class="list-items list-items-2 py-3"></ul>
+                                        <ul class="list-items list-items-2 pt-3">
+                                            <li id="booking-sub-total">Sub Total: $0</li>
+                                            <li id="booking-taxes-fees">Taxes And Fees: $5</li>
+                                            <li id="booking-total-price">Total Price: $5</li>
+                                        </ul>
                                     </div>
-                                    <div class="card-body p-0 d-flex">
-                                        <div style="width: 50%;">
-                                            <h3 class="card-title pb-3">Order Details</h3>
-                                            <ul id="order-details-list" class="list-items list-items-2 py-3">
-                                                <!-- Line items will be dynamically generated -->
-                                            </ul>
-                                            <ul class="list-items list-items-2 pt-3">
-                                                <li id="booking-sub-total">Sub Total: $0</li>
-                                                <li id="booking-taxes-fees">Taxes And Fees: $5</li>
-                                                <li id="booking-total-price">Total Price: $5</li>
-                                            </ul>
-                                        </div>
-                                        <div id="selected-cabin-card" style="width: 50%;">
-                                            <!-- Selected cabin card will be dynamically generated -->
-                                        </div>
-                                    </div>
+                                    <div id="selected-cabin-card" class="w-50"></div>
                                 </div>
                             </div>
                         </div>
-                        <div id="amenities-list" class="row">
-                            <!-- Amenities will be dynamically generated -->
-                        </div>
                     </div>
+                    <div id="amenities-list" class="row mb-4"></div>
                 </div>
+                
+                <!-- Step 2: Passenger Information -->
                 <div id="step2" class="step d-none">
-                    <!-- Step 2: Passenger Information -->
-                    <h3>Passenger Information</h3>
-                    <div id="passenger-info-container">
-                        <!-- Passenger information form will be dynamically generated based on the number of passengers -->
-                    </div>
-                    <button type="button" id="add-passenger" class="btn btn-secondary">Add Passenger</button>
-                    <div class="terms-and-policies mt-3">
-                        <h3>Terms and Policies</h3>
-                        <button type="button" id="toggle-policies" class="btn btn-link">Show Terms and Policies</button>
+                    <h3 class="mb-3">Passenger Information</h3>
+                    <div id="passenger-info-container" class="mb-3"></div>
+                    <button type="button" id="add-passenger" class="btn btn-secondary mb-3">Add Passenger</button>
+                    <div class="terms-and-policies">
+                        <h3 class="mb-3">Terms and Policies</h3>
+                        <button type="button" id="toggle-policies" class="btn btn-link mb-3">Show Terms and Policies</button>
                         <div id="policies-content" style="display: none;">
                             <ul>
                                 <li><strong>Travel Insurance:</strong> I understand that travel insurance is highly recommended for this trip. I have either purchased travel insurance or have chosen to decline it at my own risk.</li>
@@ -1166,10 +1108,11 @@
                         </div>
                     </div>
                 </div>
+
+                <!-- Step 3: Payment Information -->
                 <div id="step3" class="step d-none">
-                    <!-- Step 3: Payment Information -->
-                    <h3>Payment Information</h3>
-                    <div id="cruise-details-summary" class="mb-3">
+                    <h3 class="mb-4">Payment Information</h3>
+                    <div id="cruise-details-summary" class="mb-4">
                         <h5>Cruise Details</h5>
                         <p><strong>Title:</strong> <span id="summary-title"></span></p>
                         <p><strong>Departure Date:</strong> <span id="summary-departure"></span></p>
@@ -1177,16 +1120,15 @@
                         <p><strong>Cruise Line:</strong> <span id="summary-cruiseline"></span></p>
                         <p><strong>Route:</strong> <span id="summary-route"></span></p>
                     </div>
-                    <div id="selected-cabin-container" class="d-flex flex-row"></div>
-                    <div id="payment-summary" class="mb-3">
+                    <div id="selected-cabin-container" class="d-flex flex-column mb-4"></div>
+                    <div id="payment-summary" class="mb-4">
                         <p>Cabin Price Subtotal: <strong id="cabin-subtotal">$0</strong></p>
                         <p>Order Total: <strong id="order-total">$0</strong></p>
                     </div>
                     <form id="payment-form">
-                        <!-- Stripe Elements will be inserted here. -->
-                        <div id="payment-element"></div>
+                        <div id="payment-element" class="mb-4"></div>
                         <button id="submit" class="btn btn-primary">Pay Now</button>
-                        <div id="error-message" class="text-danger"></div>
+                        <div id="error-message" class="text-danger mt-3"></div>
                     </form>
                 </div>
             </div>
@@ -1197,6 +1139,7 @@
         </div>
     </div>
 </div>
+
 
 <!-- Template JS Files -->
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
