@@ -1059,7 +1059,7 @@
     <div class="modal-dialog modal-lg" role="document" style="max-width: 90%;">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="bookingModalLabel">Booking Summary</h5>
+                <h5 class="modal-title" id="bookingModalLabel">Cruise Catalog - Booking Summary</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -1069,12 +1069,22 @@
                     <!-- Step 1: Booking Summary -->
                     <div class="overlay-container">
                         <div class="breadcrumb" id="breadcrumb">
-                            <ul id="breadcrumb-list" class="list-inline"></ul>
+                            <ul id="breadcrumb-list" class="list-inline">
+                                <li class="list-inline-item active">1. Summary</li>
+                                <li class="list-inline-item">2. Passenger Info</li>
+                                <li class="list-inline-item">3. Payment</li>
+                            </ul>
                         </div>
-                        <div id="cabin-chips" class="d-flex flex-wrap mb-3"></div>
-                        <div id="parent-image" class="mb-3"></div>
+                        <div id="cabin-chips" class="d-flex flex-wrap mb-3">
+                            <!-- Cabin selection chips will be dynamically generated -->
+                        </div>
+                        <div id="parent-image" class="mb-3">
+                            <!-- Parent image of the cruise -->
+                        </div>
                         <div class="container">
-                            <div class="row" id="cabin-cards"></div>
+                            <div class="row" id="cabin-cards">
+                                <!-- Cabin cards will be dynamically generated -->
+                            </div>
                         </div>
                         <div class="form-box booking-detail-form">
                             <div class="form-title-wrap">
@@ -1083,7 +1093,10 @@
                             <div class="form-content">
                                 <div class="card-item shadow-none radius-none mb-0">
                                     <div class="card-img pb-4">
-                                        <a href="cruise-details.html" class="d-block"></a>
+                                        <a href="cruise-details.html" class="d-block">
+                                            <!-- Image of the selected cruise -->
+                                            <img src="path/to/cruise-image.jpg" alt="Cruise Image" class="img-fluid">
+                                        </a>
                                     </div>
                                     <div class="card-body p-0 d-flex">
                                         <div style="width: 50%;">
@@ -1097,12 +1110,16 @@
                                                 <li id="booking-total-price">Total Price: $5</li>
                                             </ul>
                                         </div>
-                                        <div id="selected-cabin-card" style="width: 50%;"></div>
+                                        <div id="selected-cabin-card" style="width: 50%;">
+                                            <!-- Selected cabin card will be dynamically generated -->
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div id="amenities-list" class="row"></div>
+                        <div id="amenities-list" class="row">
+                            <!-- Amenities will be dynamically generated -->
+                        </div>
                     </div>
                 </div>
                 <div id="step2" class="step d-none">
@@ -1153,13 +1170,13 @@
                     <!-- Step 3: Payment Information -->
                     <h3>Payment Information</h3>
                     <div id="payment-summary">
-                        <p>Cabin Price Subtotal: <strong id="cabin-subtotal"></strong></p>
+                        <p>Cabin Price Subtotal: <strong id="cabin-subtotal">$0</strong></p>
                     </div>
                     <form id="payment-form">
                         <!-- Stripe Elements will be inserted here. -->
                         <div id="payment-element"></div>
                         <button id="submit" class="btn btn-primary">Pay Now</button>
-                        <div id="error-message"></div>
+                        <div id="error-message" class="text-danger"></div>
                     </form>
                 </div>
             </div>
@@ -1170,6 +1187,8 @@
         </div>
     </div>
 </div>
+
+    
 
 <!-- Template JS Files -->
     <!-- Consolidated Script Inclusions -->
