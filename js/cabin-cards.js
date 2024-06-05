@@ -536,8 +536,18 @@ document.addEventListener('DOMContentLoaded', function () {
     };
 
     const addSelectedCabinToBookingDetails = (child) => {
-        const uniqueId = `${child.id}-${Date.now()}`;
         const bookingDetailsContainer = document.getElementById('selected-cabin-card');
+
+        // Check for duplicates
+        const existingCards = bookingDetailsContainer.querySelectorAll('.selected-cabin-card-container');
+        for (let card of existingCards) {
+            if (card.querySelector('.card-title').textContent === child.text) {
+                alert('This cabin is already added.');
+                return;
+            }
+        }
+
+        const uniqueId = `${child.id}-${Date.now()}`;
         bookingDetailsContainer.innerHTML += createChildCard(child, false, true, uniqueId);
         const price = parseFloat(child.price.replace('$', ''));
         updateTotalPrice(price);
