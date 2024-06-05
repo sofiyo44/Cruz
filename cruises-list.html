@@ -1733,27 +1733,28 @@
                 applyFilters();
             });
     
-            // Initialize the price range slider if it does not exist
+            // Initialize the price range slider
             const slider = document.getElementById('slider-range2');
-            if (!slider.noUiSlider) {
-                noUiSlider.create(slider, {
-                    start: [0, 10000],
-                    connect: true,
-                    range: {
-                        'min': 0,
-                        'max': 10000
-                    },
-                    tooltips: [true, true],
-                    format: {
-                        to: function (value) {
-                            return '$' + value.toFixed(2);
-                        },
-                        from: function (value) {
-                            return Number(value.replace('$', ''));
-                        }
-                    }
-                });
+            if (slider.noUiSlider) {
+                slider.noUiSlider.destroy();
             }
+            noUiSlider.create(slider, {
+                start: [40, 800],  // Set the initial range as needed
+                connect: true,
+                range: {
+                    'min': 0,
+                    'max': 10000
+                },
+                tooltips: [true, true],
+                format: {
+                    to: function (value) {
+                        return '$' + value.toFixed(2);
+                    },
+                    from: function (value) {
+                        return Number(value.replace('$', ''));
+                    }
+                }
+            });
     
             slider.noUiSlider.on('update', function (values, handle) {
                 document.getElementById('amount2').value = `${values[0]} - ${values[1]}`;
