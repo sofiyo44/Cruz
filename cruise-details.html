@@ -1493,23 +1493,39 @@
             }
         };
     
+        let currentStep = 1;
+        const totalSteps = 3;
+        
         const nextStep = () => {
             if (currentStep < totalSteps) {
                 if (currentStep === 2) {
                     savePassengerInfo();
                 }
-                currentStep++;
-                showStep(currentStep);
+                if (validateStep(currentStep)) {
+                    currentStep++;
+                    showStep(currentStep);
+                }
             }
         };
-    
+        
         const prevStep = () => {
             if (currentStep > 1) {
                 currentStep--;
                 showStep(currentStep);
             }
         };
-    
+        
+        const validateStep = (step) => {
+            const requiredFields = document.querySelectorAll('.step' + step + ' .form-control[required]');
+            for (let field of requiredFields) {
+                if (!field.value.trim()) {
+                    alert('Please fill all required fields.');
+                    return false;
+                }
+            }
+            return true;
+        };
+        
         const generatePassengerForm = (numPassengers) => {
             const container = document.getElementById('passenger-info-container');
             container.innerHTML = '';
@@ -1517,7 +1533,7 @@
                 addPassengerForm(container, i);
             }
         };
-    
+        
         const addPassengerForm = (container, index) => {
             const passengerForm = `
                 <div class="card mb-3 passenger-card">
@@ -1525,24 +1541,32 @@
                         <h4>Passenger ${index + 1}</h4>
                     </div>
                     <div class="card-body">
-                        <div class="form-group">
-                            <label for="fullName${index}">Full Name</label>
-                            <input type="text" class="form-control" id="fullName${index}" required>
+                        <div class="form-row">
+                            <div class="form-group col-md-9">
+                                <label for="fullName${index}">Full Name <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" id="fullName${index}" required>
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label for="dob${index}">Date of Birth <span class="text-danger">*</span></label>
+                                <input type="date" class="form-control" id="dob${index}" required>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-4">
+                                <label for="nationality${index}">Nationality <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" id="nationality${index}" required>
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="passport${index}">Passport/ID <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" id="passport${index}" required>
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="cruiseMembership${index}">Cruise Membership No.</label>
+                                <input type="text" class="form-control" id="cruiseMembership${index}">
+                            </div>
                         </div>
                         <div class="form-group">
-                            <label for="dob${index}">Date of Birth</label>
-                            <input type="date" class="form-control" id="dob${index}" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="nationality${index}">Nationality</label>
-                            <input type="text" class="form-control" id="nationality${index}" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="passport${index}">Passport/ID</label>
-                            <input type="text" class="form-control" id="passport${index}" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="proofOfID${index}">Proof of Valid ID</label>
+                            <label for="proofOfID${index}">Proof of Valid ID <span class="text-danger">*</span></label>
                             <input type="file" class="form-control" id="proofOfID${index}" required>
                         </div>
                         <div class="form-group">
@@ -1550,42 +1574,44 @@
                             <input type="text" class="form-control" id="specialNeeds${index}">
                         </div>
                         <div class="form-group">
-                            <label for="address${index}">Street Address</label>
+                            <label for="address${index}">Street Address <span class="text-danger">*</span></label>
                             <input type="text" class="form-control" id="address${index}" required>
                         </div>
                         <div class="form-row">
                             <div class="form-group col-md-4">
-                                <label for="city${index}">City</label>
+                                <label for="city${index}">City <span class="text-danger">*</span></label>
                                 <input type="text" class="form-control" id="city${index}" required>
                             </div>
                             <div class="form-group col-md-4">
-                                <label for="state${index}">State</label>
+                                <label for="state${index}">State <span class="text-danger">*</span></label>
                                 <input type="text" class="form-control" id="state${index}" required>
                             </div>
                             <div class="form-group col-md-4">
-                                <label for="zip${index}">Zip Code</label>
+                                <label for="zip${index}">Zip Code <span class="text-danger">*</span></label>
                                 <input type="text" class="form-control" id="zip${index}" required>
                             </div>
                         </div>
-                        <div class="form-group">
-                            <label for="phone${index}">Telephone Number(s)</label>
-                            <input type="text" class="form-control" id="phone${index}" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="email${index}">Email Address</label>
-                            <input type="email" class="form-control" id="email${index}" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="emergencyContact${index}">Emergency Contact Name</label>
-                            <input type="text" class="form-control" id="emergencyContact${index}" required>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="phone${index}">Telephone Number(s) <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" id="phone${index}" required>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="email${index}">Email Address <span class="text-danger">*</span></label>
+                                <input type="email" class="form-control" id="email${index}" required>
+                            </div>
                         </div>
                         <div class="form-row">
                             <div class="form-group col-md-6">
-                                <label for="emergencyContactEmail${index}">Emergency Contact Email</label>
+                                <label for="emergencyContact${index}">Emergency Contact Name <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" id="emergencyContact${index}" required>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="emergencyContactEmail${index}">Emergency Contact Email <span class="text-danger">*</span></label>
                                 <input type="email" class="form-control" id="emergencyContactEmail${index}" required>
                             </div>
                             <div class="form-group col-md-6">
-                                <label for="emergencyContactPhone${index}">Emergency Contact Phone</label>
+                                <label for="emergencyContactPhone${index}">Emergency Contact Phone <span class="text-danger">*</span></label>
                                 <input type="text" class="form-control" id="emergencyContactPhone${index}" required>
                             </div>
                         </div>
@@ -1594,7 +1620,7 @@
             `;
             container.innerHTML += passengerForm;
         };
-    
+        
         const savePassengerInfo = () => {
             const passengerCards = document.querySelectorAll('.passenger-card');
             const passengersData = Array.from(passengerCards).map((card, index) => ({
@@ -1602,6 +1628,7 @@
                 dob: card.querySelector(`#dob${index}`).value,
                 nationality: card.querySelector(`#nationality${index}`).value,
                 passport: card.querySelector(`#passport${index}`).value,
+                cruiseMembership: card.querySelector(`#cruiseMembership${index}`).value,
                 proofOfID: card.querySelector(`#proofOfID${index}`).files[0] ? card.querySelector(`#proofOfID${index}`).files[0].name : '',
                 specialNeeds: card.querySelector(`#specialNeeds${index}`).value,
                 address: card.querySelector(`#address${index}`).value,
@@ -1621,20 +1648,27 @@
             };
             localStorage.setItem('bookingData', JSON.stringify(bookingData));
         };
-    
+        
+        const showStep = (step) => {
+            const steps = document.querySelectorAll('.step');
+            steps.forEach((stepElement, index) => {
+                stepElement.classList.toggle('d-none', index !== step - 1);
+            });
+        };
+        
         // Event listeners for next and previous buttons
         document.getElementById('nextBtn').addEventListener('click', nextStep);
         document.getElementById('prevBtn').addEventListener('click', prevStep);
-    
+        
         // Event listener for add passenger button
         document.getElementById('add-passenger').addEventListener('click', function () {
             const container = document.getElementById('passenger-info-container');
             const currentPassengerCount = container.querySelectorAll('.card').length;
             addPassengerForm(container, currentPassengerCount);
         });
-    
+        
         // Event listener for toggle policies button
-        document.getElementById('toggle-policies').addEventListener('click', function() {
+        document.getElementById('toggle-policies').addEventListener('click', function () {
             const policiesContent = document.getElementById('policies-content');
             if (policiesContent.style.display === 'none' || policiesContent.style.display === '') {
                 policiesContent.style.display = 'block';
@@ -1644,11 +1678,10 @@
                 this.textContent = 'Show Terms and Policies';
             }
         });
-    
+        
         // Initialize form and steps
         generatePassengerForm(1); // Start with one passenger form
         showStep(currentStep); // Show the initial step
-    });
 </script>
 </body>
 </html>
