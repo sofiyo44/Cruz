@@ -440,7 +440,6 @@
                             <li><a data-scroll="itinerary" href="#itinerary" class="scroll-link">Itinerary</a></li>
                             <li><a data-scroll="staterooms" href="#staterooms" class="scroll-link">Staterooms</a></li>
                             <li><a data-scroll="photos" href="#photos" class="scroll-link">Photos</a></li>
-                            <li><a data-scroll="reviews" href="#reviews" class="scroll-link">Reviews</a></li>
                         </ul>
                     </div>
                 </div>
@@ -1303,7 +1302,7 @@
             <li>Recommended gratuities.</li>
             <li>Visa, if necessary (extra charges possible).</li>
         `;
-
+        
         // Populate itinerary table
         document.getElementById('itinerary-table').innerHTML = `
             <tr>
@@ -1349,6 +1348,80 @@
                 <td></td>
             </tr>
         `;
+        
+        // Populate amenities list
+        const amenities = [
+            {
+                text: "Bars and Cafes",
+                children: [
+                    { text: "Coffeebar" },
+                    { text: "Champagne/caviar bar" },
+                    { text: "Club lounge" },
+                    { text: "Cocktailbar" },
+                    { text: "Pool bar" },
+                    { text: "Winecellar/vinothek" }
+                ]
+            },
+            {
+                text: "Onboard language",
+                children: [
+                    { text: "English" }
+                ]
+            },
+            {
+                text: "Travel documents",
+                children: [
+                    { text: "Passport required" }
+                ]
+            },
+            {
+                text: "Restaurants",
+                children: [
+                    { text: "Italian Restaurant" },
+                    { text: "French Restaurant" },
+                    { text: "Steakhouse" },
+                    { text: "Sushi Bar" },
+                    { text: "Seafood Restaurant" },
+                    { text: "Buffet" }
+                ]
+            },
+            {
+                text: "Activities",
+                children: [
+                    { text: "Swimming Pool" },
+                    { text: "Fitness Center" },
+                    { text: "Spa" },
+                    { text: "Theater" },
+                    { text: "Casino" },
+                    { text: "Mini Golf" }
+                ]
+            },
+            {
+                text: "Services",
+                children: [
+                    { text: "Room Service" },
+                    { text: "Laundry Service" },
+                    { text: "Concierge" },
+                    { text: "Medical Center" },
+                    { text: "Wi-Fi" }
+                ]
+            }
+        ];
+        
+        $(document).ready(function () {
+            $('.collapse-btn').click(function () {
+                var target = $(this).attr('href');
+                $(target).collapse('toggle');
+            });
+        
+            $('.collapse').on('hidden.bs.collapse', function () {
+                $(this).prev('.single-content-item').find('a').attr('aria-expanded', 'false');
+            });
+        
+            $('.collapse').on('shown.bs.collapse', function () {
+                $(this).prev('.single-content-item').find('a').attr('aria-expanded', 'true');
+            });
+        });
 
         // Photo gallery
         document.getElementById('carousel-images').innerHTML = `
