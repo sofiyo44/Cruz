@@ -476,6 +476,11 @@ document.addEventListener('DOMContentLoaded', function () {
 
     let totalPrice = 0;
 
+    const parsePrice = (price) => {
+        // Remove any commas and the dollar sign, then convert to a float
+        return parseFloat(price.replace(/[$,]/g, ''));
+    };
+
     const updateTotalPrice = (amount) => {
         totalPrice += amount;
         document.getElementById('booking-sub-total').textContent = `Sub Total: $${totalPrice.toFixed(2)}`;
@@ -554,7 +559,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         // Add to booking details
         bookingDetailsContainer.innerHTML += createChildCard(child, false, true, uniqueId);
-        const price = parseFloat(child.price.replace('$', ''));
+        const price = parsePrice(child.price);
         updateTotalPrice(price);
     };
 
@@ -572,7 +577,7 @@ document.addEventListener('DOMContentLoaded', function () {
         const selectedCabin = formData.selectedCabins[cabinId];
 
         if (selectedCabin) {
-            const price = parseFloat(selectedCabin.price.replace('$', ''));
+            const price = parsePrice(selectedCabin.price);
             updateTotalPrice(-price);
             delete formData.selectedCabins[cabinId];
             localStorage.setItem('cruiseFormData', JSON.stringify(formData));
