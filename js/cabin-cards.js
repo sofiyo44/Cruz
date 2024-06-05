@@ -473,7 +473,6 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     };
 
-
     let totalPrice = 0;
 
     const updateTotalPrice = (amount) => {
@@ -591,8 +590,6 @@ document.addEventListener('DOMContentLoaded', function () {
             const selectedChild = cabinData[selectedCabinKey].children.find(child => child.id === selectedCabinId);
 
             if (!selectedChild.selected) {
-                e.target.textContent = 'Selected';
-                e.target.disabled = true;
                 selectedChild.selected = true;
                 addSelectedCabinToBookingDetails(selectedChild, true);
 
