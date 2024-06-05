@@ -383,6 +383,7 @@
                             <div class="slider-range-wrap">
                                 <div class="price-slider-amount padding-bottom-20px">
                                     <label for="amount2" class="filter__label">Price:</label>
+                                    <input type="text" id="amount2" class="amounts">
                                 </div>
                                 <div id="slider-range2"></div>
                             </div>
@@ -1657,9 +1658,8 @@
             function filterCruises() {
                 let filteredCruises = [...cruiseListData.cruises];
                 const selectedPorts = Array.from(document.querySelectorAll('#departure-port-list input:checked')).map(input => input.value);
-                const priceRange = document.getElementById('amount2').value.split('-').map(price => parseInt(price.replace('$', '').trim()));
-                const minPrice = priceRange[0];
-                const maxPrice = priceRange[1];
+                const minPrice = parseInt(document.getElementById('amount2').value.split('-')[0].replace('$', '').trim());
+                const maxPrice = parseInt(document.getElementById('amount2').value.split('-')[1].replace('$', '').trim());
     
                 if (selectedPorts.length > 0) {
                     filteredCruises = filteredCruises.filter(cruise => selectedPorts.includes(cruise.route.split(' - ')[0]));
