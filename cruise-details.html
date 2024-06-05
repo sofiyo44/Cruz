@@ -1165,19 +1165,10 @@
                         <p>Cabin Price Subtotal: <strong id="cabin-subtotal"></strong></p>
                     </div>
                     <form id="payment-form">
-                        <!-- Payment form elements -->
-                        <div class="form-group">
-                            <label for="cardNumber">Card Number</label>
-                            <input type="text" class="form-control" id="cardNumber" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="expiryDate">Expiry Date</label>
-                            <input type="text" class="form-control" id="expiryDate" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="cvv">CVV</label>
-                            <input type="text" class="form-control" id="cvv" required>
-                        </div>
+                        <!-- Stripe Elements will be inserted here. -->
+                        <div id="payment-element"></div>
+                        <button id="submit" class="btn btn-primary">Pay Now</button>
+                        <div id="error-message"></div>
                     </form>
                 </div>
             </div>
@@ -1188,13 +1179,6 @@
         </div>
     </div>
 </div>
-
-
-
-
-
-
-
 
 <!-- Template JS Files -->
 <script src="js/jquery-3.7.1.min.js"></script>
@@ -1216,9 +1200,56 @@
 <script src="cruise-detail-temp.js"></script>
 <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" integrity="sha512-GvTx5Z5+G7ZSM7zSYlTkKQ2ad9I5fIRyQ2I5XIs64EV6UO8qFecp6Do2uIH7+3H1mBjd+z5x6TBe+9U/8A0pMw==" crossorigin=""></script>
 <script src="js/cabin-cards.js"></script>
+<script src="https://js.stripe.com/v3/"></script>
 <script>
     document.addEventListener('DOMContentLoaded', async function () {
         console.log('DOM fully loaded and parsed');
+
+        const stripe = Stripe('pk_test_51PHWHV09WcoQiYp2LY3F4iWLOiYKIpSNMNK0QPt58EIhgKcPC6xQucuZT7Dkeii1VTo0I0V9YKkoJUJHVah1MGG200JwErUvLp');
+
+        document.getElementById('submit').addEventListener('click', async (event) => {
+            event.preventDefault();
+            
+            // Fetch the Payment Intent client secret
+            const { clientSecret: paymentClientSecret } = await fetch('/create-payment-intent', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+            }).then((r) => r.json());
+
+            const elements = stripe.elements();
+            const paymentElement = elements.create('payment');
+            paymentElement.mount('#payment-element');
+
+            const { error: paymentError } = await stripe.confirmPayment({
+                elements,
+                confirmParams: {
+                    return_url: 'https://sofiyo44.github.io/Cruz/payment-complete.html',
+                },
+            });
+
+            if (paymentError) {
+                document.getElementById('error-message').textContent = paymentError.message;
+            } else {
+                // Payment succeeded, now create Setup Intent
+                const { clientSecret: setupClientSecret } = await fetch('/create-setup-intent', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                }).then((r) => r.json());
+
+                const { error: setupError } = await stripe.confirmCardSetup(setupClientSecret, {
+                    payment_method: {
+                        card: paymentElement,
+                    },
+                });
+
+                if (setupError) {
+                    document.getElementById('error-message').textContent = setupError.message;
+                } else {
+                    // Payment details saved for future use
+                    alert('Payment details saved successfully!');
+                }
+            }
+        });
 
         const cruiseData = {
             title: "Atlantic Ocean Europe 7 days from/to Portsmouth",
