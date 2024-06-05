@@ -1280,15 +1280,19 @@
                 title: "Atlantic Ocean Europe 7 days from/to Portsmouth",
                 departure_cruise: "9/23/24",
                 arrival_cruise: "9/29/24",
-                cruiseline: "Virgin Voyages"
+                cruiseline: "Virgin Voyages",
+                route: "Ports of Call: Portsmouth, Cruising Day, La Coruna, Bilbao, Le Verdon-sur-Mer, Portsmouth"
             };
+        
+            // Save cruise details to localStorage
+            localStorage.setItem('cruiseDetails', JSON.stringify(cruiseData));
         
             // Populate cruise details
             document.querySelectorAll('.cruise-title').forEach(el => el.innerText = cruiseData.title);
             document.querySelectorAll('.departure-date').forEach(el => el.innerText = cruiseData.departure_cruise);
             document.querySelectorAll('.arrival-date').forEach(el => el.innerText = cruiseData.arrival_cruise);
             document.querySelectorAll('.cruise-line').forEach(el => el.innerText = cruiseData.cruiseline);
-            document.getElementById('cruise-route').innerText = "Ports of Call: Portsmouth, Cruising Day, La Coruna, Bilbao, Le Verdon-sur-Mer, Portsmouth";
+            document.getElementById('cruise-route').innerText = cruiseData.route;
             document.getElementById('ship-description').innerHTML = "From decadent dinners to boozy after-parties, gather with your partner, your best friends and yourself to celebrate life's best moments aboard one of the 100% adults-only voyages.";
         
             // Ship statistics
@@ -1482,6 +1486,20 @@
                     const totalPrice = formData ? formData.totalPrice : 0;
                     document.getElementById('payment-summary').innerHTML = `<p>Cabin Price Subtotal: <strong>$${totalPrice.toFixed(2)}</strong></p>`;
                     document.getElementById('payment-summary').innerHTML += `<p>Order Total: <strong>$${(totalPrice + 5).toFixed(2)}</strong></p>`;
+        
+                    // Display cruise details
+                    const cruiseDetails = JSON.parse(localStorage.getItem('cruiseDetails'));
+                    if (cruiseDetails) {
+                        document.getElementById('payment-summary').innerHTML += `
+                            <h5>Cruise Details</h5>
+                            <p><strong>Title:</strong> ${cruiseDetails.title}</p>
+                            <p><strong>Departure Date:</strong> ${cruiseDetails.departure_cruise}</p>
+                            <p><strong>Arrival Date:</strong> ${cruiseDetails.arrival_cruise}</p>
+                            <p><strong>Cruise Line:</strong> ${cruiseDetails.cruiseline}</p>
+                            <p><strong>Route:</strong> ${cruiseDetails.route}</p>
+                        `;
+                    }
+        
                     initializeStripeElements(); // Initialize Stripe elements when step 3 is shown
                 }
             };
