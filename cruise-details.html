@@ -1169,11 +1169,20 @@
                 <div id="step3" class="step d-none">
                     <!-- Step 3: Payment Information -->
                     <h3>Payment Information</h3>
-                    <div id="payment-summary">
-                        <p>Cabin Price Subtotal: <strong id="cabin-subtotal">$0</strong></p>
+                    <div id="cruise-details-summary" class="mb-3">
+                        <h5>Cruise Details</h5>
+                        <p><strong>Title:</strong> <span id="summary-title"></span></p>
+                        <p><strong>Departure Date:</strong> <span id="summary-departure"></span></p>
+                        <p><strong>Arrival Date:</strong> <span id="summary-arrival"></span></p>
+                        <p><strong>Cruise Line:</strong> <span id="summary-cruiseline"></span></p>
+                        <p><strong>Route:</strong> <span id="summary-route"></span></p>
                     </div>
-                    <div id="selected-cabin-container" class="row">
+                    <div id="selected-cabin-container" class="row mb-3" style="overflow-x: auto; white-space: nowrap; padding: 10px; border-radius: 10px; border: 1px solid #ddd;">
                         <!-- Selected cabins will be dynamically inserted here -->
+                    </div>
+                    <div id="payment-summary" class="mb-3">
+                        <p>Cabin Price Subtotal: <strong id="cabin-subtotal">$0</strong></p>
+                        <p>Order Total: <strong id="order-total">$0</strong></p>
                     </div>
                     <form id="payment-form">
                         <!-- Stripe Elements will be inserted here. -->
@@ -1487,7 +1496,7 @@
             Object.keys(selectedCabins).forEach(cabinId => {
                 const cabin = selectedCabins[cabinId];
                 selectedCabinContainer.innerHTML += `
-                    <div class="col-lg-6 mb-4">
+                    <div class="col-lg-6 mb-4" style="display: inline-block; vertical-align: top;">
                         <div class="card" style="width: 100%; padding: 1rem; box-shadow: 0 4px 8px rgba(0,0,0,0.1); border-radius: 10px;">
                             <div class="card-body small-font">
                                 <h5 class="card-title">${cabin.text}</h5>
@@ -1506,20 +1515,17 @@
             if (step === 3) {
                 const formData = JSON.parse(localStorage.getItem('cruiseFormData'));
                 const totalPrice = formData ? formData.totalPrice : 0;
-                document.getElementById('payment-summary').innerHTML = `<p>Cabin Price Subtotal: <strong>$${totalPrice.toFixed(2)}</strong></p>`;
-                document.getElementById('payment-summary').innerHTML += `<p>Order Total: <strong>$${(totalPrice + 5).toFixed(2)}</strong></p>`;
+                document.getElementById('cabin-subtotal').innerHTML = `$${totalPrice.toFixed(2)}`;
+                document.getElementById('order-total').innerHTML = `$${(totalPrice + 5).toFixed(2)}`;
     
                 // Display cruise details
                 const cruiseDetails = JSON.parse(localStorage.getItem('cruiseDetails'));
                 if (cruiseDetails) {
-                    document.getElementById('payment-summary').innerHTML += `
-                        <h5>Cruise Details</h5>
-                        <p><strong>Title:</strong> ${cruiseDetails.title}</p>
-                        <p><strong>Departure Date:</strong> ${cruiseDetails.departure_cruise}</p>
-                        <p><strong>Arrival Date:</strong> ${cruiseDetails.arrival_cruise}</p>
-                        <p><strong>Cruise Line:</strong> ${cruiseDetails.cruiseline}</p>
-                        <p><strong>Route:</strong> ${cruiseDetails.route}</p>
-                    `;
+                    document.getElementById('summary-title').innerText = cruiseDetails.title;
+                    document.getElementById('summary-departure').innerText = cruiseDetails.departure_cruise;
+                    document.getElementById('summary-arrival').innerText = cruiseDetails.arrival_cruise;
+                    document.getElementById('summary-cruiseline').innerText = cruiseDetails.cruiseline;
+                    document.getElementById('summary-route').innerText = cruiseDetails.route;
                 }
     
                 generateSelectedCabinCards(); // Generate selected cabin cards for payment step
