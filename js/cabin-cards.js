@@ -581,17 +581,22 @@ const handleToggleContent = (e) => {
 const handleCloseCard = (e) => {
     const cardContainer = e.target.closest('.selected-cabin-card-container');
     const cabinId = cardContainer.getAttribute('data-cabin-id');
-    const selectedCabinKey = Object.keys(cabinData).find(key =>
-        cabinData[key].children.some(child => child.id === cabinId)
-    );
-    const selectedChild = cabinData[selectedCabinKey].children.find(child => child.id === cabinId);
-    
-    if (selectedChild) {
+    const cardButton = document.querySelector(`.select-cabin-btn[data-cabin-id="${cabinId}"]`);
+    if (cardButton) {
+        cardButton.textContent = 'Select';
+        cardButton.disabled = false;
+        const selectedCabinKey = Object.keys(cabinData).find(key =>
+            cabinData[key].children.some(child => child.id === cabinId)
+        );
+        const selectedChild = cabinData[selectedCabinKey].children.find(child => child.id === cabinId);
         selectedChild.selected = false;
         const price = parseFloat(selectedChild.price.replace('$', ''));
         updateTotalPrice(-price);
+        // Update the price in localStorage
+        const formData = JSON.parse(localStorage.getItem('cruiseFormData')) || {};
+        formData.totalPrice = totalPrice;
+        localStorage.setItem('cruiseFormData', JSON.stringify(formData));
     }
-
     cardContainer.remove();
 };
 
