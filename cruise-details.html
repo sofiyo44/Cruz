@@ -1100,10 +1100,10 @@
                         </div>
                         <div class="form-group form-check">
                             <input type="checkbox" class="form-check-input" id="termsCheck" required>
-                            <label class="form-check-label" for="termsCheck">I agree to the terms and policies</label>
+                            <label class="form-check-label" for="termsCheck">I agree to the terms and policies <span class="text-danger">*</span></label>
                         </div>
                         <div class="form-group">
-                            <label for="signature">Signature</label>
+                            <label for="signature">Signature <span class="text-danger">*</span></label>
                             <input type="text" class="form-control" id="signature" required>
                         </div>
                     </div>
@@ -1512,7 +1512,7 @@
         const validateStep = (step) => {
             const requiredFields = document.querySelectorAll(`.step${step} .form-control[required]`);
             for (let field of requiredFields) {
-                if (!field.value.trim()) {
+                if (!field.value.trim() || (field.type === 'checkbox' && !field.checked)) {
                     alert('Please fill all required fields.');
                     return false;
                 }
