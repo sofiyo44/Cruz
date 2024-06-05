@@ -535,35 +535,6 @@ const populateCabinChips = () => {
     }).join('');
 };
 
-const updateBreadcrumb = () => {
-    const formData = JSON.parse(localStorage.getItem('cruiseFormData'));
-    if (formData) {
-        document.getElementById('breadcrumb-list').innerHTML = `
-            <li class="list-inline-item">Guests: ${formData.numberOfGuests}</li>
-            <li class="list-inline-item">Ages: ${formData.ages.join(', ')}</li>
-            <li class="list-inline-item">Residency: ${formData.guestResidency}</li>
-            <li class="list-inline-item">State: ${formData.guestState}</li>
-        `;
-    }
-};
-
-const highlightSelectedChip = () => {
-    const formData = JSON.parse(localStorage.getItem('cruiseFormData'));
-    if (formData && formData.cabinType) {
-        const selectedCabin = cabinData[formData.cabinType];
-        if (selectedCabin) {
-            showParentImage(selectedCabin);
-            populateChildCards(selectedCabin);
-            const chips = document.querySelectorAll('.cabin-chip');
-            chips.forEach(chip => chip.classList.remove('active'));
-            const selectedChip = document.querySelector(`.cabin-chip[data-cabin-id="${formData.cabinType}"]`);
-            if (selectedChip) {
-                selectedChip.classList.add('active');
-            }
-        }
-    }
-};
-
 const addSelectedCabinToBookingDetails = (child) => {
     const bookingDetailsContainer = document.getElementById('selected-cabin-card');
     bookingDetailsContainer.innerHTML += createChildCard(child, false, true);
@@ -581,23 +552,26 @@ const handleToggleContent = (e) => {
 const handleCloseCard = (e) => {
     const cardContainer = e.target.closest('.selected-cabin-card-container');
     const cabinId = cardContainer.getAttribute('data-cabin-id');
-    const selectedCabinKey = Object.keys(cabinData).find(key =>
-        cabinData[key].children.some(child => child.id === cabinId)
-    );
-    const selectedChild = cabinData[selectedCabinKey].children.find(child => child.id === cabinId);
-    
-    if (selectedChild) {
+    const cardButton = document.querySelector(`.select-cabin-btn[data-cabin-id="${cabinId}"]`);
+    if (cardButton) {
+        cardButton.textContent = 'Select';
+        cardButton.disabled = false;
+        const selectedCabinKey = Object.keys(cabinData).find(key =>
+            cabinData[key].children.some(child => child.id === cabinId)
+        );
+        const selectedChild = cabinData[selectedCabinKey].children.find(child => child.id === cabinId);
         selectedChild.selected = false;
         const price = parseFloat(selectedChild.price.replace('$', ''));
         updateTotalPrice(-price);
+        // Update the price in localStorage
+        const formData = JSON.parse(localStorage.getItem('cruiseFormData')) || {};
+        formData.totalPrice = totalPrice;
+        localStorage.setItem('cruiseFormData', JSON.stringify(formData));
     }
-
     cardContainer.remove();
 };
 
 document.getElementById('select-room-btn').addEventListener('click', function () {
-    updateBreadcrumb();
-    highlightSelectedChip();
     $('#bookingModal').modal('show');
 });
 
@@ -655,7 +629,4 @@ document.getElementById('selected-cabin-card').addEventListener('click', functio
 
 // Initial setup
 populateCabinChips();
-$('#bookingModal').on('shown.bs.modal', function () {
-    updateBreadcrumb();
-    highlightSelectedChip();
-});
+$('#bookingModal').on('shown.bs.modal', function () {});
