@@ -537,17 +537,22 @@ document.addEventListener('DOMContentLoaded', function () {
 
     const addSelectedCabinToBookingDetails = (child) => {
         const bookingDetailsContainer = document.getElementById('selected-cabin-card');
+        const uniqueId = `${child.id}-${Date.now()}`;
 
-        // Check for duplicates
-        const existingCards = bookingDetailsContainer.querySelectorAll('.selected-cabin-card-container');
-        for (let card of existingCards) {
-            if (card.querySelector('.card-title').textContent === child.text) {
+        // Check for duplicates in local storage
+        const formData = JSON.parse(localStorage.getItem('cruiseFormData')) || { selectedCabins: {} };
+        for (let key in formData.selectedCabins) {
+            if (formData.selectedCabins[key].text === child.text) {
                 alert('This cabin is already added.');
                 return;
             }
         }
 
-        const uniqueId = `${child.id}-${Date.now()}`;
+        // Add to local storage
+        formData.selectedCabins[uniqueId] = child;
+        localStorage.setItem('cruiseFormData', JSON.stringify(formData));
+
+        // Add to booking details
         bookingDetailsContainer.innerHTML += createChildCard(child, false, true, uniqueId);
         const price = parseFloat(child.price.replace('$', ''));
         updateTotalPrice(price);
@@ -563,9 +568,9 @@ document.addEventListener('DOMContentLoaded', function () {
     const handleCloseCard = (e) => {
         const cardContainer = e.target.closest('.selected-cabin-card-container');
         const cabinId = cardContainer.getAttribute('data-cabin-id');
-        const formData = JSON.parse(localStorage.getItem('cruiseFormData')) || {};
+        const formData = JSON.parse(localStorage.getItem('cruiseFormData')) || { selectedCabins: {} };
         const selectedCabin = formData.selectedCabins[cabinId];
-        
+
         if (selectedCabin) {
             const price = parseFloat(selectedCabin.price.replace('$', ''));
             updateTotalPrice(-price);
@@ -601,11 +606,6 @@ document.addEventListener('DOMContentLoaded', function () {
             const selectedChild = cabinData[selectedCabinKey].children.find(child => child.id === selectedCabinId);
 
             addSelectedCabinToBookingDetails(selectedChild);
-
-            const formData = JSON.parse(localStorage.getItem('cruiseFormData')) || {};
-            formData.selectedCabins = formData.selectedCabins || {};
-            formData.selectedCabins[selectedCabinId] = selectedChild;
-            localStorage.setItem('cruiseFormData', JSON.stringify(formData));
         }
     });
 
