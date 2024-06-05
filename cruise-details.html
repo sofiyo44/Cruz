@@ -1206,19 +1206,22 @@
         console.log('DOM fully loaded and parsed');
 
         const stripe = Stripe('pk_test_51PHWHV09WcoQiYp2LY3F4iWLOiYKIpSNMNK0QPt58EIhgKcPC6xQucuZT7Dkeii1VTo0I0V9YKkoJUJHVah1MGG200JwErUvLp');
+        let elements;
+        let paymentElement;
 
-        document.getElementById('submit').addEventListener('click', async (event) => {
-            event.preventDefault();
-            
-            // Fetch the Payment Intent client secret
+        const initializeStripeElements = async () => {
             const { clientSecret: paymentClientSecret } = await fetch('/create-payment-intent', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
             }).then((r) => r.json());
 
-            const elements = stripe.elements();
-            const paymentElement = elements.create('payment');
+            elements = stripe.elements();
+            paymentElement = elements.create('payment');
             paymentElement.mount('#payment-element');
+        };
+
+        document.getElementById('submit').addEventListener('click', async (event) => {
+            event.preventDefault();
 
             const { error: paymentError } = await stripe.confirmPayment({
                 elements,
@@ -1384,6 +1387,7 @@
                 const totalPrice = formData ? formData.totalPrice : 0;
                 document.getElementById('payment-summary').innerHTML = `<p>Cabin Price Subtotal: <strong>$${totalPrice.toFixed(2)}</strong></p>`;
                 document.getElementById('payment-summary').innerHTML += `<p>Order Total: <strong>$${(totalPrice + 5).toFixed(2)}</strong></p>`;
+                initializeStripeElements(); // Initialize Stripe elements when step 3 is shown
             }
         };
 
