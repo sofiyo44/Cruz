@@ -1657,8 +1657,9 @@
             function filterCruises() {
                 let filteredCruises = [...cruiseListData.cruises];
                 const selectedPorts = Array.from(document.querySelectorAll('#departure-port-list input:checked')).map(input => input.value);
-                const minPrice = parseInt(document.getElementById('amount2').value.split('-')[0].replace('$', '').trim());
-                const maxPrice = parseInt(document.getElementById('amount2').value.split('-')[1].replace('$', '').trim());
+                const priceRange = document.getElementById('amount2').value.split('-').map(price => parseInt(price.replace('$', '').trim()));
+                const minPrice = priceRange[0];
+                const maxPrice = priceRange[1];
     
                 if (selectedPorts.length > 0) {
                     filteredCruises = filteredCruises.filter(cruise => selectedPorts.includes(cruise.route.split(' - ')[0]));
@@ -1731,7 +1732,7 @@
             document.getElementById('apply-price-sidebar').addEventListener('click', function () {
                 applyFilters();
             });
-            
+    
             // Initialize the price range slider
             const slider = document.getElementById('slider-range2');
             noUiSlider.create(slider, {
@@ -1751,6 +1752,12 @@
                     }
                 }
             });
+    
+            slider.noUiSlider.on('update', function (values, handle) {
+                document.getElementById('amount2').value = `${values[0]} - ${values[1]}`;
+            });
+        }
+    });
 </script>
 </body>
 </html>
