@@ -1466,6 +1466,12 @@
 
                 generateSelectedCabinCards(); // Generate selected cabin cards for payment step
                 initializeStripeElements(); // Initialize Stripe elements when step 4 is shown
+
+                // Update button text on the last step
+                document.getElementById('nextBtn').textContent = 'Pay Now';
+            } else {
+                // Reset button text for other steps
+                document.getElementById('nextBtn').textContent = 'Next';
             }
         };
 
@@ -1474,7 +1480,7 @@
                 if (currentStep === 2) {
                     savePassengerInfo();
                 }
-                if (validateStep(currentStep)) {
+                if (validateStep(currentStep) && validateCabinSelection(currentStep)) {
                     currentStep++;
                     showStep(currentStep);
                 }
@@ -1493,6 +1499,18 @@
             for (let field of requiredFields) {
                 if (!field.value.trim() || (field.type === 'checkbox' && !field.checked)) {
                     alert('Please fill all required fields.');
+                    return false;
+                }
+            }
+            return true;
+        };
+
+        const validateCabinSelection = (step) => {
+            if (step === 1) {
+                const formData = JSON.parse(localStorage.getItem('cruiseFormData')) || { selectedCabins: {} };
+                const selectedCabins = Object.keys(formData.selectedCabins);
+                if (selectedCabins.length === 0) {
+                    alert('Please select at least one cabin before proceeding.');
                     return false;
                 }
             }
