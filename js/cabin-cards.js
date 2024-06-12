@@ -508,8 +508,8 @@ document.addEventListener('DOMContentLoaded', function () {
                     <div class="card-body ${smallFont ? 'small-font' : ''}">
                         <button class="btn btn-sm btn-danger float-right close-cabin-btn" style="border-radius: 50%;">&times;</button>
                         <h5 class="card-title">${child.text}</h5>
+                        <p class="card-price">Price: ${child.price}</p>
                         <div class="card-text toggle-content" style="display: none;">
-                            <p>Price: ${child.price}</p>
                             <p>Availability: ${child.availability}</p>
                             <ul style="font-size: 0.9em;">
                                 ${child.description.map(item => `<li>${item}</li>`).join('')}
@@ -521,7 +521,7 @@ document.addEventListener('DOMContentLoaded', function () {
             </div>
         `;
     };
-
+    
     const populateChildCards = (parent) => {
         const cabinCardsContainer = document.getElementById('cabin-cards');
         cabinCardsContainer.innerHTML = parent.children.map(child => createChildCard(child)).join('');
