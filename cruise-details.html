@@ -1028,7 +1028,7 @@
     <div class="modal-dialog modal-lg" role="document" style="max-width: 90%;">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="bookingModalLabel">Cruise Catalog - Booking Summary</h5>
+                <h5 class="modal-title" id="bookingModalLabel">Cruise Catalog - Booking</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -1149,21 +1149,21 @@
         localStorage.removeItem('cruiseFormData');
         localStorage.removeItem('bookingData');
     });
-    
+
     document.addEventListener('DOMContentLoaded', function () {
         console.log('DOM fully loaded and parsed');
-    
+
         const stripe = Stripe('pk_test_51PHWHV09WcoQiYp2LY3F4iWLOiYKIpSNMNK0QPt58EIhgKcPC6xQucuZT7Dkeii1VTo0I0V9YKkoJUJHVah1MGG200JwErUvLp');
         let elements;
         let paymentElement;
-    
+
         const initializeStripeElements = async () => {
             try {
                 const { clientSecret: paymentClientSecret } = await fetch('/create-payment-intent', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                 }).then((r) => r.json());
-    
+
                 elements = stripe.elements();
                 paymentElement = elements.create('payment');
                 paymentElement.mount('#payment-element');
@@ -1171,10 +1171,10 @@
                 console.error('Error initializing Stripe elements:', error);
             }
         };
-    
+
         document.getElementById('submit').addEventListener('click', async (event) => {
             event.preventDefault();
-    
+
             try {
                 const { error: paymentError } = await stripe.confirmPayment({
                     elements,
@@ -1182,7 +1182,7 @@
                         return_url: 'https://sofiyo44.github.io/Cruz/payment-complete.html',
                     },
                 });
-    
+
                 if (paymentError) {
                     document.getElementById('error-message').textContent = paymentError.message;
                 } else {
@@ -1191,13 +1191,13 @@
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
                     }).then((r) => r.json());
-    
+
                     const { error: setupError } = await stripe.confirmCardSetup(setupClientSecret, {
                         payment_method: {
                             card: paymentElement,
                         },
                     });
-    
+
                     if (setupError) {
                         document.getElementById('error-message').textContent = setupError.message;
                     } else {
@@ -1210,7 +1210,7 @@
                 document.getElementById('error-message').textContent = 'An unexpected error occurred. Please try again.';
             }
         });
-    
+
         const cruiseData = {
             title: "Atlantic Ocean Europe 7 days from/to Portsmouth",
             departure_cruise: "9/23/24",
@@ -1218,10 +1218,10 @@
             cruiseline: "Virgin Voyages",
             route: "Ports of Call: Portsmouth, Cruising Day, La Coruna, Bilbao, Le Verdon-sur-Mer, Portsmouth"
         };
-    
+
         // Save cruise details to localStorage
         localStorage.setItem('cruiseDetails', JSON.stringify(cruiseData));
-    
+
         // Populate cruise details
         document.querySelectorAll('.cruise-title').forEach(el => el.innerText = cruiseData.title);
         document.querySelectorAll('.departure-date').forEach(el => el.innerText = cruiseData.departure_cruise);
@@ -1229,7 +1229,7 @@
         document.querySelectorAll('.cruise-line').forEach(el => el.innerText = cruiseData.cruiseline);
         document.getElementById('cruise-route').innerText = cruiseData.route;
         document.getElementById('ship-description').innerHTML = "From decadent dinners to boozy after-parties, gather with your partner, your best friends and yourself to celebrate life's best moments aboard one of the 100% adults-only voyages.";
-    
+
         // Ship statistics
         document.getElementById('ship-statistics-left').innerHTML = `
             <li>Year Built: 2023</li>
@@ -1241,7 +1241,7 @@
             <li>Weight: 110,000</li>
             <li>Length: 278m</li>
         `;
-    
+
         // Included and Not Included
         document.getElementById('included-list').innerHTML = `
             <li>Cruise in the cabin category booked.</li>
@@ -1262,7 +1262,7 @@
             <li>Recommended gratuities.</li>
             <li>Visa, if necessary (extra charges possible).</li>
         `;
-    
+
         // Populate itinerary table
         document.getElementById('itinerary-table').innerHTML = `
             <tr>
@@ -1308,7 +1308,7 @@
                 <td></td>
             </tr>
         `;
-    
+
         // Populate amenities list
         const amenities = [
             {
@@ -1367,22 +1367,22 @@
                 ]
             }
         ];
-    
+
         $(document).ready(function () {
             $('.collapse-btn').click(function () {
                 var target = $(this).attr('href');
                 $(target).collapse('toggle');
             });
-    
+
             $('.collapse').on('hidden.bs.collapse', function () {
                 $(this).prev('.single-content-item').find('a').attr('aria-expanded', 'false');
             });
-    
+
             $('.collapse').on('shown.bs.collapse', function () {
                 $(this).prev('.single-content-item').find('a').attr('aria-expanded', 'true');
             });
         });
-    
+
         // Photo gallery
         document.getElementById('carousel-images').innerHTML = `
             <div class="carousel-item active">
@@ -1407,18 +1407,18 @@
                 <img src="//images.cruisec.net/images/ships/gallery/I7_05_VIR_BBQ.jpg" class="d-block w-100" alt="...">
             </div>
         `;
-    
+
         // Handle steps and form data
         let currentStep = 1;
         const totalSteps = 4;
-    
+
         const generateSelectedCabinCards = () => {
             const selectedCabinContainer = document.getElementById('selected-cabin-container');
             const formData = JSON.parse(localStorage.getItem('cruiseFormData')) || { selectedCabins: {} };
             const selectedCabins = formData.selectedCabins;
-    
+
             selectedCabinContainer.innerHTML = ''; // Clear any existing content
-    
+
             Object.keys(selectedCabins).forEach(cabinId => {
                 const cabin = selectedCabins[cabinId];
                 selectedCabinContainer.innerHTML += `
@@ -1432,7 +1432,7 @@
                     </div>
                 `;
             });
-    
+
             // Add chic scroller styles
             selectedCabinContainer.style.display = 'flex';
             selectedCabinContainer.style.overflowX = 'auto';
@@ -1443,7 +1443,7 @@
             selectedCabinContainer.style.whiteSpace = 'nowrap';
             selectedCabinContainer.style.webkitOverflowScrolling = 'touch'; // For smooth scrolling on iOS
         };
-    
+
         const showStep = (step) => {
             for (let i = 1; i <= totalSteps; i++) {
                 document.getElementById(`step${i}`).classList.toggle('d-none', i !== step);
@@ -1453,7 +1453,7 @@
                 const totalPrice = formData ? formData.totalPrice : 0;
                 document.getElementById('cabin-subtotal').innerHTML = `$${totalPrice.toFixed(2)}`;
                 document.getElementById('order-total').innerHTML = `$${totalPrice.toFixed(2)}`;
-    
+
                 // Display cruise details
                 const cruiseDetails = JSON.parse(localStorage.getItem('cruiseDetails'));
                 if (cruiseDetails) {
@@ -1463,12 +1463,12 @@
                     document.getElementById('summary-cruiseline').innerText = cruiseDetails.cruiseline;
                     document.getElementById('summary-route').innerText = cruiseDetails.route;
                 }
-    
+
                 generateSelectedCabinCards(); // Generate selected cabin cards for payment step
                 initializeStripeElements(); // Initialize Stripe elements when step 4 is shown
             }
         };
-    
+
         const nextStep = () => {
             if (currentStep < totalSteps) {
                 if (currentStep === 2) {
@@ -1480,14 +1480,14 @@
                 }
             }
         };
-    
+
         const prevStep = () => {
             if (currentStep > 1) {
                 currentStep--;
                 showStep(currentStep);
             }
         };
-    
+
         const validateStep = (step) => {
             const requiredFields = document.querySelectorAll(`.step${step} .form-control[required]`);
             for (let field of requiredFields) {
@@ -1498,7 +1498,7 @@
             }
             return true;
         };
-    
+
         const generatePassengerForm = (numPassengers) => {
             const container = document.getElementById('passenger-info-container');
             container.innerHTML = '';
@@ -1506,7 +1506,7 @@
                 addPassengerForm(container, i);
             }
         };
-    
+
         const addPassengerForm = (container, index) => {
             const passengerForm = `
                 <div class="card mb-3 passenger-card">
@@ -1539,10 +1539,6 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="proofOfID${index}">Proof of Valid ID <span class="text-danger">*</span></label>
-                            <input type="file" class="form-control" id="proofOfID${index}" required>
-                        </div>
-                        <div class="form-group">
                             <label for="specialNeeds${index}">Special Needs/Medical Conditions</label>
                             <input type="text" class="form-control" id="specialNeeds${index}">
                         </div>
@@ -1559,7 +1555,7 @@
                                 <label for="state${index}">State <span class="text-danger">*</span></label>
                                 <input type="text" class="form-control" id="state${index}" required>
                             </div>
-                            <div class="form-group col-md-4">
+                            <div class="form-group col-md4">
                                 <label for="zip${index}">Zip Code <span class="text-danger">*</span></label>
                                 <input type="text" class="form-control" id="zip${index}" required>
                             </div>
@@ -1593,7 +1589,7 @@
             `;
             container.innerHTML += passengerForm;
         };
-    
+
         const savePassengerInfo = () => {
             const passengerCards = document.querySelectorAll('.passenger-card');
             const passengersData = Array.from(passengerCards).map((card, index) => ({
@@ -1602,7 +1598,6 @@
                 nationality: card.querySelector(`#nationality${index}`).value,
                 passport: card.querySelector(`#passport${index}`).value,
                 cruiseMembership: card.querySelector(`#cruiseMembership${index}`).value,
-                proofOfID: card.querySelector(`#proofOfID${index}`).files[0] ? card.querySelector(`#proofOfID${index}`).files[0].name : '',
                 specialNeeds: card.querySelector(`#specialNeeds${index}`).value,
                 address: card.querySelector(`#address${index}`).value,
                 city: card.querySelector(`#city${index}`).value,
@@ -1614,37 +1609,23 @@
                 emergencyContactEmail: card.querySelector(`#emergencyContactEmail${index}`).value,
                 emergencyContactPhone: card.querySelector(`#emergencyContactPhone${index}`).value
             }));
-            const termsCheck = document.querySelector('#termsCheck').checked;
             const bookingData = {
                 passengers: passengersData,
-                termsAccepted: termsCheck
             };
             localStorage.setItem('bookingData', JSON.stringify(bookingData));
         };
-    
+
         // Event listeners for next and previous buttons
         document.getElementById('nextBtn').addEventListener('click', nextStep);
         document.getElementById('prevBtn').addEventListener('click', prevStep);
-    
+
         // Event listener for add passenger button
         document.getElementById('add-passenger').addEventListener('click', function () {
             const container = document.getElementById('passenger-info-container');
             const currentPassengerCount = container.querySelectorAll('.card').length;
             addPassengerForm(container, currentPassengerCount);
         });
-    
-        // Event listener for toggle policies button
-        document.getElementById('toggle-policies').addEventListener('click', function () {
-            const policiesContent = document.getElementById('policies-content');
-            if (policiesContent.style.display === 'none' || policiesContent.style.display === '') {
-                policiesContent.style.display = 'block';
-                this.textContent = 'Hide Terms and Policies';
-            } else {
-                policiesContent.style.display = 'none';
-                this.textContent = 'Show Terms and Policies';
-            }
-        });
-    
+
         // Initialize form and steps
         generatePassengerForm(1); // Start with one passenger form
         showStep(currentStep); // Show the initial step
