@@ -1466,18 +1466,19 @@
 
                 generateSelectedCabinCards(); // Generate selected cabin cards for payment step
                 initializeStripeElements(); // Initialize Stripe elements when step 4 is shown
+
+                // Change button text for the last step
+                document.getElementById('nextBtn').textContent = 'Pay Now';
+            } else {
+                // Reset button text for other steps
+                document.getElementById('nextBtn').textContent = 'Next';
             }
         };
 
         const nextStep = () => {
-            if (currentStep < totalSteps) {
-                if (currentStep === 2) {
-                    savePassengerInfo();
-                }
-                if (validateStep(currentStep)) {
-                    currentStep++;
-                    showStep(currentStep);
-                }
+            if (validateStep(currentStep)) {
+                currentStep++;
+                showStep(currentStep);
             }
         };
 
@@ -1489,14 +1490,41 @@
         };
 
         const validateStep = (step) => {
-            const requiredFields = document.querySelectorAll(`.step${step} .form-control[required]`);
-            for (let field of requiredFields) {
-                if (!field.value.trim() || (field.type === 'checkbox' && !field.checked)) {
-                    alert('Please fill all required fields.');
-                    return false;
-                }
+            let isValid = true;
+            switch (step) {
+                case 1:
+                    const formData = JSON.parse(localStorage.getItem('cruiseFormData')) || { selectedCabins: {} };
+                    if (!Object.keys(formData.selectedCabins).length) {
+                        alert('Please select at least one cabin before proceeding.');
+                        isValid = false;
+                    }
+                    break;
+                case 2:
+                    const requiredFields = document.querySelectorAll(`.step${step} .form-control[required]`);
+                    for (let field of requiredFields) {
+                        if (!field.value.trim() || (field.type === 'checkbox' && !field.checked)) {
+                            alert('Please fill all required fields.');
+                            isValid = false;
+                            break;
+                        }
+                    }
+                    break;
+                case 3:
+                    const iframe = document.querySelector('iframe');
+                    if (iframe) {
+                        const iframeDocument = iframe.contentDocument || iframe.contentWindow.document;
+                        const formElements = iframeDocument.querySelectorAll('form input, form select, form textarea');
+                        for (let element of formElements) {
+                            if (element.required && !element.value.trim()) {
+                                alert('Please complete all required fields in the booking form.');
+                                isValid = false;
+                                break;
+                            }
+                        }
+                    }
+                    break;
             }
-            return true;
+            return isValid;
         };
 
         const generatePassengerForm = (numPassengers) => {
@@ -1555,7 +1583,7 @@
                                 <label for="state${index}">State <span class="text-danger">*</span></label>
                                 <input type="text" class="form-control" id="state${index}" required>
                             </div>
-                            <div class="form-group col-md4">
+                            <div class="form-group col-md-4">
                                 <label for="zip${index}">Zip Code <span class="text-danger">*</span></label>
                                 <input type="text" class="form-control" id="zip${index}" required>
                             </div>
