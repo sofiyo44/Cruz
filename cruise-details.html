@@ -1034,7 +1034,8 @@
                         <ul class="list-inline">
                             <li class="list-inline-item active">1. Summary</li>
                             <li class="list-inline-item">2. Passenger Info</li>
-                            <li class="list-inline-item">3. Payment</li>
+                            <li class="list-inline-item">3. Additional Info</li>
+                            <li class="list-inline-item">4. Payment</li>
                         </ul>
                     </div>
                     <div id="cabin-chips" class="d-flex flex-wrap mb-3"></div>
@@ -1109,8 +1110,15 @@
                     </div>
                 </div>
 
-                <!-- Step 3: Payment Information -->
+                <!-- Step 3: Additional Information -->
                 <div id="step3" class="step d-none">
+                    <h3 class="mb-4">Additional Information</h3>
+                    <iframe src="https://tap13.myagentgenie.com/sofiayousif/booking-form/" width="100%" height="600px" frameborder="0"></iframe>
+                    <p class="mt-2">Please finish both parts of this page before moving on.</p>
+                </div>
+
+                <!-- Step 4: Payment Information -->
+                <div id="step4" class="step d-none">
                     <h3 class="mb-4">Payment Information</h3>
                     <div id="cruise-details-summary" class="mb-4">
                         <h5>Cruise Details</h5>
@@ -1431,7 +1439,7 @@
     
         // Handle steps and form data
         let currentStep = 1;
-        const totalSteps = 3;
+        const totalSteps = 4;
     
         const generateSelectedCabinCards = () => {
             const selectedCabinContainer = document.getElementById('selected-cabin-container');
@@ -1469,7 +1477,7 @@
             for (let i = 1; i <= totalSteps; i++) {
                 document.getElementById(`step${i}`).classList.toggle('d-none', i !== step);
             }
-            if (step === 3) {
+            if (step === 4) {
                 const formData = JSON.parse(localStorage.getItem('cruiseFormData'));
                 const totalPrice = formData ? formData.totalPrice : 0;
                 document.getElementById('cabin-subtotal').innerHTML = `$${totalPrice.toFixed(2)}`;
@@ -1486,7 +1494,7 @@
                 }
     
                 generateSelectedCabinCards(); // Generate selected cabin cards for payment step
-                initializeStripeElements(); // Initialize Stripe elements when step 3 is shown
+                initializeStripeElements(); // Initialize Stripe elements when step 4 is shown
             }
         };
     
