@@ -484,7 +484,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const updateTotalPrice = (amount) => {
         totalPrice += amount;
         document.getElementById('booking-sub-total').textContent = `Sub Total: $${totalPrice.toFixed(2)}`;
-        document.getElementById('booking-total-price').textContent = `Total Price: $${(totalPrice + 5).toFixed(2)}`; // Assuming Taxes and Fees is $5
+        document.getElementById('booking-total-price').textContent = `Total Price: $${totalPrice.toFixed(2)}`;
         saveTotalPrice(totalPrice);
     };
 
