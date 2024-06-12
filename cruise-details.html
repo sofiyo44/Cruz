@@ -1055,8 +1055,8 @@
                                         <ul id="order-details-list" class="list-items list-items-2 py-3"></ul>
                                         <ul class="list-items list-items-2 pt-3">
                                             <li id="booking-sub-total">Sub Total: $0</li>
-                                            <li id="booking-taxes-fees">No Aditional Fees: Ever!</li>
-                                            <li id="booking-total-price" style="font-size: 3em;">Total Price: $0</li>
+                                            <li id="booking-taxes-fees">No Additional Fees: Ever!</li>
+                                            <li id="booking-total-price" style="font-size: 2em;">Total Price: $0</li>
                                         </ul>
                                     </div>
                                     <div id="selected-cabin-card" class="w-50"></div>
@@ -1481,7 +1481,7 @@
                 const formData = JSON.parse(localStorage.getItem('cruiseFormData'));
                 const totalPrice = formData ? formData.totalPrice : 0;
                 document.getElementById('cabin-subtotal').innerHTML = `$${totalPrice.toFixed(2)}`;
-                document.getElementById('order-total').innerHTML = `$${(totalPrice + 5).toFixed(2)}`;
+                document.getElementById('order-total').innerHTML = `$${totalPrice.toFixed(2)}`;
     
                 // Display cruise details
                 const cruiseDetails = JSON.parse(localStorage.getItem('cruiseDetails'));
