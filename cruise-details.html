@@ -1466,12 +1466,6 @@
 
                 generateSelectedCabinCards(); // Generate selected cabin cards for payment step
                 initializeStripeElements(); // Initialize Stripe elements when step 4 is shown
-
-                // Change button text for the final step
-                document.getElementById('nextBtn').innerText = 'Pay Now';
-            } else {
-                // Reset button text for other steps
-                document.getElementById('nextBtn').innerText = 'Next';
             }
         };
 
@@ -1495,22 +1489,11 @@
         };
 
         const validateStep = (step) => {
-            // Custom validation for each step
-            if (step === 1) {
-                // Validate cabin selection
-                const formData = JSON.parse(localStorage.getItem('cruiseFormData')) || { selectedCabins: {} };
-                if (Object.keys(formData.selectedCabins).length === 0) {
-                    alert('Please select at least one cabin.');
+            const requiredFields = document.querySelectorAll(`.step${step} .form-control[required]`);
+            for (let field of requiredFields) {
+                if (!field.value.trim() || (field.type === 'checkbox' && !field.checked)) {
+                    alert('Please fill all required fields.');
                     return false;
-                }
-            } else if (step === 2) {
-                // Validate passenger information
-                const requiredFields = document.querySelectorAll(`.step${step} .form-control[required]`);
-                for (let field of requiredFields) {
-                    if (!field.value.trim()) {
-                        alert('Please fill all required fields.');
-                        return false;
-                    }
                 }
             }
             return true;
@@ -1572,7 +1555,7 @@
                                 <label for="state${index}">State <span class="text-danger">*</span></label>
                                 <input type="text" class="form-control" id="state${index}" required>
                             </div>
-                            <div class="form-group col-md-4">
+                            <div class="form-group col-md4">
                                 <label for="zip${index}">Zip Code <span class="text-danger">*</span></label>
                                 <input type="text" class="form-control" id="zip${index}" required>
                             </div>
