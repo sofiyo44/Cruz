@@ -139,6 +139,12 @@
         .mb-4 {
             margin-bottom: 1.5rem !important;
         }
+        #add-passenger {
+            padding: 1rem 2rem; /* Increases padding for a bigger button */
+            font-size: 1.5rem; /* Increases font size */
+            width: auto; /* Adjust width if needed */
+            height: auto; /* Adjust height if needed */
+        }
     </style>
 </head>
 <body>
@@ -1032,10 +1038,11 @@
                 <div id="step1" class="step">
                     <div class="breadcrumb mb-4">
                         <ul class="list-inline">
-                            <li class="list-inline-item active">1. Summary</li>
-                            <li class="list-inline-item">2. Passenger Info</li>
-                            <li class="list-inline-item">3. Additional Info</li>
-                            <li class="list-inline-item">4. Payment</li>
+                            <li class="list-inline-item active"> Steps Ahead: </li>
+                            <li class="list-inline-item active">Cabin Selection •</li>
+                            <li class="list-inline-item"> Passenger Info •</li>
+                            <li class="list-inline-item"> Booking Form •</li>
+                            <li class="list-inline-item"> Summary & Payment</li>
                         </ul>
                     </div>
                     <div id="cabin-chips" class="d-flex flex-wrap mb-3"></div>
@@ -1045,7 +1052,7 @@
                     </div>
                     <div class="form-box booking-detail-form mb-4">
                         <div class="form-title-wrap mb-3">
-                            <h3 class="title">Booking Details</h3>
+                            <h3 class="title">Cabin Details</h3>
                         </div>
                         <div class="form-content">
                             <div class="card-item shadow-none radius-none mb-0">
@@ -1072,49 +1079,13 @@
                     <h3 class="mb-3">Passenger Information</h3>
                     <div id="passenger-info-container" class="mb-3"></div>
                     <button type="button" id="add-passenger" class="btn btn-secondary mb-3">Add Passenger</button>
-                    <div class="terms-and-policies">
-                        <h3 class="mb-3">Terms and Policies</h3>
-                        <button type="button" id="toggle-policies" class="btn btn-link mb-3">Show Terms and Policies</button>
-                        <div id="policies-content" style="display: none;">
-                            <ul>
-                                <li><strong>Travel Insurance:</strong> I understand that travel insurance is highly recommended for this trip. I have either purchased travel insurance or have chosen to decline it at my own risk.</li>
-                                <li><strong>Health and Safety Acknowledgment:</strong> I acknowledge that I am responsible for understanding and complying with all health and safety protocols established by the cruise line, including any requirements related to COVID-19 or other infectious diseases.</li>
-                                <li><strong>Liability Waiver:</strong> I agree to release and hold harmless the cruise company from any liability, claims, or damages arising from my participation in the cruise, except for those caused by the cruise company's gross negligence.</li>
-                                <li><strong>Cancellation Policy:</strong> I have read and agree to the cruise line's cancellation policy, including any penalties that may apply for canceling my reservation.</li>
-                                <li><strong>Terms and Conditions:</strong> I have read and agree to the cruise line's terms and conditions, including payment schedules, itinerary changes, and any other relevant policies.</li>
-                                <li><strong>Medical Information:</strong> I confirm that I have provided accurate medical information for all passengers in my booking and understand the cruise line's policies regarding medical conditions and medications.</li>
-                                <li><strong>Excursion Liability:</strong> I understand that any shore excursions booked through the cruise line are subject to separate terms and conditions, and I accept the associated risks and liability.</li>
-                                <li><strong>Fitness to Travel:</strong> I confirm that I am fit to travel and participate in the activities offered on the cruise. I will notify the cruise line of any changes to my health status before departure.</li>
-                                <li><strong>Cancellation Fees:</strong>
-                                    <ul>
-                                        <li>Cancellations made more than 90 days before the departure date will incur a fee of $100 per passenger.</li>
-                                        <li>Cancellations made between 60 and 89 days before the departure date will incur a fee of 50% of the total booking cost.</li>
-                                        <li>Cancellations made between 30 and 59 days before the departure date will incur a fee of 75% of the total booking cost.</li>
-                                        <li>Cancellations made within 29 days of the departure date will incur a fee of 100% of the total booking cost.</li>
-                                    </ul>
-                                </li>
-                                <li><strong>Non-Refundable Deposits:</strong> I understand that any deposits paid are non-refundable, except as outlined in the cruise line's cancellation policy.</li>
-                                <li><strong>Travel Documentation:</strong> I acknowledge that it is my responsibility to ensure that all passengers have valid passports, visas, and any other required travel documents.</li>
-                                <li><strong>Age Restrictions:</strong> I understand that certain activities and areas of the ship may have age restrictions, and I agree to comply with these policies.</li>
-                                <li><strong>Force Majeure:</strong> I understand that the cruise line is not liable for any delays, changes, or cancellations due to events beyond its control, including but not limited to natural disasters, political unrest, and pandemics.</li>
-                            </ul>
-                        </div>
-                        <div class="form-group form-check">
-                            <input type="checkbox" class="form-check-input" id="termsCheck" required>
-                            <label class="form-check-label" for="termsCheck">I agree to the terms and policies <span class="text-danger">*</span></label>
-                        </div>
-                        <div class="form-group">
-                            <label for="signature">Signature <span class="text-danger">*</span></label>
-                            <input type="text" class="form-control" id="signature" required>
-                        </div>
-                    </div>
                 </div>
 
                 <!-- Step 3: Additional Information -->
                 <div id="step3" class="step d-none">
-                    <h3 class="mb-4">Additional Information</h3>
+                    <h3 class="mb-4">Booking Form</h3>
                     <iframe src="https://tap13.myagentgenie.com/sofiayousif/booking-form/" width="100%" height="600px" frameborder="0"></iframe>
-                    <p class="mt-2">Please finish both parts of this page before moving on.</p>
+                    <p class="mt-2">Please finish all parts of this page before moving on.</p>
                 </div>
 
                 <!-- Step 4: Payment Information -->
