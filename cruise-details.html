@@ -1041,8 +1041,8 @@
                             <li class="list-inline-item active"> Steps Ahead: </li>
                             <li class="list-inline-item active">Cabin Selection •</li>
                             <li class="list-inline-item"> Passenger Info •</li>
-                            <li class="list-inline-item"> Booking Form •</li>
-                            <li class="list-inline-item"> Summary & Payment</li>
+                            <li class="list-inline-item"> Summary & Payment •</li>
+                            <li class="list-inline-item"> Booking Form</li>
                         </ul>
                     </div>
                     <div id="cabin-chips" class="d-flex flex-wrap mb-3"></div>
@@ -1081,15 +1081,8 @@
                     <button type="button" id="add-passenger" class="btn btn-secondary mb-3">Add Passenger</button>
                 </div>
 
-                <!-- Step 3: Additional Information -->
+                <!-- Step 3: Payment Information -->
                 <div id="step3" class="step d-none">
-                    <h3 class="mb-4">Booking Form</h3>
-                    <iframe src="https://tap13.myagentgenie.com/sofiayousif/booking-form/" width="100%" height="600px" frameborder="0"></iframe>
-                    <p class="mt-2"> For your booking to be processed, please finish all parts of this page and PRESS SUBMIT before moving on.</p>
-                </div>
-
-                <!-- Step 4: Payment Information -->
-                <div id="step4" class="step d-none">
                     <h3 class="mb-4">Payment Information</h3>
                     <div id="cruise-details-summary" class="mb-4">
                         <h5>Cruise Details</h5>
@@ -1109,6 +1102,13 @@
                         <button id="submit" class="btn btn-primary">Pay Now</button>
                         <div id="error-message" class="text-danger mt-3"></div>
                     </form>
+                </div>
+
+                <!-- Step 4: Booking Form -->
+                <div id="step4" class="step d-none">
+                    <h3 class="mb-4">Booking Form</h3>
+                    <iframe src="https://tap13.myagentgenie.com/sofiayousif/booking-form/" width="100%" height="600px" frameborder="0"></iframe>
+                    <p class="mt-2"> For your booking to be processed, please finish all parts of this page and PRESS SUBMIT before moving on.</p>
                 </div>
             </div>
             <div class="modal-footer">
@@ -1186,30 +1186,42 @@
                 if (paymentError) {
                     document.getElementById('error-message').textContent = paymentError.message;
                 } else {
-                    // Payment succeeded, now create Setup Intent
-                    const { clientSecret: setupClientSecret } = await fetch('/create-setup-intent', {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                    }).then((r) => r.json());
-
-                    const { error: setupError } = await stripe.confirmCardSetup(setupClientSecret, {
-                        payment_method: {
-                            card: paymentElement,
-                        },
-                    });
-
-                    if (setupError) {
-                        document.getElementById('error-message').textContent = setupError.message;
-                    } else {
-                        // Payment details saved for future use
-                        alert('Payment details saved successfully!');
-                    }
+                    // Payment succeeded, send email with booking summary
+                    sendBookingSummaryEmail();
                 }
             } catch (error) {
                 console.error('Error during payment submission:', error);
                 document.getElementById('error-message').textContent = 'An unexpected error occurred. Please try again.';
             }
         });
+
+        const sendBookingSummaryEmail = async () => {
+            try {
+                const cruiseDetails = JSON.parse(localStorage.getItem('cruiseDetails'));
+                const bookingData = JSON.parse(localStorage.getItem('bookingData'));
+                const formData = JSON.parse(localStorage.getItem('cruiseFormData'));
+
+                const emailContent = {
+                    cruiseDetails: cruiseDetails,
+                    bookingData: bookingData,
+                    cabinDetails: formData
+                };
+
+                await fetch('/send-booking-summary-email', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        email: 'sofiayousif42@gmail.com',
+                        content: emailContent
+                    })
+                });
+
+                alert('Booking summary email sent successfully!');
+            } catch (error) {
+                console.error('Error sending booking summary email:', error);
+                alert('Failed to send booking summary email.');
+            }
+        };
 
         const cruiseData = {
             title: "Atlantic Ocean Europe 7 days from/to Portsmouth",
@@ -1448,7 +1460,7 @@
             for (let i = 1; i <= totalSteps; i++) {
                 document.getElementById(`step${i}`).classList.toggle('d-none', i !== step);
             }
-            if (step === 4) {
+            if (step === 3) {
                 const formData = JSON.parse(localStorage.getItem('cruiseFormData'));
                 const totalPrice = formData ? formData.totalPrice : 0;
                 document.getElementById('cabin-subtotal').innerHTML = `$${totalPrice.toFixed(2)}`;
@@ -1465,7 +1477,7 @@
                 }
 
                 generateSelectedCabinCards(); // Generate selected cabin cards for payment step
-                initializeStripeElements(); // Initialize Stripe elements when step 4 is shown
+                initializeStripeElements(); // Initialize Stripe elements when step 3 is shown
 
                 // Update button text on the last step
                 document.getElementById('nextBtn').textContent = 'Pay Now';
@@ -1484,6 +1496,10 @@
                     currentStep++;
                     showStep(currentStep);
                 }
+            } else if (currentStep === totalSteps) {
+                // If on the last step (step 4), just show the embedded form and no buttons
+                document.getElementById('nextBtn').style.display = 'none';
+                document.getElementById('prevBtn').style.display = 'none';
             }
         };
 
