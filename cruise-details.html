@@ -1097,11 +1097,8 @@
                         <p>Cabin Price Subtotal: <strong id="cabin-subtotal">$0</strong></p>
                         <p>Order Total: <strong id="order-total">$0</strong></p>
                     </div>
-                    <form id="payment-form">
-                        <div id="payment-element" class="mb-4"></div>
-                        <button id="submit" class="btn btn-primary">Pay Now</button>
-                        <div id="error-message" class="text-danger mt-3"></div>
-                    </form>
+                    <button id="submit" class="btn btn-primary">Pay Now</button>
+                    <div id="error-message" class="text-danger mt-3"></div>
                 </div>
 
                 <!-- Step 4: Booking Form -->
@@ -1118,7 +1115,6 @@
         </div>
     </div>
 </div>
-
 
 <!-- Template JS Files -->
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
@@ -1140,9 +1136,7 @@
 <script src="js/navbar-sticky.js"></script>
 <script src="js/main.js"></script>
 <script src="cruise-detail-temp.js"></script>
-<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" integrity="sha512-GvTx5Z5+G7ZSM7+3H1mBjd+z5x6TBe+9U/8A0pMw==" crossorigin=""></script>
 <script src="js/cabin-cards.js"></script>
-<script src="https://js.stripe.com/v3/"></script>
 <script>
     // Event listener to clear local storage when the modal is closed
     $('#bookingModal').on('hidden.bs.modal', function () {
@@ -1153,42 +1147,14 @@
     document.addEventListener('DOMContentLoaded', function () {
         console.log('DOM fully loaded and parsed');
 
-        const stripe = Stripe('pk_test_51PHWHV09WcoQiYp2LY3F4iWLOiYKIpSNMNK0QPt58EIhgKcPC6xQucuZT7Dkeii1VTo0I0V9YKkoJUJHVah1MGG200JwErUvLp');
         let elements;
-        let paymentElement;
-
-        const initializeStripeElements = async () => {
-            try {
-                const { clientSecret: paymentClientSecret } = await fetch('/create-payment-intent', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                }).then((r) => r.json());
-
-                elements = stripe.elements();
-                paymentElement = elements.create('payment');
-                paymentElement.mount('#payment-element');
-            } catch (error) {
-                console.error('Error initializing Stripe elements:', error);
-            }
-        };
 
         document.getElementById('submit').addEventListener('click', async (event) => {
             event.preventDefault();
 
             try {
-                const { error: paymentError } = await stripe.confirmPayment({
-                    elements,
-                    confirmParams: {
-                        return_url: 'https://sofiyo44.github.io/Cruz/payment-complete.html',
-                    },
-                });
-
-                if (paymentError) {
-                    document.getElementById('error-message').textContent = paymentError.message;
-                } else {
-                    // Payment succeeded, send email with booking summary
-                    sendBookingSummaryEmail();
-                }
+                // Payment succeeded, send email with booking summary
+                sendBookingSummaryEmail();
             } catch (error) {
                 console.error('Error during payment submission:', error);
                 document.getElementById('error-message').textContent = 'An unexpected error occurred. Please try again.';
@@ -1477,10 +1443,13 @@
                 }
 
                 generateSelectedCabinCards(); // Generate selected cabin cards for payment step
-                initializeStripeElements(); // Initialize Stripe elements when step 3 is shown
 
                 // Update button text on the last step
                 document.getElementById('nextBtn').textContent = 'Pay Now';
+            } else if (step === 4) {
+                // If on the last step (step 4), just show the embedded form and no buttons
+                document.getElementById('nextBtn').style.display = 'none';
+                document.getElementById('prevBtn').style.display = 'none';
             } else {
                 // Reset button text for other steps
                 document.getElementById('nextBtn').textContent = 'Next';
