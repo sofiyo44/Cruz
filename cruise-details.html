@@ -1147,14 +1147,12 @@
     document.addEventListener('DOMContentLoaded', function () {
         console.log('DOM fully loaded and parsed');
 
-        let elements;
-
         document.getElementById('submit').addEventListener('click', async (event) => {
             event.preventDefault();
 
             try {
-                // Payment succeeded, send email with booking summary
-                sendBookingSummaryEmail();
+                console.log('Payment succeeded, sending email with booking summary');
+                await sendBookingSummaryEmail();
             } catch (error) {
                 console.error('Error during payment submission:', error);
                 document.getElementById('error-message').textContent = 'An unexpected error occurred. Please try again.';
@@ -1173,7 +1171,9 @@
                     cabinDetails: formData
                 };
 
-                await fetch('/send-booking-summary-email', {
+                console.log('Sending email with content:', emailContent);
+
+                const response = await fetch('/send-booking-summary-email', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
@@ -1182,7 +1182,14 @@
                     })
                 });
 
-                alert('Booking summary email sent successfully!');
+                const responseData = await response.json();
+                console.log('Email send response:', responseData);
+
+                if (response.ok) {
+                    alert('Booking summary email sent successfully!');
+                } else {
+                    alert('Failed to send booking summary email.');
+                }
             } catch (error) {
                 console.error('Error sending booking summary email:', error);
                 alert('Failed to send booking summary email.');
