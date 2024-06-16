@@ -1,12 +1,12 @@
 async function searchCruises() {
-    const sea = document.querySelector('input[name="sea"]:checked').value;
-    const packageType = document.querySelector('input[name="package"]:checked').value;
-    const area = Array.from(document.querySelectorAll('input[name="area"]:checked')).map(el => el.value);
-    const cruiseline = Array.from(document.querySelectorAll('input[name="cruiseline"]:checked')).map(el => el.value);
-    const ship = Array.from(document.querySelectorAll('input[name="ship"]:checked')).map(el => el.value);
+    const sea = document.querySelector('input[name="sea"]:checked')?.value;
+    const packageType = document.querySelector('input[name="package"]:checked')?.value;
+    const area = Array.from(document.querySelectorAll('select[name="area"] option:checked')).map(el => el.value);
+    const cruiseline = Array.from(document.querySelectorAll('select[name="cruiseline"] option:checked')).map(el => el.value);
+    const ship = Array.from(document.querySelectorAll('select[name="ship"] option:checked')).map(el => el.value);
     const duration = Array.from(document.querySelectorAll('input[name="duration"]:checked')).map(el => el.value);
-    const departure = document.getElementById('departure').value;
-    const arrival = document.getElementById('arrival').value;
+    const departure = document.querySelector('input[name="date"]').value;
+    const arrival = document.getElementById('arrival')?.value;
 
     const query = new URLSearchParams({
         sea,
@@ -30,7 +30,7 @@ async function searchCruises() {
 }
 
 document.addEventListener('DOMContentLoaded', function () {
-    document.querySelector('.theme-btn').addEventListener('click', function (e) {
+    document.querySelector('button[onclick="searchCruises()"]').addEventListener('click', function (e) {
         e.preventDefault();
         searchCruises();
     });
