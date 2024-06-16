@@ -30,7 +30,7 @@ async function searchCruises() {
 }
 
 document.addEventListener('DOMContentLoaded', function () {
-    document.querySelector('button[onclick="searchCruises()"]').addEventListener('click', function (e) {
+    document.querySelector('button[type="button"]').addEventListener('click', function (e) {
         e.preventDefault();
         searchCruises();
     });
