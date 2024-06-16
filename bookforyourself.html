@@ -298,13 +298,12 @@
                                                     <select class="select-contain-select" name="area">
                                                         <option value="">Select destination</option>
                                                         <optgroup label="Most Popular">
-                                                            <option value="caribbean">Caribbean</option>
-                                                            <option value="bahamas">Bahamas</option>
-                                                            <option value="mexico">Mexico</option>
-                                                            <option value="alaska">Alaska</option>
-                                                            <option value="europe">Europe</option>
-                                                            <option value="bermuda">Bermuda</option>
-                                                            <option value="hawaii">Hawaii</option>
+                                                            <option value="4">Caribbean</option>
+                                                            <option value="63">Northwest Passage</option>                                                            
+                                                            <option value="105">Europe</option>
+                                                            <option value="18">Australia</option>
+                                                            <option value="11">Hawaii</option>
+                                                            <option value="54">Mexican Riviera</option>
                                                             <option value="nepal">Nepal</option>
                                                             <option value="italy">Italy</option>
                                                             <option value="canada-new-england">Canada / New England</option>
@@ -635,12 +634,12 @@
                                             <div class="form-group" style="font-size: 0.875rem;">
                                                 <div class="checkbox">
                                                     <label>
-                                                        <input type="checkbox" name="cruise_type[]" value="sea_cruise"> Sea Cruise
+                                                        <input type="checkbox" name="cruise_type" value="sea_cruise"> Sea Cruise
                                                     </label>
                                                 </div>
                                                 <div class="checkbox">
                                                     <label>
-                                                        <input type="checkbox" name="cruise_type[]" value="river_cruise"> River Cruise
+                                                        <input type="checkbox" name="cruise_type" value="river_cruise"> River Cruise
                                                     </label>
                                                 </div>
                                             </div>
@@ -653,7 +652,7 @@
                                             <div class="form-group" style="font-size: 0.875rem;">
                                                 <div class="checkbox">
                                                     <label>
-                                                        <input type="checkbox" name="package_options[]" value="see_packages"> See Packages Only
+                                                        <input type="checkbox" name="package_options" value="see_packages"> See Packages Only
                                                     </label>
                                                 </div>
                                             </div>
@@ -663,7 +662,7 @@
                                     <div class="col-lg-12 col-md-18 mb-1">
                                         <div class="d-flex justify-content-center">
                                             <div class="form-group">
-                                              <button onclick="searchCruises()">Search Now</button>
+                                              <button type="button" onclick="searchCruises()">Search Now</button>
                                             </div>
                                         </div>
                                     </div>
