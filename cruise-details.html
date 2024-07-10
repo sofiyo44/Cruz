@@ -604,7 +604,7 @@
                 <div class="col-lg-4">
                     <!-- Sidebar content -->
                     <div class="sidebar single-content-sidebar mb-0">
-                        <div class="sidebar-widget single-content-widget" style="margin-bottom: 30px;">
+                        <div class="sidebar-widget single-content-widget">
                             <div class="sidebar-widget-item">
                                 <div class="sidebar-book-title-wrap mb-3">
                                     <h3>Popular</h3>
@@ -614,11 +614,22 @@
                             <div class="sidebar-widget-item">
                                 <div class="contact-form-action">
                                     <form action="#">
-                                         <div id="age-inputs">
+                                        <div class="input-box">
+                                            <label class="label-text">Number of Guests</label>
+                                            <div class="form-group">
+                                                <select class="form-control" id="number-of-guests">
+                                                    <option value="1">1</option>
+                                                    <option value="2">2</option>
+                                                    <option value="3">3</option>
+                                                    <option value="4">4</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div id="age-inputs">
                                             <div class="input-box">
-                                                <label class="label-text">Passenger Email</label>
+                                                <label class="label-text">Age of Guest</label>
                                                 <div class="form-group">
-                                                    <input type="text" class="form-control age-guest" id="age-guest-1" placeholder="Email Address">
+                                                    <input type="text" class="form-control age-guest" id="age-guest-1" placeholder="Age of Guest 1">
                                                 </div>
                                             </div>
                                         </div>
@@ -659,6 +670,14 @@
                                                 <th scope="col" id="suite-cabin" class="cabin-option" data-cabin-type="SU" style="cursor: pointer;">Suite</th>
                                             </tr>
                                         </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td class="cabin-price" data-cabin-type="IS">$959 USD</td>
+                                                <td class="cabin-price" data-cabin-type="OS">$1,063 USD</td>
+                                                <td class="cabin-price" data-cabin-type="BK">$1,139 USD</td>
+                                                <td class="cabin-price" data-cabin-type="SU">$3,824 USD</td>
+                                            </tr>
+                                        </tbody>
                                     </table>
                                 </div>
                             </div>
