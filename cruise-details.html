@@ -1221,6 +1221,118 @@
 
         loadCruiseDetails();
 
+                // Handle number of guests selection
+        document.getElementById('number-of-guests').addEventListener('change', function () {
+            const numGuests = parseInt(this.value);
+            const ageInputs = document.getElementById('age-inputs');
+            ageInputs.innerHTML = '';
+            for (let i = 1; i <= numGuests; i++) {
+                ageInputs.innerHTML += `
+                    <div class="input-box">
+                        <label class="label-text">Age of Guest ${i}</label>
+                        <div class="form-group">
+                            <input type="text" class="form-control age-guest" id="age-guest-${i}" placeholder="Age of Guest ${i}" required>
+                        </div>
+                    </div>
+                `;
+            }
+        });
+    
+        // Handle guest residency selection
+        document.getElementById('guest-residency').addEventListener('change', function () {
+            const stateSelect = document.getElementById('guest-state');
+            if (this.value === 'US') {
+                stateSelect.style.display = 'block';
+                stateSelect.setAttribute('required', 'true');
+            } else {
+                stateSelect.style.display = 'none';
+                stateSelect.removeAttribute('required');
+            }
+        });
+    
+        // Save form data to local storage
+        const saveFormData = () => {
+            const numberOfGuests = document.getElementById('number-of-guests').value;
+            const guestResidency = document.getElementById('guest-residency').value;
+            const guestState = guestResidency === 'US' ? document.getElementById('guest-state').value : 'N/A';
+    
+            const ageInputs = document.querySelectorAll('.age-guest');
+            const ages = Array.from(ageInputs).map(input => input.value);
+    
+            const selectedCabin = document.querySelector('.selected-cabin');
+            const cabinType = selectedCabin ? selectedCabin.dataset.cabinId : '';
+    
+            const formData = {
+                numberOfGuests,
+                guestResidency,
+                guestState,
+                ages,
+                cabinType
+            };
+    
+            localStorage.setItem('cruiseFormData', JSON.stringify(formData));
+        };
+    
+        // Save form data when form changes
+        document.querySelectorAll('#number-of-guests, #guest-residency, .age-guest, #guest-state').forEach(element => {
+            element.addEventListener('change', saveFormData);
+        });
+    
+        // Handle cabin selection
+        const selectCabinButtons = document.querySelectorAll('.select-cabin-btn');
+        const cabinOptions = document.querySelectorAll('.cabin-option, .cabin-price');
+    
+        const toggleCabinSelection = (cabinId) => {
+            // Remove 'selected' from all buttons and highlight
+            selectCabinButtons.forEach(button => button.innerText = 'Select Cabin');
+            cabinOptions.forEach(option => option.classList.remove('highlighted'));
+    
+            // Add 'selected' to the clicked button and highlight the cabin option
+            const selectedButton = document.querySelector(`.select-cabin-btn[data-cabin-id="${cabinId}"]`);
+            if (selectedButton) {
+                selectedButton.innerText = 'Selected';
+            }
+            const selectedOption = document.querySelector(`.cabin-option[data-cabin-type="${cabinId}"], .cabin-price[data-cabin-type="${cabinId}"]`);
+            if (selectedOption) {
+                selectedOption.classList.add('highlighted');
+            }
+    
+            // Mark the selected cabin
+            document.querySelectorAll('.cabin-card').forEach(card => card.classList.remove('selected-cabin'));
+            if (selectedButton) {
+                selectedButton.closest('.cabin-card').classList.add('selected-cabin');
+            }
+        };
+    
+        selectCabinButtons.forEach(button => {
+            button.addEventListener('click', function () {
+                const cabinId = this.dataset.cabinId;
+                toggleCabinSelection(cabinId);
+                saveFormData();
+            });
+        });
+    
+        cabinOptions.forEach(option => {
+            option.addEventListener('click', function () {
+                const cabinId = this.dataset.cabinType;
+                toggleCabinSelection(cabinId);
+                saveFormData();
+            });
+        });
+    
+        // Save form data initially
+        saveFormData();
+        
+        document.getElementById('select-room-btn').addEventListener('click', function () {
+            const formData = JSON.parse(localStorage.getItem('cruiseFormData'));
+            if (!formData || !formData.numberOfGuests || !formData.guestResidency || !formData.ages.length || !formData.cabinType) {
+                alert('Please fill in all form fields and select a cabin.');
+                return;
+            }
+            $('#bookingModal').modal('show');
+        });
+
+
         document.getElementById('submit').addEventListener('click', async (event) => {
             event.preventDefault();
 
