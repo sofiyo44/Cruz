@@ -25,8 +25,6 @@
     <link rel="stylesheet" href="css/jquery-ui.css">
     <link rel="stylesheet" href="css/flag-icon.min.css">
     <link rel="stylesheet" href="css/style.css">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/15.5.1/nouislider.min.css" rel="stylesheet">
-    
     <style>
     .card-item {
         border: 1px solid #ddd;
@@ -77,11 +75,6 @@
         text-decoration: none;
         font-weight: bold;
     }
-    .card-route {
-        font-size: 0.875em;
-        font-weight: bold;
-    }
-
 </style>
 </head>
 <body>
@@ -95,204 +88,254 @@
 </div>
 <!-- end cssload-loader -->
 
-    <!-- ================================
+<!-- ================================
             START HEADER AREA
 ================================= -->
-    <header class="header-area">
-      <div class="header-top-bar padding-right-100px padding-left-100px">
+<header class="header-area">
+    <div class="header-top-bar padding-right-100px padding-left-100px">
         <div class="container-fluid">
-          <div class="row align-items-center">
-            <div class="col-lg-6">
-              <div class="header-top-content">
-                <div class="header-left">
-                  <ul class="list-items">
-                    <li>
-                      <a href="#"
-                        ><i class="la la-envelope mr-1"></i
-                        >info@stasis.com</a
-                      >
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-            <div class="col-lg-6">
-              <div class="header-top-content">
-                <div
-                  class="header-right d-flex align-items-center justify-content-end"
-                >
-                  <div class="header-right-action">
-                    <div class="select-contain select--contain w-auto">
-                      <select class="select-contain-select">
-                        <option
-                          data-content='<span class="flag-icon flag-icon-id mr-1"></span> Bahasa Indonesia'
-                        >
-                          Bahasa Indonesia
-                        </option>
-                        <option
-                          data-content='<span class="flag-icon flag-icon-de mr-1"></span> Deutsch'
-                        >
-                          Deutsch
-                        </option>
-                        <option
-                          data-content='<span class="flag-icon flag-icon-us mr-1"></span> English(US)'
-                          selected
-                        >
-                          English US
-                        </option>
-                        <option
-                          data-content='<span class="flag-icon flag-icon-gb-eng mr-1"></span> English(UK)'
-                        >
-                          English UK
-                        </option>
-                        <option
-                          data-content='<span class="flag-icon flag-icon-ro mr-1"></span> Romanian'
-                        >
-                          Romanian
-                        </option>
-                        <option
-                          data-content='<span class="flag-icon flag-icon-es mr-1"></span> Español'
-                        >
-                          Español
-                        </option>
-                        <option
-                          data-content='<span class="flag-icon flag-icon-fr mr-1"></span> Francais'
-                        >
-                          Francais
-                        </option>
-                        <option
-                          data-content='<span class="flag-icon flag-icon-it mr-1"></span> Italiano'
-                        >
-                          Italiano
-                        </option>
-                        <option
-                          data-content='<span class="flag-icon flag-icon-pl mr-1"></span> Polski'
-                        >
-                          Portuguese
-                        </option>
-                        <option
-                          data-content='<span class="flag-icon flag-icon-tr mr-1"></span> Turkish'
-                        >
-                          Turkish
-                        </option>
-                        <option
-                          data-content='<span class="flag-icon flag-icon-ru mr-1"></span> Russian'
-                        >
-                          Russian
-                        </option>
-                        <option
-                          data-content='<span class="flag-icon flag-icon-jp mr-1"></span> Japanese'
-                        >
-                          Japanese
-                        </option>
-                        <option
-                          data-content='<span class="flag-icon flag-icon-cn mr-1"></span> Mandarin'
-                        >
-                          Mandarin
-                        </option>
-                        <option
-                          data-content='<span class="flag-icon flag-icon-tw mr-1"></span> Mandarin Chinese'
-                        >
-                          Mandarin Chinese
-                        </option>
-                        <option
-                          data-content='<span class="flag-icon flag-icon-kr mr-1"></span> Korean'
-                        >
-                          Korean
-                        </option>
-                        <option
-                          data-content='<span class="flag-icon flag-icon-in mr-1"></span> Hindi'
-                        >
-                          Hindi
-                        </option>
-                      </select>
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <div class="header-top-content">
+                        <div class="header-left">
+                            <ul class="list-items">
+                                <li><a href="#"><i class="la la-phone mr-1"></i>(123) 123-456</a></li>
+                                <li><a href="#"><i class="la la-envelope mr-1"></i>trizen@example.com</a></li>
+                            </ul>
+                        </div>
                     </div>
-                  </div>
-                  <div class="header-right-action">
-                    <div class="select-contain select--contain w-auto">
-                      <select class="select-contain-select">
-                        <option value="1">AED</option>
-                        <option value="2">AUD</option>
-                        <option value="3">BRL</option>
-                        <option value="4">CAD</option>
-                        <option value="5">CHF</option>
-                        <option value="6">CNY</option>
-                        <option value="7">EUR</option>
-                        <option value="8">GBP</option>
-                        <option value="9">HKD</option>
-                        <option value="10">IDR</option>
-                        <option value="11">INR</option>
-                        <option value="12">JPY</option>
-                        <option value="13">KRW</option>
-                        <option value="14">MYR</option>
-                        <option value="15">NZD</option>
-                        <option value="16">PHP</option>
-                        <option value="17">PLN</option>
-                        <option value="18">RUB</option>
-                        <option value="19">SAR</option>
-                        <option value="20">SGD</option>
-                        <option value="21">THB</option>
-                        <option value="22">TRY</option>
-                        <option value="23">TWD</option>
-                        <option value="24" selected>USD</option>
-                        <option value="25">VND</option>
-                        <option value="26">MXN</option>
-                        <option value="27">ARS</option>
-                        <option value="28">INR</option>
-                      </select>
-                    </div>
-                  </div>
                 </div>
-              </div>
+                <div class="col-lg-6">
+                    <div class="header-top-content">
+                        <div class="header-right d-flex align-items-center justify-content-end">
+                            <div class="header-right-action">
+                                <div class="select-contain select--contain w-auto">
+                                    <select class="select-contain-select">
+                                        <option data-content='<span class="flag-icon flag-icon-id mr-1"></span> Bahasa Indonesia'>Bahasa Indonesia</option>
+                                        <option data-content='<span class="flag-icon flag-icon-de mr-1"></span> Deutsch'>Deutsch</option>
+                                        <option data-content='<span class="flag-icon flag-icon-us mr-1"></span> English(US)' selected>English US</option>
+                                        <option data-content='<span class="flag-icon flag-icon-gb-eng mr-1"></span> English(UK)'>English UK</option>
+                                        <option data-content='<span class="flag-icon flag-icon-ro mr-1"></span> Romanian'>Romanian</option>
+                                        <option data-content='<span class="flag-icon flag-icon-es mr-1"></span> Español'>Español</option>
+                                        <option data-content='<span class="flag-icon flag-icon-fr mr-1"></span> Francais'>Francais</option>
+                                        <option data-content='<span class="flag-icon flag-icon-it mr-1"></span> Italiano'>Italiano</option>
+                                        <option data-content='<span class="flag-icon flag-icon-pl mr-1"></span> Polski'>Polski</option>
+                                        <option data-content='<span class="flag-icon flag-icon-pt mr-1"></span> Portuguese'>Portuguese</option>
+                                        <option data-content='<span class="flag-icon flag-icon-tr mr-1"></span> Turkish'>Turkish</option>
+                                        <option data-content='<span class="flag-icon flag-icon-ru mr-1"></span> Russian'>Russian</option>
+                                        <option data-content='<span class="flag-icon flag-icon-jp mr-1"></span> Japanese'>Japanese</option>
+                                        <option data-content='<span class="flag-icon flag-icon-cn mr-1"></span> Mandarin'>Mandarin</option>
+                                        <option data-content='<span class="flag-icon flag-icon-tw mr-1"></span> Mandarin Chinese'>Mandarin Chinese</option>
+                                        <option data-content='<span class="flag-icon flag-icon-kr mr-1"></span> Korean'>Korean</option>
+                                        <option data-content='<span class="flag-icon flag-icon-in mr-1"></span> Hindi'>Hindi</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="header-right-action">
+                                <div class="select-contain select--contain w-auto">
+                                    <select class="select-contain-select">
+                                        <option value="1">AED</option>
+                                        <option value="2">AUD</option>
+                                        <option value="3">BRL</option>
+                                        <option value="4">CAD</option>
+                                        <option value="5">CHF</option>
+                                        <option value="6">CNY</option>
+                                        <option value="7">EUR</option>
+                                        <option value="8">GBP</option>
+                                        <option value="9">HKD</option>
+                                        <option value="10">IDR</option>
+                                        <option value="11">INR</option>
+                                        <option value="12">JPY</option>
+                                        <option value="13">KRW</option>
+                                        <option value="14">MYR</option>
+                                        <option value="15">NZD</option>
+                                        <option value="16">PHP</option>
+                                        <option value="17">PLN</option>
+                                        <option value="18">RUB</option>
+                                        <option value="19">SAR</option>
+                                        <option value="20">SGD</option>
+                                        <option value="21">THB</option>
+                                        <option value="22">TRY</option>
+                                        <option value="23">TWD</option>
+                                        <option value="24" selected>USD</option>
+                                        <option value="25">VND</option>
+                                        <option value="26">MXN</option>
+                                        <option value="27">ARS</option>
+                                        <option value="28">INR</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="header-right-action">
+                                <a href="#" class="theme-btn theme-btn-small theme-btn-transparent mr-1" data-toggle="modal" data-target="#signupPopupForm">Sign Up</a>
+                                 <a href="#" class="theme-btn theme-btn-small" data-toggle="modal" data-target="#loginPopupForm">Login</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
         </div>
-      </div>
-      <div class="header-menu-wrapper padding-right-100px padding-left-100px">
+    </div>
+    <div class="header-menu-wrapper padding-right-100px padding-left-100px">
         <div class="container-fluid">
-          <div class="row">
-            <div class="col-lg-12">
-              <div class="menu-wrapper">
-                <a href="#" class="down-button"
-                  ><i class="la la-angle-down"></i
-                ></a>
-                <div class="logo">
-                  <a href="index.html"
-                    ><img src="images/Logo1.png" alt="logo"
-                  /></a>
-                  <div class="menu-toggler">
-                    <i class="la la-bars"></i>
-                    <i class="la la-times"></i>
-                  </div>
-                  <!-- end menu-toggler -->
-                </div>
-                <!-- end logo -->
-               <!DOCTYPE html>
-                <div class="main-menu-content">
-                    <nav>
-                        <ul>
-                            <li>
-                                <a href="bookforyourself.html">Book for Yourself</a>
-                            </li>
-                            <li>
-                                <a href="cruise-search-result.html">Even More Cruises</a>
-                            </li>
-                        </ul>
-                    </nav>
-                </div>
-                <!-- end nav-btn -->
-              </div>
-              <!-- end menu-wrapper -->
-            </div>
-            <!-- end col-lg-12 -->
-          </div>
-          <!-- end row -->
-        </div>
-        <!-- end container-fluid -->
-      </div>
-      <!-- end header-menu-wrapper -->
-    </header>
-    <!-- ================================
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="menu-wrapper">
+                        <a href="#" class="down-button"><i class="la la-angle-down"></i></a>
+                        <div class="logo">
+                            <a href="index.html"><img src="images/logo.png" alt="logo"></a>
+                            <div class="menu-toggler">
+                                <i class="la la-bars"></i>
+                                <i class="la la-times"></i>
+                            </div><!-- end menu-toggler -->
+                        </div><!-- end logo -->
+                        <div class="main-menu-content">
+                            <nav>
+                                <ul>
+                                    <li>
+                                        <a href="#">Home <i class="la la-angle-down"></i></a>
+                                        <ul class="dropdown-menu-item">
+                                            <li><a href="index.html">Home - main</a></li>
+                                            <li><a href="index2.html">Home - Hotel</a></li>
+                                            <li><a href="index3.html">Home - Activity</a></li>
+                                            <li><a href="index4.html">Home - Car</a></li>
+                                            <li><a href="index5.html">Home - Cruise</a></li>
+                                            <li><a href="index6.html">Home - Flight</a></li>
+                                            <li><a href="index7.html">Home - City Tour </a></li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <a href="#">Tour <i class="la la-angle-down"></i></a>
+                                        <ul class="dropdown-menu-item">
+                                            <li><a href="tour-fullwidth.html">Tour Full width</a></li>
+                                            <li><a href="tour-grid.html">Tour Grid</a></li>
+                                            <li><a href="tour-list.html">Tour List</a></li>
+                                            <li><a href="tour-left-sidebar.html">Tour Left Sidebar</a></li>
+                                            <li><a href="tour-right-sidebar.html">Tour Right Sidebar</a></li>
+                                            <li><a href="tour-details.html">Tour details</a></li>
+                                            <li><a href="tour-booking.html">Tour Booking</a></li>
+                                            <li><a href="tour-search-result.html">Tour Search Result</a></li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <a href="#">Cruise <i class="la la-angle-down"></i></a>
+                                        <ul class="dropdown-menu-item">
+                                            <li><a href="cruises.html">Cruises</a></li>
+                                            <li><a href="cruises-list.html">Cruise list</a></li>
+                                            <li><a href="cruise-sidebar.html">Cruise Sidebar</a></li>
+                                            <li><a href="cruise-details.html">Cruise details</a></li>
+                                            <li><a href="cruise-booking.html">Cruise Booking</a></li>
+                                            <li><a href="cruise-search-result.html">Cruise Search Result</a></li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <a href="#">Pages <i class="la la-angle-down"></i></a>
+                                        <div class="dropdown-menu-item mega-menu">
+                                            <ul class="row no-gutters">
+                                                <li class="col-lg-3 mega-menu-item">
+                                                    <ul>
+                                                        <li><a href="add-hotel.html">add hotel </a></li>
+                                                        <li><a href="add-flight.html">add flight </a></li>
+                                                        <li><a href="add-tour.html">add tour </a></li>
+                                                        <li><a href="add-cruise.html">add cruise </a></li>
+                                                        <li><a href="add-car.html">add car</a></li>
+                                                        <li><a href="user-dashboard.html">User Dashboard</a></li>
+                                                        <li><a href="admin-dashboard.html">Admin Dashboard</a></li>
+                                                        <li><a href="career.html">career <span class="badge bg-2 text-white">New</span></a></li>
+                                                    </ul>
+                                                </li>
+                                                <li class="col-lg-3 mega-menu-item">
+                                                    <ul>
+                                                        <li><a href="career-details.html">career details<span class="badge bg-2 text-white">New</span></a></li>
+                                                        <li><a href="user-profile.html">User profile</a></li>
+                                                        <li><a href="become-local-expert.html">Become Local Expert</a></li>
+                                                        <li><a href="contact.html">contact</a></li>
+                                                        <li><a href="cart.html">Cart</a></li>
+                                                        <li><a href="checkout.html">Checkout</a></li>
+                                                        <li><a href="recover.html">recover password</a></li>
+                                                        <li><a href="payment-received.html">payment received</a></li>
+                                                    </ul>
+                                                </li>
+                                                <li class="col-lg-3 mega-menu-item">
+                                                    <ul>
+                                                        <li><a href="payment-complete.html">payment complete</a></li>
+                                                        <li><a href="destinations.html">Destinations</a></li>
+                                                        <li><a href="about.html">about</a></li>
+                                                        <li><a href="services.html">Our Services</a></li>
+                                                        <li><a href="gallery.html">Gallery</a></li>
+                                                        <li><a href="pricing.html">pricing</a></li>
+                                                        <li><a href="faq.html">faq</a></li>
+                                                    </ul>
+                                                </li>
+                                                <li class="col-lg-3 mega-menu-item">
+                                                    <ul>
+                                                        <li><a href="add-new-post.html">add new post</a></li>
+                                                        <li><a href="blog-full-width.html">blog full width</a></li>
+                                                        <li><a href="blog-grid.html">blog grid</a></li>
+                                                        <li><a href="blog-sidebar.html">blog sidebar</a></li>
+                                                        <li><a href="blog-single.html">blog details</a></li>
+                                                        <li><a href="coming-soon.html">Coming Soon</a></li>
+                                                        <li><a href="page-404.html">404 page</a></li>
+                                                    </ul>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <a href="#">Flight <i class="la la-angle-down"></i></a>
+                                        <ul class="dropdown-menu-item">
+                                            <li><a href="flight-grid.html">Flight grid</a></li>
+                                            <li><a href="flight-list.html">Flight list</a></li>
+                                            <li><a href="flight-sidebar.html">Flight sidebar </a></li>
+                                            <li><a href="flight-single.html">Flight details</a></li>
+                                            <li><a href="flight-booking.html">Flight Booking</a></li>
+                                            <li><a href="flight-search-result.html">Flight Search Result</a></li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <a href="#">Hotel <i class="la la-angle-down"></i></a>
+                                        <ul class="dropdown-menu-item">
+                                            <li><a href="hotel-grid.html">Hotel grid</a></li>
+                                            <li><a href="hotel-list.html">Hotel list</a></li>
+                                            <li><a href="hotel-sidebar.html">Hotel sidebar </a></li>
+                                            <li><a href="hotel-single.html">Hotel details</a></li>
+                                            <li><a href="hotel-booking.html">Hotel Booking</a></li>
+                                            <li><a href="hotel-search-result.html">Hotel Search Result</a></li>
+                                            <li>
+                                                <a href="#">Rooms <i class="la la-plus"></i></a>
+                                                <ul class="sub-menu">
+                                                    <li><a href="room-list.html">Room List</a></li>
+                                                    <li><a href="room-grid.html">Room Grid</a></li>
+                                                    <li><a href="room-search-result.html">Search Result</a></li>
+                                                    <li><a href="room-search-result-list.html">Search Result list</a></li>
+                                                    <li><a href="room-details.html">Room Details</a></li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <a href="#">car <i class="la la-angle-down"></i></a>
+                                        <ul class="dropdown-menu-item">
+                                            <li><a href="car-grid.html">car grid</a></li>
+                                            <li><a href="car-list.html">car list</a></li>
+                                            <li><a href="car-sidebar.html">car sidebar </a></li>
+                                            <li><a href="car-single.html">car details</a></li>
+                                            <li><a href="car-booking.html">Car Booking</a></li>
+                                            <li><a href="car-search-result.html">Car Search Result</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div><!-- end main-menu-content -->
+                        <div class="nav-btn">
+                            <a href="become-local-expert.html" class="theme-btn">Become Local Expert</a>
+                        </div><!-- end nav-btn -->
+                    </div><!-- end menu-wrapper -->
+                </div><!-- end col-lg-12 -->
+            </div><!-- end row -->
+        </div><!-- end container-fluid -->
+    </div><!-- end header-menu-wrapper -->
+</header>
+<!-- ================================
          END HEADER AREA
 ================================= -->
 
@@ -335,48 +378,263 @@
 ================================= -->
 <section class="card-area section--padding">
     <div class="container">
-        <div class="row">
+         <div class="row">
             <div class="col-lg-12">
                 <div class="filter-wrap margin-bottom-30px">
                     <div class="filter-top d-flex align-items-center justify-content-between pb-4">
                         <div>
-                            <h3 class="title font-size-24" id="cruises-found">24 Cruises found</h3>
+                            <h3 class="title font-size-24">24 Cruises found</h3>
                             <p class="font-size-14 line-height-20 pt-1">Book with confidence: No cruise booking fees</p>
                         </div>
                         <div class="layout-view d-flex align-items-center">
                             <a href="cruises.html" data-toggle="tooltip" data-placement="top" title="Grid View"><i class="la la-th-large"></i></a>
                             <a href="cruises-list.html" data-toggle="tooltip" data-placement="top" title="List View" class="active"><i class="la la-th-list"></i></a>
                         </div>
-                    </div>
+                    </div><!-- end filter-top -->
                     <div class="filter-bar d-flex align-items-center justify-content-between">
                         <div class="filter-bar-filter d-flex flex-wrap align-items-center">
                             <div class="filter-option">
                                 <h3 class="title font-size-16">Filter by:</h3>
                             </div>
-                        </div>
+                            <div class="filter-option">
+                                <div class="dropdown dropdown-contain">
+                                    <a class="dropdown-toggle dropdown-btn dropdown--btn" href="#" role="button" data-toggle="dropdown">
+                                        Filter Price
+                                    </a>
+                                    <div class="dropdown-menu dropdown-menu-wrap">
+                                        <div class="dropdown-item">
+                                            <div class="slider-range-wrap">
+                                                <div class="price-slider-amount padding-bottom-20px">
+                                                    <label for="amount" class="filter__label">Price:</label>
+                                                    <input type="text" id="amount" class="amounts">
+                                                </div><!-- end price-slider-amount -->
+                                                <div id="slider-range"></div><!-- end slider-range -->
+                                            </div><!-- end slider-range-wrap -->
+                                            <div class="btn-box pt-4">
+                                                <button class="theme-btn theme-btn-small theme-btn-transparent" type="button">Apply</button>
+                                            </div>
+                                        </div><!-- end dropdown-item -->
+                                    </div><!-- end dropdown-menu -->
+                                </div><!-- end dropdown -->
+                            </div>
+                            <div class="filter-option">
+                                <div class="dropdown dropdown-contain">
+                                    <a class="dropdown-toggle dropdown-btn dropdown--btn" href="#" role="button" data-toggle="dropdown">
+                                        Review Score
+                                    </a>
+                                    <div class="dropdown-menu dropdown-menu-wrap">
+                                        <div class="dropdown-item">
+                                            <div class="checkbox-wrap">
+                                                <div class="custom-checkbox">
+                                                    <input type="checkbox" id="r1">
+                                                    <label for="r1">
+                                                        <span class="ratings d-flex align-items-center">
+                                                            <i class="la la-star"></i>
+                                                            <i class="la la-star"></i>
+                                                            <i class="la la-star"></i>
+                                                            <i class="la la-star"></i>
+                                                            <i class="la la-star"></i>
+                                                            <span class="color-text-3 font-size-13 ml-1">(55.590)</span>
+                                                        </span>
+                                                    </label>
+                                                </div>
+                                                <div class="custom-checkbox">
+                                                    <input type="checkbox" id="r2">
+                                                    <label for="r2">
+                                                        <span class="ratings d-flex align-items-center">
+                                                            <i class="la la-star"></i>
+                                                            <i class="la la-star"></i>
+                                                            <i class="la la-star"></i>
+                                                            <i class="la la-star"></i>
+                                                            <i class="la la-star-o"></i>
+                                                            <span class="color-text-3 font-size-13 ml-1">(40.590)</span>
+                                                        </span>
+                                                    </label>
+                                                </div>
+                                                <div class="custom-checkbox">
+                                                    <input type="checkbox" id="r3">
+                                                    <label for="r3">
+                                                        <span class="ratings d-flex align-items-center">
+                                                            <i class="la la-star"></i>
+                                                            <i class="la la-star"></i>
+                                                            <i class="la la-star"></i>
+                                                            <i class="la la-star-o"></i>
+                                                            <i class="la la-star-o"></i>
+                                                            <span class="color-text-3 font-size-13 ml-1">(23.590)</span>
+                                                        </span>
+                                                    </label>
+                                                </div>
+                                                <div class="custom-checkbox">
+                                                    <input type="checkbox" id="r4">
+                                                    <label for="r4">
+                                                        <span class="ratings d-flex align-items-center">
+                                                            <i class="la la-star"></i>
+                                                            <i class="la la-star"></i>
+                                                            <i class="la la-star-o"></i>
+                                                            <i class="la la-star-o"></i>
+                                                            <i class="la la-star-o"></i>
+                                                            <span class="color-text-3 font-size-13 ml-1">(12.590)</span>
+                                                        </span>
+                                                    </label>
+                                                </div>
+                                                <div class="custom-checkbox">
+                                                    <input type="checkbox" id="r5">
+                                                    <label for="r5">
+                                                        <span class="ratings d-flex align-items-center">
+                                                            <i class="la la-star"></i>
+                                                            <i class="la la-star-o"></i>
+                                                            <i class="la la-star-o"></i>
+                                                            <i class="la la-star-o"></i>
+                                                            <i class="la la-star-o"></i>
+                                                            <span class="color-text-3 font-size-13 ml-1">(590)</span>
+                                                        </span>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div><!-- end dropdown-item -->
+                                    </div><!-- end dropdown-menu -->
+                                </div><!-- end dropdown -->
+                            </div>
+                            <div class="filter-option">
+                                <div class="dropdown dropdown-contain">
+                                    <a class="dropdown-toggle dropdown-btn dropdown--btn" href="#" role="button" data-toggle="dropdown">
+                                        Categories
+                                    </a>
+                                    <div class="dropdown-menu dropdown-menu-wrap">
+                                        <div class="dropdown-item">
+                                            <div class="checkbox-wrap">
+                                                <div class="custom-checkbox">
+                                                    <input type="checkbox" id="catChb1">
+                                                    <label for="catChb1">Any Cruise line</label>
+                                                </div>
+                                                <div class="custom-checkbox">
+                                                    <input type="checkbox" id="catChb2">
+                                                    <label for="catChb2">Carnival Cruise lines</label>
+                                                </div>
+                                                <div class="custom-checkbox">
+                                                    <input type="checkbox" id="catChb3">
+                                                    <label for="catChb3">Celebrity Cruise</label>
+                                                </div>
+                                                <div class="custom-checkbox">
+                                                    <input type="checkbox" id="catChb4">
+                                                    <label for="catChb4">Disney Cruise line</label>
+                                                </div>
+                                                <div class="custom-checkbox">
+                                                    <input type="checkbox" id="catChb5">
+                                                    <label for="catChb5">Holland America line</label>
+                                                </div>
+                                                <div class="custom-checkbox">
+                                                    <input type="checkbox" id="catChb6">
+                                                    <label for="catChb6">MSC Cruise</label>
+                                                </div>
+                                                <div class="custom-checkbox">
+                                                    <input type="checkbox" id="catChb7">
+                                                    <label for="catChb7">Norwegian Cruise line</label>
+                                                </div>
+                                                <div class="custom-checkbox">
+                                                    <input type="checkbox" id="catChb8">
+                                                    <label for="catChb8">Royal Caribbean</label>
+                                                </div>
+                                            </div>
+                                        </div><!-- end dropdown-item -->
+                                    </div><!-- end dropdown-menu -->
+                                </div><!-- end dropdown -->
+                            </div>
+                        </div><!-- end filter-bar-filter -->
                         <div class="select-contain">
-                            <select class="select-contain-select" id="sort-options">
-                                <option value="default">Sort by default</option>
-                                <option value="new">New Cruise</option>
-                                <option value="popular">Popular Cruise</option>
-                                <option value="low-to-high">Price: low to high</option>
-                                <option value="high-to-low">Price: high to low</option>
-                                <option value="a-to-z">A to Z</option>
+                            <select class="select-contain-select">
+                                <option value="1">Short by default</option>
+                                <option value="2">New Cruise</option>
+                                <option value="3">Popular Cruise</option>
+                                <option value="4">Price: low to high</option>
+                                <option value="5">Price: high to low</option>
+                                <option value="6">A to Z</option>
                             </select>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+                        </div><!-- end select-contain -->
+                    </div><!-- end filter-bar -->
+                </div><!-- end filter-wrap -->
+            </div><!-- end col-lg-12 -->
+        </div><!-- end row -->
         <div class="row">
             <div class="col-lg-3">
                 <div class="sidebar mt-0">
                     <div class="sidebar-widget">
-                        <h3 class="title stroke-shape">Departure Port</h3>
-                        <div class="sidebar-category" id="departure-port-list">
-                            <!-- Departure Ports will be populated here by JavaScript -->
+                        <h3 class="title stroke-shape">Search Cruises</h3>
+                        <div class="sidebar-widget-item">
+                            <div class="contact-form-action">
+                                <form action="#">
+                                    <div class="input-box">
+                                        <label class="label-text">Going to</label>
+                                        <div class="form-group">
+                                            <div class="select-contain w-auto">
+                                                <select class="select-contain-select">
+                                                    <option value="">Select destination</option>
+                                                    <optgroup label="Most Popular">
+                                                        <option value="caribbean">Caribbean</option>
+                                                        <option value="bahamas">Bahamas</option>
+                                                        <option value="mexico">Mexico</option>
+                                                        <option value="alaska">Alaska</option>
+                                                        <option value="europe">Europe</option>
+                                                        <option value="bermuda">Bermuda</option>
+                                                        <option value="hawaii">Hawaii</option>
+                                                        <option value="nepal">Nepal</option>
+                                                        <option value="italy">Italy</option>
+                                                        <option value="canada-new-england">Canada / New England</option>
+                                                    </optgroup>
+                                                    <optgroup label="Other Destinations">
+                                                        <option value="arctic-antarctic">Arctic / Antarctic</option>
+                                                        <option value="middle-east">Middle East</option>
+                                                        <option value="africa">Africa</option>
+                                                        <option value="panama-canal">Panama Canal</option>
+                                                        <option value="asia">Asia</option>
+                                                        <option value="pacific-coastal">Pacific Coastal</option>
+                                                        <option value="australia-new-zealand">Australia / New Zealand</option>
+                                                        <option value="central-america">Central America</option>
+                                                        <option value="galapagos">Galapagos</option>
+                                                        <option value="getaway-at-sea">Getaway at Sea</option>
+                                                        <option value="transatlantic">Transatlantic</option>
+                                                        <option value="world-cruise">World</option>
+                                                        <option value="south-america">South America</option>
+                                                        <option value="south-pacific">South Pacific</option>
+                                                        <option value="transpacific">Transpacific</option>
+                                                    </optgroup>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="input-box">
+                                        <label class="label-text">Departs as early as</label>
+                                        <div class="form-group">
+                                            <span class="la la-calendar form-icon"></span>
+                                            <input class="date-range form-control" type="text" name="daterange-single">
+                                        </div>
+                                    </div>
+                                    <div class="input-box">
+                                        <label class="label-text">Departs as late as</label>
+                                        <div class="form-group">
+                                            <span class="la la-calendar form-icon"></span>
+                                            <input class="date-range form-control" type="text" name="daterange-single">
+                                        </div>
+                                    </div>
+                                    <div class="input-box">
+                                        <label class="label-text">Cruise Lines</label>
+                                        <div class="form-group">
+                                            <div class="select-contain w-auto">
+                                                <select class="select-contain-select">
+                                                    <option value="1">Popular Cruises</option>
+                                                    <option value="2">Luxury Cruises</option>
+                                                    <option value="3">River Cruises</option>
+                                                </select>
+                                            </div><!-- end select-contain -->
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div><!-- end sidebar-widget-item -->
+                        <div class="btn-box pt-2">
+                            <a href="cruise-search-result.html" class="theme-btn">Search Now</a>
                         </div>
-                    </div>
+                    </div><!-- end sidebar-widget -->
                     <div class="sidebar-widget">
                         <h3 class="title stroke-shape">Filter by Price</h3>
                         <div class="sidebar-price-range">
@@ -384,181 +642,162 @@
                                 <div class="price-slider-amount padding-bottom-20px">
                                     <label for="amount2" class="filter__label">Price:</label>
                                     <input type="text" id="amount2" class="amounts">
-                                </div>
-                                <div id="slider-range2"></div>
-                            </div>
+                                </div><!-- end price-slider-amount -->
+                                <div id="slider-range2"></div><!-- end slider-range -->
+                            </div><!-- end slider-range-wrap -->
                             <div class="btn-box pt-4">
-                                <button class="theme-btn theme-btn-small theme-btn-transparent" type="button" id="apply-price-sidebar">Apply</button>
+                                <button class="theme-btn theme-btn-small theme-btn-transparent" type="button">Apply</button>
                             </div>
                         </div>
-                    </div>
+                    </div><!-- end sidebar-widget -->
                     <div class="sidebar-widget">
-                        <h3 class="title stroke-shape">Search Cruises</h3>
-                        <div class="contact-form-action">
-                            <form id="searchForm" action="search.js" method="GET">
-                                <div class="input-box">
-                                    <label class="label-text">Where would like to go?</label>
-                                    <div class="form-group">
-                                        <div class="select-contain select-contain-shadow w-auto">
-                                            <select class="select-contain-select" name="area">
-                                                <option value="">Select destination</option>
-                                                <optgroup label="Most Popular">
-                                                    <option value="caribbean">Caribbean</option>
-                                                    <option value="bahamas">Bahamas</option>
-                                                    <option value="mexico">Mexico</option>
-                                                    <option value="alaska">Alaska</option>
-                                                    <option value="europe">Europe</option>
-                                                    <option value="bermuda">Bermuda</option>
-                                                    <option value="hawaii">Hawaii</option>
-                                                    <option value="nepal">Nepal</option>
-                                                    <option value="italy">Italy</option>
-                                                    <option value="canada-new-england">Canada / New England</option>
-                                                </optgroup>
-                                                <optgroup label="Continents">
-                                                    <option value="100" style="font-weight: bold;">Africa</option>
-                                                    <option value="51">Round Africa</option>
-                                                    <option value="5">South Africa</option>
-                                                    <option value="102" style="font-weight: bold;">America</option>
-                                                    <option value="4">Central America/Caribbean</option>
-                                                    <option value="202">North America</option>
-                                                    <option value="10">South America</option>
-                                                    <option value="84" style="font-weight: bold;">Arctic</option>
-                                                    <option value="87">Greenland</option>
-                                                    <option value="63">Northwest Passage</option>
-                                                    <option value="103" style="font-weight: bold;">Asia</option>
-                                                    <option value="12">Far East</option>
-                                                    <option value="15">Indian Ocean</option>
-                                                    <option value="19">South East Asia</option>
-                                                    <option value="105" style="font-weight: bold;">Europe</option>
-                                                    <option value="68">Mediterranean</option>
-                                                    <option value="205">Northern Europe</option>
-                                                    <option value="206">Southern Europe</option>
-                                                    <option value="207">Western Europe</option>
-                                                    <option value="108" style="font-weight: bold;">Middle East</option>
-                                                    <option value="23">Arabic Sea</option>
-                                                    <option value="46">Red Sea</option>
-                                                    <option value="104" style="font-weight: bold;">Pacific</option>
-                                                    <option value="18">Australia</option>
-                                                    <option value="11">Hawaii</option>
-                                                    <option value="54">Mexican Riviera</option>
-                                                    <option value="13">South Pacific</option>
-                                                </optgroup>
-                                                <optgroup label="Transoceanic Cruises">
-                                                    <option value="107">Trans-Cruises</option>
-                                                    <option value="58">Transafrica</option>
-                                                    <option value="59">Transamerica</option>
-                                                    <option value="60">Transasia</option>
-                                                    <option value="9">Transatlantic</option>
-                                                    <option value="56">Transorient</option>
-                                                    <option value="57">Transpacific</option>
-                                                </optgroup>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="input-box">
-                                    <label class="label-text">Departing from</label>
-                                    <div class="form-group">
-                                        <div class="select-contain select-contain-shadow w-auto">
-                                            <select class="select-contain-select" name="departing_from">
-                                                <option value="">Select departure port</option>
-                                                <optgroup label="United States">
-                                                    <option value="alabama">Alabama</option>
-                                                    <option value="alaska">Alaska</option>
-                                                    <option value="california">California</option>
-                                                    <option value="florida">Florida</option>
-                                                    <option value="hawaii">Hawaii</option>
-                                                    <option value="louisiana">Louisiana</option>
-                                                    <option value="maryland">Maryland</option>
-                                                    <option value="new_york">New York</option>
-                                                    <option value="texas">Texas</option>
-                                                </optgroup>
-                                                <optgroup label="Other">
-                                                    <option value="united_kingdom">United Kingdom</option>
-                                                    <option value="germany">Germany</option>
-                                                    <option value="australia">Australia</option>
-                                                    <option value="europe">Europe</option>
-                                                </optgroup>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="input-box">
-                                    <label class="label-text">Departure Date</label>
-                                    <div class="form-group">
-                                        <span class="la la-calendar form-icon"></span>
-                                        <input class="date-range form-control" type="text" name="date" placeholder="YYYY-MM-DD" />
-                                    </div>
-                                </div>
-                                <div class="input-box">
-                                    <label class="label-text">Cruise Line</label>
-                                    <div class="form-group">
-                                        <div class="select-contain select-contain-shadow w-auto">
-                                            <select class="select-contain-select" name="cruiseline">
-                                                <option value="">Select Top Partners</option>
-                                                <option value="CCL">Carnival Cruise Line</option>
-                                                <option value="CEL">Celebrity Cruises</option>
-                                                <option value="CUN">Cunard</option>
-                                                <option value="DIS">Disney CRUISE LINE</option>
-                                                <option value="HAL">Holland America</option>
-                                                <option value="MSC">MSC Cruises</option>
-                                                <option value="NCL">Norwegian Cruise Line</option>
-                                                <option value="COM">PONANT</option>
-                                                <option value="PCL">Princess Cruises</option>
-                                                <option value="REG">Regent Seven Seas</option>
-                                                <option value="RCI">Royal Caribbean</option>
-                                                <option value="SBN">Seabourn Cruise Line</option>
-                                                <option value="VIR">Virgin Voyages</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="input-box">
-                                    <label class="label-text">Ship</label>
-                                    <div class="form-group">
-                                        <div class="select-contain select-contain-shadow w-auto">
-                                            <select class="select-contain-select" name="ship">
-                                                <!-- Ships options here as in the given example -->
-                                                <!-- example: <option value="V1">Breeze</option> -->
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="input-box">
-                                    <label class="label-text">Cruise Type</label>
-                                    <div class="form-group" style="font-size: 0.875rem;">
-                                        <div class="checkbox">
-                                            <label>
-                                                <input type="checkbox" name="cruise_type[]" value="sea_cruise"> Sea Cruise
-                                            </label>
-                                        </div>
-                                        <div class="checkbox">
-                                            <label>
-                                                <input type="checkbox" name="cruise_type[]" value="river_cruise"> River Cruise
-                                            </label>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="input-box">
-                                    <label class="label-text">Package Options</label>
-                                    <div class="form-group" style="font-size: 0.875rem;">
-                                        <div class="checkbox">
-                                            <label>
-                                                <input type="checkbox" name="package_options[]" value="see_packages"> See Packages Only
-                                            </label>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="d-flex justify-content-center">
-                                    <div class="form-group">
-                                        <button type="submit" class="theme-btn">Search Now</button>
-                                    </div>
-                                </div>
-                            </form>
+                        <h3 class="title stroke-shape">Review Score</h3>
+                        <div class="sidebar-category">
+                            <div class="custom-checkbox">
+                                <input type="checkbox" id="r6">
+                                <label for="r6">Excellent</label>
+                            </div>
+                            <div class="custom-checkbox">
+                                <input type="checkbox" id="r7">
+                                <label for="r7">Very Good</label>
+                            </div>
+                            <div class="custom-checkbox">
+                                <input type="checkbox" id="r8">
+                                <label for="r8">Average</label>
+                            </div>
+                            <div class="custom-checkbox">
+                                <input type="checkbox" id="r9">
+                                <label for="r9">Poor</label>
+                            </div>
+                            <div class="custom-checkbox">
+                                <input type="checkbox" id="r10">
+                                <label for="r10">Terrible</label>
+                            </div>
                         </div>
-                    </div>
-                </div>
-            </div>
+                    </div><!-- end sidebar-widget -->
+                    <div class="sidebar-widget">
+                        <h3 class="title stroke-shape">Filter by Rating</h3>
+                        <div class="sidebar-review">
+                            <div class="custom-checkbox">
+                                <input type="checkbox" id="s1">
+                                <label for="s1">
+                                    <span class="ratings d-flex align-items-center">
+                                        <i class="la la-star"></i>
+                                        <i class="la la-star"></i>
+                                        <i class="la la-star"></i>
+                                        <i class="la la-star"></i>
+                                        <i class="la la-star"></i>
+                                        <span class="font-size-13 ml-1">(55.590)</span>
+                                    </span>
+                                </label>
+                            </div>
+                            <div class="custom-checkbox">
+                                <input type="checkbox" id="s2">
+                                <label for="s2">
+                                    <span class="ratings d-flex align-items-center">
+                                        <i class="la la-star"></i>
+                                        <i class="la la-star"></i>
+                                        <i class="la la-star"></i>
+                                        <i class="la la-star"></i>
+                                        <i class="la la-star-o"></i>
+                                        <span class="font-size-13 ml-1">(40.590)</span>
+                                    </span>
+                                </label>
+                            </div>
+                            <div class="custom-checkbox">
+                                <input type="checkbox" id="s3">
+                                <label for="s3">
+                                    <span class="ratings d-flex align-items-center">
+                                        <i class="la la-star"></i>
+                                        <i class="la la-star"></i>
+                                        <i class="la la-star"></i>
+                                        <i class="la la-star-o"></i>
+                                        <i class="la la-star-o"></i>
+                                        <span class="font-size-13 ml-1">(23.590)</span>
+                                    </span>
+                                </label>
+                            </div>
+                            <div class="custom-checkbox">
+                                <input type="checkbox" id="s4">
+                                <label for="s4">
+                                    <span class="ratings d-flex align-items-center">
+                                        <i class="la la-star"></i>
+                                        <i class="la la-star"></i>
+                                        <i class="la la-star-o"></i>
+                                        <i class="la la-star-o"></i>
+                                        <i class="la la-star-o"></i>
+                                        <span class="font-size-13 ml-1">(12.590)</span>
+                                    </span>
+                                </label>
+                            </div>
+                            <div class="custom-checkbox mb-0">
+                                <input type="checkbox" id="s5">
+                                <label for="s5">
+                                    <span class="ratings d-flex align-items-center">
+                                        <i class="la la-star"></i>
+                                        <i class="la la-star-o"></i>
+                                        <i class="la la-star-o"></i>
+                                        <i class="la la-star-o"></i>
+                                        <i class="la la-star-o"></i>
+                                        <span class="font-size-13 ml-1">(590)</span>
+                                    </span>
+                                </label>
+                            </div>
+                        </div>
+                    </div><!-- end sidebar-widget -->
+                    <div class="sidebar-widget">
+                        <h3 class="title stroke-shape">Categories</h3>
+                        <div class="sidebar-category">
+                            <div class="custom-checkbox">
+                                <input type="checkbox" id="cat1">
+                                <label for="cat1">All <span class="font-size-13 ml-1">(24)</span></label>
+                            </div>
+                            <div class="custom-checkbox">
+                                <input type="checkbox" id="cat2">
+                                <label for="cat2">Any Cruise line <span class="font-size-13 ml-1">(2)</span></label>
+                            </div>
+                            <div class="custom-checkbox">
+                                <input type="checkbox" id="cat3">
+                                <label for="cat3">Carnival Cruise Lines <span class="font-size-13 ml-1">(2)</span></label>
+                            </div>
+                            <div class="custom-checkbox">
+                                <input type="checkbox" id="cat4">
+                                <label for="cat4">Celebrity Cruises <span class="font-size-13 ml-1">(2)</span></label>
+                            </div>
+                            <div class="custom-checkbox">
+                                <input type="checkbox" id="cat5">
+                                <label for="cat5">Disney Cruise Line <span class="font-size-13 ml-1">(3)</span></label>
+                            </div>
+                            <div class="custom-checkbox">
+                                <input type="checkbox" id="cat6">
+                                <label for="cat6">Holland America Line <span class="font-size-13 ml-1">(1)</span></label>
+                            </div>
+                            <div class="collapse" id="categoryMenu">
+                                <div class="custom-checkbox">
+                                    <input type="checkbox" id="cat7">
+                                    <label for="cat7">MSC Cruises <span class="font-size-13 ml-1">(1)</span></label>
+                                </div>
+                                <div class="custom-checkbox">
+                                    <input type="checkbox" id="cat8">
+                                    <label for="cat8">Norwegian Cruise Line <span class="font-size-13 ml-1">(4)</span></label>
+                                </div>
+                                <div class="custom-checkbox">
+                                    <input type="checkbox" id="cat9">
+                                    <label for="cat9">Princess Cruises <span class="font-size-13 ml-1">(6)</span></label>
+                                </div>
+                                <div class="custom-checkbox">
+                                    <input type="checkbox" id="cat10">
+                                    <label for="cat10">Royal Caribbean International <span class="font-size-13 ml-1">(3)</span></label>
+                                </div>
+                            </div><!-- end collapse -->
+                            <a class="btn-text" data-toggle="collapse" href="#categoryMenu" role="button" aria-expanded="false" aria-controls="categoryMenu">
+                                <span class="show-more">Show More <i class="la la-angle-down"></i></span>
+                                <span class="show-less">Show Less <i class="la la-angle-up"></i></span>
+                            </a>
+                        </div>
+                    </div><!-- end sidebar-widget -->
+                </div><!-- end sidebar -->
+            </div><!-- end col-lg-3 -->
             <div class="col-lg-9">
                 <div class="row" id="results"></div>
                 <div class="btn-box mt-3 text-center">
@@ -566,9 +805,9 @@
                     <p class="font-size-13 pt-2" id="cruise-count">Showing 1 - 10 of 100 Cruises</p>
                 </div>
             </div>
-        </div>
-    </div>
-</section>
+        </div><!-- end row -->
+    </div><!-- end container -->
+</section><!-- end card-area -->
 <!-- ================================
     END CARD AREA
 ================================= -->
@@ -662,116 +901,108 @@
     END CTA AREA
 ================================= -->
 
-    <!-- ================================
+<!-- ================================
        START FOOTER AREA
 ================================= -->
-    <section
-      class="footer-area section-bg padding-top-100px padding-bottom-30px"
-    >
-      <div class="container">
+<section class="footer-area section-bg padding-top-100px padding-bottom-30px">
+    <div class="container">
         <div class="row">
-          <div class="col-lg-3 responsive-column">
-            <div class="footer-item">
-              <div class="footer-logo padding-bottom-30px">
-                <a href="index.html" class="foot__logo"
-                  ><img src="images/Logo1.png" alt="logo"
-                /></a>
-              </div>
-              <!-- end logo -->
-              <p class="footer__desc">
-                Our company started in 2024, and we hope to soon be your favorite booking service!
-              </p>
-              <ul class="list-items pt-3">
-                <li>
-                  New York, New York 10027<br />
-                  USA
-                </li>
-                <li><a href="#">info@stasis.com</a></li>
-              </ul>
-            </div>
-            <!-- end footer-item -->
-          </div>
-          <!-- end col-lg-3 -->
-          <div class="col-lg-3 responsive-column">
-            <div class="footer-item">
-              <h4
-                class="title curve-shape pb-3 margin-bottom-20px"
-                data-text="curvs"
-              >
-                Company
-              </h4>
-              <ul class="list-items list--items">
-                <li><a href="about.html">About us</a></li>
-                <li><a href="services.html">Services</a></li>
-                <li><a href="blog-grid.html">News (Coming Soon)</a></li>
-              </ul>
-            </div>
-            <!-- end footer-item -->
-          </div>
-          <!-- end col-lg-3 -->
-          <div class="col-lg-3 responsive-column">
-            <div class="footer-item">
-              <h4
-                class="title curve-shape pb-3 margin-bottom-20px"
-                data-text="curvs"
-              >
-                Other Services (Coming Soon)
-              </h4>
-              <ul class="list-items list--items">
-                <li><a href="#">Sustainability Review</a></li>
-                <li><a href="#">Partners</a></li>
-                <li><a href="#">All Cruises</a></li>
-                <li><a href="#">All Hotels</a></li>
-                <li><a href="#">Flight Look-up</a></li>
-              </ul>
-            </div>
-            <!-- end footer-item -->
-          </div>
-          <!-- end col-lg-3 -->
-          <div class="col-lg-3 responsive-column">
-            <div class="footer-item">
-              <h4
-                class="title curve-shape pb-3 margin-bottom-20px"
-                data-text="curvs"
-              >
-                Other Links (Coming Soon)
-              </h4>
-              <ul class="list-items list--items">
-                <li><a href="#">Stasis Vacation Packages</a></li>
-                <li><a href="#">Stasis Inovation</a></li>
-                <li><a href="#">Partner with Stasis</a></li>
-                <li><a href="#">Create an Account</a></li>
-                <li><a href="#">Stasis Reviews</a></li>
-              </ul>
-            </div>
-            <!-- end footer-item -->
-          </div>
-          <!-- end col-lg-3 -->
-        </div>
-        <!-- end row -->
-      </div>
-      <!-- end container -->
-      <div class="section-block mt-4"></div>
-      <div class="container">
+            <div class="col-lg-3 responsive-column">
+                <div class="footer-item">
+                    <div class="footer-logo padding-bottom-30px">
+                        <a href="index.html" class="foot__logo"><img src="images/logo.png" alt="logo"></a>
+                    </div><!-- end logo -->
+                    <p class="footer__desc">Morbi convallis bibendum urna ut viverra. Maecenas consequat</p>
+                    <ul class="list-items pt-3">
+                        <li>3015 Grand Ave, Coconut Grove,<br> Cerrick Way, FL 12345</li>
+                        <li>+123-456-789</li>
+                        <li><a href="#">trizen@yourwebsite.com</a></li>
+                    </ul>
+                </div><!-- end footer-item -->
+            </div><!-- end col-lg-3 -->
+            <div class="col-lg-3 responsive-column">
+                <div class="footer-item">
+                    <h4 class="title curve-shape pb-3 margin-bottom-20px" data-text="curvs">Company</h4>
+                    <ul class="list-items list--items">
+                        <li><a href="about.html">About us</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="#">Jobs</a></li>
+                        <li><a href="blog-grid.html">News</a></li>
+                        <li><a href="contact.html">Support</a></li>
+                        <li><a href="#">Advertising</a></li>
+                    </ul>
+                </div><!-- end footer-item -->
+            </div><!-- end col-lg-3 -->
+            <div class="col-lg-3 responsive-column">
+                <div class="footer-item">
+                    <h4 class="title curve-shape pb-3 margin-bottom-20px" data-text="curvs">Other Services</h4>
+                    <ul class="list-items list--items">
+                        <li><a href="#">Investor Relations</a></li>
+                        <li><a href="#">Trizen.com Rewards</a></li>
+                        <li><a href="#">Partners</a></li>
+                        <li><a href="#">List My Hotel</a></li>
+                        <li><a href="#">All Hotels</a></li>
+                        <li><a href="#">TV Ads</a></li>
+                    </ul>
+                </div><!-- end footer-item -->
+            </div><!-- end col-lg-3 -->
+            <div class="col-lg-3 responsive-column">
+                <div class="footer-item">
+                    <h4 class="title curve-shape pb-3 margin-bottom-20px" data-text="curvs">Other Links</h4>
+                    <ul class="list-items list--items">
+                        <li><a href="#">USA Vacation Packages</a></li>
+                        <li><a href="#">USA Flights</a></li>
+                        <li><a href="#">USA Hotels</a></li>
+                        <li><a href="#">USA Car Hire</a></li>
+                        <li><a href="#">Create an Account</a></li>
+                        <li><a href="#">Trizen Reviews</a></li>
+                    </ul>
+                </div><!-- end footer-item -->
+            </div><!-- end col-lg-3 -->
+        </div><!-- end row -->
         <div class="row align-items-center">
-          <div class="col-lg-7">
-            <div class="copy-right padding-top-30px">
-              <p class="copy__desc">
-                &copy; Stasis 2024. Made with
-                <span class="la la-heart"></span>
-                >
-              </p>
-            </div>
-            <!-- end copy-right -->
-          </div>
-          <!-- end col-lg-7 -->
-        </div>
-        <!-- end row -->
-      </div>
-      <!-- end container -->
-    </section>
-    <!-- end footer-area -->
-    <!-- ================================
+            <div class="col-lg-8">
+                <div class="term-box footer-item">
+                    <ul class="list-items list--items d-flex align-items-center">
+                        <li><a href="#">Terms & Conditions</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Help Center</a></li>
+                    </ul>
+                </div>
+            </div><!-- end col-lg-8 -->
+            <div class="col-lg-4">
+                <div class="footer-social-box text-right">
+                    <ul class="social-profile">
+                        <li><a href="#"><i class="lab la-facebook-f"></i></a></li>
+                        <li><a href="#"><i class="lab la-twitter"></i></a></li>
+                        <li><a href="#"><i class="lab la-instagram"></i></a></li>
+                        <li><a href="#"><i class="lab la-linkedin-in"></i></a></li>
+                    </ul>
+                </div>
+            </div><!-- end col-lg-4 -->
+        </div><!-- end row -->
+    </div><!-- end container -->
+    <div class="section-block mt-4"></div>
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-7">
+                <div class="copy-right padding-top-30px">
+                    <p class="copy__desc">
+                        &copy; Copyright Trizen <span id="get-year"></span> . Made with
+                        <span class="la la-heart"></span> by <a href="https://themeforest.net/user/techydevs/portfolio">TechyDevs</a>
+                    </p>
+                </div><!-- end copy-right -->
+            </div><!-- end col-lg-7 -->
+            <div class="col-lg-5">
+                <div class="copy-right-content d-flex align-items-center justify-content-end padding-top-30px">
+                    <h3 class="title font-size-15 pr-2">We Accept</h3>
+                    <img src="images/payment-img.png" alt="">
+                </div><!-- end copy-right-content -->
+            </div><!-- end col-lg-5 -->
+        </div><!-- end row -->
+    </div><!-- end container -->
+</section><!-- end footer-area -->
+<!-- ================================
        START FOOTER AREA
 ================================= -->
 
@@ -920,298 +1151,804 @@
 <script src="js/animated-headline.js"></script>
 <script src="js/jquery.ripples-min.js"></script>
 <script src="js/main.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/15.5.1/nouislider.min.js"></script>
-<script src="search.js"></script>
 <script src="js/cruise-detail-temp.js"></script>
 <script>
-    document.addEventListener('DOMContentLoaded', function () {
-        const cruiseListData = JSON.parse(localStorage.getItem('cruiseListData'));
+document.addEventListener('DOMContentLoaded', function() {
+    const cruiseListData = JSON.parse(localStorage.getItem('cruiseListData'));
 
-        if (cruiseListData) {
-            const resultsContainer = document.getElementById('results');
-            const cruiseCount = document.getElementById('cruise-count');
-            let displayedCruises = 10;
+    if (cruiseListData) {
+        const resultsContainer = document.getElementById('results');
+        const cruiseCount = document.getElementById('cruise-count');
+        let displayedCruises = 10;
 
-            function createCruiseCard(cruise) {
-                return `
-                    <div class="col-lg-9">
-                        <div class="card-item cruise--card card-item-list">
-                            <div class="card-img">
-                                <a href="cruise-details.html" class="d-block">
-                                    <img src="${cruise.shipImage}" alt="${cruise.cruiseLineLogo}">
-                                    <span class="badge">${cruise.highlight ? 'Featured' : ''}</span>
-                                </a>
+        function createCruiseCard(cruise) {
+            return `
+                <div class="col-lg-9">
+                    <div class="card-item cruise--card card-item-list">
+                        <div class="card-img">
+                            <a href="cruise-details.html" class="d-block">
+                                <img src="${cruise.shipImage}" alt="${cruise.cruiseLineLogo}">
+                                <span class="badge">${cruise.highlight ? 'Featured' : ''}</span>
+                            </a>
+                        </div>
+                        <div class="card-body">
+                            <img src="${cruise.cruiseLineLogo}" alt="${cruise.shipImage}" class="cruise-logo">
+                            <h3 class="card-title"><a href="cruise-details.html">${cruise.title}</a></h3>
+                            <p class="card-meta">Departing ${cruise.departure}</p>
+                            <div class="card-rating">
+                                <span class="badge text-white">4.4/5</span>
+                                <span class="review__text">Very good</span>
+                                <span class="rating__text">(30 Reviews)</span>
                             </div>
-                            <div class="card-body">
-                                <img src="${cruise.cruiseLineLogo}" alt="${cruise.shipImage}" class="cruise-logo">
-                                <h3 class="card-title"><a href="cruise-details.html">${cruise.title}</a></h3>
-                                <p class="card-route">${cruise.route}</p>
-                                <p class="card-meta">Departing ${cruise.departure}</p>
-                                <div class="card-price d-flex align-items-center justify-content-between">
-                                    <p>
-                                        <span class="price__from">From</span>
-                                        <span class="price__num">${cruise.price}</span>
-                                    </p>
-                                    <a href="#" class="btn-text view-details" data-cruise-id="${cruise.masterCruiseID}">Read details<i class="la la-angle-right"></i></a>
-                                </div>
+                            <div class="card-price d-flex align-items-center justify-content-between">
+                                <p>
+                                    <span class="price__from">From</span>
+                                    <span class="price__num">${cruise.price}</span>
+                                </p>
+                                <a href="#" class="btn-text view-details">Read details<i class="la la-angle-right"></i></a>
                             </div>
                         </div>
                     </div>
-                `;
-            }
-
-            function displayCruises(limit, cruises) {
-                resultsContainer.innerHTML = '';
-                const cruisesToShow = cruises.slice(0, limit);
-                cruisesToShow.forEach(cruise => {
-                    resultsContainer.innerHTML += createCruiseCard(cruise);
-                });
-                cruiseCount.textContent = `Showing 1 - ${limit} of ${cruises.length} Cruises`;
-
-                // Add event listeners for the view details buttons
-                document.querySelectorAll('.view-details').forEach(button => {
-                    button.addEventListener('click', function (e) {
-                        e.preventDefault();
-                        const cruiseID = this.getAttribute('data-cruise-id');
-                        selectCruise(cruiseID);
-                    });
-                });
-            }
-
-            async function selectCruise(cruiseID) {
-                const response = await fetch('http://localhost:3000/cruise/select', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': 'your-local-auth-token'
-                    },
-                    body: JSON.stringify({ cruiseID })
-                });
-                if (response.ok) {
-                    localStorage.setItem('selectedCruiseID', cruiseID);
-                    window.location.href = 'cruise-details.html';
-                } else {
-                    alert('Error selecting cruise');
-                }
-            }
-
-            displayCruises(displayedCruises, cruiseListData.cruises);
-
-            document.getElementById('load-more-btn').addEventListener('click', function () {
-                displayedCruises += 10;
-                if (displayedCruises > cruiseListData.cruises.length) {
-                    displayedCruises = cruiseListData.cruises.length;
-                }
-                displayCruises(displayedCruises, cruiseListData.cruises);
-            });
+                </div><!-- end card-item -->
+            `;
         }
-    });
-</script>
+
+        function displayCruises(limit) {
+            resultsContainer.innerHTML = '';
+            const cruisesToShow = cruiseListData.cruises.slice(0, limit);
+            cruisesToShow.forEach(cruise => {
+                resultsContainer.innerHTML += createCruiseCard(cruise);
+            });
+            cruiseCount.textContent = `Showing 1 - ${limit} of ${cruiseListData.count.entries} Cruises`;
+        }
+
+        displayCruises(displayedCruises);
+
+        document.getElementById('load-more-btn').addEventListener('click', function() {
+            displayedCruises += 10;
+            if (displayedCruises > cruiseListData.count.entries) {
+                displayedCruises = cruiseListData.count.entries;
+            }
+            displayCruises(displayedCruises);
+        });
+    }
+});
+
+const cruiseListData = {
+  "count": {
+    "entries": 100,
+    "allentries": 106,
+    "page": 1,
+    "pages": 2
+  },
+  "cruises": [
+    {
+      "count": "1",
+      "masterCruiseID": "I7259565240929",
+      "productID": "I7PTHPTH259565",
+      "masterCruiseID_org": "I7259565240929",
+      "title": "Atlantic Ocean Europe 7 days from/to Portsmouth",
+      "ship": "Resilient Lady",
+      "shipID": "I7",
+      "shipImage": "//images.cruisec.net/images/ships/ships/I7.jpg",
+      "cruiseLine": "Virgin Voyages",
+      "cruiseLineID": "VIR",
+      "cruiseLineLogo": "//images.cruisec.net/images/ships/logos/VIR.png",
+      "duration": "6",
+      "departure": "9/23/24",
+      "departure_top": "23.",
+      "departure_bottom": "9/24",
+      "departure_raw": "2024-09-23",
+      "arrival": "9/29/24",
+      "departure_cruise": "9/23/24",
+      "arrival_cruise": "9/29/24",
+      "arrival_raw": "2024-09-29",
+      "airports": [],
+      "route": "Portsmouth - Cruising Day - La Coruna - Bilbao - Le Verdon-sur-Mer - Cruising Day - Portsmouth",
+      "depPortID": "",
+      "arrPortID": "",
+      "cruiseArea": "Atlantic Ocean Europe",
+      "cruiseAreaID": "45",
+      "filter": [],
+      "currency": "USD",
+      "currency_symbol": "$",
+      "price_strike": "",
+      "pricecat": [],
+      "masterCruiseIDs": [
+        "I7259565240929"
+      ],
+      "highlight": false,
+      "highlightColor": "",
+      "highlightColorHover": "",
+      "icon_url": "",
+      "priceUnformatted": "743",
+      "isDisabled": "",
+      "isUniqueContent": false,
+      "transferType": "none",
+      "price": "$743"
+    },
+    {
+      "count": "1",
+      "masterCruiseID": "I7259560240914",
+      "productID": "I7PTHPTH259560",
+      "masterCruiseID_org": "I7259560240914",
+      "title": "Atlantic Ocean Europe 7 days from/to Portsmouth",
+      "ship": "Resilient Lady",
+      "shipID": "I7",
+      "shipImage": "//images.cruisec.net/images/ships/ships/I7.jpg",
+      "cruiseLine": "Virgin Voyages",
+      "cruiseLineID": "VIR",
+      "cruiseLineLogo": "//images.cruisec.net/images/ships/logos/VIR.png",
+      "duration": "6",
+      "departure": "9/8/24",
+      "departure_top": "8.",
+      "departure_bottom": "9/24",
+      "departure_raw": "2024-09-08",
+      "arrival": "9/14/24",
+      "departure_cruise": "9/8/24",
+      "arrival_cruise": "9/14/24",
+      "arrival_raw": "2024-09-14",
+      "airports": [],
+      "route": "Portsmouth - Cruising Day - La Coruna - Bilbao - Le Verdon-sur-Mer - Cruising Day - Portsmouth",
+      "depPortID": "",
+      "arrPortID": "",
+      "cruiseArea": "Atlantic Ocean Europe",
+      "cruiseAreaID": "45",
+      "filter": [],
+      "currency": "USD",
+      "currency_symbol": "$",
+      "price_strike": "",
+      "pricecat": [],
+      "masterCruiseIDs": [
+        "I7259560240914"
+      ],
+      "highlight": false,
+      "highlightColor": "",
+      "highlightColorHover": "",
+      "icon_url": "",
+      "priceUnformatted": "783",
+      "isDisabled": "",
+      "isUniqueContent": false,
+      "transferType": "none",
+      "price": "$783"
+    },
+    {
+      "count": "1",
+      "masterCruiseID": "I7265195241206",
+      "productID": "I7MIASIG265195",
+      "masterCruiseID_org": "I7265195241206",
+      "title": "Eastern Caribbean 7 days from Miami to San Juan",
+      "ship": "Resilient Lady",
+      "shipID": "I7",
+      "shipImage": "//images.cruisec.net/images/ships/ships/I7.jpg",
+      "cruiseLine": "Virgin Voyages",
+      "cruiseLineID": "VIR",
+      "cruiseLineLogo": "//images.cruisec.net/images/ships/logos/VIR.png",
+      "duration": "6",
+      "departure": "11/30/24",
+      "departure_top": "30.",
+      "departure_bottom": "11/24",
+      "departure_raw": "2024-11-30",
+      "arrival": "12/6/24",
+      "departure_cruise": "11/30/24",
+      "arrival_cruise": "12/6/24",
+      "arrival_raw": "2024-12-06",
+      "airports": [],
+      "route": "Miami - Cruising Day - Grand Turk - Puerto Plata - Cruising Day - Basseterre - San Juan",
+      "depPortID": "",
+      "arrPortID": "",
+      "cruiseArea": "Caribbean (eastern)",
+      "cruiseAreaID": "40",
+      "filter": [],
+      "currency": "USD",
+      "currency_symbol": "$",
+      "price_strike": "",
+      "pricecat": [],
+      "masterCruiseIDs": [
+        "I7265195241206"
+      ],
+      "highlight": false,
+      "highlightColor": "",
+      "highlightColorHover": "",
+      "icon_url": "",
+      "priceUnformatted": "910",
+      "isDisabled": "",
+      "isUniqueContent": false,
+      "transferType": "none",
+      "price": "$910"
+    },
+    {
+      "count": "1",
+      "masterCruiseID": "I5259550240804",
+      "productID": "I5BCNBCN259550",
+      "masterCruiseID_org": "I5259550240804",
+      "title": "Mediterranean, western 8 days from/to Barcelona",
+      "ship": "Scarlet Lady",
+      "shipID": "I5",
+      "shipImage": "//images.cruisec.net/images/ships/ships/I5.jpg",
+      "cruiseLine": "Virgin Voyages",
+      "cruiseLineID": "VIR",
+      "cruiseLineLogo": "//images.cruisec.net/images/ships/logos/VIR.png",
+      "duration": "7",
+      "departure": "7/28/24",
+      "departure_top": "28.",
+      "departure_bottom": "7/24",
+      "departure_raw": "2024-07-28",
+      "arrival": "8/4/24",
+      "departure_cruise": "7/28/24",
+      "arrival_cruise": "8/4/24",
+      "arrival_raw": "2024-08-04",
+      "airports": [],
+      "route": "Barcelona - Toulon - Marina di Carrara - Cruising Day - Ajaccio, Corsica - Ibiza, Balearic Islands - Ibiza, Balearic Islands - Barcelona",
+      "depPortID": "",
+      "arrPortID": "",
+      "cruiseArea": "Mediterranean, western",
+      "cruiseAreaID": "1",
+      "filter": [],
+      "currency": "USD",
+      "currency_symbol": "$",
+      "price_strike": "",
+      "pricecat": [],
+      "masterCruiseIDs": [
+        "I5259550240804"
+      ],
+      "highlight": false,
+      "highlightColor": "",
+      "highlightColorHover": "",
+      "icon_url": "",
+      "priceUnformatted": "930",
+      "isDisabled": "",
+      "isUniqueContent": false,
+      "transferType": "none",
+      "price": "$930"
+    },
+    {
+      "count": "1",
+      "masterCruiseID": "I5259545240707",
+      "productID": "I5BCNBCN259545",
+      "masterCruiseID_org": "I5259545240707",
+      "title": "Mediterranean, western 8 days from/to Barcelona",
+      "ship": "Scarlet Lady",
+      "shipID": "I5",
+      "shipImage": "//images.cruisec.net/images/ships/ships/I5.jpg",
+      "cruiseLine": "Virgin Voyages",
+      "cruiseLineID": "VIR",
+      "cruiseLineLogo": "//images.cruisec.net/images/ships/logos/VIR.png",
+      "duration": "7",
+      "departure": "6/30/24",
+      "departure_top": "30.",
+      "departure_bottom": "6/24",
+      "departure_raw": "2024-06-30",
+      "arrival": "7/7/24",
+      "departure_cruise": "6/30/24",
+      "arrival_cruise": "7/7/24",
+      "arrival_raw": "2024-07-07",
+      "airports": [],
+      "route": "Barcelona - Toulon - Marina di Carrara - Ajaccio, Corsica - Cruising Day - Ibiza, Balearic Islands - Ibiza, Balearic Islands - Barcelona",
+      "depPortID": "",
+      "arrPortID": "",
+      "cruiseArea": "Mediterranean, western",
+      "cruiseAreaID": "1",
+      "filter": [],
+      "currency": "USD",
+      "currency_symbol": "$",
+      "price_strike": "",
+      "pricecat": [],
+      "masterCruiseIDs": [
+        "I5259545240707"
+      ],
+      "highlight": false,
+      "highlightColor": "",
+      "highlightColorHover": "",
+      "icon_url": "",
+      "priceUnformatted": "936",
+      "isDisabled": "",
+      "isUniqueContent": false,
+      "transferType": "none",
+      "price": "$936"
+    },
+    {
+      "count": "1",
+      "masterCruiseID": "I5259533240609",
+      "productID": "I5BCNBCN259533",
+      "masterCruiseID_org": "I5259533240609",
+      "title": "Mediterranean, western 8 days from/to Barcelona",
+      "ship": "Scarlet Lady",
+      "shipID": "I5",
+      "shipImage": "//images.cruisec.net/images/ships/ships/I5.jpg",
+      "cruiseLine": "Virgin Voyages",
+      "cruiseLineID": "VIR",
+      "cruiseLineLogo": "//images.cruisec.net/images/ships/logos/VIR.png",
+      "duration": "7",
+      "departure": "6/2/24",
+      "departure_top": "2.",
+      "departure_bottom": "6/24",
+      "departure_raw": "2024-06-02",
+      "arrival": "6/9/24",
+      "departure_cruise": "6/2/24",
+      "arrival_cruise": "6/9/24",
+      "arrival_raw": "2024-06-09",
+      "airports": [],
+      "route": "Barcelona - Toulon - Marina di Carrara - Cruising Day - Ajaccio, Corsica - Ibiza, Balearic Islands - Ibiza, Balearic Islands - Barcelona",
+      "depPortID": "",
+      "arrPortID": "",
+      "cruiseArea": "Mediterranean, western",
+      "cruiseAreaID": "1",
+      "filter": [],
+      "currency": "USD",
+      "currency_symbol": "$",
+      "price_strike": "",
+      "pricecat": [],
+      "masterCruiseIDs": [
+        "I5259533240609"
+      ],
+      "highlight": false,
+      "highlightColor": "",
+      "highlightColorHover": "",
+      "icon_url": "",
+      "priceUnformatted": "945",
+      "isDisabled": "",
+      "isUniqueContent": false,
+      "transferType": "none",
+      "price": "$945"
+    },
+    {
+      "count": "1",
+      "masterCruiseID": "I5268548240728",
+      "productID": "I5BCNBCN268548",
+      "masterCruiseID_org": "I5268548240728",
+      "title": "Mediterranean, western 8 days from/to Barcelona",
+      "ship": "Scarlet Lady",
+      "shipID": "I5",
+      "shipImage": "//images.cruisec.net/images/ships/ships/I5.jpg",
+      "cruiseLine": "Virgin Voyages",
+      "cruiseLineID": "VIR",
+      "cruiseLineLogo": "//images.cruisec.net/images/ships/logos/VIR.png",
+      "duration": "7",
+      "departure": "7/21/24",
+      "departure_top": "21.",
+      "departure_bottom": "7/24",
+      "departure_raw": "2024-07-21",
+      "arrival": "7/28/24",
+      "departure_cruise": "7/21/24",
+      "arrival_cruise": "7/28/24",
+      "arrival_raw": "2024-07-28",
+      "airports": [],
+      "route": "Barcelona - Marseille - Cannes - Cruising Day - Palma de Mallorca, Balearic Islands - Ibiza, Balearic Islands - Ibiza, Balearic Islands - Barcelona",
+      "depPortID": "",
+      "arrPortID": "",
+      "cruiseArea": "Mediterranean, western",
+      "cruiseAreaID": "1",
+      "filter": [],
+      "currency": "USD",
+      "currency_symbol": "$",
+      "price_strike": "",
+      "pricecat": [],
+      "masterCruiseIDs": [
+        "I5268548240728"
+      ],
+      "highlight": false,
+      "highlightColor": "",
+      "highlightColorHover": "",
+      "icon_url": "",
+      "priceUnformatted": "953",
+      "isDisabled": "",
+      "isUniqueContent": false,
+      "transferType": "none",
+      "price": "$953"
+    },
+    {
+      "count": "1",
+      "masterCruiseID": "I5259530240602",
+      "productID": "I5BCNBCN259530",
+      "masterCruiseID_org": "I5259530240602",
+      "title": "Mediterranean, western 8 days from/to Barcelona",
+      "ship": "Scarlet Lady",
+      "shipID": "I5",
+      "shipImage": "//images.cruisec.net/images/ships/ships/I5.jpg",
+      "cruiseLine": "Virgin Voyages",
+      "cruiseLineID": "VIR",
+      "cruiseLineLogo": "//images.cruisec.net/images/ships/logos/VIR.png",
+      "duration": "7",
+      "departure": "5/26/24",
+      "departure_top": "26.",
+      "departure_bottom": "5/24",
+      "departure_raw": "2024-05-26",
+      "arrival": "6/2/24",
+      "departure_cruise": "5/26/24",
+      "arrival_cruise": "6/2/24",
+      "arrival_raw": "2024-06-02",
+      "airports": [],
+      "route": "Barcelona - Marseille - Cannes - Cruising Day - Palma de Mallorca, Balearic Islands - Ibiza, Balearic Islands - Ibiza, Balearic Islands - Barcelona",
+      "depPortID": "",
+      "arrPortID": "",
+      "cruiseArea": "Mediterranean, western",
+      "cruiseAreaID": "1",
+      "filter": [],
+      "currency": "USD",
+      "currency_symbol": "$",
+      "price_strike": "",
+      "pricecat": [],
+      "masterCruiseIDs": [
+        "I5259530240602"
+      ],
+      "highlight": false,
+      "highlightColor": "",
+      "highlightColorHover": "",
+      "icon_url": "",
+      "priceUnformatted": "955",
+      "isDisabled": "",
+      "isUniqueContent": false,
+      "transferType": "none",
+      "price": "$955"
+    },
+    {
+      "count": "1",
+      "masterCruiseID": "I5259543240630",
+      "productID": "I5BCNBCN259543",
+      "masterCruiseID_org": "I5259543240630",
+      "title": "Mediterranean, western 8 days from/to Barcelona",
+      "ship": "Scarlet Lady",
+      "shipID": "I5",
+      "shipImage": "//images.cruisec.net/images/ships/ships/I5.jpg",
+      "cruiseLine": "Virgin Voyages",
+      "cruiseLineID": "VIR",
+      "cruiseLineLogo": "//images.cruisec.net/images/ships/logos/VIR.png",
+      "duration": "7",
+      "departure": "6/23/24",
+      "departure_top": "23.",
+      "departure_bottom": "6/24",
+      "departure_raw": "2024-06-23",
+      "arrival": "6/30/24",
+      "departure_cruise": "6/23/24",
+      "arrival_cruise": "6/30/24",
+      "arrival_raw": "2024-06-30",
+      "airports": [],
+      "route": "Barcelona - Marseille - Cannes - Cruising Day - Palma de Mallorca, Balearic Islands - Ibiza, Balearic Islands - Ibiza, Balearic Islands - Barcelona",
+      "depPortID": "",
+      "arrPortID": "",
+      "cruiseArea": "Mediterranean, western",
+      "cruiseAreaID": "1",
+      "filter": [],
+      "currency": "USD",
+      "currency_symbol": "$",
+      "price_strike": "",
+      "pricecat": [],
+      "masterCruiseIDs": [
+        "I5259543240630"
+      ],
+      "highlight": false,
+      "highlightColor": "",
+      "highlightColorHover": "",
+      "icon_url": "",
+      "priceUnformatted": "956",
+      "isDisabled": "",
+      "isUniqueContent": false,
+      "transferType": "none",
+      "price": "$956"
+    },
+    {
+      "count": "1",
+      "masterCruiseID": "I5259540240623",
+      "productID": "I5BCNBCN259540",
+      "masterCruiseID_org": "I5259540240623",
+      "title": "Mediterranean, western 8 days from/to Barcelona",
+      "ship": "Scarlet Lady",
+      "shipID": "I5",
+      "shipImage": "//images.cruisec.net/images/ships/ships/I5.jpg",
+      "cruiseLine": "Virgin Voyages",
+      "cruiseLineID": "VIR",
+      "cruiseLineLogo": "//images.cruisec.net/images/ships/logos/VIR.png",
+      "duration": "7",
+      "departure": "6/16/24",
+      "departure_top": "16.",
+      "departure_bottom": "6/24",
+      "departure_raw": "2024-06-16",
+      "arrival": "6/23/24",
+      "departure_cruise": "6/16/24",
+      "arrival_cruise": "6/23/24",
+      "arrival_raw": "2024-06-23",
+      "airports": [],
+      "route": "Barcelona - Toulon - Marina di Carrara - Civitavecchia, Rome - Cruising Day - Ibiza, Balearic Islands - Ibiza, Balearic Islands - Barcelona",
+      "depPortID": "",
+      "arrPortID": "",
+      "cruiseArea": "Mediterranean, western",
+      "cruiseAreaID": "1",
+      "filter": [],
+      "currency": "USD",
+      "currency_symbol": "$",
+      "price_strike": "",
+      "pricecat": [],
+      "masterCruiseIDs": [
+        "I5259540240623"
+      ],
+      "highlight": false,
+      "highlightColor": "",
+      "highlightColorHover": "",
+      "icon_url": "",
+      "priceUnformatted": "963",
+      "isDisabled": "",
+      "isUniqueContent": false,
+      "transferType": "none",
+      "price": "$963"
+    },
+    {
+      "count": "1",
+      "masterCruiseID": "I5268555240825",
+      "productID": "I5BCNBCN268555",
+      "masterCruiseID_org": "I5268555240825",
+      "title": "Mediterranean, western 8 days from/to Barcelona",
+      "ship": "Scarlet Lady",
+      "shipID": "I5",
+      "shipImage": "//images.cruisec.net/images/ships/ships/I5.jpg",
+      "cruiseLine": "Virgin Voyages",
+      "cruiseLineID": "VIR",
+      "cruiseLineLogo": "//images.cruisec.net/images/ships/logos/VIR.png",
+      "duration": "7",
+      "departure": "8/18/24",
+      "departure_top": "18.",
+      "departure_bottom": "8/24",
+      "departure_raw": "2024-08-18",
+      "arrival": "8/25/24",
+      "departure_cruise": "8/18/24",
+      "arrival_cruise": "8/25/24",
+      "arrival_raw": "2024-08-25",
+      "airports": [],
+      "route": "Barcelona - Marseille - Cannes - Cruising Day - Palma de Mallorca, Balearic Islands - Ibiza, Balearic Islands - Ibiza, Balearic Islands - Barcelona",
+      "depPortID": "",
+      "arrPortID": "",
+      "cruiseArea": "Mediterranean, western",
+      "cruiseAreaID": "1",
+      "filter": [],
+      "currency": "USD",
+      "currency_symbol": "$",
+      "price_strike": "",
+      "pricecat": [],
+      "masterCruiseIDs": [
+        "I5268555240825"
+      ],
+      "highlight": false,
+      "highlightColor": "",
+      "highlightColorHover": "",
+      "icon_url": "",
+      "priceUnformatted": "977",
+      "isDisabled": "",
+      "isUniqueContent": false,
+      "transferType": "none",
+      "price": "$977"
+    },
+    {
+      "count": "1",
+      "masterCruiseID": "I5259548240721",
+      "productID": "I5BCNBCN259548",
+      "masterCruiseID_org": "I5259548240721",
+      "title": "Mediterranean, western 8 days from/to Barcelona",
+      "ship": "Scarlet Lady",
+      "shipID": "I5",
+      "shipImage": "//images.cruisec.net/images/ships/ships/I5.jpg",
+      "cruiseLine": "Virgin Voyages",
+      "cruiseLineID": "VIR",
+      "cruiseLineLogo": "//images.cruisec.net/images/ships/logos/VIR.png",
+      "duration": "7",
+      "departure": "7/14/24",
+      "departure_top": "14.",
+      "departure_bottom": "7/24",
+      "departure_raw": "2024-07-14",
+      "arrival": "7/21/24",
+      "departure_cruise": "7/14/24",
+      "arrival_cruise": "7/21/24",
+      "arrival_raw": "2024-07-21",
+      "airports": [],
+      "route": "Barcelona - Toulon - Marina di Carrara - Civitavecchia, Rome - Cruising Day - Ibiza, Balearic Islands - Ibiza, Balearic Islands - Barcelona",
+      "depPortID": "",
+      "arrPortID": "",
+      "cruiseArea": "Mediterranean, western",
+      "cruiseAreaID": "1",
+      "filter": [],
+      "currency": "USD",
+      "currency_symbol": "$",
+      "price_strike": "",
+      "pricecat": [],
+      "masterCruiseIDs": [
+        "I5259548240721"
+      ],
+      "highlight": false,
+      "highlightColor": "",
+      "highlightColorHover": "",
+      "icon_url": "",
+      "priceUnformatted": "980",
+      "isDisabled": "",
+      "isUniqueContent": false,
+      "transferType": "none",
+      "price": "$980"
+    },
+    {
+      "count": "1",
+      "masterCruiseID": "I5259553240818",
+      "productID": "I5BCNBCN259553",
+      "masterCruiseID_org": "I5259553240818",
+      "title": "Mediterranean, western 8 days from/to Barcelona",
+      "ship": "Scarlet Lady",
+      "shipID": "I5",
+      "shipImage": "//images.cruisec.net/images/ships/ships/I5.jpg",
+      "cruiseLine": "Virgin Voyages",
+      "cruiseLineID": "VIR",
+      "cruiseLineLogo": "//images.cruisec.net/images/ships/logos/VIR.png",
+      "duration": "7",
+      "departure": "8/11/24",
+      "departure_top": "11.",
+      "departure_bottom": "8/24",
+      "departure_raw": "2024-08-11",
+      "arrival": "8/18/24",
+      "departure_cruise": "8/11/24",
+      "arrival_cruise": "8/18/24",
+      "arrival_raw": "2024-08-18",
+      "airports": [],
+      "route": "Barcelona - Toulon - Marina di Carrara - Civitavecchia, Rome - Cruising Day - Ibiza, Balearic Islands - Ibiza, Balearic Islands - Barcelona",
+      "depPortID": "",
+      "arrPortID": "",
+      "cruiseArea": "Mediterranean, western",
+      "cruiseAreaID": "1",
+      "filter": [],
+      "currency": "USD",
+      "currency_symbol": "$",
+      "price_strike": "",
+      "pricecat": [],
+      "masterCruiseIDs": [
+        "I5259553240818"
+      ],
+      "highlight": false,
+      "highlightColor": "",
+      "highlightColorHover": "",
+      "icon_url": "",
+      "priceUnformatted": "987",
+      "isDisabled": "",
+      "isUniqueContent": false,
+      "transferType": "none",
+      "price": "$987"
+    }
+    ]
+};
+localStorage.setItem('cruiseListData', JSON.stringify(cruiseListData))
+</script> 
 <script>
-    document.addEventListener('DOMContentLoaded', function () {
-        const cruiseListData = JSON.parse(localStorage.getItem('cruiseListData'));
+document.addEventListener('DOMContentLoaded', function () {
+    fetchCruises();
+});
 
-        if (cruiseListData) {
-            const resultsContainer = document.getElementById('results');
-            const cruiseCount = document.getElementById('cruise-count');
-            const departurePortList = document.getElementById('departure-port-list');
-            let displayedCruises = 10;
+async function fetchCruises() {
+    try {
+        const response = await fetch('/cruises');
+        const cruises = await response.json();
+        displayCruises(cruises);
+    } catch (error) {
+        console.error('Error fetching cruises:', error);
+    }
+}
 
-            function createCruiseCard(cruise) {
-                return `
-                    <div class="col-lg-9">
-                        <div class="card-item cruise--card card-item-list">
-                            <div class="card-img">
-                                <a href="cruise-details.html" class="d-block">
-                                    <img src="${cruise.shipImage}" alt="${cruise.cruiseLineLogo}">
-                                    <span class="badge">${cruise.highlight ? 'Featured' : ''}</span>
-                                </a>
+function displayCruises(cruises) {
+    const resultsDiv = document.getElementById('results');
+    resultsDiv.innerHTML = ''; // Clear previous results
+
+    cruises.forEach(cruise => {
+        const cruiseItem = document.createElement('div');
+        cruiseItem.className = 'col-lg-12';
+        cruiseItem.innerHTML = `
+            <div class="card-item">
+                <div class="card-body">
+                    <div class="col-lg-3 overview-right">
+                        <div class="logo">
+                            <div class="field field--name-field-cruiseline-logo field--type-entity-reference field--label-hidden field__item">
+                                <article class="media media--type-image media--view-mode-logo">
+                                    <div class="field field--name-field-media-image field--type-image field--label-hidden field__item">
+                                        <picture>
+                                            <source srcset="${cruise.cruiselineLogoWebp}" type="image/webp" width="200" height="60"/>
+                                            <source srcset="${cruise.cruiselineLogoPng}" type="image/png" width="200" height="60"/>
+                                            <img loading="lazy" src="${cruise.cruiselineLogoPng}" width="200" height="60" alt="${cruise.cruiseline}" class="img-fluid" />
+                                        </picture>
+                                    </div>
+                                </article>
                             </div>
-                            <div class="card-body">
-                                <img src="${cruise.cruiseLineLogo}" alt="${cruise.shipImage}" class="cruise-logo">
-                                <h3 class="card-title"><a href="cruise-details.html">${cruise.title}</a></h3>
-                                <p class="card-route">${cruise.route}</p>
-                                <p class="card-meta">Departing ${cruise.departure}</p>
-                                <div class="card-price d-flex align-items-center justify-content-between">
-                                    <p>
-                                        <span class="price__from">From</span>
-                                        <span class="price__num">${cruise.price}</span>
-                                    </p>
-                                    <a href="#" class="btn-text view-details" data-cruise-id="${cruise.masterCruiseID}">Read details<i class="la la-angle-right"></i></a>
-                                </div>
+                        </div>
+                        <div class="price">
+                            <div class="field field--name-field-minimum-price field--type-decimal field--label-above">
+                                <div class="field__label">From</div>
+                                <div class="field__item">$${cruise.minimumPrice}</div>
+                            </div>
+                            <div class="field field--name-field-per-day-price field--type-decimal field--label-above">
+                                <div class="field__label">as little as</div>
+                                <div class="field__item">$${cruise.perDayPrice}/night</div>
+                            </div>
+                        </div>
+                        <div class="included">
+                            <a href="/sailing/${cruise.sailingId}/inclusions" class="use-ajax" data-dialog-type="modal" rel="nofollow" data-dialog-options="{&quot;width&quot;:&quot;700&quot;,&quot;height&quot;:&quot;80%&quot;,&quot;title&quot;:&quot;What&#039;s included in my Cruise?&quot;}">What's Included?</a>
+                        </div>
+                        <div class="paragraph paragraph--type--voyager-club-cta paragraph--view-mode--full cta-box">
+                            <div class="title">
+                                <div class="field field--name-field-heading field--type-string field--label-hidden field__item">Sail Safe</div>
+                            </div>
+                            <div class="clearfix text-formatted field field--name-field-description field--type-text-long field--label-hidden field__item">
+                                <p>${cruise.healthSafetyProtocols}</p>
+                            </div>
+                            <a href="/voyager-club/${cruise.voyagerClubId}" class="use-ajax voyager-club-info-link button" data-dialog-type="modal" rel="nofollow" data-dialog-options="{&quot;width&quot;:&quot;700&quot;,&quot;height&quot;:&quot;80%&quot;,&quot;title&quot;:&quot;Sail Safe&quot;}">Learn more</a>
+                        </div>
+                    </div>
+                    <div class="prices-section">
+                        <div class="views-element-container">
+                            <div class="view-content">
+                                <table class="table-bordered table table-striped views-table views-view-table cols-7">
+                                    <thead>
+                                        <tr>
+                                            <th class="views-align-center views-field views-field-field-sailing-departure-date views-align-center" scope="col">Departure Date</th>
+                                            <th class="views-align-center views-field views-field-field-applicable-rules views-align-center" scope="col">Bonus</th>
+                                            <th class="views-align-center views-field views-field-field-inside-price views-align-center" scope="col">Interior</th>
+                                            <th class="views-align-center views-field views-field-field-outside-price views-align-center" scope="col">Oceanview</th>
+                                            <th class="views-align-center views-field views-field-field-balcony-price views-align-center" scope="col">Balcony</th>
+                                            <th class="views-align-center views-field views-field-field-suite-price views-align-center" scope="col">Suite</th>
+                                            <th class="views-field views-field-field-sailing-package-id" scope="col"></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        ${cruise.sailings.map(sailing => `
+                                            <tr>
+                                                <td class="views-field views-field-field-sailing-departure-date views-align-center">
+                                                    <time title="Save to Favorite" class="datetime toggle-favourite" data-sailing-id="${sailing.sailingId}" data-sailing-package-id="${sailing.packageId}">
+                                                        ${new Date(sailing.departureDate).toLocaleDateString()}
+                                                    </time>
+                                                </td>
+                                                <td class="views-field views-field-field-applicable-rules views-align-center">
+                                                    ${sailing.bonuses.map(bonus => `
+                                                        <a href="/sailing/${bonus.bonusId}/bonus" class="use-ajax" data-dialog-type="modal" rel="nofollow" data-dialog-options="{&quot;width&quot;:&quot;700&quot;,&quot;height&quot;:&quot;80%&quot;}">
+                                                            <img class="promo-icon img-fluid" src="${bonus.icon}" width="24" height="24" alt="${bonus.title}" loading="lazy" />
+                                                        </a>
+                                                    `).join(' ')}
+                                                </td>
+                                                <td class="views-field views-field-field-inside-price views-align-center">
+                                                    <div class="price">
+                                                        <span class="number">$${sailing.insidePrice}</span>
+                                                        <span class="currency">USD</span>
+                                                    </div>
+                                                </td>
+                                                <td class="views-field views-field-field-outside-price views-align-center">
+                                                    <div class="price">
+                                                        <span class="number">$${sailing.outsidePrice}</span>
+                                                        <span class="currency">USD</span>
+                                                    </div>
+                                                </td>
+                                                <td class="views-field views-field-field-balcony-price views-align-center">
+                                                    <div class="price">
+                                                        <span class="number">$${sailing.balconyPrice}</span>
+                                                        <span class="currency">USD</span>
+                                                    </div>
+                                                </td>
+                                                <td class="views-field views-field-field-suite-price views-align-center">
+                                                    <div class="price">
+                                                        <span class="number">$${sailing.suitePrice}</span>
+                                                        <span class="currency">USD</span>
+                                                    </div>
+                                                </td>
+                                                <td class="views-field views-field-field-sailing-package-id">
+                                                    <a class="btn btn-primary" href="https://book.cruisedirect.com/swift/cruise/package/${sailing.packageId}?siid=${sailing.siid}" rel="noreferrer" target="_blank">Select</a>
+                                                </td>
+                                            </tr>
+                                        `).join('')}
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     </div>
-                `;
-            }
-
-            function displayCruises(limit, cruises) {
-                resultsContainer.innerHTML = '';
-                const cruisesToShow = cruises.slice(0, limit);
-                cruisesToShow.forEach(cruise => {
-                    resultsContainer.innerHTML += createCruiseCard(cruise);
-                });
-                cruiseCount.textContent = `Showing 1 - ${limit} of ${cruises.length} Cruises`;
-
-                // Add event listeners for the view details buttons
-                document.querySelectorAll('.view-details').forEach(button => {
-                    button.addEventListener('click', function (e) {
-                        e.preventDefault();
-                        const cruiseID = this.getAttribute('data-cruise-id');
-                        selectCruise(cruiseID);
-                    });
-                });
-            }
-
-            async function selectCruise(cruiseID) {
-                const response = await fetch('http://localhost:3000/cruise/select', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': 'your-local-auth-token'
-                    },
-                    body: JSON.stringify({ cruiseID })
-                });
-                if (response.ok) {
-                    localStorage.setItem('selectedCruiseID', cruiseID);
-                    window.location.href = 'cruise-details.html';
-                } else {
-                    alert('Error selecting cruise');
-                }
-            }
-
-            function getUniqueDeparturePorts(cruises) {
-                const ports = cruises.map(cruise => cruise.route.split(' - ')[0]);
-                const portCount = {};
-                ports.forEach(port => {
-                    if (portCount[port]) {
-                        portCount[port]++;
-                    } else {
-                        portCount[port] = 1;
-                    }
-                });
-                return portCount;
-            }
-
-            function createDeparturePortFilters(ports) {
-                departurePortList.innerHTML = '';
-                Object.keys(ports).forEach(port => {
-                    const portCheckbox = document.createElement('div');
-                    portCheckbox.classList.add('custom-checkbox');
-                    portCheckbox.innerHTML = `
-                        <input type="checkbox" id="port-${port}" value="${port}">
-                        <label for="port-${port}">${port} <span class="font-size-13 ml-1">(${ports[port]})</span></label>
-                    `;
-                    departurePortList.appendChild(portCheckbox);
-                });
-            }
-
-            function filterCruises() {
-                let filteredCruises = [...cruiseListData.cruises];
-                const selectedPorts = Array.from(document.querySelectorAll('#departure-port-list input:checked')).map(input => input.value);
-                const minPrice = parseInt(document.getElementById('amount2').value.split('-')[0].replace('$', '').trim());
-                const maxPrice = parseInt(document.getElementById('amount2').value.split('-')[1].replace('$', '').trim());
-
-                if (selectedPorts.length > 0) {
-                    filteredCruises = filteredCruises.filter(cruise => selectedPorts.includes(cruise.route.split(' - ')[0]));
-                }
-
-                if (!isNaN(minPrice) && !isNaN(maxPrice)) {
-                    filteredCruises = filteredCruises.filter(cruise => {
-                        const price = parseInt(cruise.price.replace('$', '').replace(',', ''));
-                        return price >= minPrice && price <= maxPrice;
-                    });
-                }
-
-                return filteredCruises;
-            }
-
-            function sortCruises(cruises) {
-                const sortOption = document.getElementById('sort-options').value;
-                let sortedCruises = [...cruises];
-                switch (sortOption) {
-                    case 'new':
-                        sortedCruises.sort((a, b) => new Date(b.departure) - new Date(a.departure));
-                        break;
-                    case 'popular':
-                        sortedCruises.sort((a, b) => b.reviews - a.reviews);
-                        break;
-                    case 'low-to-high':
-                        sortedCruises.sort((a, b) => parseInt(a.price.replace('$', '')) - parseInt(b.price.replace('$', '')));
-                        break;
-                    case 'high-to-low':
-                        sortedCruises.sort((a, b) => parseInt(b.price.replace('$', '')) - parseInt(a.price.replace('$', '')));
-                        break;
-                    case 'a-to-z':
-                        sortedCruises.sort((a, b) => a.title.localeCompare(b.title));
-                        break;
-                    default:
-                        break;
-                }
-                return sortedCruises;
-            }
-
-            function applyFilters() {
-                let filteredCruises = filterCruises();
-                let sortedCruises = sortCruises(filteredCruises);
-                displayCruises(displayedCruises, sortedCruises);
-                document.getElementById('cruises-found').textContent = `${filteredCruises.length} Cruises found`;
-            }
-
-            const departurePorts = getUniqueDeparturePorts(cruiseListData.cruises);
-            createDeparturePortFilters(departurePorts);
-            displayCruises(displayedCruises, cruiseListData.cruises);
-
-            document.getElementById('load-more-btn').addEventListener('click', function () {
-                displayedCruises += 10;
-                if (displayedCruises > cruiseListData.cruises.length) {
-                    displayedCruises = cruiseListData.cruises.length;
-                }
-                applyFilters();
-            });
-
-            document.getElementById('sort-options').addEventListener('change', function () {
-                applyFilters();
-            });
-
-            document.querySelectorAll('#departure-port-list input').forEach(input => {
-                input.addEventListener('change', function () {
-                    applyFilters();
-                });
-            });
-
-            document.getElementById('apply-price-sidebar').addEventListener('click', function () {
-                applyFilters();
-            });
-
-            // Initialize the price range slider
-            const slider = document.getElementById('slider-range2');
-            if (slider.noUiSlider) {
-                slider.noUiSlider.destroy();
-            }
-            noUiSlider.create(slider, {
-                start: [40, 800],  // Set the initial range as needed
-                connect: true,
-                range: {
-                    'min': 0,
-                    'max': 10000
-                },
-                tooltips: [true, true],
-                format: {
-                    to: function (value) {
-                        return '$' + value.toFixed(2);
-                    },
-                    from: function (value) {
-                        return Number(value.replace('$', ''));
-                    }
-                }
-            });
-
-            slider.noUiSlider.on('update', function (values, handle) {
-                document.getElementById('amount2').value = `${values[0]} - ${values[1]}`;
-            });
-        }
+                </div>
+            </div>
+        `;
+        resultsDiv.appendChild(cruiseItem);
     });
+
+    document.getElementById('cruise-count').innerText = `${cruises.length} Cruises found`;
+}
+
+document.getElementById('load-more-btn').addEventListener('click', function () {
+    // Add logic to load more cruises if pagination is implemented
+});
 </script>
 </body>
 </html>
